@@ -1,0 +1,14 @@
+{
+  "project": "ExpressJobs",
+  "productionStatus": "NO-GO_PRODUCTION",
+  "workingDirectory": "C:\\CODEX-expressjobs-repo",
+  "technicalBase": "C:\\CODEX-expressjobs",
+  "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
+  "branch": "codex/expressjobs-autonomous-bootstrap",
+  "cycle": "CYCLE_EXPRESSJOBS_001",
+  "livePayments": false,
+  "aiAgents": false,
+  "adminPanel": false,
+  "stagingReady": "code-ready-env-pending",
+  "productionReady": false
+}
