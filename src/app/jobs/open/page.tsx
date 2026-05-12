@@ -12,7 +12,7 @@ export default function OpenJobsPage() {
         </p>
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {featuredJobs.map((job) => (
-            <JobCard key={job.id} {...job} />
+            <JobCard key={job.id} {...job} href={`/worker/jobs/${job.id}`} />
           ))}
         </div>
       </main>

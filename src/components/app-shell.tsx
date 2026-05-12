@@ -3,9 +3,9 @@ import { BriefcaseBusiness, CircleDollarSign, LayoutDashboard, UserRoundCheck } 
 import { productionStatus } from "@/lib/env";
 
 const nav = [
-  { href: "/jobs/open", label: "Trabajos", icon: BriefcaseBusiness },
-  { href: "/dashboard/client", label: "Cliente", icon: LayoutDashboard },
-  { href: "/dashboard/worker", label: "Trabajador", icon: UserRoundCheck },
+  { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
+  { href: "/client", label: "Cliente", icon: LayoutDashboard },
+  { href: "/worker", label: "Trabajador", icon: UserRoundCheck },
   { href: "/pricing", label: "Pricing", icon: CircleDollarSign },
 ];
 

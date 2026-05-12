@@ -21,7 +21,7 @@ export default function ClientDashboardPage() {
           ))}
         </div>
         <div className="mt-6">
-          <PrimaryButton href="/jobs/new" icon={ClipboardPlus}>Publicar trabajo</PrimaryButton>
+          <PrimaryButton href="/client/jobs/new" icon={ClipboardPlus}>Publicar trabajo</PrimaryButton>
         </div>
       </main>
     </AppShell>

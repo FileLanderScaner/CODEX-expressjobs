@@ -2,7 +2,9 @@ import { ArrowRight, BriefcaseBusiness, CheckCircle2, ShieldCheck, UsersRound } 
 import { AppShell } from "@/components/app-shell";
 import { JobCard } from "@/components/job-card";
 import { PrimaryButton } from "@/components/primary-button";
+import { RoleSelector } from "@/components/role-selector";
 import { StatusFlow } from "@/components/status-flow";
+import { TrustSafetyNotice } from "@/components/trust-safety-notice";
 import { TrackingClient } from "@/components/tracking-client";
 import { categories, featuredJobs } from "@/lib/expressjobs-data";
 
@@ -17,30 +19,36 @@ export default function Home() {
               <p className="text-sm font-bold uppercase tracking-wide text-[var(--brand)]">
                 Uruguay/LATAM microtrabajos locales
               </p>
-              <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight sm:text-5xl">
-                ExpressJobs conecta clientes con trabajadores disponibles cerca.
-              </h1>
+              <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight sm:text-5xl">Publica trabajos rapidos o encontra tareas cerca tuyo.</h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
                 Publica un trabajo, recibe postulaciones, acepta una persona, coordina por chat,
                 comparte por WhatsApp y cierra con reseñas y reputacion.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <PrimaryButton href="/jobs/new" icon={BriefcaseBusiness}>
+                <PrimaryButton href="/client/jobs/new" icon={BriefcaseBusiness}>
                   Publicar trabajo
                 </PrimaryButton>
-                <PrimaryButton href="/jobs/open" icon={ArrowRight}>
-                  Ver trabajos abiertos
+                <PrimaryButton href="/worker/jobs" icon={ArrowRight}>
+                  Buscar trabajos cerca
                 </PrimaryButton>
               </div>
             </div>
             <div className="rounded-md border border-[var(--line)] bg-white p-4 shadow-sm">
               <div className="grid gap-3">
                 {featuredJobs.map((job) => (
-                  <JobCard key={job.id} {...job} />
+                  <JobCard key={job.id} {...job} href={`/worker/jobs/${job.id}`} />
                 ))}
               </div>
             </div>
           </div>
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 py-10">
+          <RoleSelector />
+        </section>
+
+        <section className="mx-auto max-w-6xl px-4 pb-10">
+          <TrustSafetyNotice />
         </section>
 
         <section className="mx-auto max-w-6xl px-4 py-10">

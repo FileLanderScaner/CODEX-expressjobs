@@ -12,3 +12,14 @@
 ## Safety
 
 Live payments are not active. Payment records are modeled as disabled/simulated until legal, tax, dispute, refund, and provider checks are complete.
+
+## MVP Pricing Surface
+
+The `/pricing` route documents:
+
+- Suggested 15% commission on completed jobs.
+- Featured jobs.
+- Worker premium.
+- Company plans.
+
+It explicitly states that real payments are not active.

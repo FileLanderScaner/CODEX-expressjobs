@@ -19,3 +19,14 @@
 ## Required Validation
 
 Run the migration in a non-production Supabase project and test with separate client, worker, and admin accounts before any staging release sign-off.
+
+## Smoke Test Matrix
+
+| Area | Expected |
+| --- | --- |
+| Profiles | User reads/updates own profile; admin reads all. |
+| Jobs | Authenticated users read open jobs; client manages own jobs; accepted worker reads assigned job. |
+| Applications | Worker creates and reads own applications; client reads and updates applications on own jobs. |
+| Messages | Only job participants read/send; admin can audit with valid role. |
+| Reviews | Only participants of completed jobs create reviews. |
+| Events | Authenticated users write safe events; admin reads all. |

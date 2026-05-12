@@ -1,5 +1,6 @@
 import { CircleDollarSign } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { PricingCard } from "@/components/pricing-card";
 import { monetizationOptions } from "@/lib/expressjobs-data";
 
 export default function PricingPage() {
@@ -15,9 +16,7 @@ export default function PricingPage() {
         </p>
         <div className="mt-6 grid gap-4 md:grid-cols-2">
           {monetizationOptions.map((option) => (
-            <article className="rounded-md border border-[var(--line)] bg-white p-5" key={option}>
-              <h2 className="text-lg font-black">{option}</h2>
-            </article>
+            <PricingCard key={option} title={option} text="Disponible como modelo comercial documentado. Cobros reales desactivados hasta completar legal, impuestos, disputas y proveedor." />
           ))}
         </div>
       </main>

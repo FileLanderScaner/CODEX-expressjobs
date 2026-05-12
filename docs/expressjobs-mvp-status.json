@@ -1,0 +1,27 @@
+{
+  "project": "ExpressJobs",
+  "mode": "EXPRESSJOBS_MVP_IMPLEMENTATION_WITH_SUPABASE",
+  "productionStatus": "NO-GO_PRODUCTION",
+  "mvpFoundation": true,
+  "backendProvider": "supabase",
+  "routesImplemented": [
+    "/",
+    "/auth",
+    "/onboarding",
+    "/client",
+    "/client/jobs/new",
+    "/client/jobs/[id]",
+    "/worker",
+    "/worker/jobs",
+    "/worker/jobs/[id]",
+    "/admin",
+    "/pricing",
+    "/terms",
+    "/privacy"
+  ],
+  "supabaseApplied": false,
+  "paymentsLive": false,
+  "aiAgentsLive": false,
+  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
+  "blockedBy": ["BLOCKED_SUPABASE_ACCESS"]
+}

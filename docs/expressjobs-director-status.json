@@ -5,10 +5,14 @@
   "technicalBase": "C:\\CODEX-expressjobs",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_001",
+  "cycle": "CYCLE_EXPRESSJOBS_002",
+  "mode": "EXPRESSJOBS_MVP_IMPLEMENTATION_WITH_SUPABASE",
+  "mvpFoundation": true,
   "livePayments": false,
   "aiAgents": false,
   "adminPanel": false,
   "stagingReady": "code-ready-env-pending",
-  "productionReady": false
+  "productionReady": false,
+  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
+  "blockedBy": ["BLOCKED_SUPABASE_ACCESS"]
 }
