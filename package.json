@@ -10,6 +10,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:rls:static": "vitest run src/__tests__/supabase-rls-static.test.ts",
     "secret:scan": "node scripts/secret-scan.mjs",
     "ci": "npm run lint && npm run typecheck && npm run test && npm run build && npm run secret:scan"
   },
