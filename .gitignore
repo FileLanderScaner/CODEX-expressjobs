@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# Next.js
+.next/
+out/
+dist/
+*.tsbuildinfo
+
+# Tests and reports
+coverage/
+test-results/
+playwright-report/
+*.log
+audit.json
+
+# Archives and generated bundles
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+!.env.rls.example
+!.env.production.example
+secrets/
+client_secret_*.json
+*.credentials.json
+
+# Vercel and local tooling
+.vercel/
+.turbo/
+
+# OS and IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
