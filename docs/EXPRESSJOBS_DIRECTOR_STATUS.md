@@ -12,6 +12,7 @@ Cycle 005 completed a static security audit and confirmed production remains blo
 Cycle 006 formalized release gate status as `EXPRESSJOBS_CODE_READY_ENV_PENDING` and `EXPRESSJOBS_NO_GO_PRODUCTION`.
 Cycle 007 completed a product UX review and documented copy/flow risks before Preview.
 Cycle 008 prepared the first 100 users controlled launch package, including tester onboarding, outreach templates, feedback workflow, metrics, and trust/safety notes.
+Cycle 009 added anonymous tester feedback tracking and onboarding checklist docs.
 
 ## Current Scope
 
