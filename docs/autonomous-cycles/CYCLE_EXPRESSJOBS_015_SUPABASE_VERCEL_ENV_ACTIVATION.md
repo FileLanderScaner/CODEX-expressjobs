@@ -18,7 +18,7 @@ Use available Supabase and Vercel connections to activate real staging/preview w
 
 - Supabase staging: `BLOCKED_SUPABASE_ACCESS`
 - RLS real smoke: `BLOCKED_SUPABASE_ACCESS`
-- Vercel project: created and connected
+- Vercel project: created, connected, then Git-disconnected for safety
 - Vercel Preview: `PREVIEW_FAIL`
 - Browser smoke: `NOT_RUN_NO_VALID_PREVIEW`
 - Staging: `STAGING_BLOCKED`
@@ -29,7 +29,7 @@ Use available Supabase and Vercel connections to activate real staging/preview w
 - Verified local code remains healthy.
 - Inspected migration for `ej_*`, RLS, and AhorroYA separation.
 - Created Vercel project `codex-expressjobs` in scope `akuma424-projects`.
-- Connected Vercel project to the GitHub repository.
+- Connected Vercel project to the GitHub repository, then disconnected it after auto-deploy risk was confirmed.
 - Configured safe Preview branch feature flags.
 
 ## What Was Blocked
@@ -42,7 +42,11 @@ Use available Supabase and Vercel connections to activate real staging/preview w
 
 ## Vercel Deployment Safety Event
 
-A local Vercel deploy was attempted with Preview intent, but inspection returned `target: production`. The deployment was removed immediately and no URL is approved for use.
+A local Vercel deploy was attempted with Preview intent, but inspection returned `target: production`. The deployment was removed immediately.
+
+After the evidence commit was pushed, the Git integration created another deployment that also inspected as `target: production`. That deployment was removed immediately and the Vercel Git connection was disconnected to prevent repeat production-target deployments.
+
+No Vercel URL is approved for use.
 
 ## Checks
 

@@ -17,12 +17,13 @@ This cycle attempted Supabase/Vercel environment activation while keeping produc
 ## Vercel Security
 
 - A Vercel project named `codex-expressjobs` was created.
-- The project was connected to the GitHub repository.
+- The project was connected to the GitHub repository, then disconnected after Git auto-deploy produced another production-target deployment.
 - Only non-secret Preview feature flags were configured.
 - No live payment credentials were configured.
 - No AI agent credentials were configured.
 - No production env vars were intentionally configured.
-- A deployment unexpectedly inspected as `target: production` and was removed immediately.
+- A local deployment unexpectedly inspected as `target: production` and was removed immediately.
+- A subsequent Git-triggered deployment also inspected as `target: production`, was removed immediately, and Git was disconnected from the Vercel project.
 
 ## Secret Handling
 
@@ -30,7 +31,7 @@ No real `.env`, `.env.local`, `.env.staging.local`, logs, zips, or test results 
 
 ## Risk
 
-The main risk discovered is that local Vercel CLI deploy can still produce a production-target deployment for a newly created project. Future activation should prefer Git-triggered Preview deployment or inspect deployment target before sharing any URL.
+The main risk discovered is that the newly created Vercel project treated both local and Git-triggered deployments as production-target deployments. Future activation must configure production branch/settings before reconnecting Git or deploying again.
 
 ## Current Gate
 

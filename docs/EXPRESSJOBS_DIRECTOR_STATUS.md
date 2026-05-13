@@ -19,7 +19,7 @@ Cycle 011 closed Preview/Staging environment readiness with Supabase and Vercel 
 Cycle 012 updated tester tracker/onboarding gates so public cohorts cannot be confused with local demo or unvalidated staging.
 Cycle 013 finalized the current release gate as `CODE_READY_ENV_PENDING` and `NO-GO_PRODUCTION`, with Supabase and Vercel access blockers documented as external requirements.
 Cycle 014 prepared the first 10 tester dry-run package with scripts, selection criteria, observation forms, feedback form, safety checklist, and GO/NO-GO rules while keeping external testers blocked.
-Cycle 015 attempted Supabase/Vercel activation. Vercel project `codex-expressjobs` was created and connected to GitHub, but Supabase access remained unavailable and a local Vercel deployment inspected as production target was removed immediately.
+Cycle 015 attempted Supabase/Vercel activation. Vercel project `codex-expressjobs` was created, but Supabase access remained unavailable. Vercel deployments inspected as production target were removed immediately, and Git auto-deploy was disconnected for safety.
 
 ## Current Scope
 

@@ -14,9 +14,11 @@ Scope: `akuma424-projects`
 
 Project ID: `prj_5wt...wR59`
 
-The project was connected to:
+The project was initially connected to:
 
 `https://github.com/FileLanderScaner/CODEX-expressjobs.git`
+
+After a Git push triggered another deployment inspected as `target: production`, the Git connection was disconnected to prevent additional automatic production-target deployments.
 
 ## Env Vars Configured
 
@@ -59,6 +61,23 @@ Removed deployment:
 
 `dpl_4E2...SW8`
 
+## Automatic Deployment Mitigation
+
+After the evidence commit was pushed, Vercel created another deployment from the Git connection. Inspection reported:
+
+```text
+target: production
+status: Building
+```
+
+That deployment was removed immediately.
+
+Removed deployment:
+
+`dpl_12E...rfRM`
+
+The Vercel project was then disconnected from GitHub so future pushes do not auto-deploy.
+
 ## Active Deployments
 
 After removal:
@@ -69,7 +88,7 @@ No deployments found under akuma424-projects.
 
 ## Decision
 
-Vercel project setup partially advanced, but Preview is not ready.
+Vercel project setup partially advanced, but Preview is not ready and Git auto-deploy is disabled for safety.
 
 Do not use any Vercel URL from this cycle as staging or production evidence.
 
@@ -78,6 +97,7 @@ Do not use any Vercel URL from this cycle as staging or production evidence.
 - Configure Supabase staging first, or explicitly decide to deploy a frontend-only Preview.
 - Review Vercel project framework/build settings.
 - Create a Git-triggered Preview deployment from branch `codex/expressjobs-autonomous-bootstrap`.
+- Before reconnecting Git, configure Vercel production branch/settings so this branch cannot deploy as production.
 - Confirm inspected deployment `target` is not `production`.
 - Configure `NEXT_PUBLIC_APP_URL` and `ALLOWED_ORIGINS` after the valid Preview URL exists.
 - Run browser smoke on valid Preview only.
