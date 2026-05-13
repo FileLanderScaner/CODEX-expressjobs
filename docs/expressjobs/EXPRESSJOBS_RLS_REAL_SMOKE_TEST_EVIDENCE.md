@@ -6,6 +6,10 @@
 
 `RLS_REAL_SMOKE_STATUS=BLOCKED_SUPABASE_ACCESS`
 
+Latest retry status:
+
+`SUPABASE_LINK_STATUS=BLOCKED_SUPABASE_TOKEN`
+
 ## Command
 
 ```bash
@@ -52,3 +56,7 @@ These values must be supplied through secure local or platform environment confi
 ## Decision
 
 Do not authorize testers. Real RLS smoke has not passed.
+
+## 2026-05-13 Retry Note
+
+Supabase CLI was available through `npx supabase` and local `supabase init` completed. Linking to project ref `gnsfyvsodslnehszanra` failed because `SUPABASE_ACCESS_TOKEN` was not present in the environment. No migration or user creation was attempted.

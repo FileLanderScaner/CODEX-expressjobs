@@ -7,12 +7,20 @@
   "technicalBase": "C:\\CODEX-expressjobs",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_017",
-  "current_mode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
-  "mode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
+  "cycle": "CYCLE_EXPRESSJOBS_018",
+  "current_mode": "EXPRESSJOBS_SUPABASE_STAGING_ACTIVATION_RETRY",
+  "mode": "EXPRESSJOBS_SUPABASE_STAGING_ACTIVATION_RETRY",
   "code_status": "CODE_READY",
   "staging_status": "CODE_READY_ENV_PENDING",
-  "supabase_staging_status": "BLOCKED_SUPABASE_ACCESS",
+  "supabase_cli_status": "AVAILABLE_VIA_NPX",
+  "supabase_init_status": "COMPLETED",
+  "supabase_project_ref": "gnsfyvsodslnehszanra",
+  "supabase_link_status": "BLOCKED_SUPABASE_TOKEN",
+  "supabase_staging_status": "BLOCKED_SUPABASE_TOKEN",
+  "migration_static_validation": "PASS",
+  "migration_apply_status": "NOT_APPLIED",
+  "staging_users_status": "NOT_CREATED",
+  "rls_real_smoke_status": "NOT_RUN_BLOCKED_SUPABASE_TOKEN",
   "vercel_preview_status": "PREVIEW_FAIL_SAFE_BLOCKED",
   "safe_retry_allowed": false,
   "first_10_tester_package": "READY_DRY_RUN_ONLY",
@@ -21,22 +29,23 @@
   "production_status": "NO-GO_PRODUCTION",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "documentation_closeout_status": "READY",
   "checks": {
     "secret_scan": "pass",
     "rls_static": "pass",
     "production_check": "pass",
+    "staging_check": "blocked_supabase_access",
+    "rls_smoke": "blocked_supabase_access",
     "diff_check": "pass"
   },
   "blocking_items": [
-    "BLOCKED_SUPABASE_ACCESS",
+    "BLOCKED_SUPABASE_TOKEN",
     "PREVIEW_FAIL_SAFE_BLOCKED"
   ],
   "blockedBy": [
-    "BLOCKED_SUPABASE_ACCESS",
+    "BLOCKED_SUPABASE_TOKEN",
     "PREVIEW_FAIL_SAFE_BLOCKED"
   ],
-  "next_mode": "HOLD_FOR_ENV_ACCESS_AND_SAFE_RETRY",
-  "nextMode": "HOLD_FOR_ENV_ACCESS_AND_SAFE_RETRY",
+  "next_mode": "EXPRESSJOBS_SUPABASE_TOKEN_LINK_RETRY",
+  "nextMode": "EXPRESSJOBS_SUPABASE_TOKEN_LINK_RETRY",
   "next_prompt_generated": true
 }
