@@ -7,33 +7,26 @@
   "technicalBase": "C:\\CODEX-expressjobs",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_016",
-  "current_mode": "EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT",
-  "mode": "EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT",
+  "cycle": "CYCLE_EXPRESSJOBS_017",
+  "current_mode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
+  "mode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
   "code_status": "CODE_READY",
   "staging_status": "CODE_READY_ENV_PENDING",
   "supabase_staging_status": "BLOCKED_SUPABASE_ACCESS",
   "vercel_preview_status": "PREVIEW_FAIL_SAFE_BLOCKED",
-  "production_status": "NO-GO_PRODUCTION",
+  "safe_retry_allowed": false,
   "first_10_tester_package": "READY_DRY_RUN_ONLY",
   "first_10_testers_status": "NO-GO_UNTIL_PREVIEW_AND_RLS_PASS",
+  "first_100_users_status": "NO-GO",
+  "production_status": "NO-GO_PRODUCTION",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "safe_retry_allowed": false,
-  "safe_retry_requires": [
-    "Supabase access via MCP/CLI/dashboard",
-    "Supabase staging envs configured outside Git",
-    "Vercel production branch confirmed safe",
-    "Vercel Preview env vars configured only for Preview/Development",
-    "Git auto-deploy reconnect checklist passed"
-  ],
+  "documentation_closeout_status": "READY",
   "checks": {
     "secret_scan": "pass",
     "rls_static": "pass",
     "production_check": "pass",
-    "diff_check": "pass",
-    "vercel_active_deployments": "none_found_after_post_push_removal",
-    "vercel_git_auto_deploy": "unsafe_disconnected_again"
+    "diff_check": "pass"
   },
   "blocking_items": [
     "BLOCKED_SUPABASE_ACCESS",
@@ -43,7 +36,7 @@
     "BLOCKED_SUPABASE_ACCESS",
     "PREVIEW_FAIL_SAFE_BLOCKED"
   ],
-  "next_mode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
-  "nextMode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
+  "next_mode": "HOLD_FOR_ENV_ACCESS_AND_SAFE_RETRY",
+  "nextMode": "HOLD_FOR_ENV_ACCESS_AND_SAFE_RETRY",
   "next_prompt_generated": true
 }

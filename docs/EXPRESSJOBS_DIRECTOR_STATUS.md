@@ -21,6 +21,7 @@ Cycle 013 finalized the current release gate as `CODE_READY_ENV_PENDING` and `NO
 Cycle 014 prepared the first 10 tester dry-run package with scripts, selection criteria, observation forms, feedback form, safety checklist, and GO/NO-GO rules while keeping external testers blocked.
 Cycle 015 attempted Supabase/Vercel activation. Vercel project `codex-expressjobs` was created, but Supabase access remained unavailable. Vercel deployments inspected as production target were removed immediately, and Git auto-deploy was disconnected for safety.
 Cycle 016 closed the environment blockers with Supabase access and Vercel Preview safety runbooks. A post-push production-target Vercel deployment was removed, and safe retry remains disabled until Supabase access and Vercel branch targeting are fixed.
+Cycle 017 consolidated the current state index, master next steps runbook, status matrix, and future Codex prompts for safe handoff.
 
 ## Current Scope
 
@@ -48,4 +49,4 @@ Cycle 016 closed the environment blockers with Supabase access and Vercel Previe
 
 ## Next Gate
 
-Consolidate documentation and keep retry blocked until Supabase access exists and Vercel Preview branch targeting is confirmed safe.
+Hold for environment access and safe retry conditions. Do not retry Supabase/Vercel until Supabase access exists and Vercel Preview branch targeting is confirmed safe.
