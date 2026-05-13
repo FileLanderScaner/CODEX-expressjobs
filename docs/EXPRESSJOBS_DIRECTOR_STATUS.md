@@ -15,6 +15,7 @@ Cycle 008 prepared the first 100 users controlled launch package, including test
 Cycle 009 added anonymous tester feedback tracking and onboarding checklist docs.
 AI Studio reference review adapted useful "Trabajos Rapidos" UX/product ideas while keeping ExpressJobs infrastructure, `ej_*` schema, and NO-GO production status.
 Cycle 010 hardened trust/safety docs, job content rules, incident handling, and safety copy.
+Cycle 011 closed Preview/Staging environment readiness with Supabase and Vercel runbooks, while external access remains blocked.
 
 ## Current Scope
 
