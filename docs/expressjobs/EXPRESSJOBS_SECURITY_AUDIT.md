@@ -26,14 +26,14 @@ Static security audit completed for the current MVP foundation. No production sy
 
 ### P1: Live RLS validation is blocked
 
-Status: Open  
+Status: Open
 Blocker: `BLOCKED_SUPABASE_ACCESS`
 
 The migration and static RLS tests are prepared, but real RLS behavior must be validated against a non-production Supabase project with client, worker, and admin users.
 
 ### P2: Preview deployment validation is blocked
 
-Status: Open  
+Status: Open
 Blocker: `BLOCKED_VERCEL_ACCESS`
 
 Vercel Preview configuration is documented, but no Preview deploy was executed because env vars/access are not available.
