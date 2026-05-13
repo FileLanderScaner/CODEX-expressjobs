@@ -26,6 +26,7 @@ audit.json
 .env
 .env.*
 !.env.example
+!.env.*.example
 !.env.rls.example
 !.env.production.example
 secrets/

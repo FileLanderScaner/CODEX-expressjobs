@@ -31,7 +31,7 @@ const requiredPolicies = [
   "jobs_client_update",
   "applications_worker_insert",
   "applications_select_parties",
-  "applications_update_parties",
+  "applications_update_client_only",
   "messages_select_participants",
   "messages_insert_participants",
   "reviews_insert_completed_participants",
@@ -63,5 +63,15 @@ describe("ExpressJobs Supabase RLS migration", () => {
   it("does not disable RLS or reference AhorroYA tables", () => {
     expect(migration.toLowerCase()).not.toContain("disable row level security");
     expect(migration.toLowerCase()).not.toContain("ahorroya");
+  });
+
+  it("keeps private messages limited to accepted job participants", () => {
+    const participantFunction = migration.slice(
+      migration.indexOf("create or replace function public.ej_is_job_participant"),
+      migration.indexOf("drop policy if exists \"profiles_select_own_or_admin\""),
+    );
+
+    expect(participantFunction).toContain("accepted_worker_id = auth.uid()");
+    expect(participantFunction).not.toContain("public.ej_job_applications");
   });
 });

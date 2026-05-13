@@ -5,8 +5,22 @@
   "technicalBase": "C:\\CODEX-expressjobs",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_003",
-  "mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
+  "cycle": "CYCLE_EXPRESSJOBS_004",
+  "current_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS_AND_PREVIEW_DEPLOYMENT",
+  "mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS_AND_PREVIEW_DEPLOYMENT",
+  "staging_status": "CODE_READY_ENV_PENDING",
+  "production_status": "NO-GO_PRODUCTION",
+  "supabase_status": "RLS_READY_BUT_BLOCKED_SUPABASE_ACCESS",
+  "vercel_status": "PREVIEW_BLOCKED_VERCEL_ACCESS",
+  "checks": {
+    "secret_scan": "pass",
+    "lint": "pass",
+    "typecheck": "pass",
+    "test": "pass",
+    "rls_static": "pass",
+    "build": "pass",
+    "diff_check": "pass"
+  },
   "mvpFoundation": true,
   "livePayments": false,
   "aiAgents": false,
@@ -15,6 +29,8 @@
   "productionReady": false,
   "staticRlsSmokeTests": true,
   "liveRlsSmokeTests": false,
-  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
-  "blockedBy": ["BLOCKED_SUPABASE_ACCESS"]
+  "nextMode": "EXPRESSJOBS_SECURITY_AUDIT",
+  "next_prompt_generated": true,
+  "blocking_items": ["BLOCKED_SUPABASE_ACCESS", "BLOCKED_VERCEL_ACCESS"],
+  "blockedBy": ["BLOCKED_SUPABASE_ACCESS", "BLOCKED_VERCEL_ACCESS"]
 }

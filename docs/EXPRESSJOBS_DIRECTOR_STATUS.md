@@ -7,6 +7,7 @@
 Bootstrap cycle 001 created a clean Next.js MVP in the real Git repository.
 Cycle 002 expanded it into a usable MVP foundation with client, worker, admin, onboarding, legal, pricing, services, and QA documentation.
 Cycle 003 added static Supabase RLS smoke tests and identified live RLS validation as blocked by external staging Supabase access.
+Cycle 004 prepared live staging RLS smoke scripts, Vercel Preview runbooks, env templates, and production blockers without touching production.
 
 ## Current Scope
 
