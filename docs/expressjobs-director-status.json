@@ -7,27 +7,22 @@
   "technicalBase": "C:\\CODEX-expressjobs",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_013",
-  "current_mode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO",
-  "mode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO",
+  "cycle": "CYCLE_EXPRESSJOBS_014",
+  "current_mode": "EXPRESSJOBS_FIRST_10_TESTER_DRY_RUN_PACKAGE",
+  "mode": "EXPRESSJOBS_FIRST_10_TESTER_DRY_RUN_PACKAGE",
+  "first_10_tester_package": "READY_DRY_RUN_ONLY",
+  "first_10_external_testers_status": "NO-GO_UNTIL_PREVIEW_AND_RLS_PASS",
+  "first_100_users_status": "NO-GO",
   "release_gate_decision": "CODE_READY_ENV_PENDING",
   "staging_status": "CODE_READY_ENV_PENDING",
   "supabase_staging_status": "BLOCKED_SUPABASE_ACCESS",
   "vercel_preview_status": "BLOCKED_VERCEL_ACCESS",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "first_10_testers_status": "NO-GO_UNTIL_PREVIEW_AND_RLS_PASS",
-  "first_100_users_status": "NO-GO",
   "checks": {
     "secret_scan": "pass",
-    "lint": "pass",
-    "typecheck": "pass",
-    "test": "pass",
     "rls_static": "pass",
     "build": "pass",
-    "production_check": "pass",
-    "staging_check": "blocked_supabase_access",
-    "rls_smoke": "blocked_supabase_access",
     "diff_check": "pass"
   },
   "mvpFoundation": true,
@@ -38,8 +33,6 @@
   "productionReady": false,
   "staticRlsSmokeTests": true,
   "liveRlsSmokeTests": false,
-  "release_gate": "CODE_READY_ENV_PENDING",
-  "decision": "NO-GO_PRODUCTION",
   "blocking_items": [
     "BLOCKED_SUPABASE_ACCESS",
     "BLOCKED_VERCEL_ACCESS"
@@ -48,7 +41,7 @@
     "BLOCKED_SUPABASE_ACCESS",
     "BLOCKED_VERCEL_ACCESS"
   ],
-  "next_mode": "EXPRESSJOBS_FIRST_10_TESTER_DRY_RUN_PACKAGE",
-  "nextMode": "EXPRESSJOBS_FIRST_10_TESTER_DRY_RUN_PACKAGE",
+  "next_mode": "EXPRESSJOBS_FEEDBACK_TRIAGE_BOARD",
+  "nextMode": "EXPRESSJOBS_FEEDBACK_TRIAGE_BOARD",
   "next_prompt_generated": true
 }
