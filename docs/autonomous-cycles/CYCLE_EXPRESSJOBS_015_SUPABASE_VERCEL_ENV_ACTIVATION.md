@@ -63,6 +63,6 @@ No Vercel URL is approved for use.
 
 ## Next Mode
 
-`EXPRESSJOBS_SUPABASE_RLS_FIX`
+`EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT`
 
-Reason: Supabase access is the primary blocker. A safe Preview cannot be considered useful for testers until Supabase staging and RLS real smoke pass.
+Reason: Supabase access remains blocked and Vercel needs production-branch/Preview safety closeout before another deployment attempt.

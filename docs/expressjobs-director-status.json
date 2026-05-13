@@ -55,7 +55,7 @@
     "BLOCKED_SUPABASE_ACCESS",
     "PREVIEW_FAIL"
   ],
-  "next_mode": "EXPRESSJOBS_SUPABASE_RLS_FIX",
-  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_FIX",
+  "next_mode": "EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT",
+  "nextMode": "EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT",
   "next_prompt_generated": true
 }
