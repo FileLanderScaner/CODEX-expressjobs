@@ -9,6 +9,7 @@ export function JobCard({
   budget,
   status,
   category,
+  description,
   href = "/jobs/open",
 }: {
   title: string;
@@ -16,6 +17,7 @@ export function JobCard({
   budget: string;
   status: JobStatus;
   category: string;
+  description?: string;
   href?: string;
 }) {
   return (
@@ -38,10 +40,11 @@ export function JobCard({
           Reputacion visible
         </span>
       </div>
+      {description ? <p className="mt-3 line-clamp-2 text-sm leading-6 text-[var(--muted)]">{description}</p> : null}
       <div className="mt-4 flex flex-wrap gap-2">
         <a
           className="focus-ring inline-flex items-center gap-2 rounded-md border border-[var(--line)] px-3 py-2 text-sm font-semibold hover:bg-[#f3f5f1]"
-          href={buildWhatsAppShareUrl(`Mira este trabajo en ExpressJobs: ${title}`)}
+          href={buildWhatsAppShareUrl(`Mira esta tarea en Trabajos Rapidos: ${title}`)}
           rel="noreferrer"
           target="_blank"
         >

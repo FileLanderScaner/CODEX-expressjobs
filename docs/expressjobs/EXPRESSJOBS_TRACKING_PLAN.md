@@ -24,6 +24,11 @@ Tracking must never block the app. The current implementation writes to local st
 - `whatsapp_share_clicked`
 - `premium_cta_clicked`
 - `commission_info_viewed`
+- `pricing_viewed`
+
+## AI Studio Reference Update
+
+The AI Studio prototype used console logging for arbitrary event properties. ExpressJobs keeps typed event names, local/session storage fallback, and basic payload sanitization to avoid storing obvious email, phone, or password fields.
 
 ## Future Supabase Persistence
 

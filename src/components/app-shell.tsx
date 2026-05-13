@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { BriefcaseBusiness, CircleDollarSign, LayoutDashboard, UserRoundCheck } from "lucide-react";
 import { productionStatus } from "@/lib/env";
+import { publicBrand } from "@/lib/expressjobs-data";
 
 const nav = [
   { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
@@ -16,9 +17,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
           <Link href="/" className="focus-ring flex items-center gap-2 rounded-md">
             <span className="grid h-9 w-9 place-items-center rounded-md bg-[var(--brand)] text-sm font-bold text-white">
-              EJ
+              TR
             </span>
-            <span className="text-lg font-bold">ExpressJobs</span>
+            <span className="leading-tight">
+              <span className="block text-lg font-bold">{publicBrand.productName}</span>
+              <span className="block text-xs font-semibold text-[var(--muted)]">{publicBrand.technicalName}</span>
+            </span>
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
             {nav.map((item) => (

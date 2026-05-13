@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ExpressJobs",
-  description: "Microtrabajos locales para Uruguay y LATAM.",
+  title: "Trabajos Rapidos by ExpressJobs",
+  description: "Publica trabajos rapidos o encontra tareas cerca tuyo.",
 };
 
 export default function RootLayout({

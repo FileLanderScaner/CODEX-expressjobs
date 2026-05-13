@@ -23,3 +23,7 @@ The `/pricing` route documents:
 - Company plans.
 
 It explicitly states that real payments are not active.
+
+## AI Studio Pricing Reference
+
+The prototype's `$9.99/mes` Premium Pro idea is treated as a future proposal only. ExpressJobs does not present it as an active charge and does not enable checkout.

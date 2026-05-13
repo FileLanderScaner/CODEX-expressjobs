@@ -30,6 +30,7 @@ export const trackingEvents = [
   "whatsapp_share_clicked",
   "premium_cta_clicked",
   "commission_info_viewed",
+  "pricing_viewed",
 ] as const;
 
 export type TrackingEventName = (typeof trackingEvents)[number];
@@ -44,6 +45,13 @@ export const categories = [
   "Eventos",
   "Cuidado de mascotas",
 ] as const;
+
+export const publicBrand = {
+  productName: "Trabajos Rapidos",
+  technicalName: "ExpressJobs",
+  combinedName: "Trabajos Rapidos by ExpressJobs",
+  statusLabel: "Preview privado - no produccion",
+} as const;
 
 type FeaturedJob = {
   id: string;
@@ -211,4 +219,28 @@ export const monetizationOptions = [
   "Trabajos destacados para clientes",
   "Premium trabajador con mayor visibilidad",
   "Plan empresa para volumen recurrente",
+] as const;
+
+export const pricingPlans = [
+  {
+    title: "Gratis",
+    price: "UYU 0",
+    badge: "MVP",
+    description: "Para probar publicacion y busqueda basica en piloto controlado.",
+    features: ["Publicar o buscar tareas limitadas", "Postulacion basica", "Perfil basico", "WhatsApp share"],
+  },
+  {
+    title: "Premium trabajador",
+    price: "Proximamente",
+    badge: "Propuesta inicial",
+    description: "Inspirado en el prototipo, pero sin cobro real ni checkout live.",
+    features: ["Perfil destacado", "Mas postulaciones", "Alertas tempranas", "Menor comision futura", "Soporte prioritario"],
+  },
+  {
+    title: "Comision",
+    price: "15% sugerido",
+    badge: "No activo",
+    description: "Modelo documentado para trabajos completados cuando exista proveedor de pagos aprobado.",
+    features: ["Solo para trabajos completados", "Desactivado en MVP", "Requiere legal/pagos/disputas", "Sin credenciales live"],
+  },
 ] as const;
