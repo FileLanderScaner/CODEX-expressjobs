@@ -84,3 +84,16 @@ Both commands stopped before reaching Supabase because required staging/auth env
 The function `search_path` advisory fix was prepared locally but not applied remotely:
 
 `supabase/migrations/20260513081258_fix_expressjobs_function_search_path.sql`
+
+## 2026-05-13 Cycle 021 Note
+
+`RLS_REAL_SMOKE_STATUS=BLOCKED_AUTH_WRITE_CAPABILITY`
+
+Credential presence was checked again without printing values:
+
+- `SUPABASE_ACCESS_TOKEN`: missing
+- `NEXT_PUBLIC_SUPABASE_URL`: missing
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: missing
+- `SUPABASE_SERVICE_ROLE_KEY`: missing
+
+Because the token and staging/auth envs are still missing, Codex did not run `supabase link`, did not apply the local migration, did not create staging users, and did not write any smoke-test data.
