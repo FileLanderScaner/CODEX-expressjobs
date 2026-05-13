@@ -19,6 +19,11 @@ Cycle 011 closed Preview/Staging environment readiness with Supabase and Vercel 
 Cycle 012 updated tester tracker/onboarding gates so public cohorts cannot be confused with local demo or unvalidated staging.
 Cycle 013 finalized the current release gate as `CODE_READY_ENV_PENDING` and `NO-GO_PRODUCTION`, with Supabase and Vercel access blockers documented as external requirements.
 Cycle 014 prepared the first 10 tester dry-run package with scripts, selection criteria, observation forms, feedback form, safety checklist, and GO/NO-GO rules while keeping external testers blocked.
+Cycle 015 attempted Supabase/Vercel activation. Vercel project `codex-expressjobs` was created, but Supabase access remained unavailable. Vercel deployments inspected as production target were removed immediately, and Git auto-deploy was disconnected for safety.
+Cycle 016 closed the environment blockers with Supabase access and Vercel Preview safety runbooks. A post-push production-target Vercel deployment was removed, and safe retry remains disabled until Supabase access and Vercel branch targeting are fixed.
+Cycle 017 consolidated the current state index, master next steps runbook, status matrix, and future Codex prompts for safe handoff.
+Cycle 018 retried Supabase staging activation. Supabase CLI was available through `npx`, local init completed, and local metadata points to `supabase-expressjobs`, but remote commands remained blocked because `SUPABASE_ACCESS_TOKEN` was not present in the Codex process. A pasted token must be revoked/rotated before retry.
+Cycle 018 read-only audit confirmed Supabase MCP is configured globally, but callable Supabase MCP tools were not exposed in the active agent process. Remote schema remains unverified.
 
 ## Current Scope
 
@@ -46,4 +51,4 @@ Cycle 014 prepared the first 10 tester dry-run package with scripts, selection c
 
 ## Next Gate
 
-Prepare a feedback triage board so future first 10 tester findings can be categorized, prioritized, and escalated without storing personal data in Git.
+Refresh Codex or otherwise expose callable Supabase MCP tools, then rerun read-only schema inspection before any migration or RLS real smoke execution.
