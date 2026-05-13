@@ -23,6 +23,8 @@ No real tester data belongs in this repository. Use tester codes instead of name
 | `top_issue` | Main blocker or concern. |
 | `severity` | critical, high, medium, low. |
 | `follow_up_needed` | yes/no. |
+| `environment` | local_demo, preview, staging. |
+| `env_gate_status` | blocked, ready, pass. |
 
 ## Example Rows
 
@@ -30,6 +32,14 @@ No real tester data belongs in this repository. Use tester codes instead of name
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | EJ-T001 | client | 10 | invited | client | pending |  |  |  |  | yes |
 | EJ-T002 | worker | 10 | invited | worker | pending |  |  |  |  | yes |
+
+## Current Gate Reminder
+
+Do not mark a tester as `staging_tested` until:
+
+- `npm run staging:check` passes with real Preview/Staging env vars.
+- `npm run rls:smoke` returns `EXPRESSJOBS_RLS_STAGING_PASS`.
+- Vercel Preview URL is available and browser smoke passes.
 
 ## Privacy Rule
 
