@@ -14,6 +14,7 @@ Cycle 007 completed a product UX review and documented copy/flow risks before Pr
 Cycle 008 prepared the first 100 users controlled launch package, including tester onboarding, outreach templates, feedback workflow, metrics, and trust/safety notes.
 Cycle 009 added anonymous tester feedback tracking and onboarding checklist docs.
 AI Studio reference review adapted useful "Trabajos Rapidos" UX/product ideas while keeping ExpressJobs infrastructure, `ej_*` schema, and NO-GO production status.
+Cycle 010 hardened trust/safety docs, job content rules, incident handling, and safety copy.
 
 ## Current Scope
 
