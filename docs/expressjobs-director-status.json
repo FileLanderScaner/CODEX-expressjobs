@@ -15,8 +15,9 @@
   "supabase_cli_status": "AVAILABLE_VIA_NPX",
   "supabase_init_status": "COMPLETED",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
-  "supabase_link_status": "BLOCKED_SUPABASE_TOKEN",
+  "supabase_link_status": "LINKED_LOCAL_METADATA_PRESENT_REMOTE_COMMANDS_BLOCKED_TOKEN",
   "supabase_staging_status": "BLOCKED_SUPABASE_TOKEN",
+  "supabase_token_status": "EXPOSED_IN_CHAT_ROTATE_REQUIRED",
   "migration_static_validation": "PASS",
   "migration_apply_status": "NOT_APPLIED",
   "staging_users_status": "NOT_CREATED",
@@ -38,14 +39,16 @@
     "diff_check": "pass"
   },
   "blocking_items": [
+    "SUPABASE_TOKEN_ROTATE_REQUIRED",
     "BLOCKED_SUPABASE_TOKEN",
     "PREVIEW_FAIL_SAFE_BLOCKED"
   ],
   "blockedBy": [
+    "SUPABASE_TOKEN_ROTATE_REQUIRED",
     "BLOCKED_SUPABASE_TOKEN",
     "PREVIEW_FAIL_SAFE_BLOCKED"
   ],
-  "next_mode": "EXPRESSJOBS_SUPABASE_TOKEN_LINK_RETRY",
-  "nextMode": "EXPRESSJOBS_SUPABASE_TOKEN_LINK_RETRY",
+  "next_mode": "EXPRESSJOBS_SUPABASE_TOKEN_ROTATE_AND_REMOTE_RETRY",
+  "nextMode": "EXPRESSJOBS_SUPABASE_TOKEN_ROTATE_AND_REMOTE_RETRY",
   "next_prompt_generated": true
 }

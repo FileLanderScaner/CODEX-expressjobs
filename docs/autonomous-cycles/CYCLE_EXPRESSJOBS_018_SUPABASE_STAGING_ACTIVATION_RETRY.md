@@ -19,7 +19,8 @@ Retry Supabase staging activation using CLI access without touching production o
 - Supabase CLI via `npx`: available.
 - `supabase init`: completed.
 - Project ref requested: `gnsfyvsodslnehszanra`.
-- Link status: `BLOCKED_SUPABASE_TOKEN`.
+- Local link metadata: present for `supabase-expressjobs`.
+- Remote command status: `BLOCKED_SUPABASE_TOKEN`.
 - Migration validation: static validation pass.
 - Migration applied: no.
 - Staging users created: no.
@@ -27,7 +28,9 @@ Retry Supabase staging activation using CLI access without touching production o
 
 ## Blocker
 
-`SUPABASE_ACCESS_TOKEN` was not loaded in the environment. The CLI cannot link in this non-TTY session without a token.
+`SUPABASE_ACCESS_TOKEN` was not loaded in the Codex process. The CLI cannot inspect or push to remote Supabase in this non-TTY session without a token.
+
+A token was pasted into chat during the workflow. Treat it as compromised and revoke/rotate it before retrying.
 
 ## Safety
 
@@ -49,6 +52,6 @@ Retry Supabase staging activation using CLI access without touching production o
 
 ## Next Mode
 
-`EXPRESSJOBS_SUPABASE_TOKEN_LINK_RETRY`
+`EXPRESSJOBS_SUPABASE_TOKEN_ROTATE_AND_REMOTE_RETRY`
 
-Run only after `SUPABASE_ACCESS_TOKEN` is loaded outside Git.
+Run only after the exposed token is revoked/rotated and the new `SUPABASE_ACCESS_TOKEN` is loaded outside Git.

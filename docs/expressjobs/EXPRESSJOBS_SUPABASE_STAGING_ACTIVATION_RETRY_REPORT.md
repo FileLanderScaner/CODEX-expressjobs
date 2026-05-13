@@ -27,12 +27,22 @@ Version observed:
 
 ## Link Status
 
-`SUPABASE_LINK_STATUS=BLOCKED_SUPABASE_TOKEN`
+`SUPABASE_LINK_STATUS=LINKED_LOCAL_METADATA_PRESENT_REMOTE_COMMANDS_BLOCKED_TOKEN`
 
-Attempted:
+Local Supabase metadata now points to:
+
+- Project ref: `gnsfyvsodslnehszanra`
+- Project name: `supabase-expressjobs`
+- Region reported by user CLI output: East US (North Virginia)
+
+Remote commands from the Codex process remain blocked because `SUPABASE_ACCESS_TOKEN` is not available in this process.
+
+Attempted remote commands:
 
 ```bash
 npx supabase link --project-ref gnsfyvsodslnehszanra
+npx supabase migration list
+npx supabase db push --dry-run
 ```
 
 Result:
@@ -41,7 +51,9 @@ Result:
 Access token not provided.
 ```
 
-The environment variable `SUPABASE_ACCESS_TOKEN` was checked and was not present. No token value was printed or stored.
+The environment variable `SUPABASE_ACCESS_TOKEN` was checked in the Codex process and was not present. No token value was printed or stored.
+
+Security note: a Supabase access token was pasted into chat during this workflow. Treat that token as compromised and revoke/rotate it before continuing with real operations.
 
 ## Project
 
@@ -49,7 +61,7 @@ Requested project ref:
 
 `gnsfyvsodslnehszanra`
 
-This project was not linked, inspected, or modified because authentication was unavailable. It is not yet confirmed as staging/non-production from this environment.
+Local link metadata identifies this project as `supabase-expressjobs`. It was not modified by Codex because remote commands were blocked by the missing token in this process. Treat staging/non-production confirmation as incomplete until a rotated token is loaded and remote inspection succeeds.
 
 ## Migration Validation
 
@@ -72,8 +84,8 @@ Not applied.
 
 Reason:
 
-- Supabase link failed due missing access token.
-- Project could not be confirmed as staging/non-production.
+- Remote Supabase commands failed due missing access token in the Codex process.
+- Project could not be fully confirmed as staging/non-production from Codex.
 
 ## Staging Users
 
@@ -90,7 +102,7 @@ Not executed against Supabase real staging.
 
 Reason:
 
-- `SUPABASE_ACCESS_TOKEN` missing for link.
+- `SUPABASE_ACCESS_TOKEN` missing in the Codex process for remote commands.
 - Staging env values and staging user credentials are not loaded.
 
 Final command results:
@@ -100,11 +112,12 @@ Final command results:
 
 ## Next Required Action
 
-Load the Supabase access token outside Git and rerun:
+Revoke/rotate the token that appeared in chat. Then load the new Supabase access token outside Git and rerun:
 
 ```powershell
-$env:SUPABASE_ACCESS_TOKEN = "<token from Supabase dashboard>"
+$env:SUPABASE_ACCESS_TOKEN = "<rotated token from Supabase dashboard>"
 npx supabase link --project-ref gnsfyvsodslnehszanra
+npx supabase migration list
 ```
 
 Do not paste the token into documentation, Git, or chat logs.

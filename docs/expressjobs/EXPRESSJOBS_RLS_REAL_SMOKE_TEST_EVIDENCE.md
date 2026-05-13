@@ -8,7 +8,7 @@
 
 Latest retry status:
 
-`SUPABASE_LINK_STATUS=BLOCKED_SUPABASE_TOKEN`
+`SUPABASE_LINK_STATUS=LINKED_LOCAL_METADATA_PRESENT_REMOTE_COMMANDS_BLOCKED_TOKEN`
 
 ## Command
 
@@ -59,4 +59,4 @@ Do not authorize testers. Real RLS smoke has not passed.
 
 ## 2026-05-13 Retry Note
 
-Supabase CLI was available through `npx supabase` and local `supabase init` completed. Linking to project ref `gnsfyvsodslnehszanra` failed because `SUPABASE_ACCESS_TOKEN` was not present in the environment. No migration or user creation was attempted.
+Supabase CLI was available through `npx supabase` and local `supabase init` completed. Local link metadata now points to project ref `gnsfyvsodslnehszanra` / `supabase-expressjobs`, but remote commands from Codex still fail because `SUPABASE_ACCESS_TOKEN` is not present in the Codex process. A token was pasted into chat and must be revoked/rotated before continuing. No migration or user creation was attempted.

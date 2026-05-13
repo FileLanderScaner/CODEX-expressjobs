@@ -22,7 +22,7 @@ Cycle 014 prepared the first 10 tester dry-run package with scripts, selection c
 Cycle 015 attempted Supabase/Vercel activation. Vercel project `codex-expressjobs` was created, but Supabase access remained unavailable. Vercel deployments inspected as production target were removed immediately, and Git auto-deploy was disconnected for safety.
 Cycle 016 closed the environment blockers with Supabase access and Vercel Preview safety runbooks. A post-push production-target Vercel deployment was removed, and safe retry remains disabled until Supabase access and Vercel branch targeting are fixed.
 Cycle 017 consolidated the current state index, master next steps runbook, status matrix, and future Codex prompts for safe handoff.
-Cycle 018 retried Supabase staging activation. Supabase CLI was available through `npx` and local init completed, but project link remained blocked because `SUPABASE_ACCESS_TOKEN` was not present.
+Cycle 018 retried Supabase staging activation. Supabase CLI was available through `npx`, local init completed, and local metadata points to `supabase-expressjobs`, but remote commands remained blocked because `SUPABASE_ACCESS_TOKEN` was not present in the Codex process. A pasted token must be revoked/rotated before retry.
 
 ## Current Scope
 
@@ -50,4 +50,4 @@ Cycle 018 retried Supabase staging activation. Supabase CLI was available throug
 
 ## Next Gate
 
-Load `SUPABASE_ACCESS_TOKEN` outside Git and retry Supabase link to the staging project before any migration or RLS real smoke execution.
+Revoke/rotate the exposed Supabase access token, load the new `SUPABASE_ACCESS_TOKEN` outside Git, and retry remote Supabase inspection before any migration or RLS real smoke execution.
