@@ -7,8 +7,8 @@
 | Code | `CODE_READY` | MVP foundation implemented. |
 | Local checks | `PASS` | Required local checks pass. |
 | Static RLS | `PASS` | Static RLS tests pass. |
-| Supabase staging | `BLOCKED_SUPABASE_ACCESS` | No MCP/CLI access available yet. |
-| RLS real smoke | `BLOCKED_SUPABASE_ACCESS` | Requires staging project and users. |
+| Supabase staging | `STAGING_ENV_PASS_AUTH_USERS_PENDING` | `.env.local`, staging check, and REST/Data API read pass. |
+| RLS real smoke | `BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY` | Requires confirmed client, worker, and admin staging users. |
 | Vercel Preview | `PREVIEW_FAIL_SAFE_BLOCKED` | Deployments were production-target and removed. |
 | Safe retry | `false` | Retry blocked until Supabase/Vercel fixes. |
 | First 10 testers | `NO-GO` | Requires RLS real PASS and Preview PASS. |
@@ -19,4 +19,4 @@
 
 ## Current Decision
 
-ExpressJobs / Trabajos Rapidos is ready for environment setup, not ready for public use.
+ExpressJobs / Trabajos Rapidos has staging public config working, but is not ready for public use until real RLS smoke passes with confirmed users.

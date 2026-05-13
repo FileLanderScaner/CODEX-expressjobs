@@ -57,6 +57,72 @@ These values must be supplied through secure local or platform environment confi
 
 Do not authorize testers. Real RLS smoke has not passed.
 
+## 2026-05-13 Cycle 027 RLS Smoke Gate
+
+`RLS_REAL_SMOKE_STATUS=BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY`
+
+Path selected:
+
+`BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY`
+
+Credential and capability presence was checked without printing secret values:
+
+- `.env.local`: present and ignored by Git
+- `.env.rls`: missing
+- `SUPABASE_SERVICE_ROLE_KEY`: not present in `.env.rls`
+- Supabase MCP write/apply: read-only
+- Supabase Auth anon signup: blocked by email confirmation/rate limit
+
+Commands and results:
+
+```bash
+npm run secret:scan
+npm run test:rls:static
+npm run production:check
+npm run staging:check
+git diff --check
+npm run rls:bootstrap-anon-users
+npm run rls:smoke
+```
+
+Results:
+
+- `npm run secret:scan`: PASS
+- `npm run test:rls:static`: PASS
+- `npm run production:check`: PASS
+- `npm run staging:check`: PASS
+- `git diff --check`: PASS
+- `npm run rls:bootstrap-anon-users`: AUTH_FAILURE, Supabase Auth signup did not produce confirmed sessions
+- `npm run rls:smoke`: ENV_CONFIGURATION_ERROR / TEST_DATA_SETUP_ERROR, confirmed RLS user credentials are missing
+
+Remote read evidence:
+
+- Supabase project ref: `gnsfyvsodslnehszanra`
+- Auth staging signup users created by anon bootstrap attempts: 1
+- Confirmed staging signup users: 0
+- REST/Data API read against `ej_categories`: PASS in the previous cycle with the publishable key
+
+Matrix status:
+
+1. Anonymous user cannot modify data: NOT RUN, missing confirmed RLS users
+2. Client creates and manages only own jobs: NOT RUN, missing confirmed RLS users
+3. Worker sees open jobs: NOT RUN, missing confirmed RLS users
+4. Worker creates own applications: NOT RUN, missing confirmed RLS users
+5. Worker cannot accept/reject own application: NOT RUN, missing confirmed RLS users
+6. Client sees applications only for own jobs: NOT RUN, missing confirmed RLS users
+7. Client accepts/rejects applications for own jobs: NOT RUN, missing confirmed RLS users
+8. Only participants see messages: NOT RUN, missing confirmed RLS users
+9. Third parties do not read private messages: NOT RUN, missing confirmed RLS users
+10. Only participants of completed jobs create reviews: NOT RUN, missing confirmed RLS users
+11. Admin with valid role sees audit table: NOT RUN, missing confirmed RLS users
+12. Normal user does not see audit table: NOT RUN, missing confirmed RLS users
+
+Pending migration:
+
+`supabase/migrations/20260513081258_fix_expressjobs_function_search_path.sql`
+
+Remote migrations currently include only `202605120001_expressjobs_mvp_schema`; the `search_path` fix remains unapplied because MCP is read-only and no safe CLI/service-role write capability is available.
+
 ## 2026-05-13 Retry Note
 
 Supabase CLI was available through `npx supabase` and local `supabase init` completed. Local link metadata now points to project ref `gnsfyvsodslnehszanra` / `supabase-expressjobs`, but remote commands from Codex still fail because `SUPABASE_ACCESS_TOKEN` is not present in the Codex process. A token was pasted into chat and must be revoked/rotated before continuing. No migration or user creation was attempted.

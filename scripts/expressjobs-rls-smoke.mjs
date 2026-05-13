@@ -1,4 +1,12 @@
+import { existsSync } from "node:fs";
+import { loadEnvFile } from "node:process";
 import { createClient } from "@supabase/supabase-js";
+
+for (const envFile of [".env.local", ".env.rls"]) {
+  if (existsSync(envFile)) {
+    loadEnvFile(envFile);
+  }
+}
 
 const required = [
   "NEXT_PUBLIC_SUPABASE_URL",

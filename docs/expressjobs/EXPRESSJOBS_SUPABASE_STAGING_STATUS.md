@@ -4,7 +4,7 @@
 
 ## Current Status
 
-`SUPABASE_STAGING_STATUS=CODE_READY_ENV_PENDING`
+`SUPABASE_STAGING_STATUS=STAGING_ENV_PASS_AUTH_USERS_PENDING`
 
 Remote schema status:
 
@@ -12,22 +12,23 @@ Remote schema status:
 
 RLS real smoke status:
 
-`RLS_REAL_SMOKE_STATUS=BLOCKED_AUTH_WRITE_CAPABILITY`
+`RLS_REAL_SMOKE_STATUS=BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY`
 
 ## Missing Capability
 
-The Codex process is missing:
+The current blocking capability is:
 
-- `SUPABASE_ACCESS_TOKEN`
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
+- Confirmed staging users for client, worker, and admin roles.
+- A safe service-role or Auth Admin write path to create confirmed users.
+- Supabase MCP write/apply capability for the pending function `search_path` migration.
 
-No staging users or test records were created.
+`.env.local` is present and staging env validation passes. `.env.rls` is not present.
+
+Anon signup was attempted but Supabase Auth did not produce confirmed sessions because email confirmation/rate limit blocks the flow.
 
 ## Pending Work
 
-- Rotate the exposed Supabase service-role credential before any write/auth operation.
+- Provide a rotated service-role key only through `.env.rls`, or disable email confirmation in staging only and rerun anon bootstrap.
 - Apply `supabase/migrations/20260513081258_fix_expressjobs_function_search_path.sql`.
 - Verify Supabase Advisor warnings are resolved.
 - Create or validate staging users through safe scripts.
