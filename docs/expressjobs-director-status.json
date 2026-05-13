@@ -1,25 +1,29 @@
 {
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
-  "productionStatus": "NO-GO_PRODUCTION",
-  "production_status": "NO-GO_PRODUCTION",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_018_READ_ONLY_AUDIT",
-  "current_mode": "EXPRESSJOBS_SUPABASE_READ_ONLY_AUDIT",
-  "mode": "EXPRESSJOBS_SUPABASE_READ_ONLY_AUDIT",
+  "cycle": "CYCLE_EXPRESSJOBS_019_SUPABASE_WRITE_ACCESS_RUNBOOK",
+  "current_mode": "EXPRESSJOBS_SUPABASE_WRITE_ACCESS_RUNBOOK",
+  "mode": "EXPRESSJOBS_SUPABASE_WRITE_ACCESS_RUNBOOK",
   "code_status": "CODE_READY",
   "supabase_mcp_status": "CONNECTED_READ_ONLY",
+  "supabase_mcp_tools_available_in_session": true,
   "supabase_project_ref": "gnsfyvsodslnehszanra",
-  "supabase_write_status": "BLOCKED_READ_ONLY",
-  "supabase_remote_schema_status": "SUPABASE_REMOTE_CANNOT_VERIFY_READ_ONLY",
-  "rls_real_smoke_status": "BLOCKED_READ_ONLY",
+  "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
+  "supabase_write_status": "BLOCKED_UNTIL_TOKEN_OR_WRITE_TOOL",
+  "rls_real_smoke_status": "BLOCKED_WRITE_ACCESS",
   "staging_status": "CODE_READY_ENV_PENDING",
   "vercel_preview_status": "PREVIEW_FAIL_SAFE_BLOCKED",
+  "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
+  "security_advisories": [
+    "function_search_path_mutable_public_ej_is_admin",
+    "function_search_path_mutable_public_ej_is_job_participant"
+  ],
   "checks": {
     "secret_scan": "pass",
     "rls_static": "pass",
@@ -27,16 +31,14 @@
     "diff_check": "pass"
   },
   "blocking_items": [
-    "SUPABASE_MCP_TOOLS_NOT_EXPOSED_IN_ACTIVE_AGENT",
-    "SUPABASE_REMOTE_SCHEMA_UNVERIFIED",
-    "BLOCKED_READ_ONLY"
+    "BLOCKED_WRITE_ACCESS",
+    "BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY"
   ],
   "blockedBy": [
-    "SUPABASE_MCP_TOOLS_NOT_EXPOSED_IN_ACTIVE_AGENT",
-    "SUPABASE_REMOTE_SCHEMA_UNVERIFIED",
-    "BLOCKED_READ_ONLY"
+    "BLOCKED_WRITE_ACCESS",
+    "BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY"
   ],
-  "next_mode": "EXPRESSJOBS_SUPABASE_WRITE_ACCESS_RUNBOOK",
-  "nextMode": "EXPRESSJOBS_SUPABASE_WRITE_ACCESS_RUNBOOK",
+  "next_mode": "EXPRESSJOBS_RLS_REAL_SMOKE_AFTER_WRITE_ACCESS",
+  "nextMode": "EXPRESSJOBS_RLS_REAL_SMOKE_AFTER_WRITE_ACCESS",
   "next_prompt_generated": true
 }

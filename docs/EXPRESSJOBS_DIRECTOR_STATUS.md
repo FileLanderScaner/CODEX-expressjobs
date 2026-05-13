@@ -24,6 +24,7 @@ Cycle 016 closed the environment blockers with Supabase access and Vercel Previe
 Cycle 017 consolidated the current state index, master next steps runbook, status matrix, and future Codex prompts for safe handoff.
 Cycle 018 retried Supabase staging activation. Supabase CLI was available through `npx`, local init completed, and local metadata points to `supabase-expressjobs`, but remote commands remained blocked because `SUPABASE_ACCESS_TOKEN` was not present in the Codex process. A pasted token must be revoked/rotated before retry.
 Cycle 018 read-only audit confirmed Supabase MCP is configured globally, but callable Supabase MCP tools were not exposed in the active agent process. Remote schema remains unverified.
+Cycle 019 confirmed Supabase MCP tools are exposed in this Codex session for read-only work. Remote `public.ej_*` schema matches the local MVP migration at the table/RLS/policy/helper level. Write access remains blocked for real RLS smoke tests, and Supabase Advisor warnings for helper function `search_path` must be handled in a future reviewed migration.
 
 ## Current Scope
 
@@ -51,4 +52,4 @@ Cycle 018 read-only audit confirmed Supabase MCP is configured globally, but cal
 
 ## Next Gate
 
-Refresh Codex or otherwise expose callable Supabase MCP tools, then rerun read-only schema inspection before any migration or RLS real smoke execution.
+Obtain safe Supabase write/auth capability for staging, then run real RLS smoke tests without touching production. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
