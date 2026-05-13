@@ -29,7 +29,7 @@ ExpressJobs / Trabajos Rapidos is code-ready and staging-public-config-ready, bu
 
 ## What Is Blocked
 
-- Confirmed Supabase Auth staging users.
+- Confirmed Supabase Auth staging users; anon bootstrap is blocked by email confirmation/rate limit.
 - Real RLS smoke tests.
 - Vercel Preview deployment.
 - Browser smoke on Preview.

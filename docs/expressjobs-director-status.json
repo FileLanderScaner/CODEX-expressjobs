@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_027_RLS_SMOKE_AUTH_BLOCKER",
+  "cycle": "CYCLE_EXPRESSJOBS_028_RLS_SMOKE_AUTH_RATE_LIMIT_BLOCKER",
   "current_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "code_status": "CODE_READY",
@@ -49,7 +49,7 @@
     "production_check": "pass",
     "staging_check": "pass",
     "rest_data_api_check": "pass",
-    "rls_bootstrap_anon_users": "blocked_auth_email_confirmation_or_rate_limit",
+    "rls_bootstrap_anon_users": "blocked_auth_email_rate_limit",
     "rls_smoke": "blocked_missing_confirmed_test_users",
     "diff_check": "pass"
   },
@@ -58,6 +58,7 @@
     "SUPABASE_ACCESS_TOKEN_MISSING",
     "SUPABASE_SERVICE_ROLE_KEY_MISSING",
     "AUTH_EMAIL_CONFIRMATION_REQUIRED_FOR_ANON_SIGNUP",
+    "AUTH_EMAIL_RATE_LIMIT_EXCEEDED",
     "CONFIRMED_RLS_TEST_USERS_MISSING"
   ],
   "blockedBy": [
@@ -65,6 +66,7 @@
     "SUPABASE_ACCESS_TOKEN_MISSING",
     "SUPABASE_SERVICE_ROLE_KEY_MISSING",
     "AUTH_EMAIL_CONFIRMATION_REQUIRED_FOR_ANON_SIGNUP",
+    "AUTH_EMAIL_RATE_LIMIT_EXCEEDED",
     "CONFIRMED_RLS_TEST_USERS_MISSING"
   ],
   "next_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",

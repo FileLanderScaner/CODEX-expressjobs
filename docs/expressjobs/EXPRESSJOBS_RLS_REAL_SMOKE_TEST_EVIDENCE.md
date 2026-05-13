@@ -123,6 +123,60 @@ Pending migration:
 
 Remote migrations currently include only `202605120001_expressjobs_mvp_schema`; the `search_path` fix remains unapplied because MCP is read-only and no safe CLI/service-role write capability is available.
 
+## 2026-05-13 Cycle 028 RLS Smoke Retry
+
+`RLS_REAL_SMOKE_STATUS=BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY`
+
+Path selected:
+
+`BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY`
+
+Commands and results:
+
+```bash
+npm run secret:scan
+npm run test:rls:static
+npm run production:check
+npm run staging:check
+npm run rls:bootstrap-anon-users
+npm run rls:smoke
+git diff --check
+```
+
+Results:
+
+- `npm run secret:scan`: PASS
+- `npm run test:rls:static`: PASS
+- `npm run production:check`: PASS
+- `npm run staging:check`: PASS
+- `npm run rls:bootstrap-anon-users`: AUTH_FAILURE, Supabase Auth returned `email rate limit exceeded`
+- `npm run rls:smoke`: ENV_CONFIGURATION_ERROR / TEST_DATA_SETUP_ERROR, confirmed RLS user credentials are missing
+- `git diff --check`: PASS
+
+Remote read evidence:
+
+- Staging signup users from anon bootstrap attempts: 1
+- Confirmed staging signup users: 0
+
+RLS matrix status:
+
+1. Anonymous user cannot modify data: NOT RUN, missing confirmed RLS users
+2. Client creates and manages only own jobs: NOT RUN, missing confirmed RLS users
+3. Worker sees open jobs: NOT RUN, missing confirmed RLS users
+4. Worker creates own applications: NOT RUN, missing confirmed RLS users
+5. Worker cannot accept/reject own application: NOT RUN, missing confirmed RLS users
+6. Client sees applications only for own jobs: NOT RUN, missing confirmed RLS users
+7. Client accepts/rejects applications for own jobs: NOT RUN, missing confirmed RLS users
+8. Only participants see messages: NOT RUN, missing confirmed RLS users
+9. Third parties do not read private messages: NOT RUN, missing confirmed RLS users
+10. Only participants of completed jobs create reviews: NOT RUN, missing confirmed RLS users
+11. Admin with valid role sees audit table: NOT RUN, missing confirmed RLS users
+12. Normal user does not see audit table: NOT RUN, missing confirmed RLS users
+
+Decision:
+
+`FIRST_10_TESTERS=NO-GO_UNTIL_RLS_REAL_PASS_AND_PREVIEW_PASS`
+
 ## 2026-05-13 Retry Note
 
 Supabase CLI was available through `npx supabase` and local `supabase init` completed. Local link metadata now points to project ref `gnsfyvsodslnehszanra` / `supabase-expressjobs`, but remote commands from Codex still fail because `SUPABASE_ACCESS_TOKEN` is not present in the Codex process. A token was pasted into chat and must be revoked/rotated before continuing. No migration or user creation was attempted.

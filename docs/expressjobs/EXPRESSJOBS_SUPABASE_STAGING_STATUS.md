@@ -26,6 +26,20 @@ The current blocking capability is:
 
 Anon signup was attempted but Supabase Auth did not produce confirmed sessions because email confirmation/rate limit blocks the flow.
 
+## 2026-05-13 Cycle 028 Retry
+
+RLS user bootstrap was retried with anon signup.
+
+Result:
+
+`AUTH_EMAIL_CONFIRMATION_REQUIRED_FOR_ANON_SIGNUP`
+
+Observed blocker:
+
+`email rate limit exceeded`
+
+Remote read evidence shows 1 staging signup user from previous bootstrap attempts and 0 confirmed staging signup users. Real RLS smoke remains blocked before policy execution because the required client, worker, and admin sessions cannot be created safely.
+
 ## Pending Work
 
 - Provide a rotated service-role key only through `.env.rls`, or disable email confirmation in staging only and rerun anon bootstrap.

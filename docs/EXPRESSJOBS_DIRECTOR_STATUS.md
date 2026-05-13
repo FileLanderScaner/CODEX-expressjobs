@@ -33,6 +33,7 @@ Cycle 024 attempted to continue after the operator reported APIs rotated, but th
 Cycle 025 diagnosed PowerShell process isolation and added `scripts/write-local-env-from-process.ps1` so the operator can safely persist already-pasted process env vars into ignored local env files without printing secrets.
 Cycle 026 used Supabase MCP to recover staging project URL and publishable key, created ignored `.env.local`, added automatic env loading to staging/RLS scripts, added anon-signup RLS bootstrap, and passed staging/API checks. Real RLS smoke remains blocked because Supabase Auth requires email confirmation and the MCP/CLI path is read-only for service-role user creation.
 Cycle 027 executed the requested RLS smoke gate. Pre-checks passed, but anon bootstrap hit Supabase Auth signup/email limits and `.env.rls` with service-role/confirmed test users is absent, so `npm run rls:smoke` remains blocked before policy execution.
+Cycle 028 retried the RLS smoke gate after another operator prompt. Pre-checks still pass, but anon bootstrap returns `email rate limit exceeded`; remote readback shows 1 staging signup user and 0 confirmed staging users. Real RLS smoke remains blocked before policy execution.
 
 ## Current Scope
 
