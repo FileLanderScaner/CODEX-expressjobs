@@ -7,55 +7,42 @@
   "technicalBase": "C:\\CODEX-expressjobs",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_015",
-  "current_mode": "EXPRESSJOBS_SUPABASE_VERCEL_ENV_ACTIVATION",
-  "mode": "EXPRESSJOBS_SUPABASE_VERCEL_ENV_ACTIVATION",
-  "staging_status": "STAGING_BLOCKED",
+  "cycle": "CYCLE_EXPRESSJOBS_016",
+  "current_mode": "EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT",
+  "mode": "EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT",
+  "code_status": "CODE_READY",
+  "staging_status": "CODE_READY_ENV_PENDING",
   "supabase_staging_status": "BLOCKED_SUPABASE_ACCESS",
-  "vercel_preview_status": "PREVIEW_FAIL",
-  "rls_real_smoke_status": "BLOCKED_SUPABASE_ACCESS",
-  "preview_browser_smoke_status": "NOT_RUN_NO_VALID_PREVIEW",
+  "vercel_preview_status": "PREVIEW_FAIL_SAFE_BLOCKED",
+  "production_status": "NO-GO_PRODUCTION",
+  "first_10_tester_package": "READY_DRY_RUN_ONLY",
+  "first_10_testers_status": "NO-GO_UNTIL_PREVIEW_AND_RLS_PASS",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "first_10_testers_status": "NO-GO_UNTIL_PREVIEW_AND_RLS_PASS",
-  "first_10_external_testers_status": "NO-GO_UNTIL_PREVIEW_AND_RLS_PASS",
-  "first_100_users_status": "NO-GO",
-  "vercel_project": {
-    "name": "codex-expressjobs",
-    "scope": "akuma424-projects",
-    "project_id_redacted": "prj_5wt...wR59",
-    "git_connected": false,
-    "active_deployments": 0
-  },
-  "preview_url_redacted_or_public": "",
+  "safe_retry_allowed": false,
+  "safe_retry_requires": [
+    "Supabase access via MCP/CLI/dashboard",
+    "Supabase staging envs configured outside Git",
+    "Vercel production branch confirmed safe",
+    "Vercel Preview env vars configured only for Preview/Development",
+    "Git auto-deploy reconnect checklist passed"
+  ],
   "checks": {
     "secret_scan": "pass",
-    "lint": "pass",
-    "typecheck": "pass",
-    "test": "pass",
     "rls_static": "pass",
-    "build": "pass",
     "production_check": "pass",
-    "staging_check": "blocked_supabase_access",
-    "rls_smoke": "blocked_supabase_access",
-    "diff_check": "pass"
+    "diff_check": "pass",
+    "vercel_active_deployments": "none_found"
   },
-  "mvpFoundation": true,
-  "livePayments": false,
-  "aiAgents": false,
-  "adminPanel": false,
-  "productionReady": false,
-  "staticRlsSmokeTests": true,
-  "liveRlsSmokeTests": false,
   "blocking_items": [
     "BLOCKED_SUPABASE_ACCESS",
-    "PREVIEW_FAIL"
+    "PREVIEW_FAIL_SAFE_BLOCKED"
   ],
   "blockedBy": [
     "BLOCKED_SUPABASE_ACCESS",
-    "PREVIEW_FAIL"
+    "PREVIEW_FAIL_SAFE_BLOCKED"
   ],
-  "next_mode": "EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT",
-  "nextMode": "EXPRESSJOBS_ENV_BLOCKER_CLOSEOUT",
+  "next_mode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
+  "nextMode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
   "next_prompt_generated": true
 }
