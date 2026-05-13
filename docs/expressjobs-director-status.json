@@ -4,41 +4,44 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_019_SUPABASE_WRITE_ACCESS_RUNBOOK",
-  "current_mode": "EXPRESSJOBS_SUPABASE_WRITE_ACCESS_RUNBOOK",
-  "mode": "EXPRESSJOBS_SUPABASE_WRITE_ACCESS_RUNBOOK",
+  "cycle": "CYCLE_EXPRESSJOBS_020_RLS_REAL_SMOKE_AFTER_WRITE_ACCESS",
+  "current_mode": "EXPRESSJOBS_RLS_REAL_SMOKE_AFTER_WRITE_ACCESS",
+  "mode": "EXPRESSJOBS_RLS_REAL_SMOKE_AFTER_WRITE_ACCESS",
   "code_status": "CODE_READY",
-  "supabase_mcp_status": "CONNECTED_READ_ONLY",
-  "supabase_mcp_tools_available_in_session": true,
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
+  "function_search_path_warning_status": "FUNCTION_SEARCH_PATH_FIX_PREPARED_NOT_APPLIED",
   "supabase_write_status": "BLOCKED_UNTIL_TOKEN_OR_WRITE_TOOL",
-  "rls_real_smoke_status": "BLOCKED_WRITE_ACCESS",
+  "rls_real_smoke_status": "BLOCKED_AUTH_WRITE_CAPABILITY",
+  "supabase_staging_status": "CODE_READY_ENV_PENDING",
   "staging_status": "CODE_READY_ENV_PENDING",
   "vercel_preview_status": "PREVIEW_FAIL_SAFE_BLOCKED",
   "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "security_advisories": [
-    "function_search_path_mutable_public_ej_is_admin",
-    "function_search_path_mutable_public_ej_is_job_participant"
-  ],
+  "first_10_testers_status": "BLOCKED_UNTIL_RLS_REAL_PASS",
   "checks": {
     "secret_scan": "pass",
     "rls_static": "pass",
     "production_check": "pass",
+    "staging_check": "blocked_missing_env",
+    "rls_smoke": "blocked_missing_env",
     "diff_check": "pass"
   },
   "blocking_items": [
-    "BLOCKED_WRITE_ACCESS",
-    "BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY"
+    "BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY",
+    "SUPABASE_ACCESS_TOKEN_MISSING",
+    "SUPABASE_SERVICE_ROLE_KEY_MISSING",
+    "SUPABASE_STAGING_PUBLIC_ENVS_MISSING"
   ],
   "blockedBy": [
-    "BLOCKED_WRITE_ACCESS",
-    "BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY"
+    "BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY",
+    "SUPABASE_ACCESS_TOKEN_MISSING",
+    "SUPABASE_SERVICE_ROLE_KEY_MISSING",
+    "SUPABASE_STAGING_PUBLIC_ENVS_MISSING"
   ],
-  "next_mode": "EXPRESSJOBS_RLS_REAL_SMOKE_AFTER_WRITE_ACCESS",
-  "nextMode": "EXPRESSJOBS_RLS_REAL_SMOKE_AFTER_WRITE_ACCESS",
+  "next_mode": "HOLD_FOR_SUPABASE_SERVICE_ROLE_OR_ACCESS_TOKEN",
+  "nextMode": "HOLD_FOR_SUPABASE_SERVICE_ROLE_OR_ACCESS_TOKEN",
   "next_prompt_generated": true
 }

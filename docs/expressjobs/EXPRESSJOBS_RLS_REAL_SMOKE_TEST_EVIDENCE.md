@@ -60,3 +60,27 @@ Do not authorize testers. Real RLS smoke has not passed.
 ## 2026-05-13 Retry Note
 
 Supabase CLI was available through `npx supabase` and local `supabase init` completed. Local link metadata now points to project ref `gnsfyvsodslnehszanra` / `supabase-expressjobs`, but remote commands from Codex still fail because `SUPABASE_ACCESS_TOKEN` is not present in the Codex process. A token was pasted into chat and must be revoked/rotated before continuing. No migration or user creation was attempted.
+
+## 2026-05-13 Cycle 020 Note
+
+`RLS_REAL_SMOKE_STATUS=BLOCKED_AUTH_WRITE_CAPABILITY`
+
+Credential presence was checked without printing values:
+
+- `SUPABASE_ACCESS_TOKEN`: missing
+- `NEXT_PUBLIC_SUPABASE_URL`: missing
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`: missing
+- `SUPABASE_SERVICE_ROLE_KEY`: missing
+
+Commands attempted:
+
+```bash
+npm run staging:check
+npm run rls:smoke
+```
+
+Both commands stopped before reaching Supabase because required staging/auth env vars were missing. No staging users, jobs, applications, messages, reviews, or audit records were created.
+
+The function `search_path` advisory fix was prepared locally but not applied remotely:
+
+`supabase/migrations/20260513081258_fix_expressjobs_function_search_path.sql`
