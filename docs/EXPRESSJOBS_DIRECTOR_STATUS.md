@@ -27,6 +27,7 @@ Cycle 018 read-only audit confirmed Supabase MCP is configured globally, but cal
 Cycle 019 confirmed Supabase MCP tools are exposed in this Codex session for read-only work. Remote `public.ej_*` schema matches the local MVP migration at the table/RLS/policy/helper level. Write access remains blocked for real RLS smoke tests, and Supabase Advisor warnings for helper function `search_path` must be handled in a future reviewed migration.
 Cycle 020 prepared a non-destructive migration to pin `search_path` for `public.ej_is_admin()` and `public.ej_is_job_participant(uuid)`. Remote apply and real RLS smoke remain blocked because `SUPABASE_ACCESS_TOKEN`, Supabase URL/anon key, and service-role auth capability are not present in the Codex process.
 Cycle 021 rechecked secure staging capability. `SUPABASE_ACCESS_TOKEN`, Supabase URL/anon key, and service-role key are still missing, so no remote link, migration apply, staging user creation, or RLS smoke write was attempted.
+Cycle 022 recorded a Supabase service-role credential exposure in chat. The credential must be rotated before any staging write, migration apply, user creation, or RLS smoke execution.
 
 ## Current Scope
 
@@ -54,4 +55,4 @@ Cycle 021 rechecked secure staging capability. `SUPABASE_ACCESS_TOKEN`, Supabase
 
 ## Next Gate
 
-Provide secure Supabase staging write/auth credentials outside git, apply the prepared function `search_path` migration, verify Supabase Advisor, then run real RLS smoke tests. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Rotate the exposed Supabase service-role credential, then provide secure staging write/auth credentials outside git. Only after rotation, apply the prepared function `search_path` migration, verify Supabase Advisor, and run real RLS smoke tests. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.

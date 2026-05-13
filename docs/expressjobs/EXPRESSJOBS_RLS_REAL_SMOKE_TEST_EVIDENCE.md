@@ -97,3 +97,9 @@ Credential presence was checked again without printing values:
 - `SUPABASE_SERVICE_ROLE_KEY`: missing
 
 Because the token and staging/auth envs are still missing, Codex did not run `supabase link`, did not apply the local migration, did not create staging users, and did not write any smoke-test data.
+
+## 2026-05-13 Secret Exposure Note
+
+`BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED`
+
+A Supabase service-role credential was pasted into the conversation. The value is not repeated here and must be considered compromised. No Supabase write, staging user creation, migration apply, or RLS smoke test may use that credential. Rotate it in Supabase before resuming.

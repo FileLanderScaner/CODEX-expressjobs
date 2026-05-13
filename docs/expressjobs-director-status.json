@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_021_SUPABASE_APPLY_FIX_AND_RLS_SMOKE",
+  "cycle": "CYCLE_EXPRESSJOBS_022_SUPABASE_SECRET_ROTATION_BLOCKER",
   "current_mode": "HOLD_FOR_SUPABASE_SERVICE_ROLE_OR_ACCESS_TOKEN",
   "mode": "HOLD_FOR_SUPABASE_SERVICE_ROLE_OR_ACCESS_TOKEN",
   "code_status": "CODE_READY",
@@ -12,7 +12,7 @@
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
   "function_search_path_warning_status": "WARNING_PRESENT_FIX_PREPARED_NOT_APPLIED",
   "supabase_link_status": "NOT_RUN_SUPABASE_ACCESS_TOKEN_MISSING",
-  "supabase_write_status": "BLOCKED_UNTIL_TOKEN_OR_WRITE_TOOL",
+  "supabase_write_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
   "rls_real_smoke_status": "BLOCKED_AUTH_WRITE_CAPABILITY",
   "supabase_staging_status": "CODE_READY_ENV_PENDING",
   "staging_status": "CODE_READY_ENV_PENDING",
@@ -22,6 +22,7 @@
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
   "first_10_testers_status": "BLOCKED_UNTIL_RLS_REAL_PASS",
+  "security_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
   "checks": {
     "secret_scan": "pass",
     "rls_static": "pass",
@@ -31,6 +32,7 @@
     "diff_check": "pass"
   },
   "blocking_items": [
+    "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
     "BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY",
     "SUPABASE_ACCESS_TOKEN_MISSING",
     "NEXT_PUBLIC_SUPABASE_URL_MISSING",
@@ -38,6 +40,7 @@
     "SUPABASE_SERVICE_ROLE_KEY_MISSING"
   ],
   "blockedBy": [
+    "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
     "BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY",
     "SUPABASE_ACCESS_TOKEN_MISSING",
     "NEXT_PUBLIC_SUPABASE_URL_MISSING",

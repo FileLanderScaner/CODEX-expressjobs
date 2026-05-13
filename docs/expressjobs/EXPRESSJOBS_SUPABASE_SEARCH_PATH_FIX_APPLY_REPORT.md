@@ -55,3 +55,9 @@ Current warning status:
 4. Apply only the prepared `search_path` migration.
 5. Re-run Supabase Advisor and verify the two warnings are gone.
 6. Run staging and RLS smoke checks.
+
+## Secret Exposure Update
+
+`BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED`
+
+A service-role credential was pasted into the conversation after the previous hold cycle. The value is not repeated in this document. The prepared migration must not be applied with that credential. Rotate the service-role key before any future apply or smoke-test run.

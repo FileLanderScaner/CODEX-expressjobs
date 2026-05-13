@@ -27,6 +27,7 @@ No staging users or test records were created.
 
 ## Pending Work
 
+- Rotate the exposed Supabase service-role credential before any write/auth operation.
 - Apply `supabase/migrations/20260513081258_fix_expressjobs_function_search_path.sql`.
 - Verify Supabase Advisor warnings are resolved.
 - Create or validate staging users through safe scripts.
