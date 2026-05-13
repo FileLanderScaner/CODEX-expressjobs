@@ -9,8 +9,9 @@ export function isTrackingEventName(event: string): event is TrackingEventName {
 export function trackEvent(event: TrackingEventName, payload: TrackingPayload = {}) {
   const entry = {
     event,
-    payload,
+    payload: sanitizePayload(payload),
     createdAt: new Date().toISOString(),
+    environment: process.env.NEXT_PUBLIC_APP_ENV ?? process.env.APP_ENV ?? "local",
   };
 
   if (typeof window === "undefined") {
@@ -27,4 +28,13 @@ export function trackEvent(event: TrackingEventName, payload: TrackingPayload = 
   }
 
   return entry;
+}
+
+function sanitizePayload(payload: TrackingPayload) {
+  return Object.fromEntries(
+    Object.entries(payload).filter(([key, value]) => {
+      const normalized = key.toLowerCase();
+      return value !== undefined && !normalized.includes("email") && !normalized.includes("phone") && !normalized.includes("password");
+    }),
+  );
 }

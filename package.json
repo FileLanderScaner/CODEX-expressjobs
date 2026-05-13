@@ -10,6 +10,11 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:rls:static": "vitest run src/__tests__/supabase-rls-static.test.ts",
+    "staging:check": "node scripts/expressjobs-staging-check.mjs",
+    "production:check": "node scripts/expressjobs-production-check.mjs",
+    "rls:smoke": "node scripts/expressjobs-rls-smoke.mjs",
+    "rls:create-staging-users": "node scripts/expressjobs-create-staging-users.mjs",
     "secret:scan": "node scripts/secret-scan.mjs",
     "ci": "npm run lint && npm run typecheck && npm run test && npm run build && npm run secret:scan"
   },

@@ -21,7 +21,7 @@ export default function WorkerDashboardPage() {
           ))}
         </div>
         <div className="mt-6">
-          <PrimaryButton href="/jobs/open" icon={BriefcaseBusiness}>Ver trabajos</PrimaryButton>
+          <PrimaryButton href="/worker/jobs" icon={BriefcaseBusiness}>Ver trabajos</PrimaryButton>
         </div>
       </main>
     </AppShell>

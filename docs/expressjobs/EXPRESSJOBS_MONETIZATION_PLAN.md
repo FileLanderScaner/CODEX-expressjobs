@@ -12,3 +12,18 @@
 ## Safety
 
 Live payments are not active. Payment records are modeled as disabled/simulated until legal, tax, dispute, refund, and provider checks are complete.
+
+## MVP Pricing Surface
+
+The `/pricing` route documents:
+
+- Suggested 15% commission on completed jobs.
+- Featured jobs.
+- Worker premium.
+- Company plans.
+
+It explicitly states that real payments are not active.
+
+## AI Studio Pricing Reference
+
+The prototype's `$9.99/mes` Premium Pro idea is treated as a future proposal only. ExpressJobs does not present it as an active charge and does not enable checkout.

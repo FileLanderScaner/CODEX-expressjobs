@@ -165,11 +165,6 @@ as $$
     select 1 from public.ej_jobs
     where id = job
       and (client_id = auth.uid() or accepted_worker_id = auth.uid())
-  )
-  or exists (
-    select 1 from public.ej_job_applications
-    where job_id = job
-      and worker_id = auth.uid()
   );
 $$;
 
@@ -230,11 +225,10 @@ create policy "applications_select_parties" on public.ej_job_applications
     or public.ej_is_admin()
   );
 
-drop policy if exists "applications_update_parties" on public.ej_job_applications;
-create policy "applications_update_parties" on public.ej_job_applications
+drop policy if exists "applications_update_client_only" on public.ej_job_applications;
+create policy "applications_update_client_only" on public.ej_job_applications
   for update using (
-    worker_id = auth.uid()
-    or exists (select 1 from public.ej_jobs where id = job_id and client_id = auth.uid())
+    exists (select 1 from public.ej_jobs where id = job_id and client_id = auth.uid())
     or public.ej_is_admin()
   );
 
@@ -260,7 +254,7 @@ create policy "reviews_insert_completed_participants" on public.ej_job_reviews
 
 drop policy if exists "events_insert_authenticated" on public.ej_job_events;
 create policy "events_insert_authenticated" on public.ej_job_events
-  for insert with check (actor_id = auth.uid() or actor_id is null);
+  for insert with check (auth.uid() is not null and (actor_id = auth.uid() or actor_id is null));
 
 drop policy if exists "events_select_participants" on public.ej_job_events;
 create policy "events_select_participants" on public.ej_job_events
