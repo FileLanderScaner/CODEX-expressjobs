@@ -6,6 +6,8 @@
 
 Do not reconnect Git until this checklist is complete.
 
+Git reconnect is considered high-risk because multiple pushes produced production-target deployments while the project was intended for Preview only.
+
 ## Checklist
 
 - [ ] Supabase staging is available or frontend-only Preview is explicitly approved.
@@ -18,6 +20,7 @@ Do not reconnect Git until this checklist is complete.
 - [ ] Git reconnect owner understands auto-deploy behavior.
 - [ ] First deployment after reconnect will be inspected before sharing.
 - [ ] Any deployment with `target: production` will be removed immediately.
+- [ ] Vercel project has been checked after a push and no automatic production-target deployment appears.
 
 ## Reconnect Rule
 

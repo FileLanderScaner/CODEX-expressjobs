@@ -25,7 +25,7 @@ Close the Supabase and Vercel activation blockers without retrying deployment or
 ## Confirmed Safe State
 
 - Repo inspection passed.
-- Vercel active deployments: none found.
+- Vercel active deployments: none found after removing another production-target deployment triggered by the closeout push.
 - Git auto-deploy remains disconnected.
 - No Supabase project was modified.
 - No production deployment is approved.
@@ -53,3 +53,7 @@ Close the Supabase and Vercel activation blockers without retrying deployment or
 `EXPRESSJOBS_DOCUMENTATION_CLOSEOUT`
 
 Reason: Supabase/Vercel are not safe to retry in this cycle, and documentation can still be consolidated without external credentials.
+
+## Post-Push Vercel Safety Note
+
+The closeout push triggered another Vercel deployment inspected as `target: production`. It was removed immediately and Git was disconnected again. This confirms the next Vercel work must audit project branch targeting before any reconnect or deploy attempt.

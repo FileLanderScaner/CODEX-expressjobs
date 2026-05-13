@@ -32,7 +32,8 @@
     "rls_static": "pass",
     "production_check": "pass",
     "diff_check": "pass",
-    "vercel_active_deployments": "none_found"
+    "vercel_active_deployments": "none_found_after_post_push_removal",
+    "vercel_git_auto_deploy": "unsafe_disconnected_again"
   },
   "blocking_items": [
     "BLOCKED_SUPABASE_ACCESS",

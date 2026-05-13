@@ -17,6 +17,7 @@ Environment activation is closed as blocked and safe:
 
 - No production deploy is approved.
 - No Vercel deployment is active or approved.
+- A post-closeout Git push still triggered a production-target deployment; it was removed immediately and Git was disconnected again.
 - No Preview URL is valid.
 - No Supabase real staging project is configured.
 - No real RLS smoke has passed.
@@ -38,6 +39,7 @@ Vercel:
 - Deployments were classified as production target.
 - Deployments were removed.
 - Git auto-deploy was disconnected.
+- Git auto-deploy must be treated as unsafe until Vercel project settings prove otherwise.
 - Production branch/Preview targeting needs manual review before reconnect.
 
 ## Safe Work That Can Continue

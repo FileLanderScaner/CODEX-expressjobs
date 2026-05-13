@@ -11,6 +11,7 @@ Current facts:
 - Project `codex-expressjobs` exists in scope `akuma424-projects`.
 - Deployments created in the activation cycle were removed.
 - Git auto-deploy was disconnected.
+- A later documentation push still triggered another production-target deployment; it was removed and Git was disconnected again.
 - No active deployment is approved.
 - No Preview URL is valid for testers.
 
@@ -26,6 +27,7 @@ This happened for both:
 
 - A local deploy attempted with Preview intent.
 - A Git-triggered deployment after repository connection.
+- A subsequent push after blocker closeout, confirming Git integration must not be trusted until settings are audited.
 
 This blocks any new deployment attempt until branch targeting and project settings are corrected.
 
