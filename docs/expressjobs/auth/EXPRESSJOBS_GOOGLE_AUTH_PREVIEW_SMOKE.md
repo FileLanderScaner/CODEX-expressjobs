@@ -4,8 +4,8 @@
 
 ## Status
 
-- `GOOGLE_LOGIN=READY_FOR_HUMAN_BROWSER_TEST`
-- `GOOGLE_AUTH_SMOKE=READY_FOR_HUMAN_BROWSER_TEST`
+- `GOOGLE_LOGIN=BLOCKED_PROVIDER_CONFIG_INVALID_CLIENT_SECRET`
+- `GOOGLE_AUTH_SMOKE=BLOCKED_PROVIDER_CONFIG_INVALID_CLIENT_SECRET`
 - `FACEBOOK_LOGIN=CONFIG_PENDING`
 - `INSTAGRAM_LOGIN=RESEARCH_PENDING`
 - `PRODUCTION_STATUS=NO-GO_PRODUCTION`
@@ -47,15 +47,16 @@ These are public feature flags only. No OAuth client secret was stored or printe
 - Final path: `/v3/signin/identifier`
 - Error class: `manual_google_login_required`
 - Redirect URI mismatch resolved: yes.
-- Callback reached: `no`
-- Session created: `not_tested`
+- Callback reached: `yes`
+- Session created: `no`
 - Test account authorization: confirmed by operator; account value intentionally not recorded in git.
+- Supabase Auth exchange error: `invalid_client`, Google Client Secret invalid.
 
 ## Classification
 
-`GOOGLE_AUTH_SMOKE=READY_FOR_HUMAN_BROWSER_TEST`
+`GOOGLE_AUTH_SMOKE=BLOCKED_PROVIDER_CONFIG_INVALID_CLIENT_SECRET`
 
-Reason: Google OAuth starts correctly from the protected Preview, no longer fails with `redirect_uri_mismatch`, and reaches Google's account sign-in screen. The operator confirmed a staging/test Google account is authorized for the OAuth app. Codex did not enter credentials or print cookies/tokens, so callback/session validation remains ready for a human browser test.
+Reason: Google OAuth starts correctly from the protected Preview, no longer fails with `redirect_uri_mismatch`, and reaches Supabase Auth callback. Supabase fails the external code exchange because the Google Client Secret configured in Supabase is invalid. This requires correcting the Google provider secret in Supabase Dashboard.
 
 Confirmed Google authorized redirect URI requirement:
 
@@ -73,9 +74,9 @@ Do not include Vercel bypass query parameters in any redirect URL.
 
 ## Required Human Next Step
 
-1. Use only the confirmed staging/test Google account.
-2. Complete the Google login flow manually in protected Preview.
-3. Confirm return to `/auth/callback`.
-4. Confirm final redirect and session creation without printing cookies, tokens, user IDs, or personal account details.
-5. Keep Facebook disabled.
-6. Keep Instagram disabled.
+1. Replace the Google Client Secret in Supabase Auth Provider with the current secret from the exact Google OAuth Web Client.
+2. Confirm the Google Client ID and Secret belong to the same OAuth Web Client.
+3. Do not paste the Client Secret into chat, git, docs, screenshots, logs, or frontend code.
+4. Keep Facebook disabled.
+5. Keep Instagram disabled.
+6. Re-run Google Auth Preview smoke.

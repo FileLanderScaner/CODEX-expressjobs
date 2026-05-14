@@ -46,6 +46,7 @@ Cycle 036 added Social Auth Phase 1 code for Google and Facebook through Supabas
 Cycle 037 deployed a new Vercel Preview without production promotion, enabled Google social-auth flag only for the Preview branch, and verified `/auth` with protected bypass header. Google OAuth starts but is blocked by Google `redirect_uri_mismatch`; Facebook remains disabled and Instagram remains research-only.
 Cycle 038 rechecked Google OAuth after the manual redirect URI fix. The `redirect_uri_mismatch` is resolved, Google OAuth reaches the Google account sign-in screen, and callback/session validation is now blocked only by controlled manual login with a staging/test Google account.
 Cycle 039 confirmed the staging/test Google account is authorized per operator statement, revalidated that Google OAuth reaches the Google sign-in screen, and marked the flow `READY_FOR_HUMAN_BROWSER_TEST`. No credentials, cookies, tokens, user IDs, or account details were recorded.
+Cycle 040 diagnosed the Supabase Auth callback failure after human Google login. The previous redirect URI issue is resolved, but Supabase reports `invalid_client` because the Google Client Secret configured in Supabase is invalid. No secret values were recorded.
 
 ## Current Scope
 
@@ -77,8 +78,8 @@ Cycle 039 confirmed the staging/test Google account is authorized per operator s
 
 ## Next Gate
 
-Run `EXPRESSJOBS_GOOGLE_AUTH_HUMAN_BROWSER_SESSION_VERIFY`: a human completes Google login with the confirmed staging/test account in protected Preview, then Codex records only sanitized callback/session status. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Run `EXPRESSJOBS_GOOGLE_AUTH_CLIENT_SECRET_FIX_VERIFY`: after the operator replaces the Google Client Secret in Supabase Auth Provider, repeat protected Preview Google auth smoke and verify callback/session. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest unblock: perform the human browser session verification for Google login and record sanitized callback/session status only. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest unblock: correct the Google Client Secret in Supabase Auth Provider using the current secret from the exact Google OAuth Web Client. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.

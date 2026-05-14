@@ -2,7 +2,7 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
-ExpressJobs / Trabajos Rapidos is `GOOGLE_AUTH_READY_FOR_HUMAN_BROWSER_TEST`.
+ExpressJobs / Trabajos Rapidos is `GOOGLE_AUTH_BLOCKED_PROVIDER_CONFIG_INVALID_CLIENT_SECRET`.
 
 - Supabase staging RLS smoke: PASS
 - Vercel Preview deploy: READY
@@ -15,11 +15,13 @@ ExpressJobs / Trabajos Rapidos is `GOOGLE_AUTH_READY_FOR_HUMAN_BROWSER_TEST`.
 - Search path fix: APPLIED
 - Security Advisor recheck: PENDING_OR_NOT_RECHECKED
 - Social auth phase 1: CODE_READY_PROVIDER_CONFIG_PENDING
-- Google login: READY_FOR_HUMAN_BROWSER_TEST
-- Google auth smoke: READY_FOR_HUMAN_BROWSER_TEST
+- Google login: BLOCKED_PROVIDER_CONFIG_INVALID_CLIENT_SECRET
+- Google auth smoke: BLOCKED_PROVIDER_CONFIG_INVALID_CLIENT_SECRET
 - Google redirect URI mismatch resolved: yes
 - Google staging/test account: confirmed by operator, not recorded in git
+- Google callback reached: yes
+- Google session created: no
 - Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_GOOGLE_AUTH_HUMAN_BROWSER_SESSION_VERIFY
+- Next mode: EXPRESSJOBS_GOOGLE_AUTH_CLIENT_SECRET_FIX_VERIFY
