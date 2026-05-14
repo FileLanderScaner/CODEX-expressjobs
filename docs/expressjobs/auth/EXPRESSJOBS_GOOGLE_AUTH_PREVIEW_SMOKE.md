@@ -4,8 +4,8 @@
 
 ## Status
 
-- `GOOGLE_LOGIN=BLOCKED_PROVIDER_CONFIG`
-- `GOOGLE_AUTH_SMOKE=BLOCKED_PROVIDER_CONFIG`
+- `GOOGLE_LOGIN=BLOCKED_MANUAL_LOGIN_REQUIRED`
+- `GOOGLE_AUTH_SMOKE=BLOCKED_MANUAL_LOGIN_REQUIRED`
 - `FACEBOOK_LOGIN=CONFIG_PENDING`
 - `INSTAGRAM_LOGIN=RESEARCH_PENDING`
 - `PRODUCTION_STATUS=NO-GO_PRODUCTION`
@@ -44,18 +44,19 @@ These are public feature flags only. No OAuth client secret was stored or printe
 
 - Google button click: started OAuth redirect.
 - Final host class: Google.
-- Final path: `/signin/oauth/error`
-- Error class: `redirect_uri_mismatch`
+- Final path: `/v3/signin/identifier`
+- Error class: `manual_google_login_required`
+- Redirect URI mismatch resolved: yes.
 - Callback reached: `no`
 - Session created: `not_tested`
 
 ## Classification
 
-`GOOGLE_AUTH_SMOKE=BLOCKED_PROVIDER_CONFIG`
+`GOOGLE_AUTH_SMOKE=BLOCKED_MANUAL_LOGIN_REQUIRED`
 
-Reason: Google OAuth starts correctly from the protected Preview, but Google rejects the request with `redirect_uri_mismatch`. This indicates the Google OAuth client authorized redirect URI does not match the Supabase callback URL being used for the provider.
+Reason: Google OAuth starts correctly from the protected Preview and no longer fails with `redirect_uri_mismatch`. The flow now reaches Google's account sign-in screen. Codex did not use a personal Google account or print cookies/tokens, so callback/session validation remains blocked on controlled human login.
 
-Expected Google authorized redirect URI:
+Confirmed Google authorized redirect URI requirement:
 
 ```text
 https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback
@@ -69,12 +70,11 @@ https://codex-expressjobs-f2mj43l8n-akuma424-projects.vercel.app/auth/callback
 
 Do not include Vercel bypass query parameters in any redirect URL.
 
-## Required Human Fix
+## Required Human Next Step
 
-1. In Google Cloud OAuth client, add or correct the authorized redirect URI:
-   `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback`
-2. In Supabase Auth URL Configuration, confirm the new Preview callback is allowed:
-   `https://codex-expressjobs-f2mj43l8n-akuma424-projects.vercel.app/auth/callback`
-3. Keep Facebook disabled.
-4. Keep Instagram disabled.
-5. Re-run the Google Auth Preview smoke.
+1. Use a staging/test Google account only.
+2. Complete the Google login flow manually in protected Preview.
+3. Confirm return to `/auth/callback`.
+4. Confirm final redirect and session creation without printing cookies, tokens, user IDs, or personal account details.
+5. Keep Facebook disabled.
+6. Keep Instagram disabled.
