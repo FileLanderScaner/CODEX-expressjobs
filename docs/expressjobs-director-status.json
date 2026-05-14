@@ -4,18 +4,18 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_033_FIRST_10_USERS_PREP",
-  "current_mode": "EXPRESSJOBS_FIRST_10_USERS_PREP",
-  "mode": "EXPRESSJOBS_FIRST_10_USERS_PREP",
+  "cycle": "CYCLE_EXPRESSJOBS_034_FIRST_10_EXECUTION_DRY_RUN",
+  "current_mode": "EXPRESSJOBS_FIRST_10_TESTERS_EXECUTION_DRY_RUN",
+  "mode": "EXPRESSJOBS_FIRST_10_TESTERS_EXECUTION_DRY_RUN",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
-  "function_search_path_warning_status": "WARNING_PRESENT_FIX_PREPARED_NOT_APPLIED_MCP_READ_ONLY",
+  "function_search_path_warning_status": "SEARCH_PATH_FIX_APPLIED_SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
   "supabase_link_status": "NOT_RUN_SUPABASE_ACCESS_TOKEN_MISSING",
-  "supabase_write_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
+  "supabase_write_status": "NOT_REQUIRED_FOR_DRY_RUN",
   "rls_real_smoke_status": "PASS",
   "supabase_staging_status": "RLS_READY",
-  "staging_status": "RLS_READY_PREVIEW_BROWSER_PASS",
+  "staging_status": "FIRST_10_DRY_RUN_PASS",
   "vercel_preview_status": "READY_BROWSER_SMOKE_PASS",
   "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
@@ -23,9 +23,15 @@
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
   "first_10_testers_status": "GO_CONTROLLED_INTERNAL_ONLY",
   "first_10_package_status": "READY",
+  "first_10_dry_run_status": "PASS",
+  "real_tester_contact": "READY_FOR_HUMAN_APPROVAL",
+  "testers_real_contacted": false,
+  "real_personal_data_used": false,
+  "search_path_fix": "APPLIED",
+  "security_advisor_recheck": "PENDING_OR_NOT_RECHECKED",
   "safe_to_contact_internal_testers": true,
   "safe_to_open_public_production": false,
-  "security_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
+  "security_status": "SEARCH_PATH_FIX_APPLIED_SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
   "operator_secret_entry_shell_opened": true,
   "operator_secret_entry_directory": "C:\\CODEX-expressjobs-repo",
   "env_files_visible_to_codex": {
@@ -64,12 +70,12 @@
     "build": "pass"
   },
   "blocking_items": [
-    "BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY"
+    "SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED"
   ],
   "blockedBy": [
-    "BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY"
+    "BLOCKED_PRODUCTION_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_FIRST_10_TESTERS_EXECUTION_DRY_RUN",
-  "nextMode": "EXPRESSJOBS_FIRST_10_TESTERS_EXECUTION_DRY_RUN",
+  "next_mode": "EXPRESSJOBS_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
+  "nextMode": "EXPRESSJOBS_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
   "next_prompt_generated": true
 }

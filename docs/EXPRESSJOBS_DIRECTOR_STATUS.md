@@ -40,6 +40,7 @@ Cycle 031 resolved the client Auth blocker through staging-safe signup/profile s
 Cycle 032 retried Preview access/browser smoke. No local/CI bypass secret was available, shareable protected access was unavailable, and all critical Preview routes returned 401. Production remains untouched.
 Cycle 033 used the local/user Vercel automation bypass secret through the `x-vercel-protection-bypass` header. Preview browser smoke passed on all critical routes, full gate passed, and first 10 testers are now `GO_CONTROLLED_INTERNAL_ONLY` while Production remains `NO-GO_PRODUCTION`.
 Cycle 033 first-10 continuation prepared the controlled internal tester package with onboarding, messages, feedback capture, triage board, and post-pilot GO/NO-GO criteria. No tester contact was sent and Production remains `NO-GO_PRODUCTION`.
+Cycle 034 executed a First 10 dry-run with placeholder testers, simulated feedback, and simulated triage. No real testers were contacted, no real personal data was used, `SEARCH_PATH_FIX=APPLIED`, and only Security Advisor recheck remains `PENDING_OR_NOT_RECHECKED`.
 
 ## Current Scope
 
@@ -77,4 +78,4 @@ The next cycle requires confirmed staging test users. URL/publishable key are no
 
 If secrets were pasted as `$env:...` into the opened PowerShell, run `.\scripts\write-local-env-from-process.ps1` in that same window. Then Codex can validate `.env.local` and `.env.rls` from this repo without seeing values in chat.
 
-Current fastest unblock: execute the first 10 tester dry-run internally without contacting real testers automatically. Supabase `search_path` advisory migration remains pending until safe write capability exists. Production remains blocked.
+Current fastest unblock: prepare a human-approved real internal contact package for the first 10 testers. Do not contact testers automatically. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
