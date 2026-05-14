@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_034_FIRST_10_EXECUTION_DRY_RUN",
-  "current_mode": "EXPRESSJOBS_FIRST_10_TESTERS_EXECUTION_DRY_RUN",
-  "mode": "EXPRESSJOBS_FIRST_10_TESTERS_EXECUTION_DRY_RUN",
+  "cycle": "CYCLE_EXPRESSJOBS_035_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
+  "current_mode": "EXPRESSJOBS_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
+  "mode": "EXPRESSJOBS_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -15,7 +15,7 @@
   "supabase_write_status": "NOT_REQUIRED_FOR_DRY_RUN",
   "rls_real_smoke_status": "PASS",
   "supabase_staging_status": "RLS_READY",
-  "staging_status": "FIRST_10_DRY_RUN_PASS",
+  "staging_status": "FIRST_10_CONTACT_PACKAGE_READY",
   "vercel_preview_status": "READY_BROWSER_SMOKE_PASS",
   "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
@@ -24,7 +24,8 @@
   "first_10_testers_status": "GO_CONTROLLED_INTERNAL_ONLY",
   "first_10_package_status": "READY",
   "first_10_dry_run_status": "PASS",
-  "real_tester_contact": "READY_FOR_HUMAN_APPROVAL",
+  "first_10_contact_package_status": "READY",
+  "real_tester_contact": "READY_FOR_MANUAL_SEND",
   "testers_real_contacted": false,
   "real_personal_data_used": false,
   "search_path_fix": "APPLIED",
@@ -75,7 +76,7 @@
   "blockedBy": [
     "BLOCKED_PRODUCTION_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
-  "nextMode": "EXPRESSJOBS_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
+  "next_mode": "EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE",
+  "nextMode": "EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE",
   "next_prompt_generated": true
 }

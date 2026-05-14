@@ -41,6 +41,7 @@ Cycle 032 retried Preview access/browser smoke. No local/CI bypass secret was av
 Cycle 033 used the local/user Vercel automation bypass secret through the `x-vercel-protection-bypass` header. Preview browser smoke passed on all critical routes, full gate passed, and first 10 testers are now `GO_CONTROLLED_INTERNAL_ONLY` while Production remains `NO-GO_PRODUCTION`.
 Cycle 033 first-10 continuation prepared the controlled internal tester package with onboarding, messages, feedback capture, triage board, and post-pilot GO/NO-GO criteria. No tester contact was sent and Production remains `NO-GO_PRODUCTION`.
 Cycle 034 executed a First 10 dry-run with placeholder testers, simulated feedback, and simulated triage. No real testers were contacted, no real personal data was used, `SEARCH_PATH_FIX=APPLIED`, and only Security Advisor recheck remains `PENDING_OR_NOT_RECHECKED`.
+Cycle 035 prepared the human-approved manual contact package for First 10 internal testers, including approval checklist, assignment template, session runbook, final copy messages, live monitoring runbook, and post-test decision matrix. No real testers were contacted.
 
 ## Current Scope
 
@@ -68,14 +69,8 @@ Cycle 034 executed a First 10 dry-run with placeholder testers, simulated feedba
 
 ## Next Gate
 
-Rotate the exposed Supabase service-role credential, then provide secure staging write/auth credentials outside git through `C:\CODEX-expressjobs-repo\.env.local`, `C:\CODEX-expressjobs-repo\.env.rls`, or Vercel Preview secret storage. Only after rotation, apply the prepared function `search_path` migration, verify Supabase Advisor, and run real RLS smoke tests. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Run `EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE`: confirm human approval, final redaction, Preview access handling, and stop conditions before any manual tester contact. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Use the PowerShell opened at `C:\CODEX-expressjobs-repo` for secret entry. Do not paste secrets into Codex chat. Keep `ENABLE_PAYMENTS=false`, `ENABLE_AI_AGENTS=false`, `AI_KILL_SWITCH=true`, and `ENABLE_ADMIN_PANEL=false`.
-
-The next cycle requires confirmed staging test users. URL/publishable key are now configured locally and staging env checks pass. Rotating the APIs in the provider dashboard is not enough for full RLS smoke unless users can sign in.
-
-If secrets were pasted as `$env:...` into the opened PowerShell, run `.\scripts\write-local-env-from-process.ps1` in that same window. Then Codex can validate `.env.local` and `.env.rls` from this repo without seeing values in chat.
-
-Current fastest unblock: prepare a human-approved real internal contact package for the first 10 testers. Do not contact testers automatically. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest unblock: run the manual contact approval gate. Do not contact testers automatically. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
