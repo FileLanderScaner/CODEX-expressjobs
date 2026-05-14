@@ -5,7 +5,7 @@
 ExpressJobs / Trabajos Rapidos is `GOOGLE_AUTH_READY_FOR_HUMAN_BROWSER_TEST`.
 
 - Supabase staging RLS smoke: PASS
-- Vercel Preview deploy: READY
+- Vercel Preview deploy: READY (`https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app`)
 - Preview browser smoke: PASS with protected access bypass header
 - First 10 tester package: READY
 - First 10 execution dry-run: PASS
@@ -18,6 +18,8 @@ ExpressJobs / Trabajos Rapidos is `GOOGLE_AUTH_READY_FOR_HUMAN_BROWSER_TEST`.
 - Google login: READY_FOR_HUMAN_BROWSER_TEST
 - Google auth smoke: READY_FOR_HUMAN_BROWSER_TEST
 - Google redirect URI mismatch resolved: yes
+- Google OAuth redirect_to fix: APPLIED
+- Google OAuth redirect_to host: current Preview
 - Google staging/test account: confirmed by operator, not recorded in git
 - Google callback reached: not tested after latest Client Secret fix
 - Google session created: not tested

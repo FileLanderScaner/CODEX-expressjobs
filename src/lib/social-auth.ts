@@ -34,6 +34,14 @@ export function buildOAuthRedirectTo(appUrl = publicEnv.NEXT_PUBLIC_APP_URL) {
   return new URL("/auth/callback", appUrl).toString();
 }
 
+export function getBrowserOAuthAppUrl() {
+  if (typeof window === "undefined") {
+    return publicEnv.NEXT_PUBLIC_APP_URL;
+  }
+
+  return window.location.origin;
+}
+
 export function buildAuthErrorRedirect(requestUrl: string, error: string) {
   const redirectUrl = new URL("/auth", requestUrl);
   redirectUrl.searchParams.set("oauth_error", error);
@@ -62,7 +70,7 @@ export async function signInWithSocialOAuth(provider: SocialAuthProvider) {
   return supabase.auth.signInWithOAuth({
     provider: provider as Provider,
     options: {
-      redirectTo: buildOAuthRedirectTo(),
+      redirectTo: buildOAuthRedirectTo(getBrowserOAuthAppUrl()),
     },
   });
 }

@@ -12,8 +12,8 @@
 
 ## Preview Deployment
 
-- Preview URL tested: `https://codex-expressjobs-f2mj43l8n-akuma424-projects.vercel.app`
-- Deployment: `dpl_2qvWaFzKKu7QYJ2qJagFvChVQCLF`
+- Preview URL tested: `https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app`
+- Deployment: `dpl_FKaLgBpQHbzjYHvTiVmz8puyGRGy`
 - Vercel target: `preview`
 - Status: `READY`
 - Vercel Production touched: `false`
@@ -43,6 +43,9 @@ These are public feature flags only. No OAuth client secret was stored or printe
 ## OAuth Smoke
 
 - Google button click: started OAuth redirect.
+- OAuth `redirect_to` host class: `current_preview`
+- OAuth `redirect_to` path: `/auth/callback`
+- OAuth `redirect_to` fixed: `yes`
 - Final host class: Google.
 - Final path: `/v3/signin/identifier`
 - Error class: `manual_google_login_required`
@@ -56,7 +59,7 @@ These are public feature flags only. No OAuth client secret was stored or printe
 
 `GOOGLE_AUTH_SMOKE=READY_FOR_HUMAN_BROWSER_TEST`
 
-Reason: Google OAuth starts correctly from the protected Preview and reaches Google's sign-in screen. The operator reports the Google Client Secret was corrected in Supabase. Codex cannot prove code exchange/session creation without completing human Google login, so the smoke remains ready for a human browser test.
+Reason: Google OAuth starts correctly from the protected Preview, now sends the active Preview host as `redirect_to`, and reaches Google's sign-in screen. The operator reports the Google Client Secret was corrected in Supabase. Codex cannot prove code exchange/session creation without completing human Google login, so the smoke remains ready for a human browser test.
 
 Confirmed Google authorized redirect URI requirement:
 
@@ -67,7 +70,7 @@ https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback
 Also keep the Supabase Auth URL Configuration aligned with the Preview app URL:
 
 ```text
-https://codex-expressjobs-f2mj43l8n-akuma424-projects.vercel.app/auth/callback
+https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app/auth/callback
 ```
 
 Do not include Vercel bypass query parameters in any redirect URL.

@@ -48,6 +48,7 @@ Cycle 038 rechecked Google OAuth after the manual redirect URI fix. The `redirec
 Cycle 039 confirmed the staging/test Google account is authorized per operator statement, revalidated that Google OAuth reaches the Google sign-in screen, and marked the flow `READY_FOR_HUMAN_BROWSER_TEST`. No credentials, cookies, tokens, user IDs, or account details were recorded.
 Cycle 040 diagnosed the Supabase Auth callback failure after human Google login. The previous redirect URI issue is resolved, but Supabase reported `invalid_client` because the Google Client Secret configured in Supabase was invalid. No secret values were recorded.
 Cycle 041 rechecked after the operator reported the Client Secret was corrected. Codex can still only reach the Google sign-in screen without human credentials, so session creation remains `not_tested` until a human completes login and reports sanitized callback/session status.
+Cycle 042 fixed the Preview Google OAuth `redirect_to` construction. The app now uses the browser origin for OAuth redirects in Preview instead of the local fallback URL. A new Preview deployment is READY, `/auth` loads with bypass header, Google starts OAuth, and the intercepted sanitized authorize request points to the current Preview `/auth/callback`.
 
 ## Current Scope
 
@@ -67,6 +68,7 @@ Cycle 041 rechecked after the operator reported the Client Secret was corrected.
 - Tracking fallback local storage
 - Google/Facebook OAuth code path behind feature flags
 - OAuth callback that creates safe default client profiles
+- Google OAuth Preview redirect_to fix
 
 ## Not Active
 
@@ -79,8 +81,8 @@ Cycle 041 rechecked after the operator reported the Client Secret was corrected.
 
 ## Next Gate
 
-Run `EXPRESSJOBS_GOOGLE_AUTH_HUMAN_CALLBACK_SESSION_VERIFY`: after a human completes Google login with the staging/test account, record sanitized callback/session status. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Run `EXPRESSJOBS_GOOGLE_AUTH_HUMAN_CALLBACK_SESSION_VERIFY`: open the fixed Preview, complete Google login with the staging/test account, and record sanitized callback/session status. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest unblock: complete Google login manually with the staging/test account and report sanitized callback/session results. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest unblock: test login at `https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app/auth`, complete Google login manually with the staging/test account, and report sanitized callback/session results. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.

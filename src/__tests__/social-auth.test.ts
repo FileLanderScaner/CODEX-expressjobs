@@ -7,6 +7,7 @@ import {
   canPublicOAuthAssignAdmin,
   defaultOAuthProfileRole,
   getEnabledSocialAuthProviders,
+  getBrowserOAuthAppUrl,
   isAllowedSocialAuthProvider,
   socialAuthProviders,
 } from "@/lib/social-auth";
@@ -33,6 +34,25 @@ describe("social auth phase one", () => {
 
   it("builds a safe auth callback redirect URL", () => {
     expect(buildOAuthRedirectTo("https://preview.example")).toBe("https://preview.example/auth/callback");
+  });
+
+  it("uses the configured app URL outside the browser", () => {
+    expect(getBrowserOAuthAppUrl()).toBeTypeOf("string");
+  });
+
+  it("uses the browser origin for OAuth redirects in preview", () => {
+    const originalWindow = globalThis.window;
+    Object.defineProperty(globalThis, "window", {
+      value: { location: { origin: "https://preview.example" } },
+      configurable: true,
+    });
+
+    expect(getBrowserOAuthAppUrl()).toBe("https://preview.example");
+
+    Object.defineProperty(globalThis, "window", {
+      value: originalWindow,
+      configurable: true,
+    });
   });
 
   it("handles callback errors without crashing", () => {
