@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_033_PREVIEW_BYPASS_BROWSER_SMOKE_PASS",
-  "current_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
-  "mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
+  "cycle": "CYCLE_EXPRESSJOBS_033_FIRST_10_USERS_PREP",
+  "current_mode": "EXPRESSJOBS_FIRST_10_USERS_PREP",
+  "mode": "EXPRESSJOBS_FIRST_10_USERS_PREP",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -22,6 +22,9 @@
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
   "first_10_testers_status": "GO_CONTROLLED_INTERNAL_ONLY",
+  "first_10_package_status": "READY",
+  "safe_to_contact_internal_testers": true,
+  "safe_to_open_public_production": false,
   "security_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
   "operator_secret_entry_shell_opened": true,
   "operator_secret_entry_directory": "C:\\CODEX-expressjobs-repo",
@@ -66,7 +69,7 @@
   "blockedBy": [
     "BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY"
   ],
-  "next_mode": "EXPRESSJOBS_FIRST_10_USERS_PREP",
-  "nextMode": "EXPRESSJOBS_FIRST_10_USERS_PREP",
+  "next_mode": "EXPRESSJOBS_FIRST_10_TESTERS_EXECUTION_DRY_RUN",
+  "nextMode": "EXPRESSJOBS_FIRST_10_TESTERS_EXECUTION_DRY_RUN",
   "next_prompt_generated": true
 }

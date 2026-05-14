@@ -1,0 +1,12 @@
+{
+  "project": "ExpressJobs / Trabajos Rapidos",
+  "production_status": "NO-GO_PRODUCTION",
+  "first_10_testers": "GO_CONTROLLED_INTERNAL_ONLY",
+  "rls_real_smoke_status": "PASS",
+  "preview_browser_smoke": "PASS",
+  "payments_live": "OFF",
+  "ai_agents_production": "OFF",
+  "vercel_production_touched": false,
+  "safe_to_contact_internal_testers": true,
+  "safe_to_open_public_production": false
+}
