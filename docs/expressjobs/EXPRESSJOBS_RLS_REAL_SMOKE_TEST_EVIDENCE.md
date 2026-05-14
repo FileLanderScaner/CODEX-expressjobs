@@ -177,6 +177,69 @@ Decision:
 
 `FIRST_10_TESTERS=NO-GO_UNTIL_RLS_REAL_PASS_AND_PREVIEW_PASS`
 
+## 2026-05-14 Cycle 029 RLS Smoke After Auth Users Created
+
+`RLS_REAL_SMOKE_STATUS=AUTH_FAILURE`
+
+Operator context stated that the three staging Auth users were created/confirmed and credentials were loaded locally in `.env.rls`.
+
+Credential presence was verified without printing values:
+
+- `.env.rls`: present and ignored by Git
+- `EXPRESSJOBS_STAGING_CLIENT_EMAIL`: present
+- `EXPRESSJOBS_STAGING_CLIENT_PASSWORD`: present
+- `EXPRESSJOBS_STAGING_WORKER_EMAIL`: present
+- `EXPRESSJOBS_STAGING_WORKER_PASSWORD`: present
+- `EXPRESSJOBS_STAGING_ADMIN_EMAIL`: present
+- `EXPRESSJOBS_STAGING_ADMIN_PASSWORD`: present
+
+Commands and results:
+
+```bash
+git status --short
+git check-ignore .env.rls
+npm run secret:scan
+npm run staging:check
+npm run test:rls:static
+npm run rls:smoke
+npm run secret:scan
+git diff --check
+```
+
+Results:
+
+- `git check-ignore .env.rls`: PASS
+- `npm run secret:scan`: PASS before and after smoke attempt
+- `npm run staging:check`: PASS
+- `npm run test:rls:static`: PASS
+- `npm run rls:smoke`: FAIL, `AUTH_FAILURE`
+- `git diff --check`: PASS
+
+Failure classification:
+
+- `AUTH_FAILURE`: first sign-in failed with `Invalid login credentials`
+- First failing role: client
+- RLS policy execution: NOT REACHED
+
+RLS matrix status:
+
+1. Anonymous user cannot modify data: NOT RUN, auth failed before matrix
+2. Client creates and manages only own jobs: NOT RUN, auth failed before matrix
+3. Worker sees open jobs: NOT RUN, auth failed before matrix
+4. Worker creates own applications: NOT RUN, auth failed before matrix
+5. Worker cannot accept/reject own application: NOT RUN, auth failed before matrix
+6. Client sees applications only for own jobs: NOT RUN, auth failed before matrix
+7. Client accepts/rejects applications for own jobs: NOT RUN, auth failed before matrix
+8. Only participants see messages: NOT RUN, auth failed before matrix
+9. Third parties do not read private messages: NOT RUN, auth failed before matrix
+10. Only participants of completed jobs create reviews: NOT RUN, auth failed before matrix
+11. Admin with valid role sees audit table: NOT RUN, auth failed before matrix
+12. Normal user does not see audit table: NOT RUN, auth failed before matrix
+
+Decision:
+
+`FIRST_10_TESTERS=NO-GO_UNTIL_RLS_REAL_PASS_AND_PREVIEW_PASS`
+
 ## 2026-05-13 Retry Note
 
 Supabase CLI was available through `npx supabase` and local `supabase init` completed. Local link metadata now points to project ref `gnsfyvsodslnehszanra` / `supabase-expressjobs`, but remote commands from Codex still fail because `SUPABASE_ACCESS_TOKEN` is not present in the Codex process. A token was pasted into chat and must be revoked/rotated before continuing. No migration or user creation was attempted.

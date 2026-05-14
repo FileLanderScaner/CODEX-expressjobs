@@ -40,6 +40,26 @@ Observed blocker:
 
 Remote read evidence shows 1 staging signup user from previous bootstrap attempts and 0 confirmed staging signup users. Real RLS smoke remains blocked before policy execution because the required client, worker, and admin sessions cannot be created safely.
 
+## 2026-05-14 Cycle 029 Retry
+
+`.env.rls` is now present and ignored by Git, and all six RLS smoke credential variables are present without printing values.
+
+`npm run rls:smoke` reached Supabase Auth and failed on the first login:
+
+`AUTH_FAILURE`
+
+Details:
+
+- First failing role: client
+- Error class: invalid login credentials
+- RLS policy matrix: not reached
+
+Current staging status:
+
+`STAGING_STATUS=STAGING_ENV_PASS_AUTH_USERS_INVALID`
+
+Required next action: correct or reset the client staging user's email/password in `.env.rls`, verify the user is confirmed in Supabase Auth staging, then rerun the smoke gate.
+
 ## Pending Work
 
 - Provide a rotated service-role key only through `.env.rls`, or disable email confirmation in staging only and rerun anon bootstrap.

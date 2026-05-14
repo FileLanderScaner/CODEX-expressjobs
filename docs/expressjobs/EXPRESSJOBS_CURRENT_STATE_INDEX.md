@@ -4,11 +4,11 @@
 
 ## Executive Status
 
-ExpressJobs / Trabajos Rapidos is code-ready and staging-public-config-ready, but Auth/RLS-smoke blocked.
+ExpressJobs / Trabajos Rapidos is code-ready and staging-public-config-ready, but RLS smoke is blocked by invalid staging Auth credentials.
 
 - Code: `CODE_READY`
-- Staging: `STAGING_ENV_PASS_AUTH_USERS_PENDING`
-- Supabase staging: `STAGING_ENV_PASS_AUTH_USERS_PENDING`
+- Staging: `STAGING_ENV_PASS_AUTH_USERS_INVALID`
+- Supabase staging: `STAGING_ENV_PASS_AUTH_USERS_INVALID`
 - Vercel Preview: `PREVIEW_FAIL_SAFE_BLOCKED`
 - Safe retry: `false`
 - First 10 testers: `NO-GO_UNTIL_PREVIEW_AND_RLS_PASS`
@@ -29,7 +29,7 @@ ExpressJobs / Trabajos Rapidos is code-ready and staging-public-config-ready, bu
 
 ## What Is Blocked
 
-- Confirmed Supabase Auth staging users; anon bootstrap is blocked by email confirmation/rate limit.
+- Valid Supabase Auth staging credentials; `.env.rls` is present but the client login fails with invalid credentials.
 - Real RLS smoke tests.
 - Vercel Preview deployment.
 - Browser smoke on Preview.

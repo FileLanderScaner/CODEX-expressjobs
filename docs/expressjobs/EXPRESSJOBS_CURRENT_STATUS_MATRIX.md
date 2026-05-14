@@ -8,7 +8,7 @@
 | Local checks | `PASS` | Required local checks pass. |
 | Static RLS | `PASS` | Static RLS tests pass. |
 | Supabase staging | `STAGING_ENV_PASS_AUTH_USERS_PENDING` | `.env.local`, staging check, and REST/Data API read pass. |
-| RLS real smoke | `BLOCKED_SUPABASE_AUTH_WRITE_CAPABILITY` | Anon bootstrap hit email rate limit; requires confirmed client, worker, and admin staging users. |
+| RLS real smoke | `AUTH_FAILURE` | `.env.rls` is present, but the first client login fails with invalid credentials before RLS policy execution. |
 | Vercel Preview | `PREVIEW_FAIL_SAFE_BLOCKED` | Deployments were production-target and removed. |
 | Safe retry | `false` | Retry blocked until Supabase/Vercel fixes. |
 | First 10 testers | `NO-GO` | Requires RLS real PASS and Preview PASS. |

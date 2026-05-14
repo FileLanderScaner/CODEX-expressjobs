@@ -34,6 +34,7 @@ Cycle 025 diagnosed PowerShell process isolation and added `scripts/write-local-
 Cycle 026 used Supabase MCP to recover staging project URL and publishable key, created ignored `.env.local`, added automatic env loading to staging/RLS scripts, added anon-signup RLS bootstrap, and passed staging/API checks. Real RLS smoke remains blocked because Supabase Auth requires email confirmation and the MCP/CLI path is read-only for service-role user creation.
 Cycle 027 executed the requested RLS smoke gate. Pre-checks passed, but anon bootstrap hit Supabase Auth signup/email limits and `.env.rls` with service-role/confirmed test users is absent, so `npm run rls:smoke` remains blocked before policy execution.
 Cycle 028 retried the RLS smoke gate after another operator prompt. Pre-checks still pass, but anon bootstrap returns `email rate limit exceeded`; remote readback shows 1 staging signup user and 0 confirmed staging users. Real RLS smoke remains blocked before policy execution.
+Cycle 029 retried after `.env.rls` was provided with all six RLS smoke credential variables present. `npm run rls:smoke` reached Supabase Auth and failed on the first client login with invalid credentials, so RLS policy execution was not reached.
 
 ## Current Scope
 
@@ -71,4 +72,4 @@ The next cycle requires confirmed staging test users. URL/publishable key are no
 
 If secrets were pasted as `$env:...` into the opened PowerShell, run `.\scripts\write-local-env-from-process.ps1` in that same window. Then Codex can validate `.env.local` and `.env.rls` from this repo without seeing values in chat.
 
-Current fastest unblock: in Supabase staging Auth settings, temporarily disable email confirmation for staging only and rerun `npm run rls:bootstrap-anon-users`, or provide a rotated `SUPABASE_SERVICE_ROLE_KEY` through `.env.rls` so `npm run rls:create-staging-users` can create confirmed staging users.
+Current fastest unblock: correct or reset the client staging user's credentials in Supabase Auth and `.env.rls`, verify the user is confirmed, then rerun `npm run rls:smoke`.
