@@ -1,7 +1,7 @@
 {
   "project": "ExpressJobs",
   "productionStatus": "NO-GO_PRODUCTION",
-  "stagingStatus": "GOOGLE_AUTH_BLOCKED_MANUAL_LOGIN_REQUIRED",
+  "stagingStatus": "GOOGLE_AUTH_READY_FOR_HUMAN_BROWSER_TEST",
   "rlsRealSmokeStatus": "PASS",
   "vercelPreviewStatus": "READY_BROWSER_SMOKE_PASS",
   "previewBrowserSmoke": "PASS",
@@ -15,8 +15,9 @@
   "searchPathFix": "APPLIED",
   "securityAdvisorRecheck": "PENDING_OR_NOT_RECHECKED",
   "socialAuthPhase1": "CODE_READY_PROVIDER_CONFIG_PENDING",
-  "googleLogin": "BLOCKED_MANUAL_LOGIN_REQUIRED",
-  "googleAuthSmoke": "BLOCKED_MANUAL_LOGIN_REQUIRED",
+  "googleLogin": "READY_FOR_HUMAN_BROWSER_TEST",
+  "googleAuthSmoke": "READY_FOR_HUMAN_BROWSER_TEST",
+  "googleTestAccountConfirmedByOperator": true,
   "googleProviderConfigured": "unknown",
   "oauthRedirectStarted": true,
   "redirectUriMismatchResolved": true,
@@ -29,5 +30,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_GOOGLE_AUTH_MANUAL_LOGIN_COMPLETION"
+  "nextMode": "EXPRESSJOBS_GOOGLE_AUTH_HUMAN_BROWSER_SESSION_VERIFY"
 }

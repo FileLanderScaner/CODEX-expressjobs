@@ -4,8 +4,8 @@
 
 ## Status
 
-- `GOOGLE_LOGIN=BLOCKED_MANUAL_LOGIN_REQUIRED`
-- `GOOGLE_AUTH_SMOKE=BLOCKED_MANUAL_LOGIN_REQUIRED`
+- `GOOGLE_LOGIN=READY_FOR_HUMAN_BROWSER_TEST`
+- `GOOGLE_AUTH_SMOKE=READY_FOR_HUMAN_BROWSER_TEST`
 - `FACEBOOK_LOGIN=CONFIG_PENDING`
 - `INSTAGRAM_LOGIN=RESEARCH_PENDING`
 - `PRODUCTION_STATUS=NO-GO_PRODUCTION`
@@ -49,12 +49,13 @@ These are public feature flags only. No OAuth client secret was stored or printe
 - Redirect URI mismatch resolved: yes.
 - Callback reached: `no`
 - Session created: `not_tested`
+- Test account authorization: confirmed by operator; account value intentionally not recorded in git.
 
 ## Classification
 
-`GOOGLE_AUTH_SMOKE=BLOCKED_MANUAL_LOGIN_REQUIRED`
+`GOOGLE_AUTH_SMOKE=READY_FOR_HUMAN_BROWSER_TEST`
 
-Reason: Google OAuth starts correctly from the protected Preview and no longer fails with `redirect_uri_mismatch`. The flow now reaches Google's account sign-in screen. Codex did not use a personal Google account or print cookies/tokens, so callback/session validation remains blocked on controlled human login.
+Reason: Google OAuth starts correctly from the protected Preview, no longer fails with `redirect_uri_mismatch`, and reaches Google's account sign-in screen. The operator confirmed a staging/test Google account is authorized for the OAuth app. Codex did not enter credentials or print cookies/tokens, so callback/session validation remains ready for a human browser test.
 
 Confirmed Google authorized redirect URI requirement:
 
@@ -72,7 +73,7 @@ Do not include Vercel bypass query parameters in any redirect URL.
 
 ## Required Human Next Step
 
-1. Use a staging/test Google account only.
+1. Use only the confirmed staging/test Google account.
 2. Complete the Google login flow manually in protected Preview.
 3. Confirm return to `/auth/callback`.
 4. Confirm final redirect and session creation without printing cookies, tokens, user IDs, or personal account details.

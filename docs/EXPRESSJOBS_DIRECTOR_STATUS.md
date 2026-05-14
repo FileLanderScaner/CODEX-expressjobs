@@ -45,6 +45,7 @@ Cycle 035 prepared the human-approved manual contact package for First 10 intern
 Cycle 036 added Social Auth Phase 1 code for Google and Facebook through Supabase Auth, guarded by disabled-by-default feature flags and a whitelisted OAuth helper. Instagram remains `RESEARCH_PENDING`; provider configuration is manual and production remains `NO-GO_PRODUCTION`.
 Cycle 037 deployed a new Vercel Preview without production promotion, enabled Google social-auth flag only for the Preview branch, and verified `/auth` with protected bypass header. Google OAuth starts but is blocked by Google `redirect_uri_mismatch`; Facebook remains disabled and Instagram remains research-only.
 Cycle 038 rechecked Google OAuth after the manual redirect URI fix. The `redirect_uri_mismatch` is resolved, Google OAuth reaches the Google account sign-in screen, and callback/session validation is now blocked only by controlled manual login with a staging/test Google account.
+Cycle 039 confirmed the staging/test Google account is authorized per operator statement, revalidated that Google OAuth reaches the Google sign-in screen, and marked the flow `READY_FOR_HUMAN_BROWSER_TEST`. No credentials, cookies, tokens, user IDs, or account details were recorded.
 
 ## Current Scope
 
@@ -76,8 +77,8 @@ Cycle 038 rechecked Google OAuth after the manual redirect URI fix. The `redirec
 
 ## Next Gate
 
-Run `EXPRESSJOBS_GOOGLE_AUTH_MANUAL_LOGIN_COMPLETION`: complete Google login with a staging/test account in protected Preview, then verify callback/session without printing tokens, cookies, user IDs, or account details. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Run `EXPRESSJOBS_GOOGLE_AUTH_HUMAN_BROWSER_SESSION_VERIFY`: a human completes Google login with the confirmed staging/test account in protected Preview, then Codex records only sanitized callback/session status. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest unblock: perform controlled manual Google login with a staging/test account and verify callback/session creation. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest unblock: perform the human browser session verification for Google login and record sanitized callback/session status only. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
