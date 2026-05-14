@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_031_RLS_PASS_PREVIEW_PROTECTED",
+  "cycle": "CYCLE_EXPRESSJOBS_032_PREVIEW_BROWSER_SMOKE_BLOCKED_401",
   "current_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "code_status": "CODE_READY",
@@ -15,7 +15,7 @@
   "supabase_write_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
   "rls_real_smoke_status": "PASS",
   "supabase_staging_status": "RLS_READY",
-  "staging_status": "RLS_READY_PREVIEW_PROTECTED",
+  "staging_status": "RLS_READY_PREVIEW_AUTH_401",
   "vercel_preview_status": "READY_PROTECTED_401",
   "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
@@ -53,7 +53,8 @@
     "rls_smoke": "pass",
     "diff_check": "pass",
     "preview_deploy": "ready",
-    "preview_http_smoke": "blocked_401_vercel_auth"
+    "preview_http_smoke": "blocked_401_vercel_auth",
+    "preview_browser_smoke": "blocked_401"
   },
   "blocking_items": [
     "BLOCKED_PREVIEW_BROWSER_SMOKE_AUTH_401",

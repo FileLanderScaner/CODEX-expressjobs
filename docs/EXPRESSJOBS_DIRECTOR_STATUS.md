@@ -37,6 +37,7 @@ Cycle 028 retried the RLS smoke gate after another operator prompt. Pre-checks s
 Cycle 029 retried after `.env.rls` was provided with all six RLS smoke credential variables present. `npm run rls:smoke` reached Supabase Auth and failed on the first client login with invalid credentials, so RLS policy execution was not reached.
 Cycle 030 repeated the Auth-users-created RLS gate. Pre-checks and secret scans passed, but `npm run rls:smoke` again failed on the first client login with invalid credentials. RLS policies were not exercised.
 Cycle 031 resolved the client Auth blocker through staging-safe signup/profile setup and `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`. Full local checks passed. A Vercel Preview deployment was created without `--prod`, but browser HTTP smoke is blocked by Vercel Authentication 401.
+Cycle 032 retried Preview access/browser smoke. No local/CI bypass secret was available, shareable protected access was unavailable, and all critical Preview routes returned 401. Production remains untouched.
 
 ## Current Scope
 
