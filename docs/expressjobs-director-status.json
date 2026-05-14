@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_032_PREVIEW_BROWSER_SMOKE_BLOCKED_401",
+  "cycle": "CYCLE_EXPRESSJOBS_033_PREVIEW_BYPASS_BROWSER_SMOKE_PASS",
   "current_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "code_status": "CODE_READY",
@@ -15,13 +15,13 @@
   "supabase_write_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
   "rls_real_smoke_status": "PASS",
   "supabase_staging_status": "RLS_READY",
-  "staging_status": "RLS_READY_PREVIEW_AUTH_401",
-  "vercel_preview_status": "READY_PROTECTED_401",
+  "staging_status": "RLS_READY_PREVIEW_BROWSER_PASS",
+  "vercel_preview_status": "READY_BROWSER_SMOKE_PASS",
   "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "first_10_testers_status": "NO-GO_UNTIL_PREVIEW_BROWSER_PASS",
+  "first_10_testers_status": "GO_CONTROLLED_INTERNAL_ONLY",
   "security_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
   "operator_secret_entry_shell_opened": true,
   "operator_secret_entry_directory": "C:\\CODEX-expressjobs-repo",
@@ -53,18 +53,20 @@
     "rls_smoke": "pass",
     "diff_check": "pass",
     "preview_deploy": "ready",
-    "preview_http_smoke": "blocked_401_vercel_auth",
-    "preview_browser_smoke": "blocked_401"
+    "preview_http_smoke": "pass_with_bypass_header",
+    "preview_browser_smoke": "pass",
+    "lint": "pass",
+    "typecheck": "pass",
+    "test": "pass",
+    "build": "pass"
   },
   "blocking_items": [
-    "BLOCKED_PREVIEW_BROWSER_SMOKE_AUTH_401",
     "BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY"
   ],
   "blockedBy": [
-    "BLOCKED_PREVIEW_BROWSER_SMOKE_AUTH_401",
     "BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY"
   ],
-  "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
-  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
+  "next_mode": "EXPRESSJOBS_FIRST_10_USERS_PREP",
+  "nextMode": "EXPRESSJOBS_FIRST_10_USERS_PREP",
   "next_prompt_generated": true
 }

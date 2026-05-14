@@ -7,9 +7,9 @@
 - `RLS_REAL_SMOKE_STATUS=PASS`
 - `PREVIEW_DEPLOY=PASS`
 - `VERCEL_DEPLOYMENT_READY=yes`
-- `PREVIEW_ACCESS=BLOCKED_401`
-- `PREVIEW_BROWSER_SMOKE=BLOCKED_401`
-- `FIRST_10_TESTERS=NO-GO_UNTIL_PREVIEW_PASS`
+- `PREVIEW_ACCESS=PASS`
+- `PREVIEW_BROWSER_SMOKE=PASS`
+- `FIRST_10_TESTERS=GO_CONTROLLED_INTERNAL_ONLY`
 - `PAYMENTS_LIVE=OFF`
 - `AI_AGENTS_PRODUCTION=OFF`
 - `VERCEL_PRODUCTION_TOUCHED=false`
@@ -25,18 +25,18 @@ Deployment:
 
 `dpl_4z4bkBR3Zto23hPippo3YWatwFGG`
 
-The deployment remains protected by Vercel Authentication. No bypass secret was available in the local process, user environment, or machine environment under the checked names.
+The deployment remains protected by Vercel Authentication. Browser smoke used the local/user `VERCEL_AUTOMATION_BYPASS_SECRET` through the `x-vercel-protection-bypass` header. The secret value was not printed, written to docs, or placed in URLs.
 
 ## Route Smoke Matrix
 
 | Route | Result | HTTP |
 | --- | --- | --- |
-| `/` | `BLOCKED_401` | 401 |
-| `/auth` | `BLOCKED_401` | 401 |
-| `/jobs/open` | `BLOCKED_401` | 401 |
-| `/pricing` | `BLOCKED_401` | 401 |
-| `/client/jobs/new` | `BLOCKED_401` | 401 |
-| `/worker/jobs` | `BLOCKED_401` | 401 |
+| `/` | `PASS` | 200 |
+| `/auth` | `PASS` | 200 |
+| `/jobs/open` | `PASS` | 200 |
+| `/pricing` | `PASS` | 200 |
+| `/client/jobs/new` | `PASS` | 200 |
+| `/worker/jobs` | `PASS` | 200 |
 
 ## Checks
 
@@ -45,15 +45,23 @@ The deployment remains protected by Vercel Authentication. No bypass secret was 
 - `npm run test:rls:static`: PASS
 - `npm run rls:smoke`: PASS
 - `git diff --check`: PASS
-- `lint`: NOT_RUN, browser smoke blocked before full gate
-- `typecheck`: NOT_RUN, browser smoke blocked before full gate
-- `test`: NOT_RUN, browser smoke blocked before full gate
-- `build`: NOT_RUN, browser smoke blocked before full gate
-- `production:check`: NOT_RUN in this cycle, previous cycle PASS
+- `npm run lint`: PASS
+- `npm run typecheck`: PASS
+- `npm run test`: PASS
+- `npm run build`: PASS
+- `npm run production:check`: PASS
+
+## Browser Notes
+
+The only console error observed on each route was Vercel Live Feedback being blocked by the app's strict Content Security Policy:
+
+`NON_CRITICAL_PLATFORM_FEEDBACK_CSP_BLOCKED`
+
+This was classified as non-critical because the blocked script is Vercel platform feedback tooling, not application runtime code, and the pages loaded with HTTP 200.
 
 ## Decision
 
-`FIRST_10_TESTERS=NO-GO_UNTIL_PREVIEW_PASS`
+`FIRST_10_TESTERS=GO_CONTROLLED_INTERNAL_ONLY`
 
 Production remains:
 
@@ -61,4 +69,4 @@ Production remains:
 
 ## NEXT_CODEX_PROMPT
 
-Ejecutar `EXPRESSJOBS_VERCEL_PREVIEW_BYPASS_REQUIRED` en `C:\CODEX-expressjobs-repo`. Mantener `PRODUCTION_STATUS=NO-GO_PRODUCTION`; no usar `vercel --prod`; no usar `vercel promote`; no modificar Vercel Production; no desactivar Deployment Protection globalmente sin aprobacion humana explicita; no activar pagos live; no activar AI agents en production; no imprimir secretos; no commitear `.env`, `.env.local`, `.env.rls`, `.env.admin.local`, `.vercel`, logs, zips ni screenshots con secretos. Proveer un `VERCEL_AUTOMATION_BYPASS_SECRET` seguro solo en entorno local/CI, o generar un shareable protected access valido. Luego ejecutar browser smoke en `/`, `/auth`, `/jobs/open`, `/pricing`, `/client/jobs/new`, `/worker/jobs`. Si todas las rutas dejan de responder 401 y no hay errores criticos, ejecutar full gate y marcar `PREVIEW_BROWSER_SMOKE=PASS`, `FIRST_10_TESTERS=GO_CONTROLLED_INTERNAL_ONLY`, `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Ejecutar `EXPRESSJOBS_FIRST_10_USERS_PREP` en `C:\CODEX-expressjobs-repo`. Mantener `PRODUCTION_STATUS=NO-GO_PRODUCTION`; no usar `vercel --prod`; no usar `vercel promote`; no modificar Vercel Production; no activar pagos live; no activar AI agents en production; no imprimir secretos. Preparar ejecucion controlada interna para primeros 10 testers usando el Preview protegido con acceso seguro. Mantener la convocatoria como staging/preproduccion, sin datos sensibles innecesarios, y con feedback estructurado. No abrir produccion.

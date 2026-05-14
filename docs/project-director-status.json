@@ -1,12 +1,12 @@
 {
   "project": "ExpressJobs",
   "productionStatus": "NO-GO_PRODUCTION",
-  "stagingStatus": "RLS_READY_PREVIEW_AUTH_401",
+  "stagingStatus": "RLS_READY_PREVIEW_BROWSER_PASS",
   "rlsRealSmokeStatus": "PASS",
-  "vercelPreviewStatus": "READY_PROTECTED_401",
-  "previewBrowserSmoke": "BLOCKED_401",
-  "first10Testers": "NO-GO_UNTIL_PREVIEW_BROWSER_PASS",
+  "vercelPreviewStatus": "READY_BROWSER_SMOKE_PASS",
+  "previewBrowserSmoke": "PASS",
+  "first10Testers": "GO_CONTROLLED_INTERNAL_ONLY",
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT"
+  "nextMode": "EXPRESSJOBS_FIRST_10_USERS_PREP"
 }

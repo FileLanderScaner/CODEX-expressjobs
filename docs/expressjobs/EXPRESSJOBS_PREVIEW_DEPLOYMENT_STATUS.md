@@ -4,7 +4,7 @@
 
 ## Current Status
 
-`PREVIEW_DEPLOYMENT=READY_PROTECTED_401`
+`PREVIEW_DEPLOYMENT=READY_BROWSER_SMOKE_PASS`
 
 Preview URL:
 
@@ -23,17 +23,21 @@ Deployment:
 - Vercel Production environment was not modified.
 - Production status remains `NO-GO_PRODUCTION`.
 
-## Blocker
+## Browser Smoke
 
-`BLOCKED_PREVIEW_AUTH_401`
+`PREVIEW_BROWSER_SMOKE=PASS`
 
-Every critical route checked returned 401 due to Vercel Authentication.
+Browser smoke passed using the `x-vercel-protection-bypass` header with a local/user automation bypass secret. The secret was not printed and no bypass URL was logged.
+
+Route matrix:
+
+- `/`: PASS
+- `/auth`: PASS
+- `/jobs/open`: PASS
+- `/pricing`: PASS
+- `/client/jobs/new`: PASS
+- `/worker/jobs`: PASS
 
 ## Next Action
 
-Use a safe Preview-only access mechanism:
-
-- Protection Bypass for Automation with a local/CI-only secret, or
-- Vercel shareable protected access.
-
-Do not disable global Deployment Protection without explicit human approval.
+Proceed to first 10 controlled internal tester preparation. Keep Production blocked.
