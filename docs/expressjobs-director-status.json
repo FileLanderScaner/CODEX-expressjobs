@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_030_RLS_SMOKE_INVALID_CLIENT_CREDENTIALS_RETRY",
+  "cycle": "CYCLE_EXPRESSJOBS_031_RLS_PASS_PREVIEW_PROTECTED",
   "current_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "code_status": "CODE_READY",
@@ -13,15 +13,15 @@
   "function_search_path_warning_status": "WARNING_PRESENT_FIX_PREPARED_NOT_APPLIED_MCP_READ_ONLY",
   "supabase_link_status": "NOT_RUN_SUPABASE_ACCESS_TOKEN_MISSING",
   "supabase_write_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
-  "rls_real_smoke_status": "AUTH_FAILURE_INVALID_CLIENT_CREDENTIALS",
-  "supabase_staging_status": "STAGING_ENV_PASS_AUTH_USERS_INVALID",
-  "staging_status": "STAGING_ENV_PASS_AUTH_USERS_INVALID",
-  "vercel_preview_status": "PREVIEW_FAIL_SAFE_BLOCKED",
+  "rls_real_smoke_status": "PASS",
+  "supabase_staging_status": "RLS_READY",
+  "staging_status": "RLS_READY_PREVIEW_PROTECTED",
+  "vercel_preview_status": "READY_PROTECTED_401",
   "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "first_10_testers_status": "BLOCKED_UNTIL_RLS_REAL_PASS",
+  "first_10_testers_status": "NO-GO_UNTIL_PREVIEW_BROWSER_PASS",
   "security_status": "BLOCKED_SECURITY_RISK_SECRET_EXPOSED_ROTATION_REQUIRED",
   "operator_secret_entry_shell_opened": true,
   "operator_secret_entry_directory": "C:\\CODEX-expressjobs-repo",
@@ -50,18 +50,20 @@
     "staging_check": "pass",
     "rest_data_api_check": "pass",
     "rls_bootstrap_anon_users": "not_run_this_cycle",
-    "rls_smoke": "auth_failure_invalid_client_credentials_retry",
-    "diff_check": "pass"
+    "rls_smoke": "pass",
+    "diff_check": "pass",
+    "preview_deploy": "ready",
+    "preview_http_smoke": "blocked_401_vercel_auth"
   },
   "blocking_items": [
-    "AUTH_FAILURE_INVALID_CLIENT_CREDENTIALS",
-    "RLS_POLICY_EXECUTION_NOT_REACHED"
+    "BLOCKED_PREVIEW_BROWSER_SMOKE_AUTH_401",
+    "BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY"
   ],
   "blockedBy": [
-    "AUTH_FAILURE_INVALID_CLIENT_CREDENTIALS",
-    "RLS_POLICY_EXECUTION_NOT_REACHED"
+    "BLOCKED_PREVIEW_BROWSER_SMOKE_AUTH_401",
+    "BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY"
   ],
-  "next_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
-  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
+  "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
+  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
   "next_prompt_generated": true
 }

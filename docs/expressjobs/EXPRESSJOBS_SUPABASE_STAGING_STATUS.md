@@ -74,6 +74,40 @@ Results:
 
 `npm run rls:smoke` failed at the first client sign-in with invalid login credentials. The RLS matrix was not reached.
 
+## 2026-05-14 Cycle 031 RLS Smoke Pass
+
+The client Auth blocker was resolved through staging-safe anon signup, and profiles were prepared through normal authenticated user sessions.
+
+Current status:
+
+- `AUTH_USERS=CONFIRMED`
+- `RLS_SMOKE=PASS`
+- `STAGING_STATUS=RLS_READY_PREVIEW_PROTECTED`
+- `PRODUCTION_STATUS=NO-GO_PRODUCTION`
+
+Command:
+
+```bash
+npm run rls:smoke
+```
+
+Result:
+
+```text
+EXPRESSJOBS_RLS_STAGING_PASS
+```
+
+Pending Supabase item:
+
+`SEARCH_PATH_FIX=BLOCKED_NOT_APPLIED`
+
+The prepared migration remains pending because no safe Supabase write/apply capability is currently available in Codex:
+
+```sql
+alter function public.ej_is_admin() set search_path = public;
+alter function public.ej_is_job_participant(uuid) set search_path = public;
+```
+
 ## Pending Work
 
 - Provide a rotated service-role key only through `.env.rls`, or disable email confirmation in staging only and rerun anon bootstrap.

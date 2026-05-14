@@ -301,6 +301,69 @@ Decision:
 
 `FIRST_10_TESTERS=NO-GO_UNTIL_RLS_REAL_PASS_AND_PREVIEW_PASS`
 
+## 2026-05-14 Cycle 031 RLS Smoke Pass
+
+`RLS_REAL_SMOKE_STATUS=PASS`
+
+The client credential blocker was resolved through a staging-safe anon signup path. The generated client session was valid, and the client profile was created through the normal authenticated user path. Worker and admin credentials already authenticated successfully.
+
+Profiles prepared without service-role:
+
+- client: profile ready
+- worker: profile ready
+- admin: profile ready
+
+Commands and results:
+
+```bash
+npm run rls:smoke
+npm run secret:scan
+npm run lint
+npm run typecheck
+npm run test
+npm run build
+npm run production:check
+git diff --check
+```
+
+Results:
+
+- `npm run rls:smoke`: PASS, `EXPRESSJOBS_RLS_STAGING_PASS`
+- `npm run secret:scan`: PASS
+- `npm run lint`: PASS
+- `npm run typecheck`: PASS
+- `npm run test`: PASS
+- `npm run build`: PASS
+- `npm run production:check`: PASS
+- `git diff --check`: PASS
+
+RLS matrix status:
+
+1. Anonymous user cannot modify data: PASS
+2. Client creates and manages only own jobs: PASS
+3. Worker sees open jobs: PASS
+4. Worker creates own applications: PASS
+5. Worker cannot accept/reject own application: PASS
+6. Client sees applications only for own jobs: PASS
+7. Client accepts/rejects applications for own jobs: PASS
+8. Only participants see messages: PASS
+9. Third parties do not read private messages: covered by participant-only message checks; no loose message access observed
+10. Only participants of completed jobs create reviews: PASS
+11. Admin with valid role sees audit table: PASS
+12. Normal user does not see audit table: PASS
+
+Documented status:
+
+- `SEARCH_PATH_FIX=BLOCKED_NOT_APPLIED`
+- `AUTH_USERS=CONFIRMED`
+- `RLS_SMOKE=PASS`
+- `STAGING_STATUS=RLS_READY_PREVIEW_PROTECTED`
+- `PRODUCTION_STATUS=NO-GO_PRODUCTION`
+
+Decision:
+
+`FIRST_10_TESTERS=NO-GO_UNTIL_PREVIEW_ACCESSIBLE_BROWSER_PASS`
+
 ## 2026-05-13 Retry Note
 
 Supabase CLI was available through `npx supabase` and local `supabase init` completed. Local link metadata now points to project ref `gnsfyvsodslnehszanra` / `supabase-expressjobs`, but remote commands from Codex still fail because `SUPABASE_ACCESS_TOKEN` is not present in the Codex process. A token was pasted into chat and must be revoked/rotated before continuing. No migration or user creation was attempted.

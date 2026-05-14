@@ -36,6 +36,7 @@ Cycle 027 executed the requested RLS smoke gate. Pre-checks passed, but anon boo
 Cycle 028 retried the RLS smoke gate after another operator prompt. Pre-checks still pass, but anon bootstrap returns `email rate limit exceeded`; remote readback shows 1 staging signup user and 0 confirmed staging users. Real RLS smoke remains blocked before policy execution.
 Cycle 029 retried after `.env.rls` was provided with all six RLS smoke credential variables present. `npm run rls:smoke` reached Supabase Auth and failed on the first client login with invalid credentials, so RLS policy execution was not reached.
 Cycle 030 repeated the Auth-users-created RLS gate. Pre-checks and secret scans passed, but `npm run rls:smoke` again failed on the first client login with invalid credentials. RLS policies were not exercised.
+Cycle 031 resolved the client Auth blocker through staging-safe signup/profile setup and `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`. Full local checks passed. A Vercel Preview deployment was created without `--prod`, but browser HTTP smoke is blocked by Vercel Authentication 401.
 
 ## Current Scope
 
@@ -73,4 +74,4 @@ The next cycle requires confirmed staging test users. URL/publishable key are no
 
 If secrets were pasted as `$env:...` into the opened PowerShell, run `.\scripts\write-local-env-from-process.ps1` in that same window. Then Codex can validate `.env.local` and `.env.rls` from this repo without seeing values in chat.
 
-Current fastest unblock: correct or reset the client staging user's credentials in Supabase Auth and `.env.rls`, verify the user is confirmed, then rerun `npm run rls:smoke`.
+Current fastest unblock: keep Production blocked, resolve Vercel Preview Authentication/share access, run browser smoke, then decide first 10 tester readiness. Supabase `search_path` advisory migration remains pending until safe write capability exists.

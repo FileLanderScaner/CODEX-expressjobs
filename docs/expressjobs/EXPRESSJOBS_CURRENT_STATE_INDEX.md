@@ -4,14 +4,14 @@
 
 ## Executive Status
 
-ExpressJobs / Trabajos Rapidos is code-ready and staging-public-config-ready, but RLS smoke is blocked by invalid staging Auth credentials.
+ExpressJobs / Trabajos Rapidos is code-ready, staging RLS-ready, and Preview-deployed, but Preview access/browser QA is blocked by Vercel Authentication.
 
 - Code: `CODE_READY`
-- Staging: `STAGING_ENV_PASS_AUTH_USERS_INVALID`
-- Supabase staging: `STAGING_ENV_PASS_AUTH_USERS_INVALID`
-- Vercel Preview: `PREVIEW_FAIL_SAFE_BLOCKED`
-- Safe retry: `false`
-- First 10 testers: `NO-GO_UNTIL_PREVIEW_AND_RLS_PASS`
+- Staging: `RLS_READY`
+- Supabase staging: `RLS_REAL_PASS`
+- Vercel Preview: `READY_PROTECTED_401`
+- Safe retry: `preview-access-blocked`
+- First 10 testers: `NO-GO_UNTIL_PREVIEW_ACCESSIBLE_BROWSER_PASS`
 - Production: `NO-GO_PRODUCTION`
 
 ## What Is Ready
@@ -29,10 +29,8 @@ ExpressJobs / Trabajos Rapidos is code-ready and staging-public-config-ready, bu
 
 ## What Is Blocked
 
-- Valid Supabase Auth staging credentials; `.env.rls` is present but the client login fails with invalid credentials.
-- Real RLS smoke tests.
-- Vercel Preview deployment.
-- Browser smoke on Preview.
+- Preview access/browser smoke, because Vercel Authentication returns 401.
+- Supabase function `search_path` advisory migration apply.
 - First 10 external testers.
 - First 100 users.
 - Production.
@@ -121,10 +119,7 @@ ExpressJobs / Trabajos Rapidos is code-ready and staging-public-config-ready, bu
 
 ## Recommended Continuation Order
 
-1. Unlock Supabase access via MCP, CLI, or manual dashboard staging project.
-2. Apply the `ej_*` migration to a confirmed non-production Supabase project.
-3. Run real RLS smoke tests.
-4. Fix Vercel branch targeting before reconnecting Git.
-5. Deploy valid Preview and inspect target.
-6. Run browser smoke.
-7. Re-open first 10 tester gate only after RLS and Preview pass.
+1. Resolve Vercel Preview Authentication/share access without touching Production.
+2. Run browser smoke on the Preview deployment.
+3. Apply the pending Supabase function `search_path` advisory fix when safe write capability exists.
+4. Re-open first 10 tester gate only after Preview browser smoke passes.

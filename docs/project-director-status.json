@@ -1,0 +1,11 @@
+{
+  "project": "ExpressJobs",
+  "productionStatus": "NO-GO_PRODUCTION",
+  "stagingStatus": "RLS_READY_PREVIEW_PROTECTED",
+  "rlsRealSmokeStatus": "PASS",
+  "vercelPreviewStatus": "READY_PROTECTED_401",
+  "first10Testers": "NO-GO_UNTIL_PREVIEW_BROWSER_PASS",
+  "payments": "DISABLED_SAFE",
+  "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
+  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT"
+}
