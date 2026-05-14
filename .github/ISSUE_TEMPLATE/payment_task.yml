@@ -1,0 +1,46 @@
+name: Payment task
+description: PayPal sandbox or paid-pilot work.
+title: "[Payment]: "
+labels: ["type-payment", "phase-paid-pilot", "status-triage", "codex-human-gate-required"]
+body:
+  - type: markdown
+    attributes:
+      value: "Sandbox only. Do not include PayPal secrets. Live payments require explicit human approval and are not allowed by default."
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: dropdown
+    id: environment
+    attributes:
+      label: PayPal environment
+      options: ["sandbox only", "live requested - blocked until human approval"]
+    validations:
+      required: true
+  - type: checkboxes
+    id: requirements
+    attributes:
+      label: Required payment safety
+      options:
+        - label: Webhook signature verification
+        - label: No frontend-only premium grant
+        - label: Supabase state stored server-side
+        - label: Refund/cancel/payment-failed handling documented
+        - label: No live payment credentials
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+    validations:
+      required: true
+  - type: textarea
+    id: checks
+    attributes:
+      label: Suggested checks
+      value: |
+        npm run secret:scan
+        npm run test
+        npm run build
+        npm run production:check

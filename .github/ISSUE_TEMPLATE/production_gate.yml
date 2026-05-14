@@ -1,0 +1,28 @@
+name: Production gate
+description: Production readiness request. Human approval required.
+title: "[Production Gate]: "
+labels: ["risk-production", "status-needs-human", "codex-human-gate-required", "codex-do-not-run"]
+body:
+  - type: markdown
+    attributes:
+      value: "Production remains NO-GO by default. This template records approval requirements; it does not authorize deployment."
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why production is requested
+    validations:
+      required: true
+  - type: checkboxes
+    id: approvals
+    attributes:
+      label: Required approvals
+      options:
+        - label: Human product approval
+        - label: Security approval
+        - label: Payment/live approval if relevant
+        - label: Rollback plan approved
+        - label: Monitoring approved
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence required before approval

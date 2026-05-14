@@ -1,0 +1,35 @@
+name: expressjobs-docs-check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate JSON docs
+        shell: bash
+        run: |
+          set -euo pipefail
+          find docs -name '*.json' -print0 | xargs -0 -r -n1 node -e "JSON.parse(require('fs').readFileSync(process.argv[1], 'utf8'))"
+      - name: Verify required status docs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f docs/EXPRESSJOBS_DIRECTOR_STATUS.md
+          test -f docs/expressjobs-director-status.json
+          test -f docs/PROJECT_DIRECTOR_STATUS.md
+          test -f docs/project-director-status.json
+      - name: Verify production remains NO-GO in docs
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -R 'NO-GO_PRODUCTION' docs/EXPRESSJOBS_DIRECTOR_STATUS.md docs/expressjobs-director-status.json docs/PROJECT_DIRECTOR_STATUS.md docs/project-director-status.json

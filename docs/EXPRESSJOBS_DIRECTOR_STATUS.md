@@ -52,6 +52,7 @@ Cycle 042 fixed the Preview Google OAuth `redirect_to` construction. The app now
 Cycle 043 recorded the human browser verification for Google OAuth. The operator completed login and reached `/role`, which confirms callback exchange, session creation, and safe profile creation/presence in the current callback flow.
 Cycle 044 ran the full release gate after Google OAuth Preview PASS. Secret scan, staging check, static RLS, real RLS smoke, lint, typecheck, tests, build, production guard, and diff check all passed. The gate decision is `PASS_FOR_FIRST_10_CONTROLLED_INTERNAL`; production remains `NO-GO_PRODUCTION`.
 Cycle 045 audited PayPal and Supabase tooling for a future paid pilot. PayPal is not implemented, which keeps live charging safely impossible but blocks paid pilot readiness until sandbox subscriptions, webhook signature verification, and server-side subscription storage are built. Supabase CLI is available; Supabase MCP requires auth in the current session.
+Cycle 046 set up GitHub as the task router blueprint and repo configuration surface: issue templates, PR template, CODEOWNERS, Dependabot, Actions gates, label taxonomy, routing docs, branch protection plan, rulesets plan, Project board blueprint, and manual seed issue commands. GitHub CLI is missing in the current shell, so labels/issues were documented, not created.
 
 ## Current Scope
 
@@ -75,6 +76,7 @@ Cycle 045 audited PayPal and Supabase tooling for a future paid pilot. PayPal is
 - First 10 manual approval gate
 - PayPal/sandbox paid pilot audit docs
 - Supabase tooling audit docs
+- GitHub task router docs and repository templates
 
 ## Not Active
 

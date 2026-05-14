@@ -1,0 +1,39 @@
+name: Auth task
+description: Supabase Auth or social login task.
+title: "[Auth]: "
+labels: ["type-auth", "status-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not paste OAuth secrets, auth codes, cookies, tokens, or user IDs."
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: flow
+    attributes:
+      label: Auth flow affected
+      placeholder: "Google Preview, email/password, callback, profile sync..."
+  - type: dropdown
+    id: admin_risk
+    attributes:
+      label: Can this assign admin?
+      options: ["no", "yes - requires human approval"]
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+  - type: textarea
+    id: checks
+    attributes:
+      label: Required checks
+      value: |
+        npm run secret:scan
+        npm run test
+        npm run build
+        npm run production:check

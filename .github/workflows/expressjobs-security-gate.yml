@@ -1,0 +1,39 @@
+name: expressjobs-security-gate
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  security-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run secret:scan
+      - name: Block committed secret-bearing files
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git ls-files | grep -E '(^|/)\.env($|\.|/)|(^|/)\.vercel(/|$)|\.(zip|7z|tar|tar\.gz)$|\.log$'; then
+            echo "Blocked: secret-bearing, local, archive, or log file is tracked."
+            exit 1
+          fi
+      - name: Block unsafe production/payment markers in executable surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          files="$(git ls-files 'src/**' 'scripts/**' 'supabase/**' 'vercel.json' 'package.json' '.github/workflows/**' ':!docs/**' ':!.github/workflows/expressjobs-security-gate.yml' ':!.github/workflows/expressjobs-production-no-go.yml')"
+          if [ -n "$files" ] && grep -En 'vercel[[:space:]]+--prod|vercel[[:space:]]+promote|PAYPAL_ENVIRONMENT[[:space:]]*=[[:space:]]*live|PAYPAL_LIVE[[:space:]]*=[[:space:]]*true|ENABLE_AI_AGENTS[[:space:]]*=[[:space:]]*true|SUPABASE_SERVICE_ROLE_KEY[[:space:]]*=[[:space:]]*[A-Za-z0-9._-]{20,}' $files; then
+            echo "Blocked: unsafe production, live payment, AI, or service-role marker detected."
+            exit 1
+          fi
