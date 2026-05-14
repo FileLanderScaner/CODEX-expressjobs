@@ -60,6 +60,20 @@ Current staging status:
 
 Required next action: correct or reset the client staging user's email/password in `.env.rls`, verify the user is confirmed in Supabase Auth staging, then rerun the smoke gate.
 
+## 2026-05-14 Cycle 030 Retry
+
+The gate was retried with `.env.rls` present.
+
+Results:
+
+- `AUTH_USERS=PROVIDED_BUT_CLIENT_LOGIN_INVALID`
+- `RLS_SMOKE=BLOCKED_AUTH_FAILURE`
+- `SEARCH_PATH_FIX=BLOCKED_NOT_APPLIED`
+- `STAGING_STATUS=STAGING_ENV_PASS_AUTH_USERS_INVALID`
+- `PRODUCTION_STATUS=NO-GO_PRODUCTION`
+
+`npm run rls:smoke` failed at the first client sign-in with invalid login credentials. The RLS matrix was not reached.
+
 ## Pending Work
 
 - Provide a rotated service-role key only through `.env.rls`, or disable email confirmation in staging only and rerun anon bootstrap.

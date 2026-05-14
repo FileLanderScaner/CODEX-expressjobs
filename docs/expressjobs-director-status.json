@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_029_RLS_SMOKE_INVALID_CLIENT_CREDENTIALS",
+  "cycle": "CYCLE_EXPRESSJOBS_030_RLS_SMOKE_INVALID_CLIENT_CREDENTIALS_RETRY",
   "current_mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "mode": "EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS",
   "code_status": "CODE_READY",
@@ -50,7 +50,7 @@
     "staging_check": "pass",
     "rest_data_api_check": "pass",
     "rls_bootstrap_anon_users": "not_run_this_cycle",
-    "rls_smoke": "auth_failure_invalid_client_credentials",
+    "rls_smoke": "auth_failure_invalid_client_credentials_retry",
     "diff_check": "pass"
   },
   "blocking_items": [

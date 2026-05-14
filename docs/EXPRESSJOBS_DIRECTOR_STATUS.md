@@ -35,6 +35,7 @@ Cycle 026 used Supabase MCP to recover staging project URL and publishable key, 
 Cycle 027 executed the requested RLS smoke gate. Pre-checks passed, but anon bootstrap hit Supabase Auth signup/email limits and `.env.rls` with service-role/confirmed test users is absent, so `npm run rls:smoke` remains blocked before policy execution.
 Cycle 028 retried the RLS smoke gate after another operator prompt. Pre-checks still pass, but anon bootstrap returns `email rate limit exceeded`; remote readback shows 1 staging signup user and 0 confirmed staging users. Real RLS smoke remains blocked before policy execution.
 Cycle 029 retried after `.env.rls` was provided with all six RLS smoke credential variables present. `npm run rls:smoke` reached Supabase Auth and failed on the first client login with invalid credentials, so RLS policy execution was not reached.
+Cycle 030 repeated the Auth-users-created RLS gate. Pre-checks and secret scans passed, but `npm run rls:smoke` again failed on the first client login with invalid credentials. RLS policies were not exercised.
 
 ## Current Scope
 
