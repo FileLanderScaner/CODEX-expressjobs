@@ -4,8 +4,8 @@
 
 ## Status
 
-- `GOOGLE_LOGIN=READY_FOR_HUMAN_BROWSER_TEST`
-- `GOOGLE_AUTH_SMOKE=READY_FOR_HUMAN_BROWSER_TEST`
+- `GOOGLE_LOGIN=PREVIEW_SMOKE_PASS`
+- `GOOGLE_AUTH_SMOKE=PASS`
 - `FACEBOOK_LOGIN=CONFIG_PENDING`
 - `INSTAGRAM_LOGIN=RESEARCH_PENDING`
 - `PRODUCTION_STATUS=NO-GO_PRODUCTION`
@@ -48,18 +48,20 @@ These are public feature flags only. No OAuth client secret was stored or printe
 - OAuth `redirect_to` fixed: `yes`
 - Final host class: Google.
 - Final path: `/v3/signin/identifier`
-- Error class: `manual_google_login_required`
+- Error class: `none`
 - Redirect URI mismatch resolved: yes.
-- Callback reached: `no`
-- Session created: `not_tested`
+- Callback reached: `yes`
+- Session created: `yes`
+- Profile created or present: `yes`
+- Final redirect: `/role`
 - Test account authorization: confirmed by operator; account value intentionally not recorded in git.
-- Latest Client Secret fix verification: blocked until human completes Google login.
+- Latest Client Secret fix verification: passed by human browser verification.
 
 ## Classification
 
-`GOOGLE_AUTH_SMOKE=READY_FOR_HUMAN_BROWSER_TEST`
+`GOOGLE_AUTH_SMOKE=PASS`
 
-Reason: Google OAuth starts correctly from the protected Preview, now sends the active Preview host as `redirect_to`, and reaches Google's sign-in screen. The operator reports the Google Client Secret was corrected in Supabase. Codex cannot prove code exchange/session creation without completing human Google login, so the smoke remains ready for a human browser test.
+Reason: Google OAuth starts correctly from the protected Preview, sends the active Preview host as `redirect_to`, returns to the app callback, creates a session, creates or finds the safe default profile, and redirects to `/role`.
 
 Confirmed Google authorized redirect URI requirement:
 
@@ -75,10 +77,8 @@ https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app/auth/callback
 
 Do not include Vercel bypass query parameters in any redirect URL.
 
-## Required Human Next Step
+## Human Verification Completed
 
-1. Complete Google login using only the staging/test Google account.
-2. Report only sanitized callback/session status.
-3. Do not paste tokens, cookies, auth codes, user IDs, account details, or secrets.
-4. Keep Facebook disabled.
-5. Keep Instagram disabled.
+The operator completed the browser login flow and reached `/role`. No tokens, cookies, auth codes, user IDs, account details, or secrets were recorded.
+
+Keep Facebook disabled and Instagram disabled until their separate provider gates are executed.

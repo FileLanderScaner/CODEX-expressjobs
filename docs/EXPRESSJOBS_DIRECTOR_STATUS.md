@@ -49,6 +49,7 @@ Cycle 039 confirmed the staging/test Google account is authorized per operator s
 Cycle 040 diagnosed the Supabase Auth callback failure after human Google login. The previous redirect URI issue is resolved, but Supabase reported `invalid_client` because the Google Client Secret configured in Supabase was invalid. No secret values were recorded.
 Cycle 041 rechecked after the operator reported the Client Secret was corrected. Codex can still only reach the Google sign-in screen without human credentials, so session creation remains `not_tested` until a human completes login and reports sanitized callback/session status.
 Cycle 042 fixed the Preview Google OAuth `redirect_to` construction. The app now uses the browser origin for OAuth redirects in Preview instead of the local fallback URL. A new Preview deployment is READY, `/auth` loads with bypass header, Google starts OAuth, and the intercepted sanitized authorize request points to the current Preview `/auth/callback`.
+Cycle 043 recorded the human browser verification for Google OAuth. The operator completed login and reached `/role`, which confirms callback exchange, session creation, and safe profile creation/presence in the current callback flow.
 
 ## Current Scope
 
@@ -81,8 +82,8 @@ Cycle 042 fixed the Preview Google OAuth `redirect_to` construction. The app now
 
 ## Next Gate
 
-Run `EXPRESSJOBS_GOOGLE_AUTH_HUMAN_CALLBACK_SESSION_VERIFY`: open the fixed Preview, complete Google login with the staging/test account, and record sanitized callback/session status. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Run `EXPRESSJOBS_RELEASE_GATE_GO_NO_GO`: consolidate the current MVP gates after Google OAuth Preview PASS, keep Production `NO-GO_PRODUCTION`, and decide whether First 10 controlled internal testing remains allowed.
 
 ## Current Operator Action
 
-Current fastest unblock: test login at `https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app/auth`, complete Google login manually with the staging/test account, and report sanitized callback/session results. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest safe next step: run the release gate GO/NO-GO review for controlled internal testing. Google OAuth Preview is PASS. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
