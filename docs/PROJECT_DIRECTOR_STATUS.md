@@ -2,7 +2,7 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
-ExpressJobs / Trabajos Rapidos is `SOCIAL_AUTH_PHASE_1_CODE_READY_PROVIDER_CONFIG_PENDING`.
+ExpressJobs / Trabajos Rapidos is `GOOGLE_AUTH_BLOCKED_PROVIDER_CONFIG`.
 
 - Supabase staging RLS smoke: PASS
 - Vercel Preview deploy: READY
@@ -15,8 +15,9 @@ ExpressJobs / Trabajos Rapidos is `SOCIAL_AUTH_PHASE_1_CODE_READY_PROVIDER_CONFI
 - Search path fix: APPLIED
 - Security Advisor recheck: PENDING_OR_NOT_RECHECKED
 - Social auth phase 1: CODE_READY_PROVIDER_CONFIG_PENDING
-- Google login: CODE_READY_CONFIG_PENDING
-- Facebook login: CODE_READY_CONFIG_PENDING
+- Google login: BLOCKED_PROVIDER_CONFIG
+- Google auth smoke: BLOCKED_PROVIDER_CONFIG
+- Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_SOCIAL_AUTH_PROVIDER_CONFIG_GUIDE
+- Next mode: EXPRESSJOBS_GOOGLE_AUTH_REDIRECT_URI_FIX_GUIDE

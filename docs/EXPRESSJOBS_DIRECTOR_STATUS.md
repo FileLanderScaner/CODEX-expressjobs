@@ -43,6 +43,7 @@ Cycle 033 first-10 continuation prepared the controlled internal tester package 
 Cycle 034 executed a First 10 dry-run with placeholder testers, simulated feedback, and simulated triage. No real testers were contacted, no real personal data was used, `SEARCH_PATH_FIX=APPLIED`, and only Security Advisor recheck remains `PENDING_OR_NOT_RECHECKED`.
 Cycle 035 prepared the human-approved manual contact package for First 10 internal testers, including approval checklist, assignment template, session runbook, final copy messages, live monitoring runbook, and post-test decision matrix. No real testers were contacted.
 Cycle 036 added Social Auth Phase 1 code for Google and Facebook through Supabase Auth, guarded by disabled-by-default feature flags and a whitelisted OAuth helper. Instagram remains `RESEARCH_PENDING`; provider configuration is manual and production remains `NO-GO_PRODUCTION`.
+Cycle 037 deployed a new Vercel Preview without production promotion, enabled Google social-auth flag only for the Preview branch, and verified `/auth` with protected bypass header. Google OAuth starts but is blocked by Google `redirect_uri_mismatch`; Facebook remains disabled and Instagram remains research-only.
 
 ## Current Scope
 
@@ -74,8 +75,8 @@ Cycle 036 added Social Auth Phase 1 code for Google and Facebook through Supabas
 
 ## Next Gate
 
-Run `EXPRESSJOBS_SOCIAL_AUTH_PROVIDER_CONFIG_GUIDE`: prepare manual Supabase/Google/Meta setup instructions, redirect URL checklist, and Preview-only validation plan. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Run `EXPRESSJOBS_GOOGLE_AUTH_REDIRECT_URI_FIX_GUIDE`: correct Google Cloud authorized redirect URI and Supabase redirect allow-list for the latest Preview, then repeat Google auth smoke. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest unblock: configure Google/Facebook providers manually in staging/Preview and validate `/auth` without exposing secrets. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest unblock: fix Google OAuth `redirect_uri_mismatch` for the Supabase callback and latest Preview callback, then rerun protected Preview Google auth smoke. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
