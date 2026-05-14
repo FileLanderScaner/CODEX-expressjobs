@@ -50,6 +50,7 @@ Cycle 040 diagnosed the Supabase Auth callback failure after human Google login.
 Cycle 041 rechecked after the operator reported the Client Secret was corrected. Codex can still only reach the Google sign-in screen without human credentials, so session creation remains `not_tested` until a human completes login and reports sanitized callback/session status.
 Cycle 042 fixed the Preview Google OAuth `redirect_to` construction. The app now uses the browser origin for OAuth redirects in Preview instead of the local fallback URL. A new Preview deployment is READY, `/auth` loads with bypass header, Google starts OAuth, and the intercepted sanitized authorize request points to the current Preview `/auth/callback`.
 Cycle 043 recorded the human browser verification for Google OAuth. The operator completed login and reached `/role`, which confirms callback exchange, session creation, and safe profile creation/presence in the current callback flow.
+Cycle 044 ran the full release gate after Google OAuth Preview PASS. Secret scan, staging check, static RLS, real RLS smoke, lint, typecheck, tests, build, production guard, and diff check all passed. The gate decision is `PASS_FOR_FIRST_10_CONTROLLED_INTERNAL`; production remains `NO-GO_PRODUCTION`.
 
 ## Current Scope
 
@@ -70,6 +71,7 @@ Cycle 043 recorded the human browser verification for Google OAuth. The operator
 - Google/Facebook OAuth code path behind feature flags
 - OAuth callback that creates safe default client profiles
 - Google OAuth Preview redirect_to fix
+- First 10 manual approval gate
 
 ## Not Active
 
@@ -82,8 +84,8 @@ Cycle 043 recorded the human browser verification for Google OAuth. The operator
 
 ## Next Gate
 
-Run `EXPRESSJOBS_RELEASE_GATE_GO_NO_GO`: consolidate the current MVP gates after Google OAuth Preview PASS, keep Production `NO-GO_PRODUCTION`, and decide whether First 10 controlled internal testing remains allowed.
+Run `EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE`: collect explicit human approval before any manual First 10 tester outreach. Keep Production `NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest safe next step: run the release gate GO/NO-GO review for controlled internal testing. Google OAuth Preview is PASS. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest safe next step: complete the First 10 manual approval gate. Google OAuth Preview is PASS, RLS smoke is PASS, Preview smoke is PASS, and the release gate is PASS for controlled internal testing only. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
