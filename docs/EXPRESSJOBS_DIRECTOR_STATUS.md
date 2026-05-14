@@ -42,6 +42,7 @@ Cycle 033 used the local/user Vercel automation bypass secret through the `x-ver
 Cycle 033 first-10 continuation prepared the controlled internal tester package with onboarding, messages, feedback capture, triage board, and post-pilot GO/NO-GO criteria. No tester contact was sent and Production remains `NO-GO_PRODUCTION`.
 Cycle 034 executed a First 10 dry-run with placeholder testers, simulated feedback, and simulated triage. No real testers were contacted, no real personal data was used, `SEARCH_PATH_FIX=APPLIED`, and only Security Advisor recheck remains `PENDING_OR_NOT_RECHECKED`.
 Cycle 035 prepared the human-approved manual contact package for First 10 internal testers, including approval checklist, assignment template, session runbook, final copy messages, live monitoring runbook, and post-test decision matrix. No real testers were contacted.
+Cycle 036 added Social Auth Phase 1 code for Google and Facebook through Supabase Auth, guarded by disabled-by-default feature flags and a whitelisted OAuth helper. Instagram remains `RESEARCH_PENDING`; provider configuration is manual and production remains `NO-GO_PRODUCTION`.
 
 ## Current Scope
 
@@ -59,6 +60,8 @@ Cycle 035 prepared the human-approved manual contact package for First 10 intern
 - Domain service layer with local fallback
 - Supabase schema/RLS migration
 - Tracking fallback local storage
+- Google/Facebook OAuth code path behind feature flags
+- OAuth callback that creates safe default client profiles
 
 ## Not Active
 
@@ -66,11 +69,13 @@ Cycle 035 prepared the human-approved manual contact package for First 10 intern
 - Live payments
 - AI agents in production
 - Admin panel by default
+- Social providers in production
+- Instagram login
 
 ## Next Gate
 
-Run `EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE`: confirm human approval, final redaction, Preview access handling, and stop conditions before any manual tester contact. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Run `EXPRESSJOBS_SOCIAL_AUTH_PROVIDER_CONFIG_GUIDE`: prepare manual Supabase/Google/Meta setup instructions, redirect URL checklist, and Preview-only validation plan. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest unblock: run the manual contact approval gate. Do not contact testers automatically. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest unblock: configure Google/Facebook providers manually in staging/Preview and validate `/auth` without exposing secrets. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.

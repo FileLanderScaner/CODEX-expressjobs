@@ -1,7 +1,7 @@
 {
   "project": "ExpressJobs",
   "productionStatus": "NO-GO_PRODUCTION",
-  "stagingStatus": "FIRST_10_CONTACT_PACKAGE_READY",
+  "stagingStatus": "SOCIAL_AUTH_PHASE_1_CODE_READY_PROVIDER_CONFIG_PENDING",
   "rlsRealSmokeStatus": "PASS",
   "vercelPreviewStatus": "READY_BROWSER_SMOKE_PASS",
   "previewBrowserSmoke": "PASS",
@@ -14,9 +14,13 @@
   "realPersonalDataUsed": false,
   "searchPathFix": "APPLIED",
   "securityAdvisorRecheck": "PENDING_OR_NOT_RECHECKED",
+  "socialAuthPhase1": "CODE_READY_PROVIDER_CONFIG_PENDING",
+  "googleLogin": "CODE_READY_CONFIG_PENDING",
+  "facebookLogin": "CODE_READY_CONFIG_PENDING",
+  "instagramLogin": "RESEARCH_PENDING",
   "safeToContactInternalTesters": true,
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE"
+  "nextMode": "EXPRESSJOBS_SOCIAL_AUTH_PROVIDER_CONFIG_GUIDE"
 }

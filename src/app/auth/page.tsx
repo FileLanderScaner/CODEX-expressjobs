@@ -1,5 +1,6 @@
 import { Mail } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { SocialAuthButtons } from "@/components/social-auth-buttons";
 
 export default function AuthPage() {
   return (
@@ -16,6 +17,7 @@ export default function AuthPage() {
             <Mail aria-hidden="true" size={18} />
             Iniciar signup
           </button>
+          <SocialAuthButtons />
         </form>
       </main>
     </AppShell>

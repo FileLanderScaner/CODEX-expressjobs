@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_035_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
-  "current_mode": "EXPRESSJOBS_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
-  "mode": "EXPRESSJOBS_FIRST_10_REAL_INTERNAL_CONTACT_PACKAGE",
+  "cycle": "CYCLE_EXPRESSJOBS_036_SOCIAL_AUTH_PHASE_1",
+  "current_mode": "EXPRESSJOBS_SOCIAL_AUTH_GOOGLE_FACEBOOK_PHASE_1",
+  "mode": "EXPRESSJOBS_SOCIAL_AUTH_GOOGLE_FACEBOOK_PHASE_1",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -15,7 +15,7 @@
   "supabase_write_status": "NOT_REQUIRED_FOR_DRY_RUN",
   "rls_real_smoke_status": "PASS",
   "supabase_staging_status": "RLS_READY",
-  "staging_status": "FIRST_10_CONTACT_PACKAGE_READY",
+  "staging_status": "SOCIAL_AUTH_PHASE_1_CODE_READY_PROVIDER_CONFIG_PENDING",
   "vercel_preview_status": "READY_BROWSER_SMOKE_PASS",
   "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
@@ -33,6 +33,10 @@
   "safe_to_contact_internal_testers": true,
   "safe_to_open_public_production": false,
   "security_status": "SEARCH_PATH_FIX_APPLIED_SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
+  "social_auth_phase_1": "CODE_READY_PROVIDER_CONFIG_PENDING",
+  "google_login": "CODE_READY_CONFIG_PENDING",
+  "facebook_login": "CODE_READY_CONFIG_PENDING",
+  "instagram_login": "RESEARCH_PENDING",
   "operator_secret_entry_shell_opened": true,
   "operator_secret_entry_directory": "C:\\CODEX-expressjobs-repo",
   "env_files_visible_to_codex": {
@@ -76,7 +80,7 @@
   "blockedBy": [
     "BLOCKED_PRODUCTION_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE",
-  "nextMode": "EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE",
+  "next_mode": "EXPRESSJOBS_SOCIAL_AUTH_PROVIDER_CONFIG_GUIDE",
+  "nextMode": "EXPRESSJOBS_SOCIAL_AUTH_PROVIDER_CONFIG_GUIDE",
   "next_prompt_generated": true
 }
