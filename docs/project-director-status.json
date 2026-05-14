@@ -1,7 +1,7 @@
 {
   "project": "ExpressJobs",
   "productionStatus": "NO-GO_PRODUCTION",
-  "stagingStatus": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL",
+  "stagingStatus": "PAID_PILOT_BLOCKED_PAYPAL_SANDBOX_REQUIRED",
   "releaseGateStatus": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL",
   "rlsRealSmokeStatus": "PASS",
   "vercelPreviewStatus": "READY_GOOGLE_REDIRECT_TO_FIXED",
@@ -37,9 +37,23 @@
   "oauthErrorClass": "none",
   "facebookLogin": "CONFIG_PENDING",
   "instagramLogin": "RESEARCH_PENDING",
+  "paypalAudit": "BLOCKED_IMPLEMENTATION_MISSING",
+  "paypalEnvironment": "unknown",
+  "paypalLive": "OFF",
+  "paypalWebhookEndpoint": "MISSING",
+  "paypalWebhookSignatureVerification": "MISSING",
+  "paypalSubscriptionFlow": "MISSING",
+  "premiumStateStorage": "PARTIAL_SCHEMA_ONLY",
+  "paidPilotReadiness": "BLOCKED",
+  "supabaseToolingAudit": "PARTIAL_PASS",
+  "supabaseCli": "AVAILABLE",
+  "supabaseCliVersion": "2.98.2",
+  "supabaseMcp": "MISSING_AUTH_IN_CURRENT_SESSION",
+  "edgeFunctionsPlan": "READY_FOR_SANDBOX_DESIGN",
+  "authHooksPlan": "READY_NOT_CONFIGURED",
   "safeToContactInternalTesters": true,
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE"
+  "nextMode": "EXPRESSJOBS_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE"
 }

@@ -2,7 +2,7 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
-ExpressJobs / Trabajos Rapidos is `PASS_FOR_FIRST_10_CONTROLLED_INTERNAL`.
+ExpressJobs / Trabajos Rapidos is `PAID_PILOT_BLOCKED_PAYPAL_SANDBOX_REQUIRED`.
 
 - Supabase staging RLS smoke: PASS
 - Vercel Preview deploy: READY (`https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app`)
@@ -27,7 +27,14 @@ ExpressJobs / Trabajos Rapidos is `PASS_FOR_FIRST_10_CONTROLLED_INTERNAL`.
 - Google profile created or present: yes
 - Google final redirect: /role
 - Release gate: PASS_FOR_FIRST_10_CONTROLLED_INTERNAL
+- PayPal audit: BLOCKED_IMPLEMENTATION_MISSING
+- PayPal live: OFF
+- PayPal webhook endpoint: MISSING
+- PayPal webhook signature verification: MISSING
+- Paid pilot readiness: BLOCKED
+- Supabase CLI: AVAILABLE
+- Supabase MCP: MISSING_AUTH_IN_CURRENT_SESSION
 - Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE
+- Next mode: EXPRESSJOBS_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE

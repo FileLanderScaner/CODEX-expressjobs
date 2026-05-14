@@ -51,6 +51,7 @@ Cycle 041 rechecked after the operator reported the Client Secret was corrected.
 Cycle 042 fixed the Preview Google OAuth `redirect_to` construction. The app now uses the browser origin for OAuth redirects in Preview instead of the local fallback URL. A new Preview deployment is READY, `/auth` loads with bypass header, Google starts OAuth, and the intercepted sanitized authorize request points to the current Preview `/auth/callback`.
 Cycle 043 recorded the human browser verification for Google OAuth. The operator completed login and reached `/role`, which confirms callback exchange, session creation, and safe profile creation/presence in the current callback flow.
 Cycle 044 ran the full release gate after Google OAuth Preview PASS. Secret scan, staging check, static RLS, real RLS smoke, lint, typecheck, tests, build, production guard, and diff check all passed. The gate decision is `PASS_FOR_FIRST_10_CONTROLLED_INTERNAL`; production remains `NO-GO_PRODUCTION`.
+Cycle 045 audited PayPal and Supabase tooling for a future paid pilot. PayPal is not implemented, which keeps live charging safely impossible but blocks paid pilot readiness until sandbox subscriptions, webhook signature verification, and server-side subscription storage are built. Supabase CLI is available; Supabase MCP requires auth in the current session.
 
 ## Current Scope
 
@@ -72,6 +73,8 @@ Cycle 044 ran the full release gate after Google OAuth Preview PASS. Secret scan
 - OAuth callback that creates safe default client profiles
 - Google OAuth Preview redirect_to fix
 - First 10 manual approval gate
+- PayPal/sandbox paid pilot audit docs
+- Supabase tooling audit docs
 
 ## Not Active
 
@@ -84,8 +87,8 @@ Cycle 044 ran the full release gate after Google OAuth Preview PASS. Secret scan
 
 ## Next Gate
 
-Run `EXPRESSJOBS_FIRST_10_MANUAL_CONTACT_APPROVAL_GATE`: collect explicit human approval before any manual First 10 tester outreach. Keep Production `NO-GO_PRODUCTION`.
+Run `EXPRESSJOBS_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE`: implement or prepare a sandbox-only PayPal subscription smoke path with no live payments, no production, no real charges, and verified webhook signature handling.
 
 ## Current Operator Action
 
-Current fastest safe next step: complete the First 10 manual approval gate. Google OAuth Preview is PASS, RLS smoke is PASS, Preview smoke is PASS, and the release gate is PASS for controlled internal testing only. Supabase `search_path` fix is applied; Security Advisor recheck remains pending or not rechecked. Production remains blocked.
+Current fastest safe next step for paid beta preparation: build a sandbox-only PayPal subscription smoke path. Google OAuth Preview is PASS, RLS smoke is PASS, Preview smoke is PASS, and the First 10 release gate is PASS for controlled internal testing only. Production remains blocked.
