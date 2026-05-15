@@ -71,6 +71,7 @@ Cycle 061 updated the revenue daily sales execution tracker. No real human sales
 Cycle 062 read the GitHub task-router directives and executed `EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS`. Local gates passed, but real RLS smoke failed because the staging client could still self-promote to `admin`; Codex restored that staging test profile back to `client` without printing secrets. Supabase CLI write capability remains blocked because `SUPABASE_ACCESS_TOKEN` is missing, so the prepared hardening migration was not applied. Production remains `NO-GO_PRODUCTION`.
 Cycle 063 prepared the GitHub Actions Supabase/Vercel Preview pipeline. The workflow is manual-only, runs repo checks, can run Supabase staging checks and RLS smoke with GitHub secrets, can deploy Vercel Preview without `--prod`, and writes an Actions summary. Local validation passed; live GitHub UI execution remains blocked until the workflow exists on the default branch, required GitHub Actions secrets are configured, and the RLS hardening blocker is resolved.
 Cycle 064 attempted RLS hardening and GitHub Actions enablement. The migration safety review passed, but Supabase staging write remains blocked because `SUPABASE_ACCESS_TOKEN` and direct Postgres write URLs are absent. GitHub Actions secrets list returned zero visible repo secrets. Default-branch workflow enablement is blocked by production auto-deploy risk: `main` is default, not protected, Vercel Git integration is active, and PR #5 currently has Vercel/production gate failures. No production, Vercel Production env, PayPal live, or Supabase production action was performed.
+Cycle 065 verified the manually applied RLS hardening migration against Supabase staging `gnsfyvsodslnehszanra`. `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`, proving normal users cannot update `ej_profiles.role` or self-promote to admin. The full local gate passed. GitHub Actions Preview pipeline remains blocked by missing visible repo secrets and default-branch production auto-deploy risk.
 
 ## Current Scope
 
@@ -114,8 +115,8 @@ Cycle 064 attempted RLS hardening and GitHub Actions enablement. The migration s
 
 ## Next Gate
 
-Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH`: restore authenticated Supabase staging write capability, apply only the prepared migration, and then run real RLS smoke. After RLS passes and required Actions secrets exist, enable/run the GitHub Actions `ExpressJobs Preview Pipeline` with `full_preview`.
+Resolve GitHub Actions enablement safely: configure required repo secrets, keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`, and prepare a default-branch workflow path that does not trigger production deploys. Then run the GitHub Actions `ExpressJobs Preview Pipeline` with `full_preview`.
 
 ## Current Operator Action
 
-Current fastest safe security step: provide authenticated Supabase staging write capability without printing secrets, apply only `supabase/migrations/20260515132404_harden_expressjobs_profile_role_updates.sql`, configure required GitHub Actions secrets, then rerun `npm run rls:smoke`. Production remains blocked.
+Current fastest safe release-ops step: configure required GitHub Actions secrets and resolve the default-branch workflow enablement blocker without triggering Vercel Production. Production remains blocked.
