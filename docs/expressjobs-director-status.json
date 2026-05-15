@@ -118,6 +118,13 @@
     "workana",
     "fiverr"
   ],
+  "revenue_daily_tracker_status": "NO_REAL_ACTIVITY_REPORTED",
+  "real_sales_activity_reported": false,
+  "manual_revenue_collected": 0,
+  "manual_revenue_pending": 0,
+  "active_leads_count": 0,
+  "closed_sales_count": 0,
+  "delivery_pending_count": 0,
   "sponsor_page": "READY_PREVIEW_MANUAL_CTA",
   "offers_page": "READY",
   "landing_business_page": "READY",
@@ -237,7 +244,7 @@
   "blockedBy": [
     "BLOCKED_SUPABASE_WRITE_CAPABILITY"
   ],
-  "next_mode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER",
-  "nextMode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER",
+  "next_mode": "EXPRESSJOBS_REVENUE_OUTREACH_EXECUTION_ASSISTANT",
+  "nextMode": "EXPRESSJOBS_REVENUE_OUTREACH_EXECUTION_ASSISTANT",
   "next_prompt_generated": true
 }

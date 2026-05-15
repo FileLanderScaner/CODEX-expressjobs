@@ -2,7 +2,7 @@
 
 `PAYMENTS_LIVE=OFF`
 
-Do not store bank details, card data, private payment aliases, identity documents, or sensitive personal data in this file.
+Do not store bank details, card data, private payment aliases, identity documents, private payment links, receipts, phone numbers, emails, or sensitive personal data in this file.
 
 Accepted manual collection channels must be handled privately by the human:
 
@@ -12,11 +12,11 @@ Accepted manual collection channels must be handled privately by the human:
 - Cash.
 - Other manual method approved outside the repo.
 
-| Date | Contact | Offer Type | Message Sent | Response | Amount Offered | Status | Next Step | Paid Yes/No | Delivery Pending |
-| --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |
-| YYYY-MM-DD | [CONTACT_PLACEHOLDER] | Manual job posting | [SCRIPT_ID] | [RESPONSE_SUMMARY] | 500 | New | Follow up | No | Yes |
-| YYYY-MM-DD | [CONTACT_PLACEHOLDER] | Sponsored banner | [SCRIPT_ID] | [RESPONSE_SUMMARY] | 1500 | New | Send intake | No | Yes |
-| YYYY-MM-DD | [CONTACT_PLACEHOLDER] | Landing page | [SCRIPT_ID] | [RESPONSE_SUMMARY] | 2500 | New | Confirm package | No | Yes |
+## Payment And Delivery Table
+
+| Internal ID | Lead Alias | Platform | Offer Sold | Amount Quoted | Amount Collected | Collection Status | Generic Method | Delivery Status | Commitment Date | Next Step | Risk |
+| --- | --- | --- | --- | ---: | ---: | --- | --- | --- | --- | --- | --- |
+| REV-YYYYMMDD-001 | [LEAD_ALIAS] | [PLATFORM] | [OFFER] | 0 UYU | 0 UYU | Not collected | [GENERIC_METHOD] | Not started | YYYY-MM-DD | Await human activity | No real activity reported |
 
 ## Sponsor Intake Form
 
@@ -24,13 +24,19 @@ Accepted manual collection channels must be handled privately by the human:
 Nombre del negocio:
 Rubro:
 Zona:
-WhatsApp:
+WhatsApp publico:
 Texto corto:
 Logo opcional:
 Paquete elegido:
-Duración:
-Estado de pago:
+Duracion:
+Estado de pago manual:
 Fecha de inicio:
 Fecha de fin:
-Notas:
+Notas sanitizadas:
 ```
+
+## Current Cycle Note
+
+`NO_REAL_ACTIVITY_REPORTED`
+
+No real human sales activity was provided for this cycle, so no sale, payment, or delivery record was added.

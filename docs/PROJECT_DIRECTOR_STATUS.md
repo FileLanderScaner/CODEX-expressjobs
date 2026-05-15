@@ -48,6 +48,11 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_C
 - Revenue command center: READY_MANUAL_SALES_ONLY
 - Revenue execution system: READY_MANUAL_SALES_ONLY
 - Online revenue operator: READY_MANUAL_EXECUTION
+- Revenue daily tracker: NO_REAL_ACTIVITY_REPORTED
+- Real sales activity reported: false
+- Manual revenue collected: 0 UYU
+- Closed sales count: 0
+- Delivery pending count: 0
 - Sponsor page: READY_PREVIEW_MANUAL_CTA
 - Offers page: READY
 - Landing business page: READY
@@ -77,4 +82,4 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_C
 - Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH
+- Next mode: EXPRESSJOBS_REVENUE_OUTREACH_EXECUTION_ASSISTANT

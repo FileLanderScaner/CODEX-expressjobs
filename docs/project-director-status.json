@@ -77,6 +77,13 @@
   "onlineRevenueOperator": "READY_MANUAL_EXECUTION",
   "revenue24hPlan": "READY",
   "revenue7DayPlan": "READY",
+  "revenueDailyTrackerStatus": "NO_REAL_ACTIVITY_REPORTED",
+  "realSalesActivityReported": false,
+  "manualRevenueCollected": 0,
+  "manualRevenuePending": 0,
+  "activeLeadsCount": 0,
+  "closedSalesCount": 0,
+  "deliveryPendingCount": 0,
   "sponsorPage": "READY_PREVIEW_MANUAL_CTA",
   "offersPage": "READY",
   "landingBusinessPage": "READY",
@@ -128,5 +135,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER"
+  "nextMode": "EXPRESSJOBS_REVENUE_OUTREACH_EXECUTION_ASSISTANT"
 }
