@@ -4,88 +4,75 @@
 
 All messages are placeholders for manual human sending. Do not automate outreach.
 
-## Clients Who Need Workers
+## Comercios
 
-1. Hola [NOMBRE], estoy ayudando a publicar tareas locales en Trabajos Rapidos. Si necesitás alguien para [TAREA], te puedo armar la publicación manual desde $500 UYU.
-2. Hola [NOMBRE], ¿seguís buscando ayuda para [TAREA]? Puedo prepararte un aviso claro con zona, horario y contacto para moverlo hoy.
-3. Te propongo algo simple: me pasás qué necesitás, zona y horario, y te dejo la publicación lista. Paquete básico: $500 UYU.
-4. Si es urgente, tengo un paquete de $1500 UYU con redacción prioritaria y seguimiento manual.
-5. Para evitar vueltas, puedo ayudarte a convertir tu pedido en un aviso entendible para trabajadores locales.
-6. ¿Querés que te mande el formato de datos para publicarlo? No necesito datos sensibles.
-7. Si ya tenés presupuesto, lo dejamos claro en el aviso para filtrar mejor interesados.
-8. Puedo preparar una versión corta y una versión completa del pedido por $1000 UYU.
-9. Esto todavía es etapa controlada, no producción pública. La entrega es manual y clara.
-10. Si confirmás hoy, te lo dejo redactado y listo para revisión por WhatsApp.
+1. Hola [NOMBRE], estoy ofreciendo landings simples para negocios con CTA a WhatsApp. La basica sale 1500 UYU. Queres que te pase el formato?
+2. Hola [NOMBRE], tu negocio podria tener una pagina clara con oferta, horarios, zona y boton a WhatsApp. La armamos manual, rapido y sin pagos dentro de la app.
+3. Estoy abriendo cupos fundadores de ExpressJobs para negocios locales. Landing desde 1500 UYU y banner desde 500 UYU.
+4. Si ya vendes por WhatsApp, una landing corta puede ordenar consultas y hacer que la gente entienda rapido que ofreces.
+5. No prometo ventas garantizadas. Te entrego una pieza clara para compartir y medir respuesta.
+6. Puedo hacerte landing + textos + WhatsApp por 2500 UYU.
+7. Si queres algo mas completo, landing + banner + publicacion inicial queda en 3500 UYU.
+8. Solo necesito nombre del negocio, rubro, zona, WhatsApp publico, horarios y una oferta principal.
+9. El cobro se coordina manualmente fuera de ExpressJobs. No hay pagos dentro de la app.
+10. Queres reservar un cupo para esta semana?
 
-## Local Sponsors
+## Landing Pages
 
-1. Hola [NOMBRE], estoy abriendo espacios fundadores para comercios locales en Trabajos Rapidos. Banner 7 días: $500 UYU.
-2. Tu negocio puede aparecer como comercio fundador mientras validamos la plataforma. Es manual y con cupos limitados.
-3. Tengo un paquete de $1500 UYU por 30 días con banner y texto corto hacia WhatsApp.
-4. Si querés algo más completo, banner + landing simple queda en $3000 UYU.
-5. No prometo ventas garantizadas; sí una presencia clara y ordenada para que te contacten.
-6. Solo necesito nombre del negocio, rubro, zona, WhatsApp y un texto corto.
-7. Puedo armarte el texto del banner si me decís qué querés vender esta semana.
-8. Es ideal para negocios que quieren visibilidad local sin armar una web completa.
-9. El pago es manual fuera de la app; no se cobra dentro de la plataforma todavía.
-10. ¿Querés reservar el espacio fundador por 7 días y probar respuesta?
+1. Hola [NOMBRE], estoy armando landings simples para negocios. La idea es que tengas un link claro para mandar por WhatsApp o Instagram.
+2. La landing basica incluye que vendes, beneficios, zona y boton a WhatsApp. Precio: 1500 UYU.
+3. La landing con textos comerciales y WhatsApp sale 2500 UYU.
+4. La landing con banner fundador y publicacion inicial sale 3500 UYU.
+5. Para LatAm tengo paquetes desde USD 39.
+6. No es una web grande. Es una pagina de venta simple para empezar a recibir consultas.
+7. Si me pasas la informacion hoy, puedo preparar una primera version.
+8. No necesito datos sensibles ni acceso a tus cuentas.
+9. Si queres, te mando el formulario de datos y decidis.
+10. Confirmamos con [PAQUETE] por [MONTO] y preparo el primer borrador?
 
-## Landing Page Sales
+## Publicacion Manual De Trabajos
 
-1. Hola [NOMBRE], vi que tu negocio podría vender mejor con una landing simple conectada a WhatsApp. La básica sale $1500 UYU.
-2. Te puedo armar una página clara con qué ofrecés, zona, horarios y botón a WhatsApp.
-3. El paquete de $2500 UYU incluye textos, WhatsApp y formulario simple.
-4. El paquete de $3500 UYU suma landing, banner y una publicación inicial.
-5. No hace falta una web grande; una página clara puede ordenar consultas.
-6. Si me pasás fotos, horario y servicios, te preparo una primera versión.
-7. La entrega puede ser como preview o paquete de textos/diseño según el caso.
-8. Esto es ideal para pasar un link por WhatsApp, Instagram o grupos locales.
-9. No guardo datos sensibles; solo información pública del negocio.
-10. ¿Querés que te mande el formulario de datos para cotizarlo hoy?
+1. Hola [NOMBRE], si necesitas publicar una tarea, puedo armarte una publicacion manual clara desde 500 UYU.
+2. La publicacion + filtro de interesados sale 1000 UYU.
+3. Si es urgente para 24 horas, el paquete sale 1500 UYU.
+4. Te pido tarea, zona, horario, presupuesto aproximado y contacto.
+5. No prometo trabajador garantizado; ordeno el pedido para moverlo mejor.
+6. Si ya tenes el texto, lo mejoro y lo dejo listo para compartir.
+7. Si no tenes texto, te hago preguntas y lo armo desde cero.
+8. El pago se coordina manualmente fuera de la app.
+9. No ingreses datos sensibles ni datos de tarjeta.
+10. Queres que lo armemos hoy?
 
-## Esthetics/Sofia
+## Objeciones
 
-1. Hola [NOMBRE], estoy armando un flujo simple para reservas por WhatsApp: mensaje, agenda, confirmación y seguimiento.
-2. Te puedo dejar scripts para responder más rápido y cerrar turnos sin perder consultas.
-3. El pack básico incluye mensajes de reserva y checklist de agenda.
-4. El pack completo suma seguimiento después del turno y mensajes para rebooking.
-5. Si tenés promociones, las transformo en mensajes claros para WhatsApp.
-6. Podemos preparar respuestas para precios, horarios, ubicación y disponibilidad.
-7. También puedo armarte una mini landing con botón directo a WhatsApp.
-8. No automatizo mensajes reales; te dejo todo listo para enviar manualmente.
-9. El objetivo es que cada consulta tenga una respuesta rápida y profesional.
-10. ¿Querés que lo adaptemos a [SERVICIO] y [HORARIOS]?
+1. "No conozco ExpressJobs." Respuesta: Es normal. Por ahora es un piloto manual; no necesitas usar una plataforma completa.
+2. "No quiero pagar antes." Respuesta: Podemos definir exactamente la entrega y usar una sena manual si te sirve.
+3. "Esta caro." Respuesta: Empezamos con el paquete basico y despues escalamos si funciona.
+4. "Ya tengo Instagram." Respuesta: Perfecto. La landing te da un link claro para enviar desde Instagram a WhatsApp.
+5. "No tengo tiempo." Respuesta: Te pido datos basicos y preparo el texto por vos.
+6. "Quiero resultados garantizados." Respuesta: No prometo resultados; prometo una entrega concreta y revisable.
+7. "Lo veo despues." Respuesta: Te puedo mantener el precio fundador hasta [FECHA].
+8. "No quiero pasar datos." Respuesta: Solo pido datos publicos del negocio; nada sensible.
+9. "Puedo hacerlo yo." Respuesta: Si, pero te ahorro tiempo y te lo dejo listo para vender.
+10. "Quiero pagar por resultado." Respuesta: En esta etapa cobro por la pieza entregada, no por resultado garantizado.
 
-## Objection Responses
+## Cierres Para Pedir Pago
 
-1. Entiendo. Podemos empezar con el paquete chico de $500 UYU para probar sin riesgo grande.
-2. No es producción pública todavía; justamente por eso la entrega es manual y controlada.
-3. No necesitás dar datos sensibles, solo la información necesaria para publicar o vender.
-4. Si no te sirve el paquete grande, arrancamos con lo básico y después escalamos.
-5. No prometo resultados garantizados; prometo entregarte una pieza concreta y revisable.
-6. Si ya tenés Instagram, esto puede complementar y llevar la consulta directo a WhatsApp.
-7. Podemos dejarlo listo hoy y que vos decidas cuándo compartirlo.
-8. El pago se coordina manualmente fuera de la app; la plataforma no cobra todavía.
-9. Si querés, te mando primero el resumen exacto de qué incluye antes de confirmar.
-10. Para cuidar cupos y tiempo, trabajo con confirmación manual antes de entregar.
-
-## Closing Messages For Deposit Or Payment
-
-1. Si te parece bien, confirmamos con el paquete [PAQUETE] por [MONTO] y arranco.
-2. Para reservar el trabajo de hoy, podés confirmar con una seña manual por el canal que te indique [RESPONSABLE].
-3. Apenas confirmes pago, preparo la primera versión y te la paso para revisión.
+1. Si te parece bien, confirmamos [PAQUETE] por [MONTO] y arranco.
+2. Para reservar el trabajo de hoy, podes confirmar el pago manual con [METODO_PRIVADO].
+3. Apenas confirmes, preparo la primera version para revision.
 4. Te dejo claro: incluye [INCLUYE] y no incluye [NO_INCLUYE].
-5. ¿Confirmamos entonces [PAQUETE] por [MONTO] para entregar [FECHA]?
-6. Si querés avanzar, mandame los datos del formulario y te paso el siguiente paso de pago manual.
-7. Para evitar confusiones, registramos como: paquete [PAQUETE], monto [MONTO], entrega [ENTREGA].
-8. Puedo empezar hoy si queda confirmado antes de [HORARIO].
-9. ¿Querés pagar el básico ahora y dejar el upgrade para después?
-10. Cuando esté confirmado, lo marco como en producción manual y te aviso avance.
+5. Confirmamos entrega para [FECHA]?
+6. Puedo empezar hoy si queda confirmado antes de [HORARIO].
+7. Si preferis, arrancamos con la opcion basica y despues vemos upgrade.
+8. Te paso el formulario de datos y avanzamos.
+9. Cuando este confirmado, lo marco como en trabajo y te aviso avance.
+10. Queda reservado entonces [PAQUETE] por [MONTO]?
 
-## 24-Hour Follow-Ups
+## Seguimiento
 
-1. Hola [NOMBRE], te escribo para saber si seguimos con [OFERTA]. Te puedo mantener el precio hasta [FECHA].
-2. ¿Querés que te deje armado el texto base sin compromiso para que lo revises?
-3. Ayer hablamos de [OFERTA]. Si querés, arrancamos con la opción chica y medimos.
-4. Tengo un cupo hoy para preparar [ENTREGA]. ¿Lo dejamos reservado?
-5. Si no es para ahora, ¿querés que te escriba de nuevo el [DIA]?
+1. Hola [NOMBRE], ayer hablamos de [OFERTA]. Queres que avancemos con la opcion basica?
+2. Tengo cupo hoy para preparar [ENTREGA]. Te lo reservo?
+3. Te puedo mantener el precio hasta [FECHA].
+4. Si no es para ahora, te escribo de nuevo [DIA].
+5. Queres que te mande un ejemplo de estructura antes de decidir?

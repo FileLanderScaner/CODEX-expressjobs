@@ -106,6 +106,18 @@
   "paid_pilot_human_gate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "revenue_command_center": "READY_MANUAL_SALES_ONLY",
   "revenue_execution_system": "READY_MANUAL_SALES_ONLY",
+  "online_revenue_operator": "READY_MANUAL_EXECUTION",
+  "revenue_24h_plan": "READY",
+  "revenue_7_day_plan": "READY",
+  "online_sales_platforms": [
+    "whatsapp_business",
+    "facebook_marketplace",
+    "facebook_groups",
+    "instagram_stories",
+    "linkedin",
+    "workana",
+    "fiverr"
+  ],
   "sponsor_page": "READY_PREVIEW_MANUAL_CTA",
   "offers_page": "READY",
   "landing_business_page": "READY",
