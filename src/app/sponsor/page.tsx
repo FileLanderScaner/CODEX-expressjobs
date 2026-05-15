@@ -1,30 +1,9 @@
-import { ArrowRight, BadgeDollarSign, Building2, ClipboardList, MessageCircle, Megaphone, ShieldCheck } from "lucide-react";
+import { ArrowRight, BadgeDollarSign, Building2, ClipboardList, Megaphone, ShieldCheck } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ManualPaidListingCta } from "@/components/monetization/manual-paid-listing-cta";
 import { SponsoredBanner } from "@/components/monetization/sponsored-banner";
-import { monetizationConfig, salesCtaHref } from "@/lib/monetization/monetization-config";
-
-const uruguayPrices = [
-  ["Landing basica", "1500 UYU"],
-  ["Landing + textos + WhatsApp", "2500 UYU"],
-  ["Landing + banner + publicacion inicial", "3500 UYU"],
-  ["Banner fundador 7 dias", "500 UYU"],
-  ["Banner fundador 30 dias", "1500 UYU"],
-  ["Publicacion manual de trabajo", "500 UYU"],
-  ["Publicacion + filtro de interesados", "1000 UYU"],
-  ["Urgente / 24 hs", "1500 UYU"],
-];
-
-const latamPrices = [
-  ["Landing basica", "USD 39"],
-  ["Landing + textos + WhatsApp", "USD 69"],
-  ["Landing + banner", "USD 99"],
-  ["Banner 7 dias", "USD 15"],
-  ["Banner 30 dias", "USD 39"],
-  ["Publicacion manual", "USD 15"],
-  ["Publicacion + filtro", "USD 29"],
-  ["Urgente", "USD 39"],
-];
+import { WhatsAppCta } from "@/components/monetization/whatsapp-cta";
+import { latamRevenuePrices, monetizationConfig, uruguayRevenuePrices } from "@/lib/monetization/monetization-config";
 
 const offerCards = [
   {
@@ -46,7 +25,6 @@ const offerCards = [
 
 export default function SponsorPage() {
   const config = monetizationConfig();
-  const ctaHref = salesCtaHref();
 
   return (
     <AppShell>
@@ -60,10 +38,7 @@ export default function SponsorPage() {
                 ExpressJobs esta validando ofertas manuales para negocios en Uruguay y LatAm. No procesamos pagos dentro de la app y no prometemos produccion publica completa.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a className="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white shadow-sm hover:bg-[var(--brand-dark)]" href={ctaHref}>
-                  Consultar por WhatsApp
-                  <MessageCircle aria-hidden="true" size={18} />
-                </a>
+                <WhatsAppCta />
                 <a className="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-[var(--line)] bg-white px-4 py-3 text-sm font-bold text-[var(--foreground)] shadow-sm hover:bg-[#eef4ef]" href="#precios">
                   Ver precios
                   <ArrowRight aria-hidden="true" size={18} />
@@ -90,8 +65,8 @@ export default function SponsorPage() {
             <h2 className="text-3xl font-black">Precios de piloto</h2>
           </div>
           <div className="mt-6 grid gap-5 lg:grid-cols-2">
-            <PriceTable title="Uruguay" rows={uruguayPrices} />
-            <PriceTable title="LatAm" rows={latamPrices} />
+            <PriceTable title="Uruguay" rows={uruguayRevenuePrices} />
+            <PriceTable title="LatAm" rows={latamRevenuePrices} />
           </div>
         </section>
 
@@ -137,15 +112,15 @@ export default function SponsorPage() {
   );
 }
 
-function PriceTable({ title, rows }: { title: string; rows: string[][] }) {
+function PriceTable({ title, rows }: { title: string; rows: Array<{ label: string; price: string }> }) {
   return (
     <article className="rounded-md border border-[var(--line)] bg-white p-5 shadow-sm">
       <h3 className="text-xl font-black">{title}</h3>
       <div className="mt-4 divide-y divide-[var(--line)]">
-        {rows.map(([label, price]) => (
-          <div className="flex items-center justify-between gap-4 py-3 text-sm" key={`${title}-${label}`}>
-            <span className="font-semibold text-[var(--muted)]">{label}</span>
-            <span className="font-black text-[var(--foreground)]">{price}</span>
+        {rows.map((row) => (
+          <div className="flex items-center justify-between gap-4 py-3 text-sm" key={`${title}-${row.label}`}>
+            <span className="font-semibold text-[var(--muted)]">{row.label}</span>
+            <span className="font-black text-[var(--foreground)]">{row.price}</span>
           </div>
         ))}
       </div>

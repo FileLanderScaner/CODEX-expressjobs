@@ -105,7 +105,10 @@
   "monetization_prep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paid_pilot_human_gate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "revenue_command_center": "READY_MANUAL_SALES_ONLY",
+  "revenue_execution_system": "READY_MANUAL_SALES_ONLY",
   "sponsor_page": "READY_PREVIEW_MANUAL_CTA",
+  "offers_page": "READY",
+  "landing_business_page": "READY",
   "manual_revenue_offers": "READY",
   "revenue_priority": [
     "landing_pages",

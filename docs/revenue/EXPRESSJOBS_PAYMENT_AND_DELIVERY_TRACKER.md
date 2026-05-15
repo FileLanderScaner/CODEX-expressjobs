@@ -4,6 +4,14 @@
 
 Do not store bank details, card data, private payment aliases, identity documents, or sensitive personal data in this file.
 
+Accepted manual collection channels must be handled privately by the human:
+
+- Mercado Pago.
+- Prex.
+- BROU.
+- Cash.
+- Other manual method approved outside the repo.
+
 | Date | Contact | Offer Type | Message Sent | Response | Amount Offered | Status | Next Step | Paid Yes/No | Delivery Pending |
 | --- | --- | --- | --- | --- | ---: | --- | --- | --- | --- |
 | YYYY-MM-DD | [CONTACT_PLACEHOLDER] | Manual job posting | [SCRIPT_ID] | [RESPONSE_SUMMARY] | 500 | New | Follow up | No | Yes |

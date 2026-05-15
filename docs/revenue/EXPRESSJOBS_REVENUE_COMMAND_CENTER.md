@@ -28,18 +28,20 @@ Generate manual revenue immediately while the app remains in staging and product
 
 ## Daily Routine
 
-1. Pick 20 local leads.
-2. Send one relevant offer manually.
-3. Track every response in the daily tracker.
-4. Push for a small paid commitment or deposit.
-5. Deliver only the promised manual asset.
-6. End the day with revenue, blockers, and tomorrow's follow-up list.
+1. Pick 20 leads.
+2. Send 10 landing page messages first.
+3. Send 5 founder banner messages.
+4. Send 5 manual job posting messages.
+5. Track every response in the daily tracker.
+6. Ask for manual payment confirmation outside the app.
+7. Deliver only the promised manual asset.
+8. End the day with revenue, blockers, and tomorrow's follow-up list.
 
 ## What To Sell Today
 
-1. Manual job posting on Trabajos Rapidos.
+1. Landing page for a local business.
 2. Founder sponsored banner for local businesses.
-3. Simple landing page for a local business.
+3. Manual job posting on ExpressJobs.
 4. Esthetics/Sofia booking and WhatsApp follow-up pack.
 
 ## Sales Priority
@@ -59,6 +61,10 @@ Generate manual revenue immediately while the app remains in staging and product
 - Guaranteed worker availability.
 - Guaranteed revenue or bookings.
 - AI agents in production.
+
+## Commercial Channel
+
+Use the human's WhatsApp Business sales channel. In code/docs, use the placeholder `NEXT_PUBLIC_WHATSAPP_SALES_LINK`; do not hardcode a personal phone number.
 
 ## Definition Of Success
 

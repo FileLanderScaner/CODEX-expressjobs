@@ -64,3 +64,9 @@ Create cash today without waiting for production launch or payment automation.
 - Do not send app payment links.
 - Do not promise public production.
 - Do not store payment alias, bank data, or personal documents in GitHub.
+
+## Today Script
+
+```text
+Hola [NOMBRE], estoy ofreciendo landings simples para negocios en ExpressJobs. La opcion basica sale 1500 UYU / USD 39 y sirve para explicar tu oferta y llevar consultas a WhatsApp. No es una plataforma final ni pagos dentro de la app; es una entrega manual rapida. Queres que te pase el formulario de datos?
+```

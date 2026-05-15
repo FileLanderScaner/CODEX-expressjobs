@@ -23,8 +23,12 @@ Create a manual revenue command center so ExpressJobs can sell offers today with
 - `docs/revenue/EXPRESSJOBS_PAYMENT_AND_DELIVERY_TRACKER.md`
 - `docs/revenue/EXPRESSJOBS_DAILY_REVENUE_DASHBOARD.md`
 - `src/app/sponsor/page.tsx`
+- `src/app/ofertas/page.tsx`
+- `src/app/landing-negocios/page.tsx`
 - `src/components/monetization/manual-paid-listing-cta.tsx`
 - `src/components/monetization/sponsored-banner.tsx`
+- `src/components/monetization/revenue-pricing-card.tsx`
+- `src/components/monetization/whatsapp-cta.tsx`
 - `src/lib/monetization/monetization-config.ts`
 
 ## Offers
@@ -68,6 +72,9 @@ Create a manual revenue command center so ExpressJobs can sell offers today with
 
 - `REVENUE_COMMAND_CENTER=READY_MANUAL_SALES_ONLY`
 - `SPONSOR_PAGE=READY_PREVIEW_MANUAL_CTA`
+- `REVENUE_EXECUTION_SYSTEM=READY_MANUAL_SALES_ONLY`
+- `OFFERS_PAGE=READY`
+- `LANDING_BUSINESS_PAGE=READY`
 - `MANUAL_REVENUE_OFFERS=READY`
 - `IN_APP_PAYMENTS=OFF`
 - `PAYPAL_LIVE=OFF`

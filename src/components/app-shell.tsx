@@ -4,10 +4,10 @@ import { productionStatus } from "@/lib/env";
 import { publicBrand } from "@/lib/expressjobs-data";
 
 const nav = [
+  { href: "/ofertas", label: "Ofertas", icon: BadgeDollarSign },
   { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
   { href: "/client", label: "Cliente", icon: LayoutDashboard },
   { href: "/worker", label: "Trabajador", icon: UserRoundCheck },
-  { href: "/sponsor", label: "Sponsors", icon: BadgeDollarSign },
   { href: "/pricing", label: "Pricing", icon: CircleDollarSign },
 ];
 
