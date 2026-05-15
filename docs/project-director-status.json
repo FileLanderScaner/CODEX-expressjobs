@@ -8,6 +8,7 @@
   "previewUrl": "https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app",
   "previewBrowserSmoke": "PASS",
   "first10Testers": "GO_CONTROLLED_INTERNAL_ONLY",
+  "first25Testers": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RETEST",
   "first10PackageStatus": "READY",
   "first10DryRunStatus": "PASS",
   "first10ContactPackageStatus": "READY",
@@ -64,6 +65,13 @@
   "paidPilotReadiness": "BLOCKED_EXTERNAL_CREDENTIALS",
   "monetizationPrep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paidPilotHumanGate": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "securityAuditStatus": "PASS_WITH_PAID_PILOT_BLOCKERS",
+  "authSecurity": "PASS",
+  "rlsSecurity": "PASS",
+  "paymentSecurity": "PASS_FOR_CODE_ONLY_BLOCKED_FOR_PAID_PILOT",
+  "secretsSecurity": "PASS",
+  "productionSafety": "PASS_SAFE_NO_GO",
+  "testerSafety": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL_ONLY",
   "issue7Updated": true,
   "issue7Closed": false,
   "issue7Status": "BLOCKED_EXTERNAL_CREDENTIALS",
@@ -93,5 +101,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_SECURITY_AUDIT"
+  "nextMode": "EXPRESSJOBS_FIRST_100_USERS_PREP"
 }

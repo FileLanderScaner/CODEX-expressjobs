@@ -4,6 +4,9 @@
   "paid_pilot_readiness": "BLOCKED_EXTERNAL_CREDENTIALS",
   "monetization_prep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paid_pilot_human_gate": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "security_audit_status": "PASS_WITH_PAID_PILOT_BLOCKERS",
+  "payment_security": "PASS_FOR_CODE_ONLY_BLOCKED_FOR_PAID_PILOT",
+  "paid_pilot_decision": "NO-GO_BLOCKED_EXTERNAL_CREDENTIALS_AND_WEBHOOK_BINDING",
   "paypal_sandbox_implementation": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paypal_environment": "sandbox",
   "paypal_live": "OFF",
@@ -32,5 +35,5 @@
   "real_payments_created": false,
   "real_users_contacted": false,
   "supabase_remote_mutated": false,
-  "next_mode": "EXPRESSJOBS_SECURITY_AUDIT"
+  "next_mode": "EXPRESSJOBS_FIRST_100_USERS_PREP"
 }

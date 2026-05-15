@@ -57,6 +57,7 @@ Cycle 047 closed the GitHub CLI blocker using the installed GitHub CLI at `C:\Pr
 Cycle 048 prepared the PayPal sandbox subscription smoke implementation. Sandbox config, server-side PayPal client helpers, create-subscription route, webhook route, webhook signature verification, subscription state machine, smoke script, and tests are in place. Live PayPal and production are blocked. Real sandbox execution remains blocked by external PayPal sandbox credentials and Preview env configuration.
 Cycle 049 closed the PayPal sandbox credential gate without printing values. The canonical env names were verified, `npm run paypal:sandbox:smoke` returned `BLOCKED_EXTERNAL_CREDENTIALS`, issue #7 remains open/blocked, and production/live payments remain untouched.
 Cycle 050 prepared the monetization operating package for a future paid pilot while preserving the external credentials blocker. PayPal remains sandbox-only and live payments remain off.
+Cycle 051 completed a pre-expansion security audit. Auth, RLS, secrets, production safety, and First 10 tester safety passed. Payments are safe at code level but paid pilot remains blocked by PayPal sandbox credentials and webhook resource-binding work.
 
 ## Current Scope
 
@@ -80,6 +81,7 @@ Cycle 050 prepared the monetization operating package for a future paid pilot wh
 - First 10 manual approval gate
 - PayPal/sandbox paid pilot audit docs
 - Monetization prep and paid pilot human gate docs
+- Security audit docs
 - Supabase tooling audit docs
 - GitHub task router docs and repository templates
 - GitHub CLI task-router activation with labels and seed issues
@@ -96,8 +98,8 @@ Cycle 050 prepared the monetization operating package for a future paid pilot wh
 
 ## Next Gate
 
-Run `EXPRESSJOBS_SECURITY_AUDIT`: re-audit auth, RLS, payment gates, secrets, Preview protection, and production blockers before any wider tester or paid pilot move.
+Run `EXPRESSJOBS_FIRST_100_USERS_PREP`: prepare a staged expansion plan from First 10 to 25/50/100 without contacting real users automatically and without opening production.
 
 ## Current Operator Action
 
-Current fastest safe next step: run a security audit while PayPal sandbox credentials remain externally blocked. Google OAuth Preview is PASS, RLS smoke is PASS, Preview smoke is PASS, and production remains blocked.
+Current fastest safe next step: prepare the staged First 100 user expansion package while keeping First 25 blocked until First 10 results and retest evidence exist.
