@@ -54,6 +54,7 @@ Cycle 044 ran the full release gate after Google OAuth Preview PASS. Secret scan
 Cycle 045 audited PayPal and Supabase tooling for a future paid pilot. PayPal is not implemented, which keeps live charging safely impossible but blocks paid pilot readiness until sandbox subscriptions, webhook signature verification, and server-side subscription storage are built. Supabase CLI is available; Supabase MCP requires auth in the current session.
 Cycle 046 set up GitHub as the task router blueprint and repo configuration surface: issue templates, PR template, CODEOWNERS, Dependabot, Actions gates, label taxonomy, routing docs, branch protection plan, rulesets plan, Project board blueprint, and manual seed issue commands. GitHub CLI is missing in the current shell, so labels/issues were documented, not created.
 Cycle 047 closed the GitHub CLI blocker using the installed GitHub CLI at `C:\Program Files\GitHub CLI\gh.exe`. GitHub auth is PASS for `FileLanderScaner`, the repo is `FileLanderScaner/CODEX-expressjobs`, all 37 task-router labels are present, and the four approved seed issues were created as #6-#9.
+Cycle 048 prepared the PayPal sandbox subscription smoke implementation. Sandbox config, server-side PayPal client helpers, create-subscription route, webhook route, webhook signature verification, subscription state machine, smoke script, and tests are in place. Live PayPal and production are blocked. Real sandbox execution remains blocked by external PayPal sandbox credentials and Preview env configuration.
 
 ## Current Scope
 
@@ -79,6 +80,7 @@ Cycle 047 closed the GitHub CLI blocker using the installed GitHub CLI at `C:\Pr
 - Supabase tooling audit docs
 - GitHub task router docs and repository templates
 - GitHub CLI task-router activation with labels and seed issues
+- PayPal sandbox-only subscription smoke code and docs
 
 ## Not Active
 
@@ -91,8 +93,8 @@ Cycle 047 closed the GitHub CLI blocker using the installed GitHub CLI at `C:\Pr
 
 ## Next Gate
 
-Run `EXPRESSJOBS_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE`: implement or prepare a sandbox-only PayPal subscription smoke path with no live payments, no production, no real charges, and verified webhook signature handling.
+Run `EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT`: configure PayPal sandbox credentials through secure local or Vercel Preview env only, then run sandbox smoke without live payments or production.
 
 ## Current Operator Action
 
-Current fastest safe next step for paid beta preparation: build a sandbox-only PayPal subscription smoke path. Google OAuth Preview is PASS, RLS smoke is PASS, Preview smoke is PASS, and the First 10 release gate is PASS for controlled internal testing only. Production remains blocked.
+Current fastest safe next step for paid beta preparation: close out PayPal sandbox credentials in a secure local/Preview env path, then run sandbox smoke. Google OAuth Preview is PASS, RLS smoke is PASS, Preview smoke is PASS, and production remains blocked.

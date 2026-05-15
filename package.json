@@ -16,6 +16,7 @@
     "rls:smoke": "node scripts/expressjobs-rls-smoke.mjs",
     "rls:create-staging-users": "node scripts/expressjobs-create-staging-users.mjs",
     "rls:bootstrap-anon-users": "node scripts/expressjobs-bootstrap-staging-users-with-anon.mjs",
+    "paypal:sandbox:smoke": "node scripts/paypal-sandbox-smoke.mjs",
     "secret:scan": "node scripts/secret-scan.mjs",
     "ci": "npm run lint && npm run typecheck && npm run test && npm run build && npm run secret:scan"
   },

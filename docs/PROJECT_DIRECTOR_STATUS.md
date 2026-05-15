@@ -2,7 +2,7 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
-ExpressJobs / Trabajos Rapidos is `GITHUB_TASK_ROUTER_READY`.
+ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_READY_BLOCKED_EXTERNAL_CREDENTIALS`.
 
 - Supabase staging RLS smoke: PASS
 - Vercel Preview deploy: READY (`https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app`)
@@ -30,8 +30,12 @@ ExpressJobs / Trabajos Rapidos is `GITHUB_TASK_ROUTER_READY`.
 - PayPal audit: BLOCKED_IMPLEMENTATION_MISSING
 - PayPal live: OFF
 - PayPal webhook endpoint: MISSING
-- PayPal webhook signature verification: MISSING
-- Paid pilot readiness: BLOCKED
+- PayPal webhook endpoint: READY
+- PayPal webhook signature verification: READY
+- PayPal create subscription route: READY
+- PayPal subscription state machine: READY
+- PayPal sandbox smoke: BLOCKED_EXTERNAL_CREDENTIALS
+- Paid pilot readiness: BLOCKED_EXTERNAL_CREDENTIALS
 - GitHub task router: ACTIVE
 - GitHub CLI: FOUND
 - GitHub auth: PASS
@@ -46,4 +50,4 @@ ExpressJobs / Trabajos Rapidos is `GITHUB_TASK_ROUTER_READY`.
 - Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE
+- Next mode: EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT
