@@ -1,0 +1,39 @@
+name: Supabase RLS task
+description: Track Supabase RLS migrations, smoke tests, and policy reviews.
+title: "Supabase RLS: "
+labels: ["type-rls", "type-security", "codex-safe"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      placeholder: What RLS behavior must be implemented or verified?
+    validations:
+      required: true
+  - type: textarea
+    id: affected_tables
+    attributes:
+      label: Affected tables
+      placeholder: public.ej_profiles, public.ej_jobs, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: required_tests
+    attributes:
+      label: Required static/smoke tests
+      placeholder: List expected PASS/FAIL cases.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: RLS safety
+      options:
+        - label: Do not disable RLS.
+          required: true
+        - label: Do not relax policies.
+          required: true
+        - label: Do not mutate Supabase remote without explicit approval.
+          required: true
+        - label: Do not expose service role keys.
+          required: true
