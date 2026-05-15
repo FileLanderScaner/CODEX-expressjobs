@@ -26,7 +26,7 @@ Prepare a safe GitHub Actions pipeline that can manually run repo checks, Supaba
 - Technical risk: reduced by codifying checks and blocking production deploy commands before Vercel Preview deploy.
 - Security: maintained; no production deploy, no secret printing, no remote migrations, no PayPal live, and no AI agents.
 - Checks: local required checks passed.
-- Blocked: live GitHub execution is not verified from Codex because GitHub Actions secrets cannot be inspected locally.
+- Blocked: live GitHub execution is not verified from Codex because the new workflow is not on the default branch and GitHub Actions secrets cannot be inspected locally.
 - Highest-impact next step: configure required GitHub Actions secrets, apply RLS hardening safely to staging, then run `full_preview`.
 
 ## Checks
@@ -64,6 +64,12 @@ The current known blocker remains `RLS_ROLE_ESCALATION_RISK` until the prepared 
 `VERCEL_PREVIEW=READY_WORKFLOW_BLOCKED_UNTIL_VERCEL_SECRETS_EXIST`
 
 The workflow uses Vercel CLI for Preview only. It does not use `--prod` or `vercel promote`.
+
+## GitHub Actions Activation Status
+
+`GITHUB_PIPELINE=READY_ON_BRANCH_BLOCKED_UNTIL_WORKFLOW_EXISTS_ON_DEFAULT_BRANCH`
+
+The workflow file is committed on `codex/expressjobs-autonomous-bootstrap`. GitHub does not expose the new manual workflow in the Actions UI until the workflow exists on the default branch. Main/default branch was not touched.
 
 ## Production Status
 

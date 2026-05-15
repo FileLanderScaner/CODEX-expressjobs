@@ -10,6 +10,8 @@ It is designed for Preview/Staging only. It does not deploy production, promote 
 
 ## How To Run
 
+Activation note: this workflow is currently prepared on branch `codex/expressjobs-autonomous-bootstrap`. GitHub Actions only exposes new manual workflows in the Actions UI after the workflow file exists on the default branch. Do not merge just to run it if that would trigger unsafe production automation; use the existing PR/review gate first.
+
 1. Open GitHub.
 2. Go to `Actions`.
 3. Select `ExpressJobs Preview Pipeline`.
@@ -87,6 +89,7 @@ This initial pipeline does not apply migrations automatically. The current RLS b
 ## Current Safety State
 
 - Production: `NO-GO_PRODUCTION`
+- GitHub UI activation: `BLOCKED_UNTIL_WORKFLOW_EXISTS_ON_DEFAULT_BRANCH`
 - First 10 testers: `NO-GO_UNTIL_RLS_ROLE_HARDENING_APPLIED_AND_SMOKE_PASS`
 - PayPal live: `OFF`
 - AI agents: `OFF`

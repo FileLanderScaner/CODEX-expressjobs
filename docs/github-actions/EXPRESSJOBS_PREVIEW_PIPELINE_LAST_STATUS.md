@@ -13,9 +13,10 @@
 
 ## Blockers
 
+- WORKFLOW_DISPATCH_UI_BLOCKED_UNTIL_WORKFLOW_EXISTS_ON_DEFAULT_BRANCH
 - GITHUB_ACTIONS_SECRETS_NOT_VERIFIED_FROM_LOCAL_CODEX
 - RLS_ROLE_ESCALATION_RISK_UNTIL_HARDENING_MIGRATION_APPLIED_AND_SMOKE_PASSES
 
 ## Next Recommended Action
 
-Configure GitHub Actions secrets, keep Production blocked, then run full_preview manually.
+Review/merge the workflow safely without triggering production, configure GitHub Actions secrets, keep Production blocked, then run full_preview manually.
