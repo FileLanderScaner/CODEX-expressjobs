@@ -9,6 +9,9 @@
   "previewBrowserSmoke": "PASS",
   "first10Testers": "GO_CONTROLLED_INTERNAL_ONLY",
   "first25Testers": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RETEST",
+  "first50Testers": "NO-GO_UNTIL_FIRST_25_PASS",
+  "first100Testers": "NO-GO_UNTIL_FIRST_50_PASS",
+  "first100UsersPrep": "READY_PLAN_ONLY",
   "first10PackageStatus": "READY",
   "first10DryRunStatus": "PASS",
   "first10ContactPackageStatus": "READY",
@@ -101,5 +104,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_FIRST_100_USERS_PREP"
+  "nextMode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT"
 }

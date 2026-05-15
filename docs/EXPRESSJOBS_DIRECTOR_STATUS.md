@@ -58,6 +58,7 @@ Cycle 048 prepared the PayPal sandbox subscription smoke implementation. Sandbox
 Cycle 049 closed the PayPal sandbox credential gate without printing values. The canonical env names were verified, `npm run paypal:sandbox:smoke` returned `BLOCKED_EXTERNAL_CREDENTIALS`, issue #7 remains open/blocked, and production/live payments remain untouched.
 Cycle 050 prepared the monetization operating package for a future paid pilot while preserving the external credentials blocker. PayPal remains sandbox-only and live payments remain off.
 Cycle 051 completed a pre-expansion security audit. Auth, RLS, secrets, production safety, and First 10 tester safety passed. Payments are safe at code level but paid pilot remains blocked by PayPal sandbox credentials and webhook resource-binding work.
+Cycle 052 prepared the staged First 100 expansion package as plan-only documentation. First 25, First 50, and First 100 remain blocked until prior cohort evidence passes.
 
 ## Current Scope
 
@@ -82,6 +83,7 @@ Cycle 051 completed a pre-expansion security audit. Auth, RLS, secrets, producti
 - PayPal/sandbox paid pilot audit docs
 - Monetization prep and paid pilot human gate docs
 - Security audit docs
+- First 100 staged expansion docs
 - Supabase tooling audit docs
 - GitHub task router docs and repository templates
 - GitHub CLI task-router activation with labels and seed issues
@@ -98,8 +100,8 @@ Cycle 051 completed a pre-expansion security audit. Auth, RLS, secrets, producti
 
 ## Next Gate
 
-Run `EXPRESSJOBS_FIRST_100_USERS_PREP`: prepare a staged expansion plan from First 10 to 25/50/100 without contacting real users automatically and without opening production.
+Run `EXPRESSJOBS_DOCUMENTATION_CLOSEOUT`: consolidate the current launch, security, monetization, and cohort documentation into a concise handoff index.
 
 ## Current Operator Action
 
-Current fastest safe next step: prepare the staged First 100 user expansion package while keeping First 25 blocked until First 10 results and retest evidence exist.
+Current fastest safe next step: close out documentation so the operator can run First 10 manually with clear NO-GO boundaries for First 25, paid pilot, and production.

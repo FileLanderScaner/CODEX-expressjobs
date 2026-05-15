@@ -26,6 +26,9 @@
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
   "first_10_testers_status": "GO_CONTROLLED_INTERNAL_ONLY",
   "first_25_testers_status": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RETEST",
+  "first_50_testers_status": "NO-GO_UNTIL_FIRST_25_PASS",
+  "first_100_testers_status": "NO-GO_UNTIL_FIRST_50_PASS",
+  "first_100_users_prep": "READY_PLAN_ONLY",
   "first_10_package_status": "READY",
   "first_10_dry_run_status": "PASS",
   "first_10_contact_package_status": "READY",
@@ -189,7 +192,7 @@
   "blockedBy": [
     "BLOCKED_EXTERNAL_CREDENTIALS"
   ],
-  "next_mode": "EXPRESSJOBS_FIRST_100_USERS_PREP",
-  "nextMode": "EXPRESSJOBS_FIRST_100_USERS_PREP",
+  "next_mode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
+  "nextMode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT",
   "next_prompt_generated": true
 }

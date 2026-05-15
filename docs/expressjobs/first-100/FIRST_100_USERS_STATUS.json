@@ -1,0 +1,15 @@
+{
+  "project": "ExpressJobs / Trabajos Rapidos",
+  "production_status": "NO-GO_PRODUCTION",
+  "first_10_testers": "GO_CONTROLLED_INTERNAL_ONLY",
+  "first_25_testers": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RETEST",
+  "first_50_testers": "NO-GO_UNTIL_FIRST_25_PASS",
+  "first_100_testers": "NO-GO_UNTIL_FIRST_50_PASS",
+  "first_100_users_prep": "READY_PLAN_ONLY",
+  "real_users_contacted": false,
+  "real_personal_data_used": false,
+  "payments_live": "OFF",
+  "paid_pilot": "NO-GO_BLOCKED_EXTERNAL_CREDENTIALS_AND_WEBHOOK_BINDING",
+  "production_open_public": false,
+  "next_mode": "EXPRESSJOBS_DOCUMENTATION_CLOSEOUT"
+}
