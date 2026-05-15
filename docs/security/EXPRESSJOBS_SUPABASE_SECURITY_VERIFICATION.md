@@ -6,6 +6,8 @@
 
 `SUPABASE_SECURITY_VERIFICATION=BLOCKED_RLS_ROLE_ESCALATION_RISK`
 
+`RLS_ROLE_HARDENING_APPLY=BLOCKED_SUPABASE_WRITE_CAPABILITY`
+
 Supabase RLS smoke and static tests pass, but this verification found a role-escalation risk in the profile update policy. The project is not approved to expand testers until the staging database is tightened and re-tested.
 
 ## Checks
@@ -69,9 +71,25 @@ Prepare and apply a reviewed staging migration that:
 
 No remote migration was applied in this cycle.
 
+## Apply Gate Update
+
+The local hardening migration is prepared and committed, but the staging apply gate could not mutate Supabase because authenticated write capability was unavailable in the active Codex process.
+
+Evidence:
+
+- Supabase MCP tools visible: `PRESENT`
+- Supabase MCP remote call: `BLOCKED_AUTH_REQUIRED`
+- `SUPABASE_ACCESS_TOKEN`: `MISSING`
+- Direct Postgres URL envs: `MISSING`
+- Migration applied: `no`
+- Post-apply RLS smoke: `NOT_RUN_APPLY_BLOCKED`
+- Production touched: `false`
+
+`npm run staging:check` also blocked on unsafe staging feature flags. Values were not printed.
+
 ## Decision
 
-- `FIRST_10_TESTERS=NO-GO_UNTIL_RLS_ROLE_ESCALATION_FIX`
+- `FIRST_10_TESTERS=NO-GO_UNTIL_RLS_ROLE_HARDENING_APPLIED_AND_SMOKE_PASS`
 - `FIRST_25_TESTERS=NO-GO_UNTIL_FIRST_10_RESULTS_AND_RLS_FIX`
 - `PAID_PILOT=NO-GO_BLOCKED_EXTERNAL_CREDENTIALS_AND_RLS_FIX`
 - `PRODUCTION=NO-GO_PRODUCTION`

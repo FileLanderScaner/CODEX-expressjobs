@@ -6,6 +6,8 @@
 
 `RLS_ROLE_ESCALATION_FIX=PREPARED_LOCAL_NOT_APPLIED`
 
+`RLS_ROLE_HARDENING_APPLY=BLOCKED_SUPABASE_WRITE_CAPABILITY`
+
 ## Fix Summary
 
 The local migration blocks normal authenticated users from changing `ej_profiles.role` while preserving safe profile field updates.
@@ -28,6 +30,20 @@ The local migration blocks normal authenticated users from changing `ej_profiles
 - Normal user cannot read admin audit logs after self-promotion attempt.
 - Own safe profile fields can still be edited.
 - Existing normal RLS workflow still passes.
+
+## Apply Gate Attempt
+
+The apply gate attempted to verify remote staging capability before applying the approved migration:
+
+`supabase/migrations/20260515132404_harden_expressjobs_profile_role_updates.sql`
+
+No migration was applied because the active Supabase MCP call returned `Auth required`, `SUPABASE_ACCESS_TOKEN` was missing, and no direct Postgres URL was present in the local process or ignored env files.
+
+Additional local blocker:
+
+`npm run staging:check` returned `BLOCKED_SECURITY_RISK: unsafe feature flags for staging.`
+
+The staging feature flags must be corrected without printing values before the next apply retry.
 
 ## Decision
 

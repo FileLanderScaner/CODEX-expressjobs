@@ -77,7 +77,10 @@
   "supabaseSecurityVerification": "BLOCKED_RLS_ROLE_ESCALATION_RISK",
   "rlsRoleEscalationRisk": "FOUND",
   "rlsRoleHardeningPlan": "READY_LOCAL_NOT_APPLIED",
+  "rlsRoleHardeningApply": "BLOCKED_SUPABASE_WRITE_CAPABILITY",
   "rlsRoleHardeningMigration": "supabase/migrations/20260515132404_harden_expressjobs_profile_role_updates.sql",
+  "rlsRoleHardeningMigrationApplied": false,
+  "rlsRealSmokeAfterHardeningApply": "NOT_RUN_APPLY_BLOCKED",
   "authSecurity": "PASS",
   "rlsSecurity": "PASS",
   "paymentSecurity": "PASS_FOR_CODE_ONLY_BLOCKED_FOR_PAID_PILOT",
@@ -113,5 +116,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE"
+  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH"
 }

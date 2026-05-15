@@ -63,6 +63,7 @@ Cycle 053 audited Vercel Preview safety. The latest inspected deployment is Prev
 Cycle 054 revalidated the security audit after the Vercel Preview safety audit. Secret scan, staging check, static RLS, real RLS smoke, lint, typecheck, tests, build, production guard, and diff check all passed.
 Cycle 055 verified Supabase security specifically. The command gate and real RLS smoke pass, but `profiles_update_own` allows user-controlled role updates, which can enable admin self-escalation because `ej_is_admin()` trusts `ej_profiles.role`. First 10 is now blocked until RLS role hardening is applied and re-tested.
 Cycle 056 prepared the local RLS role hardening migration, static tests, and post-apply smoke cases. The migration was not applied remotely.
+Cycle 057 attempted the staging apply gate for the prepared RLS role hardening migration. Supabase MCP returned `Auth required`, `SUPABASE_ACCESS_TOKEN` and direct Postgres URL envs were missing, and no remote write was attempted. `staging:check` also blocked on unsafe staging feature flags. Production remains `NO-GO_PRODUCTION`.
 
 ## Current Scope
 
@@ -105,8 +106,8 @@ Cycle 056 prepared the local RLS role hardening migration, static tests, and pos
 
 ## Next Gate
 
-Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE`: apply the prepared migration to staging only with explicit approval and then run the real RLS smoke.
+Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH`: restore authenticated Supabase staging write capability, correct staging feature flags, apply only the prepared migration, and then run real RLS smoke.
 
 ## Current Operator Action
 
-Current fastest safe next step: apply the prepared RLS role hardening migration to staging with explicit approval, then run real RLS smoke. Production remains blocked.
+Current fastest safe next step: authenticate Supabase MCP or provide a safe local Supabase apply capability for staging without printing secrets, fix staging feature flags to `ENABLE_PAYMENTS=false`, `ENABLE_AI_AGENTS=false`, and `AI_KILL_SWITCH=true`, then retry the apply gate. Production remains blocked.
