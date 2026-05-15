@@ -68,6 +68,8 @@ Cycle 058 created the Revenue Command Center operating pack for manual same-day 
 Cycle 059 retried the RLS role hardening apply gate with local staging flag repair. Ignored `.env.local` was normalized so `staging:check` passes, but Supabase MCP still returned `Auth required` and no `SUPABASE_ACCESS_TOKEN` or direct Postgres URL was available. No remote migration was applied.
 Cycle 060 strengthened the online revenue operator with 24-hour and 7-day sales plans, WhatsApp scripts, Facebook Marketplace/group posts, Instagram stories, LinkedIn copy, Workana/Fiverr profiles, intake forms, lead/close trackers, and risk mitigations. No users were contacted by Codex and payments remain manual outside the app.
 Cycle 061 updated the revenue daily sales execution tracker. No real human sales activity was provided, so the dashboard and trackers were prepared with zero activity and `NO_REAL_ACTIVITY_REPORTED`. No users were contacted by Codex and payments remain manual outside the app.
+Cycle 062 read the GitHub task-router directives and executed `EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS`. Local gates passed, but real RLS smoke failed because the staging client could still self-promote to `admin`; Codex restored that staging test profile back to `client` without printing secrets. Supabase CLI write capability remains blocked because `SUPABASE_ACCESS_TOKEN` is missing, so the prepared hardening migration was not applied. Production remains `NO-GO_PRODUCTION`.
+Cycle 063 prepared the GitHub Actions Supabase/Vercel Preview pipeline. The workflow is manual-only, runs repo checks, can run Supabase staging checks and RLS smoke with GitHub secrets, can deploy Vercel Preview without `--prod`, and writes an Actions summary. Local validation passed; live GitHub execution remains blocked until required GitHub Actions secrets are configured and the RLS hardening blocker is resolved.
 
 ## Current Scope
 
@@ -98,6 +100,7 @@ Cycle 061 updated the revenue daily sales execution tracker. No real human sales
 - GitHub task router docs and repository templates
 - GitHub CLI task-router activation with labels and seed issues
 - PayPal sandbox-only subscription smoke code and docs
+- GitHub Actions Preview pipeline for repo checks, Supabase staging, RLS smoke, and Vercel Preview
 
 ## Not Active
 
@@ -110,8 +113,8 @@ Cycle 061 updated the revenue daily sales execution tracker. No real human sales
 
 ## Next Gate
 
-Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH`: restore authenticated Supabase staging write capability, apply only the prepared migration, and then run real RLS smoke.
+Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH`: restore authenticated Supabase staging write capability, apply only the prepared migration, and then run real RLS smoke. After that, run the GitHub Actions `ExpressJobs Preview Pipeline` with `full_preview`.
 
 ## Current Operator Action
 
-Current fastest safe revenue step: prepare a human-sendable outreach batch for the 24-hour plan, then have the human send it manually and return sanitized outcomes. Current fastest safe security step: authenticate Supabase MCP or provide a safe local Supabase apply capability for staging without printing secrets, then retry the apply gate. Production remains blocked.
+Current fastest safe security step: configure GitHub Actions secrets and provide authenticated Supabase staging write capability without printing secrets, then apply only `supabase/migrations/20260515132404_harden_expressjobs_profile_role_updates.sql` and rerun `npm run rls:smoke`. Production remains blocked.

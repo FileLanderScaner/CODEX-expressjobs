@@ -13,6 +13,8 @@
     "test:rls:static": "vitest run src/__tests__/supabase-rls-static.test.ts",
     "staging:check": "node scripts/expressjobs-staging-check.mjs",
     "production:check": "node scripts/expressjobs-production-check.mjs",
+    "guard:no-production-deploy": "node scripts/assert-no-production-deploy.mjs",
+    "smoke:preview": "node scripts/smoke-preview.mjs",
     "rls:smoke": "node scripts/expressjobs-rls-smoke.mjs",
     "rls:create-staging-users": "node scripts/expressjobs-create-staging-users.mjs",
     "rls:bootstrap-anon-users": "node scripts/expressjobs-bootstrap-staging-users-with-anon.mjs",
