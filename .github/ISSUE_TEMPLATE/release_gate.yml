@@ -1,33 +1,41 @@
 name: Release gate
-description: Run or document a controlled release gate.
-title: "[Release Gate]: "
-labels: ["type-preview", "status-ready-for-codex", "preview-required"]
+description: Track controlled tester, staging, paid pilot, or production release gates.
+title: "Release gate: "
+labels: ["status-needs-human", "codex-human-gate-required"]
 body:
-  - type: textarea
-    id: scope
+  - type: dropdown
+    id: gate
     attributes:
-      label: Gate scope
+      label: Gate
+      options:
+        - FIRST_10_TESTERS
+        - FIRST_25_TESTERS
+        - PAID_PILOT
+        - PRODUCTION
+    validations:
+      required: true
+  - type: textarea
+    id: current_status
+    attributes:
+      label: Current status
+      placeholder: GO / NO-GO and why.
+    validations:
+      required: true
+  - type: textarea
+    id: required_evidence
+    attributes:
+      label: Required evidence
+      placeholder: Checks, smoke reports, screenshots, approval, etc.
     validations:
       required: true
   - type: checkboxes
-    id: gates
+    id: safety
     attributes:
-      label: Gates required
+      label: Safety confirmations
       options:
-        - label: Google Auth PASS
-        - label: RLS smoke PASS
-        - label: Preview browser smoke PASS
-        - label: Secret scan PASS
-        - label: Production NO-GO confirmed
-        - label: PayPal live OFF
-  - type: dropdown
-    id: production
-    attributes:
-      label: Production action requested?
-      options: ["no", "yes - blocked until human approval"]
-    validations:
-      required: true
-  - type: textarea
-    id: evidence
-    attributes:
-      label: Evidence expected
+        - label: Production remains NO-GO unless explicitly approved.
+          required: true
+        - label: No real users are contacted automatically.
+          required: true
+        - label: No real payments are created automatically.
+          required: true
