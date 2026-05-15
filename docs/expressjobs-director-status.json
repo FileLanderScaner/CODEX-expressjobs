@@ -14,7 +14,7 @@
   "supabase_link_status": "NOT_RUN_SUPABASE_ACCESS_TOKEN_MISSING",
   "supabase_write_status": "BLOCKED_SUPABASE_WRITE_CAPABILITY",
   "rls_real_smoke_status": "PASS",
-  "supabase_staging_status": "RLS_ROLE_HARDENING_APPLY_BLOCKED",
+  "supabase_staging_status": "RLS_ROLE_HARDENING_APPLY_BLOCKED_WRITE_CAPABILITY",
   "staging_status": "PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS",
   "release_gate_status": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL",
   "vercel_preview_status": "READY_PROTECTED_BROWSER_SMOKE_BLOCKED_401",
@@ -119,6 +119,7 @@
   "rls_role_hardening_pre_apply_snapshot": "BLOCKED_SUPABASE_WRITE_CAPABILITY",
   "rls_role_hardening_post_apply_snapshot": "NOT_CREATED_APPLY_BLOCKED",
   "rls_real_smoke_after_hardening_apply": "NOT_RUN_APPLY_BLOCKED",
+  "staging_flags": "PASS_LOCAL_IGNORED_ENV_NORMALIZED",
   "role_boundary_db_enforcement": "PARTIAL",
   "auth_security": "PASS",
   "rls_security": "PASS",
@@ -177,7 +178,7 @@
     "secret_scan": "pass",
     "rls_static": "pass",
     "production_check": "pass",
-    "staging_check": "blocked_security_risk_unsafe_feature_flags",
+    "staging_check": "pass",
     "rest_data_api_check": "pass",
     "rls_bootstrap_anon_users": "not_run_this_cycle",
     "rls_smoke": "not_run_apply_blocked",
@@ -200,7 +201,6 @@
   "blocking_items": [
     "RLS_ROLE_ESCALATION_RISK",
     "BLOCKED_SUPABASE_WRITE_CAPABILITY",
-    "STAGING_FEATURE_FLAGS_UNSAFE",
     "SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
     "NEXT_PUBLIC_PAYPAL_CLIENT_ID",
     "PAYPAL_CLIENT_SECRET",
@@ -212,10 +212,9 @@
     "SUPABASE_WRITE_APPROVAL"
   ],
   "blockedBy": [
-    "BLOCKED_SUPABASE_WRITE_CAPABILITY",
-    "BLOCKED_SECURITY_RISK"
+    "BLOCKED_SUPABASE_WRITE_CAPABILITY"
   ],
-  "next_mode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER",
-  "nextMode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER",
+  "next_mode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH",
+  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH",
   "next_prompt_generated": true
 }

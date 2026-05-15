@@ -85,6 +85,7 @@
   "rlsRoleHardeningMigration": "supabase/migrations/20260515132404_harden_expressjobs_profile_role_updates.sql",
   "rlsRoleHardeningMigrationApplied": false,
   "rlsRealSmokeAfterHardeningApply": "NOT_RUN_APPLY_BLOCKED",
+  "stagingFlags": "PASS_LOCAL_IGNORED_ENV_NORMALIZED",
   "authSecurity": "PASS",
   "rlsSecurity": "PASS",
   "paymentSecurity": "PASS_FOR_CODE_ONLY_BLOCKED_FOR_PAID_PILOT",
@@ -120,5 +121,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER"
+  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH"
 }

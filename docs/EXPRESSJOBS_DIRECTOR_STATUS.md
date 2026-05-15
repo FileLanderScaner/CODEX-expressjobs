@@ -65,6 +65,7 @@ Cycle 055 verified Supabase security specifically. The command gate and real RLS
 Cycle 056 prepared the local RLS role hardening migration, static tests, and post-apply smoke cases. The migration was not applied remotely.
 Cycle 057 attempted the staging apply gate for the prepared RLS role hardening migration. Supabase MCP returned `Auth required`, `SUPABASE_ACCESS_TOKEN` and direct Postgres URL envs were missing, and no remote write was attempted. `staging:check` also blocked on unsafe staging feature flags. Production remains `NO-GO_PRODUCTION`.
 Cycle 058 created the Revenue Command Center operating pack for manual same-day sales. The pack includes job posting, sponsored banner, local landing page, esthetics/Sofia offers, WhatsApp scripts, objection handling, intake, payment/delivery tracker, and daily revenue dashboard. Payments remain manual outside the app and Production remains `NO-GO_PRODUCTION`.
+Cycle 059 retried the RLS role hardening apply gate with local staging flag repair. Ignored `.env.local` was normalized so `staging:check` passes, but Supabase MCP still returned `Auth required` and no `SUPABASE_ACCESS_TOKEN` or direct Postgres URL was available. No remote migration was applied.
 
 ## Current Scope
 
@@ -107,8 +108,8 @@ Cycle 058 created the Revenue Command Center operating pack for manual same-day 
 
 ## Next Gate
 
-Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH`: restore authenticated Supabase staging write capability, correct staging feature flags, apply only the prepared migration, and then run real RLS smoke.
+Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH`: restore authenticated Supabase staging write capability, apply only the prepared migration, and then run real RLS smoke.
 
 ## Current Operator Action
 
-Current fastest safe revenue step: use the manual Revenue Command Center to contact leads manually and record outcomes without storing payment data in GitHub. Current fastest safe security step: authenticate Supabase MCP or provide a safe local Supabase apply capability for staging without printing secrets, fix staging feature flags to `ENABLE_PAYMENTS=false`, `ENABLE_AI_AGENTS=false`, and `AI_KILL_SWITCH=true`, then retry the apply gate. Production remains blocked.
+Current fastest safe revenue step: use the manual Revenue Command Center to contact leads manually and record outcomes without storing payment data in GitHub. Current fastest safe security step: authenticate Supabase MCP or provide a safe local Supabase apply capability for staging without printing secrets, then retry the apply gate. Production remains blocked.

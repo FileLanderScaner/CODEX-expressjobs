@@ -85,7 +85,7 @@ Evidence:
 - Post-apply RLS smoke: `NOT_RUN_APPLY_BLOCKED`
 - Production touched: `false`
 
-`npm run staging:check` also blocked on unsafe staging feature flags. Values were not printed.
+The unsafe local staging feature flag blocker was corrected in ignored `.env.local` without printing secrets, and `npm run staging:check` now passes. The remaining blocker is authenticated Supabase staging write capability.
 
 ## Decision
 

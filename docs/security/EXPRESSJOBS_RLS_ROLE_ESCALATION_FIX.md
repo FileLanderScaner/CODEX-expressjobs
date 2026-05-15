@@ -43,7 +43,12 @@ Additional local blocker:
 
 `npm run staging:check` returned `BLOCKED_SECURITY_RISK: unsafe feature flags for staging.`
 
-The staging feature flags must be corrected without printing values before the next apply retry.
+This local staging flag blocker was corrected in ignored `.env.local` without printing secrets. The remaining blocker is Supabase staging write capability:
+
+- Supabase MCP query returned `Auth required`.
+- `SUPABASE_ACCESS_TOKEN` is missing.
+- Direct Postgres URL envs are missing.
+- No migration has been applied to staging.
 
 ## Decision
 

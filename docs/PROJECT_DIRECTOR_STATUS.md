@@ -44,7 +44,7 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_C
 - RLS role hardening plan: READY_LOCAL_NOT_APPLIED
 - RLS role hardening apply gate: BLOCKED_SUPABASE_WRITE_CAPABILITY
 - RLS role hardening migration applied: no
-- Staging check current: BLOCKED_SECURITY_RISK_UNSAFE_FEATURE_FLAGS
+- Staging check current: PASS_AFTER_LOCAL_IGNORED_ENV_NORMALIZATION
 - Revenue command center: READY_MANUAL_SALES_ONLY
 - Manual revenue offers: READY
 - In-app payments: OFF
@@ -72,4 +72,4 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_C
 - Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER
+- Next mode: EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH
