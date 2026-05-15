@@ -59,6 +59,7 @@ Cycle 049 closed the PayPal sandbox credential gate without printing values. The
 Cycle 050 prepared the monetization operating package for a future paid pilot while preserving the external credentials blocker. PayPal remains sandbox-only and live payments remain off.
 Cycle 051 completed a pre-expansion security audit. Auth, RLS, secrets, production safety, and First 10 tester safety passed. Payments are safe at code level but paid pilot remains blocked by PayPal sandbox credentials and webhook resource-binding work.
 Cycle 052 prepared the staged First 100 expansion package as plan-only documentation. First 25, First 50, and First 100 remain blocked until prior cohort evidence passes.
+Cycle 053 audited Vercel Preview safety. The latest inspected deployment is Preview/Ready, recent visible deployments were Preview, and no Production deploy/promote/env mutation was performed. Current automated smoke is blocked by Deployment Protection 401 because the bypass secret is not visible in this Codex process.
 
 ## Current Scope
 
@@ -84,6 +85,7 @@ Cycle 052 prepared the staged First 100 expansion package as plan-only documenta
 - Monetization prep and paid pilot human gate docs
 - Security audit docs
 - First 100 staged expansion docs
+- Vercel Preview safety audit docs
 - Supabase tooling audit docs
 - GitHub task router docs and repository templates
 - GitHub CLI task-router activation with labels and seed issues
@@ -100,8 +102,8 @@ Cycle 052 prepared the staged First 100 expansion package as plan-only documenta
 
 ## Next Gate
 
-Run `EXPRESSJOBS_DOCUMENTATION_CLOSEOUT`: consolidate the current launch, security, monetization, and cohort documentation into a concise handoff index.
+Run `EXPRESSJOBS_PREVIEW_BYPASS_RESMOKE`: re-run protected browser smoke after loading the Vercel automation bypass secret into the local/CI process without printing it.
 
 ## Current Operator Action
 
-Current fastest safe next step: close out documentation so the operator can run First 10 manually with clear NO-GO boundaries for First 25, paid pilot, and production.
+Current fastest safe next step: re-run Preview browser smoke with the protected bypass header available to Codex. Production remains blocked.

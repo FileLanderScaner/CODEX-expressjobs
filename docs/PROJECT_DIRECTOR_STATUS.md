@@ -42,6 +42,9 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_C
 - First 50 testers: NO-GO_UNTIL_FIRST_25_PASS
 - First 100 testers: NO-GO_UNTIL_FIRST_50_PASS
 - First 100 users prep: READY_PLAN_ONLY
+- Vercel Preview safety audit: PASS_WITH_PROTECTED_BROWSER_SMOKE_BLOCKED
+- Current Preview browser smoke: BLOCKED_PREVIEW_AUTH_401
+- Current Preview URL: https://codex-expressjobs-q2apmubra-akuma424-projects.vercel.app
 - PayPal canonical missing envs: NEXT_PUBLIC_PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, PAYPAL_PLAN_ID, PAYPAL_API_BASE, EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE
 - Paid pilot readiness: BLOCKED_EXTERNAL_CREDENTIALS
 - GitHub task router: ACTIVE
@@ -58,4 +61,4 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_C
 - Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_DOCUMENTATION_CLOSEOUT
+- Next mode: EXPRESSJOBS_PREVIEW_BYPASS_RESMOKE
