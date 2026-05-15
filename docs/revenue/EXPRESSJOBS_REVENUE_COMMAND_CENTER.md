@@ -4,7 +4,7 @@
 
 ## Purpose
 
-Generate manual revenue immediately while the app remains in staging and production is blocked. This command center sells services around Trabajos Rapidos without processing payments inside the app.
+Generate manual revenue immediately while the app remains in staging and production is blocked. This command center sells services around ExpressJobs without processing payments inside the app.
 
 ## Operating Rules
 
@@ -42,11 +42,20 @@ Generate manual revenue immediately while the app remains in staging and product
 3. Simple landing page for a local business.
 4. Esthetics/Sofia booking and WhatsApp follow-up pack.
 
+## Sales Priority
+
+1. Landing pages for businesses.
+2. Founder sponsored banners.
+3. Manual job posting.
+4. Esthetics/Sofia commercial pack.
+5. Future affiliates/ads only behind feature flags.
+
 ## What Not To Sell Yet
 
 - Public production access.
 - Automated app payments.
 - PayPal live subscriptions.
+- Affiliate/ad revenue as the main immediate offer.
 - Guaranteed worker availability.
 - Guaranteed revenue or bookings.
 - AI agents in production.

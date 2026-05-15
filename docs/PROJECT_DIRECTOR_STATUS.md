@@ -46,6 +46,7 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_C
 - RLS role hardening migration applied: no
 - Staging check current: PASS_AFTER_LOCAL_IGNORED_ENV_NORMALIZATION
 - Revenue command center: READY_MANUAL_SALES_ONLY
+- Sponsor page: READY_PREVIEW_MANUAL_CTA
 - Manual revenue offers: READY
 - In-app payments: OFF
 - Issue #15: OPEN_UNTIL_FIRST_REAL_MANUAL_SALE

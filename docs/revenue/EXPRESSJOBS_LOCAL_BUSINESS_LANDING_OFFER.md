@@ -14,6 +14,14 @@ Simple local business landing page prepared manually for WhatsApp conversion.
 | Conversion | $2500 UYU | Basic plus improved copy, WhatsApp CTA, and simple lead form plan. |
 | Growth | $3500 UYU | Landing plus founder banner draft plus one initial Trabajos Rapidos post. |
 
+## LatAm Pricing
+
+| Package | Price |
+| --- | ---: |
+| Basic | USD 39 |
+| Copy + WhatsApp | USD 69 |
+| Landing + banner | USD 99 |
+
 ## Intake
 
 - Business name.

@@ -11,8 +11,16 @@ Human-assisted job publication for people who need workers quickly but do not wa
 | Package | Price | Includes |
 | --- | ---: | --- |
 | Basic | $500 UYU | One manual task post, clean wording, category, zone, WhatsApp contact path. |
-| Intermediate | $1000 UYU | Basic plus improved description, 1 revision, and repost reminder. |
-| Urgent | $1500 UYU | Intermediate plus priority manual follow-up and highlighted wording. |
+| Filtered | $1000 UYU | Basic plus filtering interested people and summary for the client. |
+| Urgent / 24 hs | $1500 UYU | Filtered plus priority manual follow-up and highlighted wording. |
+
+## LatAm Pricing
+
+| Package | Price |
+| --- | ---: |
+| Manual publication | USD 15 |
+| Publication + filter | USD 29 |
+| Urgent | USD 39 |
 
 ## Delivery
 

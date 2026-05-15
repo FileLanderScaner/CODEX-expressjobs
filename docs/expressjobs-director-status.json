@@ -105,7 +105,15 @@
   "monetization_prep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paid_pilot_human_gate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "revenue_command_center": "READY_MANUAL_SALES_ONLY",
+  "sponsor_page": "READY_PREVIEW_MANUAL_CTA",
   "manual_revenue_offers": "READY",
+  "revenue_priority": [
+    "landing_pages",
+    "founder_sponsored_banners",
+    "manual_job_posting",
+    "esthetics_sofia_pack",
+    "future_affiliates_ads_flagged"
+  ],
   "in_app_payments": "OFF",
   "issue_15_status": "OPEN_UNTIL_FIRST_REAL_MANUAL_SALE",
   "security_audit_status": "PASS_WITH_PAID_PILOT_BLOCKERS",
@@ -214,7 +222,7 @@
   "blockedBy": [
     "BLOCKED_SUPABASE_WRITE_CAPABILITY"
   ],
-  "next_mode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH",
-  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH",
+  "next_mode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER",
+  "nextMode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER",
   "next_prompt_generated": true
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BriefcaseBusiness, CircleDollarSign, LayoutDashboard, UserRoundCheck } from "lucide-react";
+import { BadgeDollarSign, BriefcaseBusiness, CircleDollarSign, LayoutDashboard, UserRoundCheck } from "lucide-react";
 import { productionStatus } from "@/lib/env";
 import { publicBrand } from "@/lib/expressjobs-data";
 
@@ -7,6 +7,7 @@ const nav = [
   { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
   { href: "/client", label: "Cliente", icon: LayoutDashboard },
   { href: "/worker", label: "Trabajador", icon: UserRoundCheck },
+  { href: "/sponsor", label: "Sponsors", icon: BadgeDollarSign },
   { href: "/pricing", label: "Pricing", icon: CircleDollarSign },
 ];
 
