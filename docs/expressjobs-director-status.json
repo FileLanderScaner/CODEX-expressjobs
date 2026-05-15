@@ -104,6 +104,10 @@
   "paid_pilot_readiness": "BLOCKED_EXTERNAL_CREDENTIALS",
   "monetization_prep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paid_pilot_human_gate": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "revenue_command_center": "READY_MANUAL_SALES_ONLY",
+  "manual_revenue_offers": "READY",
+  "in_app_payments": "OFF",
+  "issue_15_status": "OPEN_UNTIL_FIRST_REAL_MANUAL_SALE",
   "security_audit_status": "PASS_WITH_PAID_PILOT_BLOCKERS",
   "security_audit_revalidation": "PASS_WITH_PAID_PILOT_BLOCKERS",
   "supabase_security_verification": "BLOCKED_RLS_ROLE_ESCALATION_RISK",
@@ -211,7 +215,7 @@
     "BLOCKED_SUPABASE_WRITE_CAPABILITY",
     "BLOCKED_SECURITY_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH",
-  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH",
+  "next_mode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER",
+  "nextMode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER",
   "next_prompt_generated": true
 }

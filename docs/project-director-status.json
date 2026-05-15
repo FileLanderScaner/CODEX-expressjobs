@@ -72,6 +72,10 @@
   "paidPilotReadiness": "BLOCKED_EXTERNAL_CREDENTIALS",
   "monetizationPrep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paidPilotHumanGate": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "revenueCommandCenter": "READY_MANUAL_SALES_ONLY",
+  "manualRevenueOffers": "READY",
+  "inAppPayments": "OFF",
+  "issue15Status": "OPEN_UNTIL_FIRST_REAL_MANUAL_SALE",
   "securityAuditStatus": "PASS_WITH_PAID_PILOT_BLOCKERS",
   "securityAuditRevalidation": "PASS_WITH_PAID_PILOT_BLOCKERS",
   "supabaseSecurityVerification": "BLOCKED_RLS_ROLE_ESCALATION_RISK",
@@ -116,5 +120,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE_RETRY_WITH_AUTH"
+  "nextMode": "EXPRESSJOBS_REVENUE_DAILY_SALES_EXECUTION_TRACKER"
 }
