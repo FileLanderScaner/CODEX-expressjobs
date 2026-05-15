@@ -2,6 +2,8 @@
   "project": "ExpressJobs / Trabajos Rapidos",
   "production_status": "NO-GO_PRODUCTION",
   "paid_pilot_readiness": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "monetization_prep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
+  "paid_pilot_human_gate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "paypal_sandbox_implementation": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paypal_environment": "sandbox",
   "paypal_live": "OFF",
@@ -30,5 +32,5 @@
   "real_payments_created": false,
   "real_users_contacted": false,
   "supabase_remote_mutated": false,
-  "next_mode": "EXPRESSJOBS_MONETIZATION_PREP"
+  "next_mode": "EXPRESSJOBS_SECURITY_AUDIT"
 }

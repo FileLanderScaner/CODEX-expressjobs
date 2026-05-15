@@ -62,6 +62,8 @@
   "premiumGrantedFromFrontend": false,
   "premiumGrantedOnlyAfterVerifiedWebhook": true,
   "paidPilotReadiness": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "monetizationPrep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
+  "paidPilotHumanGate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "issue7Updated": true,
   "issue7Closed": false,
   "issue7Status": "BLOCKED_EXTERNAL_CREDENTIALS",
@@ -91,5 +93,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_MONETIZATION_PREP"
+  "nextMode": "EXPRESSJOBS_SECURITY_AUDIT"
 }

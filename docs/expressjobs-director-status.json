@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_049_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT",
-  "current_mode": "EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT",
-  "mode": "EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT",
+  "cycle": "CYCLE_EXPRESSJOBS_050_MONETIZATION_PREP",
+  "current_mode": "EXPRESSJOBS_MONETIZATION_PREP",
+  "mode": "EXPRESSJOBS_MONETIZATION_PREP",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -94,6 +94,8 @@
   "premium_granted_from_frontend": false,
   "premium_granted_only_after_verified_webhook": true,
   "paid_pilot_readiness": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "monetization_prep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
+  "paid_pilot_human_gate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "issue_7_updated": true,
   "issue_7_closed": false,
   "issue_7_status": "BLOCKED_EXTERNAL_CREDENTIALS",
@@ -177,7 +179,7 @@
   "blockedBy": [
     "BLOCKED_EXTERNAL_CREDENTIALS"
   ],
-  "next_mode": "EXPRESSJOBS_MONETIZATION_PREP",
-  "nextMode": "EXPRESSJOBS_MONETIZATION_PREP",
+  "next_mode": "EXPRESSJOBS_SECURITY_AUDIT",
+  "nextMode": "EXPRESSJOBS_SECURITY_AUDIT",
   "next_prompt_generated": true
 }
