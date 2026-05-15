@@ -72,6 +72,7 @@ Cycle 062 read the GitHub task-router directives and executed `EXPRESSJOBS_SUPAB
 Cycle 063 prepared the GitHub Actions Supabase/Vercel Preview pipeline. The workflow is manual-only, runs repo checks, can run Supabase staging checks and RLS smoke with GitHub secrets, can deploy Vercel Preview without `--prod`, and writes an Actions summary. Local validation passed; live GitHub UI execution remains blocked until the workflow exists on the default branch, required GitHub Actions secrets are configured, and the RLS hardening blocker is resolved.
 Cycle 064 attempted RLS hardening and GitHub Actions enablement. The migration safety review passed, but Supabase staging write remains blocked because `SUPABASE_ACCESS_TOKEN` and direct Postgres write URLs are absent. GitHub Actions secrets list returned zero visible repo secrets. Default-branch workflow enablement is blocked by production auto-deploy risk: `main` is default, not protected, Vercel Git integration is active, and PR #5 currently has Vercel/production gate failures. No production, Vercel Production env, PayPal live, or Supabase production action was performed.
 Cycle 065 verified the manually applied RLS hardening migration against Supabase staging `gnsfyvsodslnehszanra`. `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`, proving normal users cannot update `ej_profiles.role` or self-promote to admin. The full local gate passed. GitHub Actions Preview pipeline remains blocked by missing visible repo secrets and default-branch production auto-deploy risk.
+Cycle 066 attempted safe GitHub workflow enablement and full Preview. RLS still passes, but GitHub Actions secrets remain absent/hidden, the new workflow is still not registered on the default branch, PR #5 remains conflicting, `main` is unprotected, and Vercel Git integration is active with failing Vercel/production contexts. No PR to `main`, merge, cherry-pick, workflow run, Vercel deploy, or production action was performed.
 
 ## Current Scope
 
@@ -115,8 +116,8 @@ Cycle 065 verified the manually applied RLS hardening migration against Supabase
 
 ## Next Gate
 
-Resolve GitHub Actions enablement safely: configure required repo secrets, keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`, and prepare a default-branch workflow path that does not trigger production deploys. Then run the GitHub Actions `ExpressJobs Preview Pipeline` with `full_preview`.
+Resolve GitHub Actions enablement safely: configure required repo secrets, resolve PR/default-branch production risk, keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`, and only then register/run the GitHub Actions `ExpressJobs Preview Pipeline` with `full_preview`.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: configure required GitHub Actions secrets and resolve the default-branch workflow enablement blocker without triggering Vercel Production. Production remains blocked.
+Current fastest safe release-ops step: configure required GitHub Actions secrets and resolve Vercel/default-branch auto-deploy risk without triggering Production. Production remains blocked.

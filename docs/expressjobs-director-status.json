@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_065_VERIFY_RLS_HARDENING_AFTER_MANUAL_APPLY",
-  "current_mode": "EXPRESSJOBS_VERIFY_RLS_HARDENING_AFTER_MANUAL_SUPABASE_APPLY",
-  "mode": "EXPRESSJOBS_VERIFY_RLS_HARDENING_AFTER_MANUAL_SUPABASE_APPLY",
+  "cycle": "CYCLE_EXPRESSJOBS_066_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
+  "current_mode": "EXPRESSJOBS_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
+  "mode": "EXPRESSJOBS_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -181,9 +181,11 @@
   "github_pr_template": "READY",
   "github_codeowners": "READY",
   "github_actions_gates": "READY",
-  "github_preview_pipeline": "BLOCKED_WORKFLOW_NOT_ON_DEFAULT_BRANCH_AND_GITHUB_SECRETS_MISSING_RLS_FIXED",
+  "github_preview_pipeline": "BLOCKED_DEFAULT_BRANCH_RISK_AND_MISSING_SECRETS_RLS_FIXED",
   "default_branch_workflow_enablement": "BLOCKED_PRODUCTION_AUTODEPLOY_RISK",
+  "vercel_autodeploy_risk": "BLOCKED_ACTIVE_VERCEL_GIT_INTEGRATION_MAIN_UNPROTECTED_PR_CONFLICTING",
   "github_actions_secrets_status": "NONE_VISIBLE_FROM_GH_SECRET_LIST",
+  "full_preview": "NOT_RUN_BLOCKED",
   "github_preview_pipeline_workflow": ".github/workflows/expressjobs-preview-pipeline.yml",
   "github_preview_pipeline_status_file": "docs/github-actions/EXPRESSJOBS_PREVIEW_PIPELINE_STATUS.json",
   "github_dependabot": "READY",
@@ -252,6 +254,8 @@
     "WORKFLOW_DISPATCH_UI_BLOCKED_UNTIL_WORKFLOW_EXISTS_ON_DEFAULT_BRANCH"
     ,
     "DEFAULT_BRANCH_WORKFLOW_ENABLEMENT_BLOCKED_PRODUCTION_AUTODEPLOY_RISK"
+    ,
+    "PR_5_CONFLICTING_WITH_FAILED_VERCEL_AND_PRODUCTION_GATE_CONTEXTS"
   ],
   "blockedBy": [
     "BLOCKED_EXTERNAL_CREDENTIALS",
