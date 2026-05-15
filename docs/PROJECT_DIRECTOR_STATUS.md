@@ -32,12 +32,15 @@ ExpressJobs / Trabajos Rapidos is `GITHUB_TASK_ROUTER_READY`.
 - PayPal webhook endpoint: MISSING
 - PayPal webhook signature verification: MISSING
 - Paid pilot readiness: BLOCKED
-- GitHub task router: READY
-- GitHub CLI: MISSING
-- GitHub labels: DOCUMENTED
+- GitHub task router: ACTIVE
+- GitHub CLI: FOUND
+- GitHub auth: PASS
+- GitHub repo: FileLanderScaner/CODEX-expressjobs
+- GitHub default branch: main
+- GitHub labels: CREATED
 - GitHub issue templates: READY
 - GitHub Actions gates: READY
-- GitHub seed issues: DOCUMENTED_NOT_CREATED
+- GitHub seed issues: CREATED (#6-#9)
 - Supabase CLI: AVAILABLE
 - Supabase MCP: MISSING_AUTH_IN_CURRENT_SESSION
 - Facebook login: CONFIG_PENDING

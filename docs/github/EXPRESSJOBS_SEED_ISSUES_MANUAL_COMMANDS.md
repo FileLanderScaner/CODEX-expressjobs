@@ -4,9 +4,9 @@
 
 ## Status
 
-- `GH_CLI=MISSING_IN_CURRENT_SHELL`
-- `SEED_ISSUES=DOCUMENTED_NOT_CREATED`
-- `LABELS=DOCUMENTED_NOT_CREATED`
+- `GH_CLI=FOUND`
+- `SEED_ISSUES=CREATED`
+- `LABELS=CREATED`
 
 Run these commands only after installing and authenticating GitHub CLI. Do not paste secrets.
 
@@ -50,4 +50,9 @@ gh issue create --repo FileLanderScaner/CODEX-expressjobs `
   --body "Human approval checklist for any paid pilot expansion. No production deploy or PayPal live by default."
 ```
 
-No seed issues were created by Codex in this cycle.
+Seed issues were created by Codex in cycle 047:
+
+- `#6` Release gate: First 10 controlled internal testers
+- `#7` Payment audit: PayPal sandbox subscription smoke
+- `#8` Security gate: verify RLS and Auth before paid pilot
+- `#9` Production gate: paid pilot human approval checklist

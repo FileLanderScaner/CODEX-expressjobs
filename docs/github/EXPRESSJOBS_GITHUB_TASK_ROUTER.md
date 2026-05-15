@@ -4,9 +4,10 @@
 
 ## Status
 
-- `GITHUB_TASK_ROUTER=READY`
-- `GITHUB_CLI=MISSING_IN_CURRENT_SHELL`
-- `LABELS=DOCUMENTED_MANUAL_COMMANDS`
+- `GITHUB_TASK_ROUTER=ACTIVE`
+- `GITHUB_CLI=FOUND`
+- `GH_AUTH=PASS`
+- `LABELS=CREATED`
 - `ISSUE_TEMPLATES=READY`
 - `ACTIONS_GATES=READY`
 
@@ -63,4 +64,9 @@ Codex must not run when:
 
 ## Seed Issues
 
-Because `gh` is not available in this shell, seed issues are documented in `docs/github/EXPRESSJOBS_SEED_ISSUES_MANUAL_COMMANDS.md` and were not created automatically.
+The approved seed issues were created:
+
+- `#6` Release gate: First 10 controlled internal testers
+- `#7` Payment audit: PayPal sandbox subscription smoke
+- `#8` Security gate: verify RLS and Auth before paid pilot
+- `#9` Production gate: paid pilot human approval checklist
