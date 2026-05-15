@@ -1,0 +1,41 @@
+name: Security blocker
+description: Track a security issue that blocks testers, paid pilot, or production.
+title: "Security blocker: "
+labels: ["type-security", "status-blocked", "codex-human-gate-required"]
+body:
+  - type: textarea
+    id: finding
+    attributes:
+      label: Finding
+      description: What was found?
+      placeholder: Describe the security finding.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: What does this block?
+      placeholder: FIRST_10, PAID_PILOT, PRODUCTION, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: required_fix
+    attributes:
+      label: Required fix
+      description: What must be changed before this can be closed?
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety rules
+      options:
+        - label: Do not touch production.
+          required: true
+        - label: Do not print or commit secrets.
+          required: true
+        - label: Do not relax or disable RLS.
+          required: false
+        - label: Keep PRODUCTION_STATUS=NO-GO_PRODUCTION unless explicitly approved.
+          required: true
