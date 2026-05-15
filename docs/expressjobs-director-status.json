@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_054_SECURITY_AUDIT_REVALIDATION",
-  "current_mode": "EXPRESSJOBS_SECURITY_AUDIT",
-  "mode": "EXPRESSJOBS_SECURITY_AUDIT",
+  "cycle": "CYCLE_EXPRESSJOBS_SUPABASE_SECURITY_VERIFICATION",
+  "current_mode": "EXPRESSJOBS_SUPABASE_SECURITY_VERIFICATION",
+  "mode": "EXPRESSJOBS_SUPABASE_SECURITY_VERIFICATION",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -28,8 +28,8 @@
   "production_status": "NO-GO_PRODUCTION",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "first_10_testers_status": "GO_CONTROLLED_INTERNAL_ONLY",
-  "first_25_testers_status": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RETEST",
+  "first_10_testers_status": "NO-GO_UNTIL_RLS_ROLE_ESCALATION_FIX",
+  "first_25_testers_status": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RLS_FIX",
   "first_50_testers_status": "NO-GO_UNTIL_FIRST_25_PASS",
   "first_100_testers_status": "NO-GO_UNTIL_FIRST_50_PASS",
   "first_100_users_prep": "READY_PLAN_ONLY",
@@ -106,13 +106,16 @@
   "paid_pilot_human_gate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "security_audit_status": "PASS_WITH_PAID_PILOT_BLOCKERS",
   "security_audit_revalidation": "PASS_WITH_PAID_PILOT_BLOCKERS",
+  "supabase_security_verification": "BLOCKED_RLS_ROLE_ESCALATION_RISK",
+  "rls_role_escalation_risk": "FOUND",
+  "role_boundary_db_enforcement": "PARTIAL",
   "auth_security": "PASS",
   "rls_security": "PASS",
   "payment_security": "PASS_FOR_CODE_ONLY_BLOCKED_FOR_PAID_PILOT",
   "secrets_security": "PASS",
   "production_safety": "PASS_SAFE_NO_GO",
   "tester_safety": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL_ONLY",
-  "paid_pilot_decision": "NO-GO_BLOCKED_EXTERNAL_CREDENTIALS_AND_WEBHOOK_BINDING",
+  "paid_pilot_decision": "NO-GO_BLOCKED_EXTERNAL_CREDENTIALS_AND_RLS_FIX",
   "production_decision": "NO-GO_PRODUCTION",
   "issue_7_updated": true,
   "issue_7_closed": false,
@@ -184,6 +187,7 @@
     "github_cli_activation": "pass"
   },
   "blocking_items": [
+    "RLS_ROLE_ESCALATION_RISK",
     "SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
     "NEXT_PUBLIC_PAYPAL_CLIENT_ID",
     "PAYPAL_CLIENT_SECRET",
@@ -195,9 +199,9 @@
     "SUPABASE_WRITE_APPROVAL"
   ],
   "blockedBy": [
-    "BLOCKED_EXTERNAL_CREDENTIALS"
+    "BLOCKED_SECURITY_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_PREVIEW_BYPASS_RESMOKE",
-  "nextMode": "EXPRESSJOBS_PREVIEW_BYPASS_RESMOKE",
+  "next_mode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_PLAN",
+  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_PLAN",
   "next_prompt_generated": true
 }

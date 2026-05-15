@@ -7,8 +7,8 @@
   "vercelPreviewStatus": "READY_GOOGLE_REDIRECT_TO_FIXED",
   "previewUrl": "https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app",
   "previewBrowserSmoke": "PASS",
-  "first10Testers": "GO_CONTROLLED_INTERNAL_ONLY",
-  "first25Testers": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RETEST",
+  "first10Testers": "NO-GO_UNTIL_RLS_ROLE_ESCALATION_FIX",
+  "first25Testers": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RLS_FIX",
   "first50Testers": "NO-GO_UNTIL_FIRST_25_PASS",
   "first100Testers": "NO-GO_UNTIL_FIRST_50_PASS",
   "first100UsersPrep": "READY_PLAN_ONLY",
@@ -74,6 +74,8 @@
   "paidPilotHumanGate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "securityAuditStatus": "PASS_WITH_PAID_PILOT_BLOCKERS",
   "securityAuditRevalidation": "PASS_WITH_PAID_PILOT_BLOCKERS",
+  "supabaseSecurityVerification": "BLOCKED_RLS_ROLE_ESCALATION_RISK",
+  "rlsRoleEscalationRisk": "FOUND",
   "authSecurity": "PASS",
   "rlsSecurity": "PASS",
   "paymentSecurity": "PASS_FOR_CODE_ONLY_BLOCKED_FOR_PAID_PILOT",
@@ -109,5 +111,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_PREVIEW_BYPASS_RESMOKE"
+  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_PLAN"
 }
