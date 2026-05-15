@@ -1,0 +1,39 @@
+name: Vercel Preview task
+description: Track Preview deployments, browser smoke, and production safety.
+title: "Vercel Preview: "
+labels: ["type-preview", "codex-safe"]
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      placeholder: What Preview behavior must be verified?
+    validations:
+      required: true
+  - type: input
+    id: preview_url
+    attributes:
+      label: Preview URL
+      placeholder: https://example.vercel.app
+    validations:
+      required: false
+  - type: textarea
+    id: smoke_checks
+    attributes:
+      label: Browser smoke checks
+      placeholder: Landing, auth, redirect origin, pricing copy, console errors.
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Vercel safety
+      options:
+        - label: Do not use vercel --prod.
+          required: true
+        - label: Do not use vercel promote.
+          required: true
+        - label: Do not modify Production env vars.
+          required: true
+        - label: Do not expose Deployment Protection bypass tokens.
+          required: true
