@@ -62,6 +62,7 @@ Cycle 052 prepared the staged First 100 expansion package as plan-only documenta
 Cycle 053 audited Vercel Preview safety. The latest inspected deployment is Preview/Ready, recent visible deployments were Preview, and no Production deploy/promote/env mutation was performed. Current automated smoke is blocked by Deployment Protection 401 because the bypass secret is not visible in this Codex process.
 Cycle 054 revalidated the security audit after the Vercel Preview safety audit. Secret scan, staging check, static RLS, real RLS smoke, lint, typecheck, tests, build, production guard, and diff check all passed.
 Cycle 055 verified Supabase security specifically. The command gate and real RLS smoke pass, but `profiles_update_own` allows user-controlled role updates, which can enable admin self-escalation because `ej_is_admin()` trusts `ej_profiles.role`. First 10 is now blocked until RLS role hardening is applied and re-tested.
+Cycle 056 prepared the local RLS role hardening migration, static tests, and post-apply smoke cases. The migration was not applied remotely.
 
 ## Current Scope
 
@@ -104,8 +105,8 @@ Cycle 055 verified Supabase security specifically. The command gate and real RLS
 
 ## Next Gate
 
-Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_PLAN`: prepare a safe, reviewed RLS hardening migration that prevents profile role self-escalation, then apply only with explicit staging approval.
+Run `EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE`: apply the prepared migration to staging only with explicit approval and then run the real RLS smoke.
 
 ## Current Operator Action
 
-Current fastest safe next step: fix the RLS role escalation risk before any First 10 tester execution. Production remains blocked.
+Current fastest safe next step: apply the prepared RLS role hardening migration to staging with explicit approval, then run real RLS smoke. Production remains blocked.

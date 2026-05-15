@@ -67,6 +67,17 @@ async function expectAllowed(label, action) {
   return data;
 }
 
+async function expectSingleAllowed(label, action) {
+  const { error, data } = await action();
+  if (error) {
+    throw new Error(`${label}: expected allowed, got ${error.message}`);
+  }
+  if (!data) {
+    throw new Error(`${label}: expected returned row`);
+  }
+  return data;
+}
+
 const anonymous = client();
 const clientUser = await signIn(process.env.EXPRESSJOBS_STAGING_CLIENT_EMAIL, process.env.EXPRESSJOBS_STAGING_CLIENT_PASSWORD);
 const workerUser = await signIn(process.env.EXPRESSJOBS_STAGING_WORKER_EMAIL, process.env.EXPRESSJOBS_STAGING_WORKER_PASSWORD);
@@ -86,6 +97,32 @@ const suffix = Date.now();
 
 await expectBlocked("anonymous cannot create profile", () =>
   anonymous.from("ej_profiles").insert({ id: crypto.randomUUID(), role: "client", full_name: "Anonymous" }),
+);
+
+await expectBlocked("client cannot self-promote to admin", () =>
+  clientUser.from("ej_profiles").update({ role: "admin" }).eq("id", clientId).select("id, role"),
+);
+
+await expectBlocked("worker cannot self-promote to admin", () =>
+  workerUser.from("ej_profiles").update({ role: "admin" }).eq("id", workerId).select("id, role"),
+);
+
+await expectBlocked("client still cannot see audit table after self-promotion attempt", () =>
+  clientUser.from("ej_admin_audit_logs").select("id").limit(1),
+);
+
+await expectSingleAllowed("client updates own safe profile fields", () =>
+  clientUser
+    .from("ej_profiles")
+    .update({
+      full_name: `RLS smoke client ${suffix}`,
+      phone: "000-test",
+      city: "Montevideo",
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", clientId)
+    .select("id")
+    .single(),
 );
 
 const job = await expectAllowed("client creates own job", () =>

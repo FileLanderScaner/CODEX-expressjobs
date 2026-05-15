@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_SUPABASE_SECURITY_VERIFICATION",
-  "current_mode": "EXPRESSJOBS_SUPABASE_SECURITY_VERIFICATION",
-  "mode": "EXPRESSJOBS_SUPABASE_SECURITY_VERIFICATION",
+  "cycle": "CYCLE_EXPRESSJOBS_RLS_ROLE_HARDENING_PLAN",
+  "current_mode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_PLAN",
+  "mode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_PLAN",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -28,7 +28,7 @@
   "production_status": "NO-GO_PRODUCTION",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
-  "first_10_testers_status": "NO-GO_UNTIL_RLS_ROLE_ESCALATION_FIX",
+  "first_10_testers_status": "NO-GO_UNTIL_RLS_ROLE_HARDENING_APPLIED_AND_SMOKE_PASS",
   "first_25_testers_status": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RLS_FIX",
   "first_50_testers_status": "NO-GO_UNTIL_FIRST_25_PASS",
   "first_100_testers_status": "NO-GO_UNTIL_FIRST_50_PASS",
@@ -108,6 +108,8 @@
   "security_audit_revalidation": "PASS_WITH_PAID_PILOT_BLOCKERS",
   "supabase_security_verification": "BLOCKED_RLS_ROLE_ESCALATION_RISK",
   "rls_role_escalation_risk": "FOUND",
+  "rls_role_hardening_plan": "READY_LOCAL_NOT_APPLIED",
+  "rls_role_hardening_migration": "supabase/migrations/20260515132404_harden_expressjobs_profile_role_updates.sql",
   "role_boundary_db_enforcement": "PARTIAL",
   "auth_security": "PASS",
   "rls_security": "PASS",
@@ -201,7 +203,7 @@
   "blockedBy": [
     "BLOCKED_SECURITY_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_PLAN",
-  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_PLAN",
+  "next_mode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE",
+  "nextMode": "EXPRESSJOBS_SUPABASE_RLS_ROLE_HARDENING_APPLY_GATE",
   "next_prompt_generated": true
 }
