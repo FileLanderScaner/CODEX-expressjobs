@@ -55,6 +55,9 @@ Do not paste credentials into chat. Load sandbox envs through local untracked en
 - `PAYPAL_PLAN_ID`
 - `PAYPAL_API_BASE`
 - `NEXT_PUBLIC_APP_URL`
+- `EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE` for approved sandbox creation smoke
+
+These are the canonical env names used by the code. `PAYPAL_SANDBOX_CLIENT_ID`, `PAYPAL_SANDBOX_CLIENT_SECRET`, `PAYPAL_SANDBOX_WEBHOOK_ID`, and `PAYPAL_SANDBOX_PLAN_ID` are not current implementation inputs.
 
 ## Evidence
 

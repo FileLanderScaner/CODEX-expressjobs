@@ -1,7 +1,7 @@
 {
   "project": "ExpressJobs",
   "productionStatus": "NO-GO_PRODUCTION",
-  "stagingStatus": "PAYPAL_SANDBOX_READY_BLOCKED_EXTERNAL_CREDENTIALS",
+  "stagingStatus": "PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS",
   "releaseGateStatus": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL",
   "rlsRealSmokeStatus": "PASS",
   "vercelPreviewStatus": "READY_GOOGLE_REDIRECT_TO_FIXED",
@@ -48,6 +48,16 @@
   "paypalWebhookSignatureVerification": "READY",
   "paypalSubscriptionFlow": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paypalSandboxSmoke": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "paypalSandboxCredentialsCloseout": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "paypalEnvPresence": {
+    "NEXT_PUBLIC_PAYPAL_CLIENT_ID": "MISSING",
+    "PAYPAL_CLIENT_SECRET": "MISSING",
+    "PAYPAL_WEBHOOK_ID": "MISSING",
+    "PAYPAL_PLAN_ID": "MISSING",
+    "PAYPAL_API_BASE": "MISSING",
+    "ENABLE_PAYMENTS": "PRESENT",
+    "EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE": "MISSING"
+  },
   "premiumStateStorage": "WEBHOOK_STATE_MACHINE_READY_SUPABASE_WRITE_SKIPPED_SAFE",
   "premiumGrantedFromFrontend": false,
   "premiumGrantedOnlyAfterVerifiedWebhook": true,
@@ -81,5 +91,5 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT"
+  "nextMode": "EXPRESSJOBS_MONETIZATION_PREP"
 }

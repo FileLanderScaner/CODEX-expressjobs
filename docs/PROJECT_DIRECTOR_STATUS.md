@@ -2,7 +2,7 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
-ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_READY_BLOCKED_EXTERNAL_CREDENTIALS`.
+ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS`.
 
 - Supabase staging RLS smoke: PASS
 - Vercel Preview deploy: READY (`https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app`)
@@ -27,14 +27,15 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_READY_BLOCKED_EXTERNAL_CREDENT
 - Google profile created or present: yes
 - Google final redirect: /role
 - Release gate: PASS_FOR_FIRST_10_CONTROLLED_INTERNAL
-- PayPal audit: BLOCKED_IMPLEMENTATION_MISSING
+- PayPal audit: PARTIAL_READY_SANDBOX_IMPLEMENTED
 - PayPal live: OFF
-- PayPal webhook endpoint: MISSING
 - PayPal webhook endpoint: READY
 - PayPal webhook signature verification: READY
 - PayPal create subscription route: READY
 - PayPal subscription state machine: READY
 - PayPal sandbox smoke: BLOCKED_EXTERNAL_CREDENTIALS
+- PayPal sandbox credential closeout: BLOCKED_EXTERNAL_CREDENTIALS
+- PayPal canonical missing envs: NEXT_PUBLIC_PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, PAYPAL_PLAN_ID, PAYPAL_API_BASE, EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE
 - Paid pilot readiness: BLOCKED_EXTERNAL_CREDENTIALS
 - GitHub task router: ACTIVE
 - GitHub CLI: FOUND
@@ -50,4 +51,4 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_READY_BLOCKED_EXTERNAL_CREDENT
 - Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT
+- Next mode: EXPRESSJOBS_MONETIZATION_PREP

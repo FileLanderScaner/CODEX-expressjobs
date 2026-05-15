@@ -17,6 +17,8 @@ ENABLE_PAYMENTS=false
 EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE=false
 ```
 
+These are the canonical names used by the implementation. Do not use older `PAYPAL_SANDBOX_CLIENT_ID`, `PAYPAL_SANDBOX_CLIENT_SECRET`, `PAYPAL_SANDBOX_WEBHOOK_ID`, or `PAYPAL_SANDBOX_PLAN_ID` aliases; they are not read by the current code.
+
 ## Visibility
 
 | Variable | Visibility | Notes |
@@ -27,6 +29,7 @@ EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE=false
 | `PAYPAL_PLAN_ID` | server-only for now | Does not grant premium by itself. |
 | `PAYPAL_API_BASE` | server-only | Must remain sandbox in this cycle. |
 | `ENABLE_PAYMENTS` | server/client gate | Must remain `false` until human-approved sandbox smoke. |
+| `EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE` | local smoke gate | Must be explicitly set to `true` only for approved sandbox smoke. |
 
 ## Hard Blocks
 

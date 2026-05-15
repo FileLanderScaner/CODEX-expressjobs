@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_048_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE",
-  "current_mode": "EXPRESSJOBS_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE",
-  "mode": "EXPRESSJOBS_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE",
+  "cycle": "CYCLE_EXPRESSJOBS_049_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT",
+  "current_mode": "EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT",
+  "mode": "EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -15,7 +15,7 @@
   "supabase_write_status": "NOT_REQUIRED_FOR_DRY_RUN",
   "rls_real_smoke_status": "PASS",
   "supabase_staging_status": "RLS_READY",
-  "staging_status": "PAYPAL_SANDBOX_READY_BLOCKED_EXTERNAL_CREDENTIALS",
+  "staging_status": "PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS",
   "release_gate_status": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL",
   "vercel_preview_status": "READY_GOOGLE_REDIRECT_TO_FIXED",
   "preview_url": "https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app",
@@ -71,6 +71,25 @@
   "paypal_webhook_signature_verification": "READY",
   "paypal_subscription_flow": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paypal_sandbox_smoke": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "paypal_sandbox_credentials_closeout": "BLOCKED_EXTERNAL_CREDENTIALS",
+  "paypal_env_presence": {
+    "NEXT_PUBLIC_PAYPAL_CLIENT_ID": "MISSING",
+    "PAYPAL_CLIENT_SECRET": "MISSING",
+    "PAYPAL_WEBHOOK_ID": "MISSING",
+    "PAYPAL_PLAN_ID": "MISSING",
+    "PAYPAL_API_BASE": "MISSING",
+    "ENABLE_PAYMENTS": "PRESENT",
+    "EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE": "MISSING"
+  },
+  "paypal_canonical_env_names": [
+    "NEXT_PUBLIC_PAYPAL_CLIENT_ID",
+    "PAYPAL_CLIENT_SECRET",
+    "PAYPAL_WEBHOOK_ID",
+    "PAYPAL_PLAN_ID",
+    "PAYPAL_API_BASE",
+    "ENABLE_PAYMENTS",
+    "EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE"
+  ],
   "premium_state_storage": "WEBHOOK_STATE_MACHINE_READY_SUPABASE_WRITE_SKIPPED_SAFE",
   "premium_granted_from_frontend": false,
   "premium_granted_only_after_verified_webhook": true,
@@ -146,17 +165,19 @@
   },
   "blocking_items": [
     "SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
-    "PAYPAL_SANDBOX_CLIENT_ID",
-    "PAYPAL_SANDBOX_CLIENT_SECRET",
-    "PAYPAL_SANDBOX_WEBHOOK_ID",
-    "PAYPAL_SANDBOX_PLAN_ID",
+    "NEXT_PUBLIC_PAYPAL_CLIENT_ID",
+    "PAYPAL_CLIENT_SECRET",
+    "PAYPAL_WEBHOOK_ID",
+    "PAYPAL_PLAN_ID",
+    "PAYPAL_API_BASE",
+    "EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE",
     "VERCEL_PREVIEW_ENV",
     "SUPABASE_WRITE_APPROVAL"
   ],
   "blockedBy": [
-    "BLOCKED_PRODUCTION_RISK"
+    "BLOCKED_EXTERNAL_CREDENTIALS"
   ],
-  "next_mode": "EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT",
-  "nextMode": "EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT",
+  "next_mode": "EXPRESSJOBS_MONETIZATION_PREP",
+  "nextMode": "EXPRESSJOBS_MONETIZATION_PREP",
   "next_prompt_generated": true
 }

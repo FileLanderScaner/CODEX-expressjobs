@@ -55,6 +55,7 @@ Cycle 045 audited PayPal and Supabase tooling for a future paid pilot. PayPal is
 Cycle 046 set up GitHub as the task router blueprint and repo configuration surface: issue templates, PR template, CODEOWNERS, Dependabot, Actions gates, label taxonomy, routing docs, branch protection plan, rulesets plan, Project board blueprint, and manual seed issue commands. GitHub CLI is missing in the current shell, so labels/issues were documented, not created.
 Cycle 047 closed the GitHub CLI blocker using the installed GitHub CLI at `C:\Program Files\GitHub CLI\gh.exe`. GitHub auth is PASS for `FileLanderScaner`, the repo is `FileLanderScaner/CODEX-expressjobs`, all 37 task-router labels are present, and the four approved seed issues were created as #6-#9.
 Cycle 048 prepared the PayPal sandbox subscription smoke implementation. Sandbox config, server-side PayPal client helpers, create-subscription route, webhook route, webhook signature verification, subscription state machine, smoke script, and tests are in place. Live PayPal and production are blocked. Real sandbox execution remains blocked by external PayPal sandbox credentials and Preview env configuration.
+Cycle 049 closed the PayPal sandbox credential gate without printing values. The canonical env names were verified, `npm run paypal:sandbox:smoke` returned `BLOCKED_EXTERNAL_CREDENTIALS`, issue #7 remains open/blocked, and production/live payments remain untouched.
 
 ## Current Scope
 
@@ -93,8 +94,8 @@ Cycle 048 prepared the PayPal sandbox subscription smoke implementation. Sandbox
 
 ## Next Gate
 
-Run `EXPRESSJOBS_PAYPAL_SANDBOX_CREDENTIALS_CLOSEOUT`: configure PayPal sandbox credentials through secure local or Vercel Preview env only, then run sandbox smoke without live payments or production.
+Run `EXPRESSJOBS_MONETIZATION_PREP`: finish the paid pilot operating package while PayPal sandbox credentials remain externally blocked. Do not activate PayPal live or production.
 
 ## Current Operator Action
 
-Current fastest safe next step for paid beta preparation: close out PayPal sandbox credentials in a secure local/Preview env path, then run sandbox smoke. Google OAuth Preview is PASS, RLS smoke is PASS, Preview smoke is PASS, and production remains blocked.
+Current fastest safe next step for paid beta preparation: complete monetization preparation docs and gates while waiting for secure PayPal sandbox credentials. Google OAuth Preview is PASS, RLS smoke is PASS, Preview smoke is PASS, and production remains blocked.
