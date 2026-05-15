@@ -6,6 +6,10 @@
 
 `SECRETS_SECURITY=PASS`
 
+## Revalidation
+
+`2026-05-15`: secret scan passed again. Forbidden env/log/zip files are not tracked, and GitHub issue comments did not match obvious secret value patterns.
+
 ## Evidence
 
 - `npm run secret:scan`: `PASS`

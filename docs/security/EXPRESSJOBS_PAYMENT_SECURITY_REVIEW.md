@@ -6,6 +6,10 @@
 
 `PAYMENT_SECURITY=PASS_FOR_CODE_ONLY_BLOCKED_FOR_PAID_PILOT`
 
+## Revalidation
+
+`2026-05-15`: payment security remains code-ready but paid-pilot blocked. No PayPal live env was enabled and no real payment was created.
+
 ## Safe Controls
 
 - PayPal live is blocked by config checks.

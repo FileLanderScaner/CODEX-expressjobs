@@ -6,6 +6,10 @@
 
 `AUTH_SECURITY=PASS`
 
+## Revalidation
+
+`2026-05-15`: auth security remains `PASS`.
+
 ## Findings
 
 - Google OAuth Preview is already verified as `PASS`.
@@ -16,6 +20,7 @@
 - Callback errors redirect to `/auth?oauth_error=...` without crashing.
 - Facebook remains config-pending and is not approved for production.
 - Instagram remains research-only and is not an allowed provider.
+- No production OAuth approval is implied by this review.
 
 ## Evidence
 

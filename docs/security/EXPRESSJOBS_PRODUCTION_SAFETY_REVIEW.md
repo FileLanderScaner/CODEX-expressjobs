@@ -6,6 +6,10 @@
 
 `PRODUCTION_SAFETY=PASS_SAFE_NO_GO`
 
+## Revalidation
+
+`2026-05-15`: `npm run production:check` passed again. No production deployment, promotion, or production env mutation was performed.
+
 ## Evidence
 
 - `npm run production:check`: `PASS_SAFE_NO_GO`

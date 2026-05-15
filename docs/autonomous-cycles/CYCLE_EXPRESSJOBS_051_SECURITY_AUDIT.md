@@ -8,6 +8,8 @@
 
 ## Checks
 
+Revalidated on `2026-05-15`.
+
 | Check | Result |
 | --- | --- |
 | `secret:scan` | `PASS` |
@@ -20,6 +22,11 @@
 | `build` | `PASS` |
 | `production:check` | `PASS_SAFE_NO_GO` |
 | `git diff --check` | `PASS` |
+
+Additional checks:
+
+- `TRACKED_FORBIDDEN_FILES=NOT_FOUND`
+- `GITHUB_ISSUE_SECRET_VALUE_PATTERN=NOT_FOUND`
 
 ## Findings
 
@@ -55,4 +62,4 @@
 
 ## Next Mode
 
-`EXPRESSJOBS_FIRST_100_USERS_PREP`
+`EXPRESSJOBS_PREVIEW_BYPASS_RESMOKE`

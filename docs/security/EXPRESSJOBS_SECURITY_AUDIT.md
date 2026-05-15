@@ -8,6 +8,10 @@
 
 The pre-expansion security audit passed for controlled internal First 10 testers. It does not approve First 25, paid pilot, or production.
 
+## Revalidation
+
+Revalidated on `2026-05-15` after the Vercel Preview safety audit. The full command gate still passes, RLS real smoke still returns `EXPRESSJOBS_RLS_STAGING_PASS`, and production remains `NO-GO_PRODUCTION`.
+
 ## Gate Results
 
 | Area | Status | Evidence |
@@ -34,6 +38,11 @@ The pre-expansion security audit passed for controlled internal First 10 testers
 | `npm run production:check` | `PASS_SAFE_NO_GO` |
 | `git diff --check` | `PASS` |
 
+Additional safe checks:
+
+- `TRACKED_FORBIDDEN_FILES=NOT_FOUND`
+- `GITHUB_ISSUE_SECRET_VALUE_PATTERN=NOT_FOUND`
+
 ## Decisions
 
 - `FIRST_10_TESTERS=GO_CONTROLLED_INTERNAL_ONLY`
@@ -49,4 +58,4 @@ The pre-expansion security audit passed for controlled internal First 10 testers
 
 ## Next Mode
 
-`EXPRESSJOBS_FIRST_100_USERS_PREP`
+`EXPRESSJOBS_PREVIEW_BYPASS_RESMOKE`

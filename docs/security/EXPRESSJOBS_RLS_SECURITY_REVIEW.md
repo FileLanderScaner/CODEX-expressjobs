@@ -6,6 +6,10 @@
 
 `RLS_SECURITY=PASS`
 
+## Revalidation
+
+`2026-05-15`: `npm run test:rls:static` and `npm run rls:smoke` both passed. The real smoke result was `EXPRESSJOBS_RLS_STAGING_PASS`.
+
 ## Evidence
 
 - `npm run test:rls:static`: `PASS`
@@ -13,6 +17,7 @@
 - RLS remains enabled for all required `public.ej_*` tables.
 - No `disable row level security` statement is present in the migration.
 - No dangerous `using (true)` policy was found in the `ej_*` policies.
+- No RLS policy was relaxed in this revalidation.
 
 ## Validated Matrix
 

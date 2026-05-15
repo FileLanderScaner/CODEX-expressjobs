@@ -73,6 +73,7 @@
   "monetizationPrep": "READY_BLOCKED_EXTERNAL_CREDENTIALS",
   "paidPilotHumanGate": "BLOCKED_EXTERNAL_CREDENTIALS",
   "securityAuditStatus": "PASS_WITH_PAID_PILOT_BLOCKERS",
+  "securityAuditRevalidation": "PASS_WITH_PAID_PILOT_BLOCKERS",
   "authSecurity": "PASS",
   "rlsSecurity": "PASS",
   "paymentSecurity": "PASS_FOR_CODE_ONLY_BLOCKED_FOR_PAID_PILOT",
