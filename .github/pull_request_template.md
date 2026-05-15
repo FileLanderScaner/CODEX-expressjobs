@@ -1,4 +1,6 @@
-# Summary
+## Summary
+
+Describe the change and why it is safe.
 
 ## Type of change
 
@@ -8,39 +10,48 @@
 - [ ] Security/Auth/RLS
 - [ ] Payment sandbox
 - [ ] Release gate
+- [ ] GitHub governance
 
-## Risks
+## Safety checklist
 
-- Production risk: `no / yes`
-- Payment live risk: `no / yes`
-- Secret risk: `no / yes`
-- RLS/Auth risk: `no / yes`
-- User contact risk: `no / yes`
+- [ ] No production deploy was performed.
+- [ ] No `vercel --prod` was used.
+- [ ] No `vercel promote` was used.
+- [ ] No Production env vars were modified.
+- [ ] No secrets were printed, logged, pasted, committed, or added to docs/issues.
+- [ ] No `.env`, `.env.local`, `.env.rls`, `.vercel`, logs, zips, or credential files were committed.
+- [ ] RLS was not disabled.
+- [ ] RLS policies were not relaxed.
+- [ ] PayPal live remains OFF.
+- [ ] Real payments were not created.
+- [ ] Real users were not contacted automatically.
+- [ ] `PRODUCTION_STATUS=NO-GO_PRODUCTION` remains true unless there is explicit human approval.
 
-## Evidence
+## Required local/CI checks
 
 - [ ] `npm run secret:scan`
 - [ ] `npm run lint`
 - [ ] `npm run typecheck`
 - [ ] `npm run test`
+- [ ] `npm run test:rls:static`
 - [ ] `npm run build`
 - [ ] `npm run production:check`
-- [ ] `npm run staging:check` if env is available
-- [ ] `npm run test:rls:static` if relevant
-- [ ] `npm run rls:smoke` if env is available and relevant
+- [ ] `git diff --check`
 
-## Preview / screenshots
+## External checks, if applicable
 
-Add protected Preview URL or screenshots if UI changed. Do not include bypass secrets.
+- [ ] `npm run staging:check`
+- [ ] `npm run rls:smoke`
+- [ ] `npm run paypal:sandbox:smoke`
+- [ ] Preview browser smoke
 
-## Required confirmations
+## Release decisions
 
-- [ ] Production remains `NO-GO_PRODUCTION`.
-- [ ] No production deploy command was used.
-- [ ] No production promotion command was used.
-- [ ] No Vercel Production env was modified.
-- [ ] PayPal live remains off.
-- [ ] No real payment was created.
-- [ ] No secrets, tokens, cookies, auth codes, service role keys, or personal data were committed.
-- [ ] RLS was not relaxed or disabled.
-- [ ] No real users were contacted automatically.
+- `FIRST_10_TESTERS=`
+- `FIRST_25_TESTERS=`
+- `PAID_PILOT=`
+- `PRODUCTION=`
+
+## Linked issues
+
+Closes / Blocks / Relates to:
