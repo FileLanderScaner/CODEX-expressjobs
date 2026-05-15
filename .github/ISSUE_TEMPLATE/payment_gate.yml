@@ -1,0 +1,39 @@
+name: Payment gate
+description: Track sandbox/live payment readiness and blockers.
+title: "Payment gate: "
+labels: ["type-payment", "risk-payment-live", "codex-human-gate-required"]
+body:
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Payment environment
+      options:
+        - sandbox
+        - live
+    validations:
+      required: true
+  - type: textarea
+    id: status
+    attributes:
+      label: Status
+      placeholder: READY, BLOCKED_EXTERNAL_CREDENTIALS, PASS, FAIL.
+    validations:
+      required: true
+  - type: textarea
+    id: missing_envs
+    attributes:
+      label: Missing envs without values
+      placeholder: List env names only. Never paste values.
+    validations:
+      required: false
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Payment safety
+      options:
+        - label: No live payments unless explicitly approved.
+          required: true
+        - label: No secrets in issue body or comments.
+          required: true
+        - label: Premium is granted only after verified webhook.
+          required: true
