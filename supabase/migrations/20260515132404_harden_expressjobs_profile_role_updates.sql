@@ -1,6 +1,8 @@
 -- Harden ExpressJobs profile role updates.
 -- This migration prevents authenticated users from self-promoting by updating
 -- public.ej_profiles.role while preserving updates to safe profile fields.
+-- It is intentionally idempotent because the same hardening may have been
+-- applied manually in staging before the automated migration runner executes.
 
 revoke update on table public.ej_profiles from anon;
 revoke update on table public.ej_profiles from authenticated;
@@ -10,6 +12,7 @@ revoke update (id, role, reputation_score, completed_jobs, created_at) on table 
 grant update (full_name, phone, city, updated_at) on table public.ej_profiles to authenticated;
 
 drop policy if exists "profiles_update_own" on public.ej_profiles;
+drop policy if exists "profiles_update_own_safe_fields" on public.ej_profiles;
 
 create policy "profiles_update_own_safe_fields" on public.ej_profiles
   for update to authenticated
