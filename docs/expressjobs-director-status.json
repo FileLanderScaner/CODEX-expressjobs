@@ -208,6 +208,7 @@
     "blocked_real_env_files": true,
     "blocked_vercel_metadata": true,
     "blocked_logs_archives": true,
+    "excludes_guard_text_false_positives": true,
     "remote_ci_rerun_required": true
   },
   "operator_secret_entry_shell_opened": true,

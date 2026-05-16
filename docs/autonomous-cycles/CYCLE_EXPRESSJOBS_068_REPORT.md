@@ -16,6 +16,7 @@ Fix the GitHub security-gate false-positive discovered in cycle 067 without weak
 - Updated `.github/workflows/expressjobs-production-no-go.yml`.
 - The tracked artifact gate now allows only sanitized `.env*.example` files.
 - The same gate still blocks real `.env`, `.env.local`, `.env.rls`, `.env.staging`, `.vercel`, logs, and archives.
+- The executable-surface marker scan now excludes the production guard script and preview pipeline workflow, matching the production-no-go workflow so guard text and secret placeholders do not fail the gate.
 
 ## Checks
 
