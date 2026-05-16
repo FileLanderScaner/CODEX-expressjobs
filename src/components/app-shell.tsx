@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BadgeDollarSign, BriefcaseBusiness, CircleDollarSign, LayoutDashboard, UserRoundCheck } from "lucide-react";
+import { BadgeDollarSign, BriefcaseBusiness, CircleDollarSign, LayoutDashboard, LogIn, UserRoundCheck } from "lucide-react";
 import { productionStatus } from "@/lib/env";
 import { publicBrand } from "@/lib/expressjobs-data";
 
@@ -37,9 +37,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
           </nav>
-          <span className="rounded-md border border-[#e2b8b1] bg-[#fff4f2] px-2 py-1 text-xs font-bold text-[var(--danger)]">
-            {productionStatus()}
-          </span>
+          <div className="flex items-center gap-2">
+            <Link
+              className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-3 py-2 text-xs font-black text-white shadow-sm hover:bg-[var(--brand-dark)]"
+              href="/auth"
+            >
+              <LogIn aria-hidden="true" size={16} />
+              Ingresar
+            </Link>
+            <span className="hidden rounded-md border border-[#e2b8b1] bg-[#fff4f2] px-2 py-1 text-xs font-bold text-[var(--danger)] sm:inline-flex">
+              {productionStatus()}
+            </span>
+          </div>
         </div>
       </header>
       {children}
