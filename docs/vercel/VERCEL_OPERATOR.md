@@ -1,209 +1,271 @@
-# ExpressJobs — Vercel Operator Instructions
+# Vercel Operator Runbook
 
-## Purpose
+**Status:** `VERCEL_OPERATOR_QUEUED_FOR_P3`
 
-This file lets Codex, Vercel MCP/CLI, or a human operator continue Vercel work from GitHub without guessing the next step.
-
-## Current closest Vercel goal
-
-Prepare final Preview and Production environment gates, but do not deploy production until the Supabase RLS role hardening gate passes.
-
-Production remains:
-
-`NO-GO_PRODUCTION`
+**Timestamp:** 2026-05-15 16:50:24Z
 
 ---
 
-## Dependency before production
+## Current State
 
-Do not deploy or promote production until Supabase reports:
+**Production Deployment:** NO-GO (awaiting RLS hardening in staging)
 
-`RLS_ROLE_ESCALATION_FIX=APPLIED_AND_SMOKE_PASS`
+**Production Status:** READY_FOR_CONFIGURATION (queued for P3)
 
-Relevant Supabase file:
+**Staging:** https://codex-expressjobs.vercel.app (current Preview)
 
-`docs/supabase/SUPABASE_OPERATOR.md`
-
-Relevant issues:
-
-- `#10` RLS role escalation blocker
-- `#17` Production closeout fast path
-- `#18` Supabase write capability unblock
+**Production:** (pending deployment gate)
 
 ---
 
-## Non-negotiable safety rules
+## Phases of Involvement
 
-- Do not run `vercel --prod` without explicit human approval in the current session.
-- Do not run `vercel promote` without explicit human approval in the current session.
-- Do not modify Vercel Production env vars without explicit human approval.
-- Do not disable Deployment Protection without explicit human approval.
-- Do not expose Deployment Protection bypass tokens.
-- Do not print secrets.
-- Do not commit `.vercel`, env files, logs, tokens, screenshots with secrets, or credentials.
-- Do not enable PayPal live.
-- Do not enable in-app payments until payment gates pass.
-- Keep AI agents off.
+### Phase 1 (P0): RLS Hardening — NO VERCEL CHANGES
+- Supabase staging write capability unblock
+- Migration apply and smoke tests
+- **Vercel:** No changes needed
 
----
+### Phase 2 (P1): Production Closeout — CONFIGURATION
+- Configure production env vars in `vercel.json`
+- Review Preview deployment
+- Prepare for production
+- **Vercel:** Configuration changes
 
-## Production can ship without PayPal if
+### Phase 3 (P2): Final Gate — NO VERCEL CHANGES
+- Run all checks
+- Generate production readiness report
+- Await human approval
+- **Vercel:** Standby
 
-All of these are true:
-
-- `ENABLE_PAYMENTS=false`
-- PayPal live remains OFF
-- Premium/payment CTAs are hidden, disabled, or clearly unavailable
-- No in-app payment flow creates real payments
-- Manual/outside-app monetization is documented as manual
-
----
-
-## Required Preview gate
-
-Before production, Preview must pass browser smoke:
-
-- `/` loads.
-- `/role` loads.
-- `/ofertas` loads.
-- `/landing-negocios` loads.
-- `/sponsor` loads.
-- Google Auth redirect does not use localhost.
-- No critical console errors.
-- No live payment claims.
-- No PayPal live scripts.
-- No AI agent/admin panel enabled publicly.
+### Phase 4 (PRODUCTION): Deployment — MANUAL HUMAN GATE
+- Human runs: `vercel --prod`
+- Monitor deployment
+- Verify production works
+- **Vercel:** Human-triggered deployment only
 
 ---
 
-## Required Production env matrix
+## P1 Configuration Tasks
 
-Verify presence without printing values:
+### 1. Environment Variables Setup
 
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `NEXT_PUBLIC_APP_URL`
-- `ALLOWED_ORIGINS`
-- `APP_ENV=production`
-- `ENABLE_PAYMENTS=false`
-- `ENABLE_AI_AGENTS=false`
-- `AI_KILL_SWITCH=true`
-- `ENABLE_ADMIN_PANEL=false`
+**File:** `vercel.json` (production environment section)
 
-Optional and must remain disabled unless explicitly approved:
+**Safe Defaults:**
 
-- `ENABLE_AD_SLOTS=false`
-- `ENABLE_SPONSORED_BANNERS=false`
-- `ENABLE_AFFILIATE_LINKS=false`
+```json
+{
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": {
+      "value": "@supabase_staging_url"
+    },
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": {
+      "value": "@supabase_staging_anon_key"
+    },
+    "ENABLE_PAYMENTS": {
+      "value": "false"
+    },
+    "AI_AGENTS_OFF": {
+      "value": "true"
+    },
+    "EXPRESSJOBS_PRODUCTION_STATUS": {
+      "value": "SAFE_LAUNCH_PAYMENTS_DISABLED"
+    }
+  }
+}
+```
 
-PayPal live vars must not be required for production launch if payments are disabled.
+**Notes:**
+- `ENABLE_PAYMENTS=false` → Payment CTAs hidden
+- `AI_AGENTS_OFF=true` → Autonomous features disabled
+- Supabase: Using staging (safer for first launch)
+- Can upgrade to production Supabase later after manual validation
 
----
+### 2. Vercel Dashboard Check
 
-## Required local checks before final production approval
+1. **Project Settings**
+   - Project: CODEX-expressjobs
+   - Framework: Next.js
+   - Node version: 18+ (check package.json)
+
+2. **Environment Variables**
+   - Verify all required vars are set
+   - Verify no secrets leaked in logs
+   - Verify production and preview separated (if needed)
+
+3. **Build Settings**
+   - Build command: `npm run build`
+   - Start command: Next.js default
+   - Output directory: `.next`
+
+4. **Deployments**
+   - Check Preview deployment is stable
+   - Verify no build errors in logs
+
+### 3. Preview Testing (P1)
+
+Before production deployment:
 
 ```bash
-npm run secret:scan
-npm run staging:check
-npm run test:rls:static
-npm run rls:smoke
-npm run lint
-npm run typecheck
-npm run test
-npm run build
-npm run production:check
-git diff --check
+vercel preview
 ```
 
-If any check fails or is blocked, production remains:
+**Test Flow:**
+1. Load home page → should render without secrets
+2. Click "Sign in with Google" → should redirect to Google
+3. After Google callback → should redirect to `/role`
+4. On `/role` → should show profile setup page
+5. Fill profile → should save without payment upsell
+6. Navigate dashboard → basic UI should work
+7. Check browser console → no errors
+8. Check network tab → no 500 errors
 
-`NO-GO_PRODUCTION`
+**Expected:**
+- ✅ Login flow works
+- ✅ Profile page renders
+- ✅ No payment CTAs visible
+- ✅ No errors in console
+- ✅ Staging Supabase connection works
+
+### 4. Production Environment Review
+
+Before `vercel --prod`:
+
+```bash
+vercel env list                # List all env vars (values hidden)
+vercel env pull production > /tmp/prod.env  # Local review (DO NOT commit)
+```
+
+**Review Checklist:**
+- ✅ No `SUPABASE_SERVICE_ROLE_KEY` in production (only anon)
+- ✅ No `.env` files committed
+- ✅ `ENABLE_PAYMENTS=false`
+- ✅ `AI_AGENTS_OFF=true`
+- ✅ All required public vars set
+- ✅ No test/staging values in production
+- ✅ Supabase project is staging (safe)
 
 ---
 
-## Allowed Vercel work before production
+## Production Deployment (Phase 4)
 
-Allowed without production deploy:
+### When Ready (after P2 Final Gate PASS)
 
-- Inspect Preview deployments.
-- Inspect env presence without values.
-- Run Preview browser smoke.
-- Update docs.
-- Prepare production env matrix.
-- Prepare human approval checklist.
+**Human executes (outside autonomous cycle):**
 
-Not allowed without explicit approval:
+```bash
+vercel --prod
+```
 
-- `vercel --prod`
-- `vercel promote`
-- modifying Production env vars
-- disabling protection
+**Vercel will:**
+1. Build from main branch
+2. Run build command: `npm run build`
+3. Deploy to production
+4. Update production URL
 
----
+### Monitoring
 
-## Required GitHub updates
+After deploy:
 
-Update issue `#17` with:
+1. **Check Deployment Status**
+   - Vercel dashboard → Recent deployments
+   - Should show green ✅ check
 
-- Preview smoke result
-- Production env presence result
-- Production GO/NO-GO decision
-- exact blocker if NO-GO
-- human approval required if GO
+2. **Test Production URL**
+   - Load https://codex-expressjobs.vercel.app (or custom domain)
+   - Verify homepage loads
+   - Test Google login flow
+   - Check no console errors
 
----
+3. **Monitor First Hour**
+   - Check Vercel logs for errors
+   - Check Supabase staging project for queries
+   - Verify no unexpected behavior
 
-## Next prompt for Vercel/Codex
+### Rollback (if needed)
 
-```text
-CODEX_PROMPT — EXPRESSJOBS_FINAL_PREVIEW_AND_PRODUCTION_ENV_GATE
-
-Read first:
-- AGENTS.md
-- docs/codex/NEXT_ACTION.md
-- docs/codex/EXPRESSJOBS_CODEX_RESUME_QUEUE.md
-- docs/supabase/SUPABASE_OPERATOR.md
-- docs/vercel/VERCEL_OPERATOR.md
-
-Precondition:
-Only continue if `RLS_ROLE_ESCALATION_FIX=APPLIED_AND_SMOKE_PASS`.
-If not, stop and return to Supabase gate.
-
-Goal:
-Prepare final Vercel Preview and Production env gate without deploying production automatically.
-
-Rules:
-- Do not use `vercel --prod`.
-- Do not use `vercel promote`.
-- Do not modify Production envs without explicit approval.
-- Do not print secrets.
-- Keep payments disabled unless PayPal gates passed.
-
-Run:
-- Preview smoke.
-- Env presence check without values.
-- production:check.
-- full local gate.
-
-Output:
-ExpressJobs Director Report with PRODUCTION_GO/NO-GO and exact final command only if human approval is required.
+```bash
+vercel rollback [deployment-id]
 ```
 
 ---
 
-## Success state
+## Safety Rules for Vercel
 
-Only mark Vercel production ready when:
+❌ **DO NOT:**
+- `vercel --prod` without P2 Final Gate PASS
+- `vercel promote` without explicit human approval
+- Store secrets in env vars (use Vercel secrets)
+- Commit `.vercel` directory
+- Use production Supabase key in preview
+- Deploy with `ENABLE_PAYMENTS=true`
+- Deploy with `AI_AGENTS_OFF=false`
 
-- RLS hardening applied + smoke PASS.
-- Preview smoke PASS.
-- Production env matrix PASS.
-- `production:check` PASS.
-- PayPal live OFF / payments disabled.
-- explicit human approval pending.
+✅ **DO:**
+- Use safe env defaults
+- Verify Preview before production
+- Keep payments disabled for first launch
+- Keep AI agents off
+- Use staging Supabase for safety
+- Monitor first deployment closely
 
-Then status may become:
+---
 
-`READY_FOR_HUMAN_PRODUCTION_APPROVAL`
+## Production Upgrade Path
 
-Not automatic production.
+### After First Week of Safe Production
+
+If everything is stable:
+
+1. **Enable Payments (separate gate)**
+   - Set `ENABLE_PAYMENTS=true`
+   - Integrate PayPal production keys (not live keys)
+   - Run payment gate tests
+   - Manual approval required
+
+2. **Upgrade to Production Supabase (separate gate)**
+   - Migrate data from staging to production project
+   - Update env vars to production Supabase
+   - Run all tests again
+   - Manual approval required
+
+3. **Enable AI Agents (separate gate)**
+   - Set `AI_AGENTS_OFF=false`
+   - Run autonomous cycle tests
+   - Manual approval required
+
+**Each upgrade is a separate gate with human approval required.**
+
+---
+
+## Current Status
+
+```
+✅ Vercel configured for Preview: https://codex-expressjobs.vercel.app
+⏳ Vercel production env: READY_FOR_CONFIGURATION (P1)
+⏳ Vercel production deploy: QUEUED (after P2)
+❌ Vercel production: NOT DEPLOYED YET
+```
+
+---
+
+## Timeline
+
+```
+P0 (RLS Hardening):        ~10-15 min (Supabase focus, no Vercel change)
+P1 (Production Closeout):  ~20-30 min (Configure Vercel env, test Preview)
+P2 (Final Gate):           ~15-20 min (All checks, no Vercel change)
+Production Deployment:     ~5 min (Human `vercel --prod`, outside cycle)
+```
+
+---
+
+## Questions?
+
+- See: `docs/codex/EXPRESSJOBS_AUTONOMOUS_DEVELOPMENT_CYCLE.md` (full cycle)
+- See: `AGENTS.md` (safety rules)
+- See: `vercel.json` (current config)
+
+---
+
+**Next Action:** P1 awaits P0 completion. No Vercel changes needed yet.
