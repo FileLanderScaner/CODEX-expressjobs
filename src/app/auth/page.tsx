@@ -30,7 +30,7 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
             <AlertTriangle aria-hidden="true" className="mt-0.5 shrink-0" size={18} />
             <div>
               <p>{oauthErrorMessage}</p>
-              <p className="mt-1 text-xs font-bold uppercase tracking-wide">Codigo: {oauthError}</p>
+              <p className="mt-1 text-xs font-bold uppercase tracking-wide">Código: {oauthError}</p>
             </div>
           </div>
         ) : null}
