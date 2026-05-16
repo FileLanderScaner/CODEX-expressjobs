@@ -71,6 +71,12 @@ PR #29 was closed as superseded by PR #30.
 | `git diff --check` | `PASS` |
 | `npm run staging:check` | `PASS` |
 | `npm run rls:smoke` | `PASS_EXPRESSJOBS_RLS_STAGING_PASS` |
+| PR #30 `docs-check` | `PASS` |
+| PR #30 `pr-check` | `PASS` |
+| PR #30 `security-gate` | `PASS` |
+| PR #30 `production-no-go` | `PASS` |
+| PR #30 Vercel Preview | `SUCCESS` |
+| PR #30 Supabase Preview | `SUCCESS` |
 
 ## Autoevaluation
 

@@ -23,6 +23,7 @@
   "public_demo_routes": "REMOVED_FROM_ROUTED_APP",
   "public_demo_links": "REMOVED",
   "public_surface_status": "REAL_PRODUCT_MARKETPLACE_FOCUSED",
+  "remove_demos_real_product_pr_status": "OPEN_MERGEABLE_ALL_CHECKS_PASS_VERCEL_SUCCESS_SUPABASE_PREVIEW_SUCCESS",
   "worker_apply_real": "IMPLEMENTED_LOCAL_SUPABASE_CLIENT_RLS",
   "client_accept_reject_real": "IMPLEMENTED_LOCAL_RPC_RLS",
   "worker_jobs_real_listing": "IMPLEMENTED_LOCAL_WITH_REAL_EMPTY_STATE_NO_PUBLIC_DEMO_FALLBACK",
