@@ -1,5 +1,10 @@
 const truthy = new Set(["1", "true", "yes", "on"]);
 
+export const publicSalesContact = {
+  whatsappNumber: "59897045305",
+  email: "akuma_g1@hotmail.com",
+} as const;
+
 export const uruguayRevenuePrices = [
   { label: "Landing basica", price: "1500 UYU", kind: "landing" },
   { label: "Landing + textos + WhatsApp", price: "2500 UYU", kind: "landing" },
@@ -48,7 +53,12 @@ export function monetizationConfig() {
   };
 }
 
+export function defaultWhatsAppSalesHref() {
+  const text = encodeURIComponent("Hola, quiero consultar por Trabajos Rapidos / ExpressJobs.");
+  return `https://wa.me/${publicSalesContact.whatsappNumber}?text=${text}`;
+}
+
 export function salesCtaHref() {
   const config = monetizationConfig();
-  return config.whatsappSalesLink || config.sponsorIntakeLink || "#sponsor-intake";
+  return config.whatsappSalesLink || config.sponsorIntakeLink || defaultWhatsAppSalesHref();
 }
