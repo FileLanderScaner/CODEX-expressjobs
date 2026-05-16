@@ -203,13 +203,14 @@
     "highest_impact_next_action": "FIX_GITHUB_SECURITY_GATE_FALSE_POSITIVE_AND_RECONCILE_PR_QUEUE"
   },
   "github_security_gate_fix": {
-    "status": "APPLIED_LOCAL_PENDING_REMOTE_CI",
+    "status": "APPLIED_AND_REMOTE_SECURITY_GATE_PASS",
     "allow_sanitized_env_examples": true,
     "blocked_real_env_files": true,
     "blocked_vercel_metadata": true,
     "blocked_logs_archives": true,
     "excludes_guard_text_false_positives": true,
-    "remote_ci_rerun_required": true
+    "remote_ci_rerun_required": false,
+    "remote_workflow_dispatch_run": "https://github.com/FileLanderScaner/CODEX-expressjobs/actions/runs/25973489524"
   },
   "operator_secret_entry_shell_opened": true,
   "operator_secret_entry_directory": "C:\\CODEX-expressjobs-repo",
@@ -257,7 +258,7 @@
     "github_cli_activation": "pass",
     "github_preview_pipeline_local_validation": "pass",
     "github_pr_triage": "pass_inspected_open_prs_no_write_actions",
-    "github_security_gate_fix": "pass_local_checks",
+    "github_security_gate_fix": "pass_local_and_remote_workflow_dispatch",
     "tracked_artifact_allowlist": "pass_env_examples_allowed_real_artifacts_blocked",
     "guard_no_production_deploy": "pass"
   },

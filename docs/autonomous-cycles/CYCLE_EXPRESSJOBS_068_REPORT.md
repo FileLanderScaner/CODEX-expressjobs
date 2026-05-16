@@ -31,6 +31,7 @@ Fix the GitHub security-gate false-positive discovered in cycle 067 without weak
 | `npm run build` | `PASS` |
 | `git diff --check` | `PASS` |
 | local tracked-artifact allowlist validation | `PASS` |
+| remote `expressjobs-security-gate` workflow_dispatch | `PASS` |
 
 ## GitHub PR Recommendation
 
@@ -44,7 +45,7 @@ Fix the GitHub security-gate false-positive discovered in cycle 067 without weak
 - Technical risk reduced: yes, CI now distinguishes sanitized example env files from real local/secret artifacts.
 - Security maintained: yes, real env files and sensitive local artifacts remain blocked; secret scan still passes.
 - Checks passed: yes, local gate checks passed.
-- Blocked: remote CI and Vercel PR checks still need rerun after this change is pushed; production remains `NO-GO_PRODUCTION`.
+- Blocked: Dependabot PR CI and Vercel PR checks still need rerun after this branch fix; production remains `NO-GO_PRODUCTION`.
 - Highest-impact next step: publish the security-gate fix safely, then re-triage PR #12/#19/#20 from fresh CI results.
 
 ## Staging Status
