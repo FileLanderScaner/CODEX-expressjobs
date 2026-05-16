@@ -14,6 +14,12 @@ Remove public demo/catalog pages and make the public surface behave like a real 
 
 `codex/remove-demos-real-product-flow`
 
+## PR
+
+https://github.com/FileLanderScaner/CODEX-expressjobs/pull/30
+
+PR #29 was closed as superseded by PR #30.
+
 ## Removed Public Routes
 
 - `/demo`

@@ -18,6 +18,8 @@
   "staging_status": "PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS",
   "release_gate_status": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL_RLS_FIXED_PRODUCTION_NO_GO",
   "real_marketplace_flow": "LOCAL_READY_PR_REQUIRED_STAGING_MIGRATION_NOT_APPLIED",
+  "remove_demos_real_product_pr": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/30",
+  "superseded_prs_closed": [29],
   "public_demo_routes": "REMOVED_FROM_ROUTED_APP",
   "public_demo_links": "REMOVED",
   "public_surface_status": "REAL_PRODUCT_MARKETPLACE_FOCUSED",
