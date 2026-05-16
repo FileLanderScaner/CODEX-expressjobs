@@ -19,7 +19,7 @@ const providerIcons = {
   facebook: Users,
 } satisfies Record<SocialAuthProvider, typeof Globe2>;
 
-export function SocialAuthButtons() {
+export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
   const enabledProviders = getEnabledSocialAuthProviders();
   const [pendingProvider, setPendingProvider] = useState<SocialAuthProvider | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -35,7 +35,7 @@ export function SocialAuthButtons() {
     setPendingProvider(provider);
 
     try {
-      const { error } = await signInWithSocialOAuth(provider);
+      const { error } = await signInWithSocialOAuth(provider, nextPath);
 
       if (error) {
         setErrorMessage("Social login is not configured for this Preview yet.");

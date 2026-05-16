@@ -30,8 +30,14 @@ export function getEnabledSocialAuthProviders(flags: SocialAuthFlags = getSocial
   return socialAuthProviders.filter((provider) => flags[provider]);
 }
 
-export function buildOAuthRedirectTo(appUrl = publicEnv.NEXT_PUBLIC_APP_URL) {
-  return new URL("/auth/callback", appUrl).toString();
+export function buildOAuthRedirectTo(appUrl = publicEnv.NEXT_PUBLIC_APP_URL, nextPath?: string) {
+  const redirectUrl = new URL("/auth/callback", appUrl);
+
+  if (nextPath && nextPath.startsWith("/") && !nextPath.startsWith("//")) {
+    redirectUrl.searchParams.set("next", nextPath);
+  }
+
+  return redirectUrl.toString();
 }
 
 export function getBrowserOAuthAppUrl() {
@@ -44,19 +50,27 @@ export function getBrowserOAuthAppUrl() {
 
 export function buildAuthErrorRedirect(requestUrl: string, error: string) {
   const redirectUrl = new URL("/auth", requestUrl);
+  const nextPath = new URL(requestUrl).searchParams.get("next");
+
   redirectUrl.searchParams.set("oauth_error", error);
+
+  if (nextPath && nextPath.startsWith("/") && !nextPath.startsWith("//")) {
+    redirectUrl.searchParams.set("next", nextPath);
+  }
+
   return redirectUrl;
 }
 
 export function buildPostOAuthRedirect(requestUrl: string) {
-  return new URL("/role", requestUrl);
+  const nextPath = new URL(requestUrl).searchParams.get("next");
+  return new URL(nextPath && nextPath.startsWith("/") && !nextPath.startsWith("//") ? nextPath : "/role", requestUrl);
 }
 
 export function canPublicOAuthAssignAdmin(role: string) {
   return role !== "admin";
 }
 
-export async function signInWithSocialOAuth(provider: SocialAuthProvider) {
+export async function signInWithSocialOAuth(provider: SocialAuthProvider, nextPath?: string) {
   if (!isAllowedSocialAuthProvider(provider)) {
     throw new Error("OAUTH_PROVIDER_NOT_ALLOWED");
   }
@@ -70,7 +84,7 @@ export async function signInWithSocialOAuth(provider: SocialAuthProvider) {
   return supabase.auth.signInWithOAuth({
     provider: provider as Provider,
     options: {
-      redirectTo: buildOAuthRedirectTo(getBrowserOAuthAppUrl()),
+      redirectTo: buildOAuthRedirectTo(getBrowserOAuthAppUrl(), nextPath),
     },
   });
 }

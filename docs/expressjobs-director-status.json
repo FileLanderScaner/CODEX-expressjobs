@@ -3,10 +3,10 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
-  "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_066_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
-  "current_mode": "EXPRESSJOBS_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
-  "mode": "EXPRESSJOBS_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
+  "branch": "codex/real-marketplace-flow-hardening",
+  "cycle": "CYCLE_EXPRESSJOBS_069_REAL_MARKETPLACE_FLOW_HARDENING",
+  "current_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_HARDENING",
+  "mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_HARDENING",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -17,6 +17,13 @@
   "supabase_staging_status": "PASS_RLS_HARDENING_VERIFIED",
   "staging_status": "PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS",
   "release_gate_status": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL_RLS_FIXED_PRODUCTION_NO_GO",
+  "real_marketplace_flow": "LOCAL_READY_PR_REQUIRED_STAGING_MIGRATION_NOT_APPLIED",
+  "worker_apply_real": "IMPLEMENTED_LOCAL_SUPABASE_CLIENT_RLS",
+  "client_accept_reject_real": "IMPLEMENTED_LOCAL_RPC_RLS",
+  "worker_jobs_real_listing": "IMPLEMENTED_LOCAL_WITH_DEMO_FALLBACK",
+  "client_jobs_real_listing": "IMPLEMENTED_LOCAL_WITH_AUTH_GATE",
+  "role_ui_real_rpc": "IMPLEMENTED_LOCAL_EJ_SET_PROFILE_ROLE",
+  "auth_next_redirects": "IMPLEMENTED_LOCAL",
   "vercel_preview_status": "READY_PROTECTED_BROWSER_SMOKE_BLOCKED_401",
   "preview_url": "https://codex-expressjobs-q2apmubra-akuma424-projects.vercel.app",
   "preview_deployment": "dpl_EokYhx4T8NbNh7xiTpCpipz6bmKh",
@@ -238,6 +245,8 @@
     "github_task_router": "active",
     "github_cli_activation": "pass",
     "github_preview_pipeline_local_validation": "pass",
+    "real_marketplace_flow_local": "pass",
+    "browser_http_smoke_local": "pass_localhost_3000",
     "guard_no_production_deploy": "pass"
   },
   "blocking_items": [
@@ -255,7 +264,9 @@
     ,
     "DEFAULT_BRANCH_WORKFLOW_ENABLEMENT_BLOCKED_PRODUCTION_AUTODEPLOY_RISK"
     ,
-    "PR_5_CONFLICTING_WITH_FAILED_VERCEL_AND_PRODUCTION_GATE_CONTEXTS"
+    "PR_5_CONFLICTING_WITH_FAILED_VERCEL_AND_PRODUCTION_GATE_CONTEXTS",
+    "STAGING_MIGRATION_20260516223000_NOT_APPLIED",
+    "FULL_REAL_USER_BROWSER_SMOKE_NOT_RUN"
   ],
   "blockedBy": [
     "BLOCKED_EXTERNAL_CREDENTIALS",
