@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-autonomous-bootstrap",
-  "cycle": "CYCLE_EXPRESSJOBS_066_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
-  "current_mode": "EXPRESSJOBS_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
-  "mode": "EXPRESSJOBS_SAFE_GITHUB_WORKFLOW_ENABLEMENT_AND_FULL_PREVIEW",
+  "cycle": "CYCLE_EXPRESSJOBS_068_REPORT",
+  "current_mode": "EXPRESSJOBS_SECURITY_AUDIT",
+  "mode": "EXPRESSJOBS_SECURITY_AUDIT",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -193,6 +193,23 @@
   "github_project_blueprint": "READY",
   "github_seed_issues": "CREATED",
   "github_seed_issue_numbers": [6, 7, 8, 9],
+  "github_pr_triage": {
+    "inspected_at": "2026-05-16",
+    "open_prs": [12, 19, 20],
+    "pr_12": "CONFLICTING_CHECKS_GREEN_DO_NOT_MERGE_UNTIL_RESOLVED",
+    "pr_19": "MERGEABLE_BUT_SECURITY_GATE_AND_VERCEL_FAILED_DO_NOT_MERGE",
+    "pr_20": "MERGEABLE_BUT_SECURITY_GATE_PR_CHECK_AND_VERCEL_FAILED_DO_NOT_MERGE",
+    "dependabot_recommendation": "HOLD_UNTIL_GATES_PASS_AND_ESLINT10_COMPATIBILITY_RESOLVED",
+    "highest_impact_next_action": "FIX_GITHUB_SECURITY_GATE_FALSE_POSITIVE_AND_RECONCILE_PR_QUEUE"
+  },
+  "github_security_gate_fix": {
+    "status": "APPLIED_LOCAL_PENDING_REMOTE_CI",
+    "allow_sanitized_env_examples": true,
+    "blocked_real_env_files": true,
+    "blocked_vercel_metadata": true,
+    "blocked_logs_archives": true,
+    "remote_ci_rerun_required": true
+  },
   "operator_secret_entry_shell_opened": true,
   "operator_secret_entry_directory": "C:\\CODEX-expressjobs-repo",
   "env_files_visible_to_codex": {
@@ -238,6 +255,9 @@
     "github_task_router": "active",
     "github_cli_activation": "pass",
     "github_preview_pipeline_local_validation": "pass",
+    "github_pr_triage": "pass_inspected_open_prs_no_write_actions",
+    "github_security_gate_fix": "pass_local_checks",
+    "tracked_artifact_allowlist": "pass_env_examples_allowed_real_artifacts_blocked",
     "guard_no_production_deploy": "pass"
   },
   "blocking_items": [
@@ -255,13 +275,16 @@
     ,
     "DEFAULT_BRANCH_WORKFLOW_ENABLEMENT_BLOCKED_PRODUCTION_AUTODEPLOY_RISK"
     ,
-    "PR_5_CONFLICTING_WITH_FAILED_VERCEL_AND_PRODUCTION_GATE_CONTEXTS"
+    "PR_5_CONFLICTING_WITH_FAILED_VERCEL_AND_PRODUCTION_GATE_CONTEXTS",
+    "PR_12_CONFLICTING",
+    "PR_19_SECURITY_GATE_AND_VERCEL_FAILED_REQUIRES_RERUN_AFTER_FIX",
+    "PR_20_SECURITY_GATE_PR_CHECK_AND_VERCEL_FAILED_REQUIRES_RERUN_AFTER_FIX"
   ],
   "blockedBy": [
     "BLOCKED_EXTERNAL_CREDENTIALS",
     "BLOCKED_PRODUCTION_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
-  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
+  "next_mode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO",
+  "nextMode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO",
   "next_prompt_generated": true
 }

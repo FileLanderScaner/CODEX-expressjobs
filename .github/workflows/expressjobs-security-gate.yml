@@ -24,7 +24,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git ls-files | grep -E '(^|/)\.env($|\.|/)|(^|/)\.vercel(/|$)|\.(zip|7z|tar|tar\.gz)$|\.log$'; then
+          blocked_files="$(git ls-files | grep -E '(^|/)\.env($|\.|/)|(^|/)\.vercel(/|$)|\.(zip|7z|tar|tar\.gz)$|\.log$' | grep -Ev '(^|/)\.env(\.[A-Za-z0-9_-]+)?\.example$' || true)"
+          if [ -n "$blocked_files" ]; then
+            printf '%s\n' "$blocked_files"
             echo "Blocked: secret-bearing, local, archive, or log file is tracked."
             exit 1
           fi
