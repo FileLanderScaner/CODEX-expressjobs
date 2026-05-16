@@ -77,6 +77,8 @@ PR #29 was closed as superseded by PR #30.
 | PR #30 `production-no-go` | `PASS` |
 | PR #30 Vercel Preview | `SUCCESS` |
 | PR #30 Supabase Preview | `SUCCESS` |
+| local `next start` HTTP smoke | `PASS_REAL_ROUTES_200_DEMO_404` |
+| in-app browser smoke | `PASS_NO_DEMO_TEXT_DEMO_404` |
 
 ## Autoevaluation
 

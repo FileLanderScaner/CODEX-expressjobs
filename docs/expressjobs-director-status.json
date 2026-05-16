@@ -257,7 +257,9 @@
     "remove_demos_public_surface": "pass",
     "no_public_demo_routes": "pass",
     "real_product_surface_tests": "pass_8_files_45_tests",
-    "remove_demos_build": "pass_no_demo_routes"
+    "remove_demos_build": "pass_no_demo_routes",
+    "remove_demos_http_smoke_local": "pass_real_routes_200_demo_404",
+    "remove_demos_browser_smoke_local": "pass_no_demo_text_demo_404"
   },
   "blocking_items": [
     "SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
