@@ -43,7 +43,7 @@ Convert the client/worker marketplace loop from mostly visual to real Supabase-b
 | GitHub PR #29 `security-gate` | `PASS` |
 | GitHub PR #29 `production-no-go` | `PASS` |
 | GitHub PR #29 Vercel Preview | `SUCCESS` |
-| GitHub PR #29 Supabase Preview | `IN_PROGRESS_AFTER_WAIT` |
+| GitHub PR #29 Supabase Preview | `SUCCESS` |
 
 ## Autoevaluation
 
@@ -51,12 +51,12 @@ Convert the client/worker marketplace loop from mostly visual to real Supabase-b
 - Technical risk reduced: yes. Acceptance is handled through RPC, self-apply is blocked by UI and migration, and auth `next` redirects reduce broken protected flows.
 - Security maintained: yes. No service-role key in client, no secrets printed, no RLS relaxed, no production touched.
 - Checks passed: yes, including local build and current staging/RLS smoke.
-- Blocked: the new migration was not applied remotely; Supabase Preview did not finish during this cycle; full real-user browser smoke needs staging migration + Preview.
+- Blocked: the new migration was not manually applied to the canonical staging environment; full real-user browser smoke needs staging migration confirmation and tester sessions.
 - Highest-impact next step: deploy Preview from PR, apply the migration to staging after human approval, then run the full real-user browser smoke.
 
 ## Staging Status
 
-Current existing staging RLS smoke still passes. New migration `20260516223000_harden_real_marketplace_flow.sql` is in PR #29 and not applied manually to staging in this cycle. Supabase Preview for PR #29 remained in progress after waiting.
+Current existing staging RLS smoke still passes. New migration `20260516223000_harden_real_marketplace_flow.sql` is in PR #29 and was validated by Supabase Preview, but it was not manually applied to the canonical staging environment in this cycle.
 
 ## Production Status
 
@@ -70,7 +70,7 @@ No `vercel --prod`, no `vercel promote`, no Production env mutation, no Supabase
 - `BLOCKED_EXTERNAL_CREDENTIALS`: PayPal paid pilot remains blocked.
 - `BLOCKED_MISSING_ACCESS`: full Preview pipeline still depends on GitHub/Vercel/Supabase operational access.
 - `STAGING_MIGRATION_NOT_APPLIED`: marketplace RPC/RLS migration needs staging apply before full real-user smoke.
-- `SUPABASE_PREVIEW_IN_PROGRESS`: PR #29 Supabase Preview had not completed by final check.
+- `FULL_REAL_USER_BROWSER_SMOKE_NOT_RUN`: needs canonical staging migration confirmation and real test sessions.
 
 ## Next Mode
 
