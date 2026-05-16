@@ -7,12 +7,14 @@ export function ApplicationCard({
   proposedAmount,
   status,
   reputationScore,
+  actions,
 }: {
   workerName: string;
   message: string;
   proposedAmount: string;
   status: ApplicationStatus;
   reputationScore: number;
+  actions?: React.ReactNode;
 }) {
   return (
     <article className="rounded-md border border-[var(--line)] bg-white p-4">
@@ -28,9 +30,11 @@ export function ApplicationCard({
       <p className="mt-3 text-sm leading-6">{message}</p>
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
         <strong>{proposedAmount}</strong>
-        <button className="focus-ring inline-flex items-center gap-2 rounded-md border border-[var(--line)] px-3 py-2 text-sm font-bold hover:bg-[#f3f5f1]">
-          <CheckCircle2 aria-hidden="true" size={16} /> Aceptar
-        </button>
+        {actions ?? (
+          <span className="inline-flex items-center gap-2 rounded-md border border-[var(--line)] px-3 py-2 text-sm font-bold text-[var(--muted)]">
+            <CheckCircle2 aria-hidden="true" size={16} /> Gestion desde cliente
+          </span>
+        )}
       </div>
     </article>
   );

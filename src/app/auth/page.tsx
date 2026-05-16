@@ -12,12 +12,13 @@ const oauthErrorMessages: Record<string, string> = {
 };
 
 type AuthPageProps = {
-  searchParams?: Promise<{ oauth_error?: string }> | { oauth_error?: string };
+  searchParams?: Promise<{ oauth_error?: string; next?: string }> | { oauth_error?: string; next?: string };
 };
 
 export default async function AuthPage({ searchParams }: AuthPageProps) {
   const resolvedSearchParams = await searchParams;
   const oauthError = resolvedSearchParams?.oauth_error;
+  const nextPath = resolvedSearchParams?.next;
   const oauthErrorMessage = oauthError ? (oauthErrorMessages[oauthError] ?? "El inicio con Google no se pudo completar.") : null;
 
   return (
@@ -34,8 +35,8 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
             </div>
           </div>
         ) : null}
-        <AuthEmailForm />
-        <SocialAuthButtons />
+        <AuthEmailForm nextPath={nextPath} />
+        <SocialAuthButtons nextPath={nextPath} />
       </main>
     </AppShell>
   );

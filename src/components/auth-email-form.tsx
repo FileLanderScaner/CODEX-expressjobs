@@ -5,7 +5,7 @@ import { useState } from "react";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 import { buildOAuthRedirectTo, getBrowserOAuthAppUrl } from "@/lib/social-auth";
 
-export function AuthEmailForm() {
+export function AuthEmailForm({ nextPath }: { nextPath?: string }) {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "sent" | "error">("idle");
   const [message, setMessage] = useState<string | null>(null);
@@ -34,7 +34,7 @@ export function AuthEmailForm() {
     const { error } = await supabase.auth.signInWithOtp({
       email: normalizedEmail,
       options: {
-        emailRedirectTo: buildOAuthRedirectTo(getBrowserOAuthAppUrl()),
+        emailRedirectTo: buildOAuthRedirectTo(getBrowserOAuthAppUrl(), nextPath),
       },
     });
 
