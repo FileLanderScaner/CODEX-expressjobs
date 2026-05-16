@@ -7,11 +7,11 @@
 | Code | `CODE_READY` | MVP foundation implemented. |
 | Local checks | `PASS` | Required local checks pass. |
 | Static RLS | `PASS` | Static RLS tests pass. |
-| Supabase staging | `BLOCKED_SUPABASE_ACCESS` | No MCP/CLI access available yet. |
-| RLS real smoke | `BLOCKED_SUPABASE_ACCESS` | Requires staging project and users. |
-| Vercel Preview | `PREVIEW_FAIL_SAFE_BLOCKED` | Deployments were production-target and removed. |
-| Safe retry | `false` | Retry blocked until Supabase/Vercel fixes. |
-| First 10 testers | `NO-GO` | Requires RLS real PASS and Preview PASS. |
+| Supabase staging | `RLS_READY` | Staging env and real RLS smoke pass. |
+| RLS real smoke | `PASS` | `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`. |
+| Vercel Preview | `READY_PROTECTED_401` | Preview deploy is READY, but HTTP smoke receives Vercel Authentication 401. |
+| Safe retry | `preview-access-blocked` | Preview exists; public/browser QA waits on protected deployment access. |
+| First 10 testers | `NO-GO` | Requires accessible Preview browser smoke pass. |
 | First 100 users | `NO-GO` | Requires first 10/25 gates first. |
 | Payments | `DISABLED_SAFE` | No live payments. |
 | AI agents | `DISABLED_SAFE` | No AI agents active. |
@@ -19,4 +19,4 @@
 
 ## Current Decision
 
-ExpressJobs / Trabajos Rapidos is ready for environment setup, not ready for public use.
+ExpressJobs / Trabajos Rapidos has staging RLS proof and a Vercel Preview deployment, but is not ready for testers until Preview access/browser smoke passes.

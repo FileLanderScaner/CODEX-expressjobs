@@ -1,0 +1,40 @@
+name: RLS task
+description: Supabase RLS or policy-related task.
+title: "[RLS]: "
+labels: ["type-rls", "risk-rls", "status-needs-human", "codex-human-gate-required"]
+body:
+  - type: markdown
+    attributes:
+      value: "RLS changes are high risk. Do not relax policies or apply remote migrations without explicit human approval."
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: tables
+    attributes:
+      label: Tables/policies affected
+    validations:
+      required: true
+  - type: dropdown
+    id: relaxes_rls
+    attributes:
+      label: Does this relax access?
+      options: ["no", "yes - blocked until human approval"]
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+  - type: textarea
+    id: checks
+    attributes:
+      label: Required checks
+      value: |
+        npm run secret:scan
+        npm run test:rls:static
+        npm run rls:smoke
+        npm run production:check

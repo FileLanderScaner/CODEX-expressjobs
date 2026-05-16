@@ -1,0 +1,64 @@
+name: expressjobs-production-no-go
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+jobs:
+  production-no-go:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm production remains blocked
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f docs/EXPRESSJOBS_DIRECTOR_STATUS.md
+          test -f docs/expressjobs-director-status.json
+          grep -q 'NO-GO_PRODUCTION' docs/EXPRESSJOBS_DIRECTOR_STATUS.md
+          grep -q 'NO-GO_PRODUCTION' docs/expressjobs-director-status.json
+      - name: Block tracked local/secret artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Block real env files but allow safe .example templates
+          tracked_env_files="$(
+            git ls-files \
+              | grep -E '(^|/)\.env(\.|$)' \
+              | grep -vE '(^|/)\.env(\..*)?\.example$' \
+              || true
+          )"
+          if [ -n "$tracked_env_files" ]; then
+            echo "PRODUCTION_NO_GO=FAIL_TRACKED_ENV_FILES"
+            echo "$tracked_env_files"
+            exit 1
+          fi
+          if git ls-files | grep -E '(^|/)\.vercel(/|$)|\.(zip|7z|tar|tar\.gz)$|\.log$'; then
+            echo "PRODUCTION_NO_GO=FAIL_TRACKED_LOCAL_ARTIFACTS"
+            echo "Blocked: Vercel metadata, archive, or log file is tracked."
+            exit 1
+          fi
+      - name: Block production/live patterns outside docs
+        shell: bash
+        run: |
+          set -euo pipefail
+          files="$(git ls-files \
+            'src/**' \
+            'scripts/**' \
+            'supabase/**' \
+            'vercel.json' \
+            'package.json' \
+            '.github/workflows/**' \
+            ':!docs/**' \
+            ':!.github/workflows/expressjobs-security-gate.yml' \
+            ':!.github/workflows/expressjobs-preview-pipeline.yml' \
+            ':!.github/workflows/expressjobs-production-no-go.yml' \
+            ':!scripts/assert-no-production-deploy.mjs' \
+            2>/dev/null || true)"
+          if [ -n "$files" ] && grep -En 'vercel[[:space:]]+--prod|vercel[[:space:]]+promote|PAYPAL_ENVIRONMENT[[:space:]]*=[[:space:]]*live|PAYPAL_LIVE[[:space:]]*=[[:space:]]*true|ENABLE_AI_AGENTS[[:space:]]*=[[:space:]]*true|SUPABASE_SERVICE_ROLE_KEY[[:space:]]*=[[:space:]]*[A-Za-z0-9._-]{20,}' $files; then
+            echo "Blocked: production, live payment, AI, or concrete service-role value detected."
+            exit 1
+          fi

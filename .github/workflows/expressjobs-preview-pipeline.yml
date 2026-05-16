@@ -1,0 +1,264 @@
+name: ExpressJobs Preview Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      task:
+        description: "Task to run"
+        required: true
+        default: "full_preview"
+        type: choice
+        options:
+          - checks_only
+          - supabase_check
+          - rls_smoke
+          - vercel_preview
+          - full_preview
+      allow_supabase_write:
+        description: "Allow Supabase write/migration operations"
+        required: true
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: read
+
+jobs:
+  repo_checks:
+    name: Repo checks
+    runs-on: ubuntu-latest
+    env:
+      PRODUCTION_STATUS: NO-GO_PRODUCTION
+      ENABLE_PAYMENTS: "false"
+      ENABLE_AI_AGENTS: "false"
+      AI_KILL_SWITCH: "true"
+      ENABLE_ADMIN_PANEL: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run secret:scan
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test
+      - run: npm run test:rls:static
+      - run: npm run build
+      - run: npm run production:check
+
+  supabase_staging_check:
+    name: Supabase staging check
+    runs-on: ubuntu-latest
+    needs: repo_checks
+    if: ${{ github.event.inputs.task == 'supabase_check' || github.event.inputs.task == 'rls_smoke' || github.event.inputs.task == 'full_preview' }}
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      APP_ENV: preview
+      NEXT_PUBLIC_APP_URL: https://expressjobs-preview.local
+      ALLOWED_ORIGINS: https://expressjobs-preview.local
+      ENABLE_PAYMENTS: "false"
+      ENABLE_AI_AGENTS: "false"
+      AI_KILL_SWITCH: "true"
+      ENABLE_ADMIN_PANEL: "false"
+      SUPABASE_WRITE_APPROVAL: ${{ github.event.inputs.allow_supabase_write }}
+      ALLOW_SUPABASE_WRITE_APPROVAL: ${{ github.event.inputs.allow_supabase_write }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Validate Supabase staging secrets
+        shell: bash
+        run: |
+          missing=()
+          [ -n "${NEXT_PUBLIC_SUPABASE_URL:-}" ] || missing+=("NEXT_PUBLIC_SUPABASE_URL")
+          [ -n "${NEXT_PUBLIC_SUPABASE_ANON_KEY:-}" ] || missing+=("NEXT_PUBLIC_SUPABASE_ANON_KEY")
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "SUPABASE_STAGING=BLOCKED_EXTERNAL_CREDENTIALS"
+            printf 'Missing GitHub Actions secrets: %s\n' "${missing[*]}"
+            exit 2
+          fi
+      - name: Write temporary staging env
+        shell: bash
+        run: |
+          {
+            printf 'NEXT_PUBLIC_SUPABASE_URL=%s\n' "$NEXT_PUBLIC_SUPABASE_URL"
+            printf 'NEXT_PUBLIC_SUPABASE_ANON_KEY=%s\n' "$NEXT_PUBLIC_SUPABASE_ANON_KEY"
+            printf 'APP_ENV=preview\n'
+            printf 'NEXT_PUBLIC_APP_URL=https://expressjobs-preview.local\n'
+            printf 'ALLOWED_ORIGINS=https://expressjobs-preview.local\n'
+            printf 'ENABLE_PAYMENTS=false\n'
+            printf 'ENABLE_AI_AGENTS=false\n'
+            printf 'AI_KILL_SWITCH=true\n'
+            printf 'ENABLE_ADMIN_PANEL=false\n'
+          } > .env.local
+      - run: npm run guard:no-production-deploy
+      - run: npm run staging:check
+
+  rls_smoke:
+    name: RLS smoke
+    runs-on: ubuntu-latest
+    needs: supabase_staging_check
+    if: ${{ github.event.inputs.task == 'rls_smoke' || github.event.inputs.task == 'full_preview' }}
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+      EXPRESSJOBS_STAGING_CLIENT_EMAIL: ${{ secrets.EXPRESSJOBS_STAGING_CLIENT_EMAIL }}
+      EXPRESSJOBS_STAGING_CLIENT_PASSWORD: ${{ secrets.EXPRESSJOBS_STAGING_CLIENT_PASSWORD }}
+      EXPRESSJOBS_STAGING_WORKER_EMAIL: ${{ secrets.EXPRESSJOBS_STAGING_WORKER_EMAIL }}
+      EXPRESSJOBS_STAGING_WORKER_PASSWORD: ${{ secrets.EXPRESSJOBS_STAGING_WORKER_PASSWORD }}
+      EXPRESSJOBS_STAGING_ADMIN_EMAIL: ${{ secrets.EXPRESSJOBS_STAGING_ADMIN_EMAIL }}
+      EXPRESSJOBS_STAGING_ADMIN_PASSWORD: ${{ secrets.EXPRESSJOBS_STAGING_ADMIN_PASSWORD }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      APP_ENV: preview
+      NEXT_PUBLIC_APP_URL: https://expressjobs-preview.local
+      ALLOWED_ORIGINS: https://expressjobs-preview.local
+      ENABLE_PAYMENTS: "false"
+      ENABLE_AI_AGENTS: "false"
+      AI_KILL_SWITCH: "true"
+      ENABLE_ADMIN_PANEL: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Validate RLS smoke secrets
+        shell: bash
+        run: |
+          missing=()
+          for name in \
+            NEXT_PUBLIC_SUPABASE_URL \
+            NEXT_PUBLIC_SUPABASE_ANON_KEY \
+            EXPRESSJOBS_STAGING_CLIENT_EMAIL \
+            EXPRESSJOBS_STAGING_CLIENT_PASSWORD \
+            EXPRESSJOBS_STAGING_WORKER_EMAIL \
+            EXPRESSJOBS_STAGING_WORKER_PASSWORD \
+            EXPRESSJOBS_STAGING_ADMIN_EMAIL \
+            EXPRESSJOBS_STAGING_ADMIN_PASSWORD
+          do
+            [ -n "${!name:-}" ] || missing+=("$name")
+          done
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "RLS_SMOKE=BLOCKED_EXTERNAL_CREDENTIALS"
+            printf 'Missing GitHub Actions secrets: %s\n' "${missing[*]}"
+            exit 2
+          fi
+      - name: Write temporary RLS env
+        shell: bash
+        run: |
+          {
+            printf 'NEXT_PUBLIC_SUPABASE_URL=%s\n' "$NEXT_PUBLIC_SUPABASE_URL"
+            printf 'NEXT_PUBLIC_SUPABASE_ANON_KEY=%s\n' "$NEXT_PUBLIC_SUPABASE_ANON_KEY"
+            printf 'APP_ENV=preview\n'
+            printf 'EXPRESSJOBS_STAGING_CLIENT_EMAIL=%s\n' "$EXPRESSJOBS_STAGING_CLIENT_EMAIL"
+            printf 'EXPRESSJOBS_STAGING_CLIENT_PASSWORD=%s\n' "$EXPRESSJOBS_STAGING_CLIENT_PASSWORD"
+            printf 'EXPRESSJOBS_STAGING_WORKER_EMAIL=%s\n' "$EXPRESSJOBS_STAGING_WORKER_EMAIL"
+            printf 'EXPRESSJOBS_STAGING_WORKER_PASSWORD=%s\n' "$EXPRESSJOBS_STAGING_WORKER_PASSWORD"
+            printf 'EXPRESSJOBS_STAGING_ADMIN_EMAIL=%s\n' "$EXPRESSJOBS_STAGING_ADMIN_EMAIL"
+            printf 'EXPRESSJOBS_STAGING_ADMIN_PASSWORD=%s\n' "$EXPRESSJOBS_STAGING_ADMIN_PASSWORD"
+          } > .env.rls
+          {
+            printf 'NEXT_PUBLIC_SUPABASE_URL=%s\n' "$NEXT_PUBLIC_SUPABASE_URL"
+            printf 'NEXT_PUBLIC_SUPABASE_ANON_KEY=%s\n' "$NEXT_PUBLIC_SUPABASE_ANON_KEY"
+            printf 'APP_ENV=preview\n'
+            printf 'NEXT_PUBLIC_APP_URL=https://expressjobs-preview.local\n'
+            printf 'ALLOWED_ORIGINS=https://expressjobs-preview.local\n'
+            printf 'ENABLE_PAYMENTS=false\n'
+            printf 'ENABLE_AI_AGENTS=false\n'
+            printf 'AI_KILL_SWITCH=true\n'
+            printf 'ENABLE_ADMIN_PANEL=false\n'
+          } > .env.local
+      - run: npm run guard:no-production-deploy
+      - run: npm run rls:smoke
+
+  vercel_preview:
+    name: Vercel Preview deploy
+    runs-on: ubuntu-latest
+    needs: repo_checks
+    if: ${{ github.event.inputs.task == 'vercel_preview' || github.event.inputs.task == 'full_preview' }}
+    outputs:
+      preview_url: ${{ steps.deploy.outputs.preview_url }}
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      PRODUCTION_STATUS: NO-GO_PRODUCTION
+      APP_ENV: preview
+      ENABLE_PAYMENTS: "false"
+      ENABLE_AI_AGENTS: "false"
+      AI_KILL_SWITCH: "true"
+      ENABLE_ADMIN_PANEL: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run guard:no-production-deploy -- vercel deploy --scope akuma424-projects
+      - name: Validate Vercel secrets
+        shell: bash
+        run: |
+          missing=()
+          [ -n "${VERCEL_TOKEN:-}" ] || missing+=("VERCEL_TOKEN")
+          [ -n "${VERCEL_ORG_ID:-}" ] || missing+=("VERCEL_ORG_ID")
+          [ -n "${VERCEL_PROJECT_ID:-}" ] || missing+=("VERCEL_PROJECT_ID")
+          if [ "${#missing[@]}" -gt 0 ]; then
+            echo "VERCEL_PREVIEW=BLOCKED_EXTERNAL_CREDENTIALS"
+            printf 'Missing GitHub Actions secrets: %s\n' "${missing[*]}"
+            exit 2
+          fi
+      - name: Deploy Vercel Preview
+        id: deploy
+        shell: bash
+        run: |
+          set -o pipefail
+          npx vercel deploy --yes --token "$VERCEL_TOKEN" --scope "akuma424-projects" | tee vercel-preview-output.txt
+          PREVIEW_URL="$(grep -Eo 'https://[^ ]+\.vercel\.app' vercel-preview-output.txt | tail -n 1)"
+          if [ -z "$PREVIEW_URL" ]; then
+            echo "VERCEL_PREVIEW=BLOCKED_PREVIEW_URL_NOT_FOUND"
+            exit 2
+          fi
+          echo "preview_url=$PREVIEW_URL" >> "$GITHUB_OUTPUT"
+          echo "VERCEL_PREVIEW=PASS $PREVIEW_URL"
+      - name: Preview smoke
+        shell: bash
+        run: npm run smoke:preview -- --url "${{ steps.deploy.outputs.preview_url }}"
+
+  pipeline_summary:
+    name: Pipeline summary
+    runs-on: ubuntu-latest
+    needs:
+      - repo_checks
+      - supabase_staging_check
+      - rls_smoke
+      - vercel_preview
+    if: ${{ always() }}
+    env:
+      PIPELINE_TASK: ${{ github.event.inputs.task }}
+      REPO_CHECKS_STATUS: ${{ needs.repo_checks.result }}
+      SUPABASE_STATUS: ${{ needs.supabase_staging_check.result }}
+      RLS_SMOKE_STATUS: ${{ needs.rls_smoke.result }}
+      VERCEL_PREVIEW_STATUS: ${{ needs.vercel_preview.result }}
+      PREVIEW_URL: ${{ needs.vercel_preview.outputs.preview_url }}
+      BLOCKERS: "- RLS_ROLE_ESCALATION_RISK remains until hardening is applied and smoke-passed.\n- GitHub Actions secrets must be configured before live Supabase/Vercel jobs can pass."
+      NEXT_RECOMMENDED_ACTION: "Add required GitHub Actions secrets, keep Production blocked, then run full_preview manually."
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/github-actions-status-summary.mjs
+      - name: Write job summary
+        shell: bash
+        run: cat docs/github-actions/EXPRESSJOBS_PREVIEW_PIPELINE_LAST_STATUS.md >> "$GITHUB_STEP_SUMMARY"

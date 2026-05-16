@@ -24,6 +24,55 @@ Cycle 016 closed the environment blockers with Supabase access and Vercel Previe
 Cycle 017 consolidated the current state index, master next steps runbook, status matrix, and future Codex prompts for safe handoff.
 Cycle 018 retried Supabase staging activation. Supabase CLI was available through `npx`, local init completed, and local metadata points to `supabase-expressjobs`, but remote commands remained blocked because `SUPABASE_ACCESS_TOKEN` was not present in the Codex process. A pasted token must be revoked/rotated before retry.
 Cycle 018 read-only audit confirmed Supabase MCP is configured globally, but callable Supabase MCP tools were not exposed in the active agent process. Remote schema remains unverified.
+Cycle 019 confirmed Supabase MCP tools are exposed in this Codex session for read-only work. Remote `public.ej_*` schema matches the local MVP migration at the table/RLS/policy/helper level. Write access remains blocked for real RLS smoke tests, and Supabase Advisor warnings for helper function `search_path` must be handled in a future reviewed migration.
+Cycle 020 prepared a non-destructive migration to pin `search_path` for `public.ej_is_admin()` and `public.ej_is_job_participant(uuid)`. Remote apply and real RLS smoke remain blocked because `SUPABASE_ACCESS_TOKEN`, Supabase URL/anon key, and service-role auth capability are not present in the Codex process.
+Cycle 021 rechecked secure staging capability. `SUPABASE_ACCESS_TOKEN`, Supabase URL/anon key, and service-role key are still missing, so no remote link, migration apply, staging user creation, or RLS smoke write was attempted.
+Cycle 022 recorded a Supabase service-role credential exposure in chat. The credential must be rotated before any staging write, migration apply, user creation, or RLS smoke execution.
+Cycle 023 opened a local PowerShell in the Git repo for secure secret entry and prepared operator instructions. No secret values were printed or stored by Codex.
+Cycle 024 attempted to continue after the operator reported APIs rotated, but the active Codex process could not see `.env.local`, `.env.rls`, process env vars, user env vars, or machine env vars for Supabase/Vercel staging. No remote write was attempted.
+Cycle 025 diagnosed PowerShell process isolation and added `scripts/write-local-env-from-process.ps1` so the operator can safely persist already-pasted process env vars into ignored local env files without printing secrets.
+Cycle 026 used Supabase MCP to recover staging project URL and publishable key, created ignored `.env.local`, added automatic env loading to staging/RLS scripts, added anon-signup RLS bootstrap, and passed staging/API checks. Real RLS smoke remains blocked because Supabase Auth requires email confirmation and the MCP/CLI path is read-only for service-role user creation.
+Cycle 027 executed the requested RLS smoke gate. Pre-checks passed, but anon bootstrap hit Supabase Auth signup/email limits and `.env.rls` with service-role/confirmed test users is absent, so `npm run rls:smoke` remains blocked before policy execution.
+Cycle 028 retried the RLS smoke gate after another operator prompt. Pre-checks still pass, but anon bootstrap returns `email rate limit exceeded`; remote readback shows 1 staging signup user and 0 confirmed staging users. Real RLS smoke remains blocked before policy execution.
+Cycle 029 retried after `.env.rls` was provided with all six RLS smoke credential variables present. `npm run rls:smoke` reached Supabase Auth and failed on the first client login with invalid credentials, so RLS policy execution was not reached.
+Cycle 030 repeated the Auth-users-created RLS gate. Pre-checks and secret scans passed, but `npm run rls:smoke` again failed on the first client login with invalid credentials. RLS policies were not exercised.
+Cycle 031 resolved the client Auth blocker through staging-safe signup/profile setup and `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`. Full local checks passed. A Vercel Preview deployment was created without `--prod`, but browser HTTP smoke is blocked by Vercel Authentication 401.
+Cycle 032 retried Preview access/browser smoke. No local/CI bypass secret was available, shareable protected access was unavailable, and all critical Preview routes returned 401. Production remains untouched.
+Cycle 033 used the local/user Vercel automation bypass secret through the `x-vercel-protection-bypass` header. Preview browser smoke passed on all critical routes, full gate passed, and first 10 testers are now `GO_CONTROLLED_INTERNAL_ONLY` while Production remains `NO-GO_PRODUCTION`.
+Cycle 033 first-10 continuation prepared the controlled internal tester package with onboarding, messages, feedback capture, triage board, and post-pilot GO/NO-GO criteria. No tester contact was sent and Production remains `NO-GO_PRODUCTION`.
+Cycle 034 executed a First 10 dry-run with placeholder testers, simulated feedback, and simulated triage. No real testers were contacted, no real personal data was used, `SEARCH_PATH_FIX=APPLIED`, and only Security Advisor recheck remains `PENDING_OR_NOT_RECHECKED`.
+Cycle 035 prepared the human-approved manual contact package for First 10 internal testers, including approval checklist, assignment template, session runbook, final copy messages, live monitoring runbook, and post-test decision matrix. No real testers were contacted.
+Cycle 036 added Social Auth Phase 1 code for Google and Facebook through Supabase Auth, guarded by disabled-by-default feature flags and a whitelisted OAuth helper. Instagram remains `RESEARCH_PENDING`; provider configuration is manual and production remains `NO-GO_PRODUCTION`.
+Cycle 037 deployed a new Vercel Preview without production promotion, enabled Google social-auth flag only for the Preview branch, and verified `/auth` with protected bypass header. Google OAuth starts but is blocked by Google `redirect_uri_mismatch`; Facebook remains disabled and Instagram remains research-only.
+Cycle 038 rechecked Google OAuth after the manual redirect URI fix. The `redirect_uri_mismatch` is resolved, Google OAuth reaches the Google account sign-in screen, and callback/session validation is now blocked only by controlled manual login with a staging/test Google account.
+Cycle 039 confirmed the staging/test Google account is authorized per operator statement, revalidated that Google OAuth reaches the Google sign-in screen, and marked the flow `READY_FOR_HUMAN_BROWSER_TEST`. No credentials, cookies, tokens, user IDs, or account details were recorded.
+Cycle 040 diagnosed the Supabase Auth callback failure after human Google login. The previous redirect URI issue is resolved, but Supabase reported `invalid_client` because the Google Client Secret configured in Supabase was invalid. No secret values were recorded.
+Cycle 041 rechecked after the operator reported the Client Secret was corrected. Codex can still only reach the Google sign-in screen without human credentials, so session creation remains `not_tested` until a human completes login and reports sanitized callback/session status.
+Cycle 042 fixed the Preview Google OAuth `redirect_to` construction. The app now uses the browser origin for OAuth redirects in Preview instead of the local fallback URL. A new Preview deployment is READY, `/auth` loads with bypass header, Google starts OAuth, and the intercepted sanitized authorize request points to the current Preview `/auth/callback`.
+Cycle 043 recorded the human browser verification for Google OAuth. The operator completed login and reached `/role`, which confirms callback exchange, session creation, and safe profile creation/presence in the current callback flow.
+Cycle 044 ran the full release gate after Google OAuth Preview PASS. Secret scan, staging check, static RLS, real RLS smoke, lint, typecheck, tests, build, production guard, and diff check all passed. The gate decision is `PASS_FOR_FIRST_10_CONTROLLED_INTERNAL`; production remains `NO-GO_PRODUCTION`.
+Cycle 045 audited PayPal and Supabase tooling for a future paid pilot. PayPal is not implemented, which keeps live charging safely impossible but blocks paid pilot readiness until sandbox subscriptions, webhook signature verification, and server-side subscription storage are built. Supabase CLI is available; Supabase MCP requires auth in the current session.
+Cycle 046 set up GitHub as the task router blueprint and repo configuration surface: issue templates, PR template, CODEOWNERS, Dependabot, Actions gates, label taxonomy, routing docs, branch protection plan, rulesets plan, Project board blueprint, and manual seed issue commands. GitHub CLI is missing in the current shell, so labels/issues were documented, not created.
+Cycle 047 closed the GitHub CLI blocker using the installed GitHub CLI at `C:\Program Files\GitHub CLI\gh.exe`. GitHub auth is PASS for `FileLanderScaner`, the repo is `FileLanderScaner/CODEX-expressjobs`, all 37 task-router labels are present, and the four approved seed issues were created as #6-#9.
+Cycle 048 prepared the PayPal sandbox subscription smoke implementation. Sandbox config, server-side PayPal client helpers, create-subscription route, webhook route, webhook signature verification, subscription state machine, smoke script, and tests are in place. Live PayPal and production are blocked. Real sandbox execution remains blocked by external PayPal sandbox credentials and Preview env configuration.
+Cycle 049 closed the PayPal sandbox credential gate without printing values. The canonical env names were verified, `npm run paypal:sandbox:smoke` returned `BLOCKED_EXTERNAL_CREDENTIALS`, issue #7 remains open/blocked, and production/live payments remain untouched.
+Cycle 050 prepared the monetization operating package for a future paid pilot while preserving the external credentials blocker. PayPal remains sandbox-only and live payments remain off.
+Cycle 051 completed a pre-expansion security audit. Auth, RLS, secrets, production safety, and First 10 tester safety passed. Payments are safe at code level but paid pilot remains blocked by PayPal sandbox credentials and webhook resource-binding work.
+Cycle 052 prepared the staged First 100 expansion package as plan-only documentation. First 25, First 50, and First 100 remain blocked until prior cohort evidence passes.
+Cycle 053 audited Vercel Preview safety. The latest inspected deployment is Preview/Ready, recent visible deployments were Preview, and no Production deploy/promote/env mutation was performed. Current automated smoke is blocked by Deployment Protection 401 because the bypass secret is not visible in this Codex process.
+Cycle 054 revalidated the security audit after the Vercel Preview safety audit. Secret scan, staging check, static RLS, real RLS smoke, lint, typecheck, tests, build, production guard, and diff check all passed.
+Cycle 055 verified Supabase security specifically. The command gate and real RLS smoke pass, but `profiles_update_own` allows user-controlled role updates, which can enable admin self-escalation because `ej_is_admin()` trusts `ej_profiles.role`. First 10 is now blocked until RLS role hardening is applied and re-tested.
+Cycle 056 prepared the local RLS role hardening migration, static tests, and post-apply smoke cases. The migration was not applied remotely.
+Cycle 057 attempted the staging apply gate for the prepared RLS role hardening migration. Supabase MCP returned `Auth required`, `SUPABASE_ACCESS_TOKEN` and direct Postgres URL envs were missing, and no remote write was attempted. `staging:check` also blocked on unsafe staging feature flags. Production remains `NO-GO_PRODUCTION`.
+Cycle 058 created the Revenue Command Center operating pack for manual same-day sales. The pack includes landing page, sponsored banner, manual job posting, esthetics/Sofia offers, WhatsApp scripts, objection handling, intake, payment/delivery tracker, daily revenue dashboard, `/sponsor`, `/ofertas`, and `/landing-negocios` pilot pages with manual CTA. Payments remain manual outside the app and Production remains `NO-GO_PRODUCTION`.
+Cycle 059 retried the RLS role hardening apply gate with local staging flag repair. Ignored `.env.local` was normalized so `staging:check` passes, but Supabase MCP still returned `Auth required` and no `SUPABASE_ACCESS_TOKEN` or direct Postgres URL was available. No remote migration was applied.
+Cycle 060 strengthened the online revenue operator with 24-hour and 7-day sales plans, WhatsApp scripts, Facebook Marketplace/group posts, Instagram stories, LinkedIn copy, Workana/Fiverr profiles, intake forms, lead/close trackers, and risk mitigations. No users were contacted by Codex and payments remain manual outside the app.
+Cycle 061 updated the revenue daily sales execution tracker. No real human sales activity was provided, so the dashboard and trackers were prepared with zero activity and `NO_REAL_ACTIVITY_REPORTED`. No users were contacted by Codex and payments remain manual outside the app.
+Cycle 062 read the GitHub task-router directives and executed `EXPRESSJOBS_SUPABASE_RLS_SMOKE_TESTS`. Local gates passed, but real RLS smoke failed because the staging client could still self-promote to `admin`; Codex restored that staging test profile back to `client` without printing secrets. Supabase CLI write capability remains blocked because `SUPABASE_ACCESS_TOKEN` is missing, so the prepared hardening migration was not applied. Production remains `NO-GO_PRODUCTION`.
+Cycle 063 prepared the GitHub Actions Supabase/Vercel Preview pipeline. The workflow is manual-only, runs repo checks, can run Supabase staging checks and RLS smoke with GitHub secrets, can deploy Vercel Preview without `--prod`, and writes an Actions summary. Local validation passed; live GitHub UI execution remains blocked until the workflow exists on the default branch, required GitHub Actions secrets are configured, and the RLS hardening blocker is resolved.
+Cycle 064 attempted RLS hardening and GitHub Actions enablement. The migration safety review passed, but Supabase staging write remains blocked because `SUPABASE_ACCESS_TOKEN` and direct Postgres write URLs are absent. GitHub Actions secrets list returned zero visible repo secrets. Default-branch workflow enablement is blocked by production auto-deploy risk: `main` is default, not protected, Vercel Git integration is active, and PR #5 currently has Vercel/production gate failures. No production, Vercel Production env, PayPal live, or Supabase production action was performed.
+Cycle 065 verified the manually applied RLS hardening migration against Supabase staging `gnsfyvsodslnehszanra`. `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`, proving normal users cannot update `ej_profiles.role` or self-promote to admin. The full local gate passed. GitHub Actions Preview pipeline remains blocked by missing visible repo secrets and default-branch production auto-deploy risk.
+Cycle 066 attempted safe GitHub workflow enablement and full Preview. RLS still passes, but GitHub Actions secrets remain absent/hidden, the new workflow is still not registered on the default branch, PR #5 remains conflicting, `main` is unprotected, and Vercel Git integration is active with failing Vercel/production contexts. No PR to `main`, merge, cherry-pick, workflow run, Vercel deploy, or production action was performed.
 
 ## Current Scope
 
@@ -41,6 +90,20 @@ Cycle 018 read-only audit confirmed Supabase MCP is configured globally, but cal
 - Domain service layer with local fallback
 - Supabase schema/RLS migration
 - Tracking fallback local storage
+- Google/Facebook OAuth code path behind feature flags
+- OAuth callback that creates safe default client profiles
+- Google OAuth Preview redirect_to fix
+- First 10 manual approval gate
+- PayPal/sandbox paid pilot audit docs
+- Monetization prep and paid pilot human gate docs
+- Security audit docs
+- First 100 staged expansion docs
+- Vercel Preview safety audit docs
+- Supabase tooling audit docs
+- GitHub task router docs and repository templates
+- GitHub CLI task-router activation with labels and seed issues
+- PayPal sandbox-only subscription smoke code and docs
+- GitHub Actions Preview pipeline for repo checks, Supabase staging, RLS smoke, and Vercel Preview
 
 ## Not Active
 
@@ -48,7 +111,13 @@ Cycle 018 read-only audit confirmed Supabase MCP is configured globally, but cal
 - Live payments
 - AI agents in production
 - Admin panel by default
+- Social providers in production
+- Instagram login
 
 ## Next Gate
 
-Refresh Codex or otherwise expose callable Supabase MCP tools, then rerun read-only schema inspection before any migration or RLS real smoke execution.
+Resolve GitHub Actions enablement safely: configure required repo secrets, resolve PR/default-branch production risk, keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`, and only then register/run the GitHub Actions `ExpressJobs Preview Pipeline` with `full_preview`.
+
+## Current Operator Action
+
+Current fastest safe release-ops step: configure required GitHub Actions secrets and resolve Vercel/default-branch auto-deploy risk without triggering Production. Production remains blocked.

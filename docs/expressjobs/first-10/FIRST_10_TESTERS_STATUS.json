@@ -1,0 +1,20 @@
+{
+  "project": "ExpressJobs / Trabajos Rapidos",
+  "production_status": "NO-GO_PRODUCTION",
+  "first_10_testers": "GO_CONTROLLED_INTERNAL_ONLY",
+  "rls_real_smoke_status": "PASS",
+  "preview_browser_smoke": "PASS",
+  "first_10_package_status": "READY",
+  "first_10_dry_run_status": "PASS",
+  "first_10_contact_package_status": "READY",
+  "real_tester_contact": "READY_FOR_MANUAL_SEND",
+  "testers_real_contacted": false,
+  "real_personal_data_used": false,
+  "search_path_fix": "APPLIED",
+  "security_advisor_recheck": "PENDING_OR_NOT_RECHECKED",
+  "payments_live": "OFF",
+  "ai_agents_production": "OFF",
+  "vercel_production_touched": false,
+  "safe_to_contact_internal_testers": true,
+  "safe_to_open_public_production": false
+}

@@ -7,8 +7,8 @@
 ExpressJobs / Trabajos Rapidos is currently:
 
 - `CODE_READY`
-- `CODE_READY_ENV_PENDING`
-- `NO-GO_PUBLIC_COHORT_UNTIL_PREVIEW_AND_RLS_PASS`
+- `RLS_READY_PREVIEW_PROTECTED`
+- `NO-GO_PUBLIC_COHORT_UNTIL_PREVIEW_BROWSER_PASS`
 - `NO-GO_PRODUCTION`
 
 ## What Is Approved
@@ -29,25 +29,24 @@ ExpressJobs / Trabajos Rapidos is currently:
 - Production env changes.
 - Live payments.
 - AI agents in production.
-- Any claim that Supabase RLS has passed live staging smoke tests.
-- Any claim that a public Preview is ready before Vercel evidence exists.
+- Any claim that public Preview browser QA passed before Vercel Authentication access is resolved.
 
 ## Blocking Items
 
-- `BLOCKED_SUPABASE_ACCESS`
-- `BLOCKED_VERCEL_ACCESS`
+- `BLOCKED_PREVIEW_BROWSER_SMOKE_AUTH_401`
+- `BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY`
 
 ## Required Gate To Open First 10 Testers
 
 The first 10 controlled testers remain blocked until all of the following are true:
 
-- Supabase staging project is confirmed non-production.
-- `ej_*` migration is applied to staging.
-- Client, worker, and admin staging users exist.
-- `npm run staging:check` passes with real staging env.
-- `npm run rls:smoke` returns `EXPRESSJOBS_RLS_STAGING_PASS`.
-- Vercel Preview deploy exists for the working branch.
-- Preview browser smoke passes.
+- Supabase staging project is confirmed non-production. DONE.
+- `ej_*` migration is applied to staging. DONE.
+- Client, worker, and admin staging users exist. DONE.
+- `npm run staging:check` passes with real staging env. DONE.
+- `npm run rls:smoke` returns `EXPRESSJOBS_RLS_STAGING_PASS`. DONE.
+- Vercel Preview deploy exists for the working branch. DONE.
+- Preview browser smoke passes. BLOCKED by Vercel Authentication 401.
 - No critical trust/safety issue is open.
 
 ## Production Rule

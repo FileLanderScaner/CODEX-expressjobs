@@ -1,0 +1,15 @@
+# ExpressJobs CODEOWNERS
+# Owner inferred from repository remote. Adjust manually if the GitHub owner changes.
+
+* @FileLanderScaner
+
+# Sensitive areas require explicit review.
+/.github/ @FileLanderScaner
+/supabase/ @FileLanderScaner
+/src/app/auth/ @FileLanderScaner
+/src/lib/social-auth.ts @FileLanderScaner
+/src/lib/supabase.ts @FileLanderScaner
+/docs/expressjobs/payments/ @FileLanderScaner
+/docs/expressjobs/supabase/ @FileLanderScaner
+/docs/expressjobs/auth/ @FileLanderScaner
+/docs/*PRODUCTION* @FileLanderScaner

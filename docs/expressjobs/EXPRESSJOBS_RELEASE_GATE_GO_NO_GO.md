@@ -9,26 +9,26 @@
 | MVP code | Pass |
 | Local checks | Pass |
 | Static RLS checks | Pass |
-| Supabase staging env | Blocked |
-| Live RLS smoke tests | Blocked |
-| Vercel Preview | Blocked |
+| Supabase staging env | Pass |
+| Live RLS smoke tests | Pass |
+| Vercel Preview | Ready but protected |
 | Payments | Disabled |
 | AI agents | Disabled |
 | Production | No-Go |
 
 ## Gate Result
 
-`EXPRESSJOBS_CODE_READY_ENV_PENDING`
+`EXPRESSJOBS_RLS_READY_PREVIEW_PROTECTED`
 
 `EXPRESSJOBS_NO_GO_PRODUCTION`
 
 ## Blocking Items
 
-- `BLOCKED_SUPABASE_ACCESS`
-- `BLOCKED_VERCEL_ACCESS`
+- `BLOCKED_PREVIEW_BROWSER_SMOKE_AUTH_401`
+- `BLOCKED_SEARCH_PATH_FIX_APPLY_WRITE_CAPABILITY`
 
 ## Next Highest-Impact Mode
 
-`EXPRESSJOBS_PRODUCT_UX_REVIEW`
+`EXPRESSJOBS_PREVIEW_DEPLOYMENT`
 
-This can continue safely without credentials while Supabase/Vercel access remains blocked.
+Next highest-impact action is making the Preview accessible to browser QA without changing Production, then running full browser smoke.

@@ -1,0 +1,22 @@
+{
+  "project": "ExpressJobs / Trabajos Rapidos",
+  "production_status": "NO-GO_PRODUCTION",
+  "paid_pilot_readiness": "BLOCKED",
+  "paypal_audit": "BLOCKED_IMPLEMENTATION_MISSING",
+  "paypal_environment": "unknown",
+  "paypal_live": "OFF",
+  "webhook_endpoint": "MISSING",
+  "webhook_signature_verification": "MISSING",
+  "subscription_flow": "MISSING",
+  "premium_state_storage": "PARTIAL_SCHEMA_ONLY",
+  "google_auth": "PASS",
+  "supabase_tooling_audit": "PARTIAL_PASS",
+  "supabase_cli": "AVAILABLE",
+  "supabase_mcp": "MISSING_AUTH_IN_CURRENT_SESSION",
+  "edge_functions_plan": "READY_FOR_SANDBOX_DESIGN",
+  "auth_hooks_plan": "READY_NOT_CONFIGURED",
+  "payments_live": "OFF",
+  "ai_agents_production": "OFF",
+  "vercel_production_touched": false,
+  "next_mode": "EXPRESSJOBS_PAYPAL_SANDBOX_SUBSCRIPTION_SMOKE"
+}

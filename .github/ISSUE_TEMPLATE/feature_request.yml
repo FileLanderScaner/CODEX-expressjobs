@@ -1,0 +1,71 @@
+name: Feature request
+description: Request a safe ExpressJobs feature for Codex triage.
+title: "[Feature]: "
+labels: ["type-feature", "status-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include secrets, real user data, payment credentials, or production tokens."
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What should change and why?
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Current behavior, route, doc, or workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Concrete pass/fail criteria.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Required checks
+      options:
+        - label: npm run secret:scan
+        - label: npm run lint
+        - label: npm run typecheck
+        - label: npm run test
+        - label: npm run build
+        - label: npm run production:check
+  - type: dropdown
+    id: production_risk
+    attributes:
+      label: Production risk
+      options: ["no", "yes - requires human approval"]
+    validations:
+      required: true
+  - type: dropdown
+    id: payment_risk
+    attributes:
+      label: Payment risk
+      options: ["no", "sandbox only", "live payment risk - requires human approval"]
+    validations:
+      required: true
+  - type: dropdown
+    id: data_risk
+    attributes:
+      label: Data risk
+      options: ["no real data", "uses synthetic data", "may touch user data - requires human approval"]
+    validations:
+      required: true
+  - type: input
+    id: files
+    attributes:
+      label: Affected files or areas
+      placeholder: "src/app/..., docs/..."
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Expected evidence
+      description: Logs, screenshots, docs, or checks expected in the PR.

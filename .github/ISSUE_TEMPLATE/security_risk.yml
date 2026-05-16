@@ -1,0 +1,43 @@
+name: Security risk
+description: Track secrets, production, Auth, RLS, or data risk.
+title: "[Security]: "
+labels: ["type-security", "status-needs-human", "codex-human-gate-required"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include secret values. Redact all tokens, keys, cookies, auth codes, user IDs, and personal data."
+  - type: textarea
+    id: risk
+    attributes:
+      label: Risk summary
+    validations:
+      required: true
+  - type: checkboxes
+    id: category
+    attributes:
+      label: Categories
+      options:
+        - label: risk-secret
+        - label: risk-production
+        - label: risk-rls
+        - label: risk-auth
+        - label: risk-data-loss
+        - label: risk-user-contact
+  - type: textarea
+    id: safe_repro
+    attributes:
+      label: Safe reproduction or evidence
+      description: Redacted only.
+  - type: textarea
+    id: human_gate
+    attributes:
+      label: Human approval required
+      value: "Required before any write, production, credential, RLS, or user-data action."
+  - type: textarea
+    id: checks
+    attributes:
+      label: Required checks
+      value: |
+        npm run secret:scan
+        npm run production:check
+        npm run test:rls:static

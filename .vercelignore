@@ -1,0 +1,16 @@
+.env
+.env.*
+!.env.example
+!.env.*.example
+.vercel
+.next
+node_modules
+*.log
+*.zip
+*.tar
+*.tar.gz
+*.7z
+test-results
+playwright-report
+coverage
+audit.json

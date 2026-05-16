@@ -1,0 +1,59 @@
+name: Bug report
+description: Report a bug for safe Codex triage.
+title: "[Bug]: "
+labels: ["type-bug", "status-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not paste secrets, cookies, tokens, auth codes, real user IDs, or personal data."
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Use synthetic data only.
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options: ["P0-critical", "P1-high", "P2-medium", "P3-low"]
+    validations:
+      required: true
+  - type: checkboxes
+    id: risk
+    attributes:
+      label: Risk flags
+      options:
+        - label: Production risk
+        - label: Payment risk
+        - label: Secret risk
+        - label: RLS/Auth risk
+        - label: User contact risk
+  - type: textarea
+    id: checks
+    attributes:
+      label: Suggested checks
+      value: |
+        npm run secret:scan
+        npm run lint
+        npm run typecheck
+        npm run test
+        npm run build
+        npm run production:check
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence expected
