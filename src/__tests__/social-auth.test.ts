@@ -76,4 +76,13 @@ describe("social auth phase one", () => {
     expect(socialButtons).toContain("Continue with Google");
     expect(socialButtons).toContain("Continue with Facebook");
   });
+
+  it("renders visible OAuth error reasons on the auth page", () => {
+    const authPage = readFileSync(join(process.cwd(), "src/app/auth/page.tsx"), "utf8");
+
+    expect(authPage).toContain("oauthErrorMessages");
+    expect(authPage).toContain("profile_setup_failed");
+    expect(authPage).toContain("Código:");
+    expect(authPage).toContain("role=\"alert\"");
+  });
 });
