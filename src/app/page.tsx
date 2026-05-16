@@ -1,4 +1,4 @@
-import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, MessageCircle, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, LogIn, MessageCircle, ShieldCheck, Sparkles, UserRoundCheck, UsersRound } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { JobCard } from "@/components/job-card";
 import { PrimaryButton } from "@/components/primary-button";
@@ -19,9 +19,15 @@ export default function Home() {
               <p className="text-sm font-bold uppercase tracking-wide text-[var(--brand)]">{publicBrand.statusLabel}</p>
               <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight sm:text-5xl">Publica trabajos rapidos o encontra tareas cerca tuyo.</h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-                Conectamos personas que necesitan resolver tareas simples con trabajadores locales disponibles. Sin pagos reales activos y con foco en seguridad desde el piloto.
+                Crea una cuenta, elegi si sos cliente o trabajador, y empeza a publicar o buscar tareas locales. El piloto mantiene pagos reales apagados y seguridad primero.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
+                <PrimaryButton href="/auth" icon={LogIn}>
+                  Crear cuenta / Ingresar
+                </PrimaryButton>
+                <PrimaryButton href="/role" icon={UserRoundCheck}>
+                  Elegir rol
+                </PrimaryButton>
                 <PrimaryButton href="/client/jobs/new" icon={BriefcaseBusiness}>
                   Publicar una tarea
                 </PrimaryButton>
@@ -31,9 +37,9 @@ export default function Home() {
                 <PrimaryButton href="/demo" icon={Sparkles}>
                   Ver demos comerciales
                 </PrimaryButton>
-                <PrimaryButton href="#como-funciona" icon={ClipboardList}>
-                  Ver como funciona
-                </PrimaryButton>
+              </div>
+              <div className="mt-5 rounded-md border border-[var(--line)] bg-white p-4 text-sm leading-6 text-[var(--muted)]">
+                <strong className="text-[var(--foreground)]">Paso recomendado:</strong> primero crea cuenta o inicia sesion, despues elegi rol y recien ahi publica o postulate.
               </div>
             </div>
             <div className="rounded-md border border-[var(--line)] bg-white p-4 shadow-sm">
@@ -49,11 +55,12 @@ export default function Home() {
         <section className="border-b border-[var(--line)] bg-white" id="como-funciona">
           <div className="mx-auto max-w-6xl px-4 py-10">
             <h2 className="text-2xl font-black">Como funciona</h2>
-            <div className="mt-5 grid gap-4 md:grid-cols-3">
+            <div className="mt-5 grid gap-4 md:grid-cols-4">
               {[
-                { icon: ClipboardList, title: "1. Publica o busca", text: "El cliente describe una tarea simple o el trabajador revisa trabajos abiertos." },
-                { icon: UsersRound, title: "2. Postulacion clara", text: "El trabajador envia una propuesta y el cliente compara perfil, mensaje y reputacion." },
-                { icon: MessageCircle, title: "3. Coordina y cierra", text: "Participantes coordinan por chat, completan el trabajo y dejan resena." },
+                { icon: LogIn, title: "1. Crea cuenta", text: "Entra con email o login social cuando este configurado en el ambiente." },
+                { icon: UserRoundCheck, title: "2. Elegi rol", text: "Selecciona cliente para publicar o trabajador para postularte." },
+                { icon: ClipboardList, title: "3. Publica o busca", text: "El cliente describe una tarea simple o el trabajador revisa trabajos abiertos." },
+                { icon: MessageCircle, title: "4. Coordina", text: "Participantes coordinan por chat, completan el trabajo y dejan resena." },
               ].map((item) => (
                 <article className="rounded-md border border-[var(--line)] bg-[#f7f6f2] p-5" key={item.title}>
                   <item.icon aria-hidden="true" className="text-[var(--brand)]" size={24} />
