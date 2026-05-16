@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/real-marketplace-flow-hardening",
-  "cycle": "CYCLE_EXPRESSJOBS_069_REAL_MARKETPLACE_FLOW_HARDENING",
-  "current_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_HARDENING",
-  "mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_HARDENING",
+  "cycle": "CYCLE_EXPRESSJOBS_070_MAIN_RECONCILIATION",
+  "current_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
+  "mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -20,6 +20,10 @@
   "real_marketplace_flow": "LOCAL_READY_PR_REQUIRED_STAGING_MIGRATION_NOT_APPLIED",
   "real_marketplace_flow_pr": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/29",
   "real_marketplace_flow_pr_status": "OPEN_MERGEABLE_ALL_CHECKS_PASS_VERCEL_SUCCESS_SUPABASE_PREVIEW_SUCCESS",
+  "github_open_prs_current": [29],
+  "github_obsolete_prs_closed": [12, 19, 20],
+  "github_obsolete_prs_close_reason": "SUPERSEDED_BY_UPDATED_MAIN_AND_PR_29_OR_STALE_DEPENDABOT_BRANCH",
+  "github_main_reconciliation": "PASS_MAIN_UPDATED_PR_22_TO_PR_28_PRESENT_PR_29_ONLY_ACTIVE_CANDIDATE",
   "worker_apply_real": "IMPLEMENTED_LOCAL_SUPABASE_CLIENT_RLS",
   "client_accept_reject_real": "IMPLEMENTED_LOCAL_RPC_RLS",
   "worker_jobs_real_listing": "IMPLEMENTED_LOCAL_WITH_DEMO_FALLBACK",
@@ -251,6 +255,9 @@
     "real_marketplace_flow_pr_29_github": "pass_docs_pr_security_production_no_go",
     "real_marketplace_flow_pr_29_vercel": "success",
     "real_marketplace_flow_pr_29_supabase_preview": "success",
+    "github_pr_12_closed_superseded": "pass",
+    "github_pr_19_closed_superseded": "pass",
+    "github_pr_20_closed_superseded": "pass",
     "browser_http_smoke_local": "pass_localhost_3000",
     "guard_no_production_deploy": "pass"
   },
@@ -279,5 +286,6 @@
   ],
   "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
   "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
-  "next_prompt_generated": true
+  "next_prompt_generated": true,
+  "next_prompt": "Ejecutar EXPRESSJOBS_PREVIEW_DEPLOYMENT en C:\\CODEX-expressjobs-repo para PR #29. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION; no usar vercel --prod; no usar vercel promote; no modificar Vercel Production env vars; no tocar Supabase production; no activar PayPal live; no activar pagos reales; no imprimir secrets; no usar service-role key en cliente. Confirmar que PR #29 sigue mergeable y que docs-check, pr-check, security-gate, production-no-go, Vercel Preview y Supabase Preview siguen PASS/SUCCESS. No mergear a main mientras exista BLOCKED_PRODUCTION_RISK. Aplicar supabase/migrations/20260516223000_harden_real_marketplace_flow.sql solo a Supabase staging/canonical mediante credencial segura aprobada. Luego ejecutar npm run staging:check, npm run test:rls:static, npm run rls:smoke y browser smoke real signup/login -> /role -> publicar trabajo -> worker apply -> client accept. Actualizar docs/status con GO/NO-GO."
 }

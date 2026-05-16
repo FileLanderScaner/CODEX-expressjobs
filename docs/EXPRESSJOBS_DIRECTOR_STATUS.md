@@ -74,6 +74,7 @@ Cycle 064 attempted RLS hardening and GitHub Actions enablement. The migration s
 Cycle 065 verified the manually applied RLS hardening migration against Supabase staging `gnsfyvsodslnehszanra`. `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`, proving normal users cannot update `ej_profiles.role` or self-promote to admin. The full local gate passed. GitHub Actions Preview pipeline remains blocked by missing visible repo secrets and default-branch production auto-deploy risk.
 Cycle 066 attempted safe GitHub workflow enablement and full Preview. RLS still passes, but GitHub Actions secrets remain absent/hidden, the new workflow is still not registered on the default branch, PR #5 remains conflicting, `main` is unprotected, and Vercel Git integration is active with failing Vercel/production contexts. No PR to `main`, merge, cherry-pick, workflow run, Vercel deploy, or production action was performed.
 Cycle 067 incorporated the merged product/auth/demo work from PR #22-#28 and hardened the real marketplace flow locally. Worker job detail now submits real applications through Supabase with `ej_set_profile_role('worker')`; client job detail loads real applications and accepts/rejects through RPC; `/worker/jobs` and `/client` read real Supabase jobs with demo fallback only when unavailable; `/role` uses the safe role RPC; `/auth` preserves `next` redirects. A new local migration tightens application insert RLS against self-apply and adds invoker RPCs for accept/reject. No production, live payments, service-role key, or remote migration apply was performed.
+Cycle 070 reconciled GitHub against updated `main`. Obsolete PRs #12, #19, and #20 were closed as superseded/not planned because they targeted stale/conflicting branches or had failing checks. PR #29 remains the only active marketplace PR, is mergeable, and currently has GitHub checks, Vercel Preview, and Supabase Preview passing. It was not merged because `main` merge can still trigger production risk.
 
 ## Current Scope
 
@@ -118,8 +119,8 @@ Cycle 067 incorporated the merged product/auth/demo work from PR #22-#28 and har
 
 ## Next Gate
 
-Apply and verify the real marketplace flow in Vercel Preview safely: open a PR from the marketplace hardening branch, confirm GitHub checks and Vercel Preview succeed, apply the new Supabase migration only to staging after human approval, then run full browser smoke for signup/login -> role -> publish -> worker apply -> client accept.
+Apply and verify the real marketplace flow on canonical staging safely: keep PR #29 open until production-trigger risk is controlled, apply the new Supabase migration only to staging through a safe credential path, then run full browser smoke for signup/login -> role -> publish -> worker apply -> client accept.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: publish the marketplace flow branch as a PR and run Preview checks without production promotion. Production remains blocked.
+Current fastest safe release-ops step: preserve PR #29 as the validated candidate, do not merge to `main` yet, and prepare/run the staging-only marketplace migration plus real-user smoke when safe staging access is available. Production remains blocked.
