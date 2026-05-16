@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { categories } from "@/lib/expressjobs-data";
+import { authHref, ensureMarketplaceRole, fullNameFromUser } from "@/lib/marketplace";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 
 type JobFormState = "idle" | "loading" | "success" | "error";
@@ -58,18 +59,7 @@ export function JobForm() {
       return;
     }
 
-    const fullName =
-      typeof user.user_metadata.name === "string" && user.user_metadata.name.trim()
-        ? user.user_metadata.name.trim()
-        : user.email ?? "Usuario Trabajos Rapidos";
-
-    const { error: profileError } = await supabase.from("ej_profiles").upsert(
-      {
-        id: user.id,
-        full_name: fullName,
-      },
-      { onConflict: "id", ignoreDuplicates: true },
-    );
+    const { error: profileError } = await ensureMarketplaceRole(supabase, "client", fullNameFromUser(user));
 
     if (profileError) {
       setState("error");
@@ -166,7 +156,7 @@ export function JobForm() {
       </p>
       {message ? (
         <div className={state === "error" ? "rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-bold text-[var(--danger)]" : "rounded-md border border-[var(--line)] bg-[#eef7f1] p-3 text-sm font-bold text-[var(--brand)]"}>
-          {message} {state === "error" && message.includes("sesion") ? <Link className="underline" href="/auth">Ir a ingresar</Link> : null}
+          {message} {state === "error" && message.includes("sesion") ? <Link className="underline" href={authHref("/client/jobs/new")}>Ir a ingresar</Link> : null}
         </div>
       ) : null}
       <button

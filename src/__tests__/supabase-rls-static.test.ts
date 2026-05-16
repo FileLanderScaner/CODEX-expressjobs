@@ -101,4 +101,14 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(migration).toContain("and role = 'admin'");
     expect(allMigrations).toContain("EXPRESSJOBS_PROFILE_ROLE_UPDATE_BLOCKED");
   });
+
+  it("hardens real marketplace applications against self-apply and unsafe public role changes", () => {
+    expect(allMigrations).toContain("create or replace function public.ej_set_profile_role");
+    expect(allMigrations).toContain("if requested_role not in ('client', 'worker') then");
+    expect(allMigrations).toContain("client_id <> auth.uid()");
+    expect(allMigrations).toContain("and role = 'worker'");
+    expect(allMigrations).toContain("create or replace function public.ej_accept_job_application");
+    expect(allMigrations).toContain("security invoker");
+    expect(allMigrations).toContain("grant execute on function public.ej_accept_job_application(uuid) to authenticated");
+  });
 });

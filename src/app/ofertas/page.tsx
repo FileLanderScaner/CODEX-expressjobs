@@ -1,5 +1,6 @@
 import { BadgeDollarSign, BriefcaseBusiness, Building2, CheckCircle2, Mail, Megaphone } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { OfferContactForm } from "@/components/monetization/offer-contact-form";
 import { RevenuePricingCard } from "@/components/monetization/revenue-pricing-card";
 import { WhatsAppCta } from "@/components/monetization/whatsapp-cta";
 import { publicSalesContact } from "@/lib/monetization/monetization-config";
@@ -65,6 +66,9 @@ export default function OffersPage() {
               <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
                 Elegi el servicio, prepara el nombre del negocio, rubro, zona y que queres vender o publicar.
               </p>
+              <p className="mt-3 text-sm font-bold text-[var(--foreground)]">
+                WhatsApp: 097045305 · Email: {publicSalesContact.email}
+              </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <WhatsAppCta label="Enviar WhatsApp" />
                 <a
@@ -89,6 +93,7 @@ export default function OffersPage() {
                   <p className="text-sm font-semibold leading-6">{item}</p>
                 </div>
               ))}
+              <OfferContactForm />
             </div>
           </div>
         </section>

@@ -73,6 +73,8 @@ Cycle 063 prepared the GitHub Actions Supabase/Vercel Preview pipeline. The work
 Cycle 064 attempted RLS hardening and GitHub Actions enablement. The migration safety review passed, but Supabase staging write remains blocked because `SUPABASE_ACCESS_TOKEN` and direct Postgres write URLs are absent. GitHub Actions secrets list returned zero visible repo secrets. Default-branch workflow enablement is blocked by production auto-deploy risk: `main` is default, not protected, Vercel Git integration is active, and PR #5 currently has Vercel/production gate failures. No production, Vercel Production env, PayPal live, or Supabase production action was performed.
 Cycle 065 verified the manually applied RLS hardening migration against Supabase staging `gnsfyvsodslnehszanra`. `npm run rls:smoke` returned `EXPRESSJOBS_RLS_STAGING_PASS`, proving normal users cannot update `ej_profiles.role` or self-promote to admin. The full local gate passed. GitHub Actions Preview pipeline remains blocked by missing visible repo secrets and default-branch production auto-deploy risk.
 Cycle 066 attempted safe GitHub workflow enablement and full Preview. RLS still passes, but GitHub Actions secrets remain absent/hidden, the new workflow is still not registered on the default branch, PR #5 remains conflicting, `main` is unprotected, and Vercel Git integration is active with failing Vercel/production contexts. No PR to `main`, merge, cherry-pick, workflow run, Vercel deploy, or production action was performed.
+Cycle 067 incorporated the merged product/auth/demo work from PR #22-#28 and hardened the real marketplace flow locally. Worker job detail now submits real applications through Supabase with `ej_set_profile_role('worker')`; client job detail loads real applications and accepts/rejects through RPC; `/worker/jobs` and `/client` read real Supabase jobs with demo fallback only when unavailable; `/role` uses the safe role RPC; `/auth` preserves `next` redirects. A new local migration tightens application insert RLS against self-apply and adds invoker RPCs for accept/reject. No production, live payments, service-role key, or remote migration apply was performed.
+Cycle 071 removed the public commercial demo routes and shifted the public surface back to the real marketplace product. The home now points to publish, search, auth, and role flows; header/footer expose real marketplace navigation and real contact; worker/client pages no longer present fallback jobs as real data; `/ofertas` includes the real WhatsApp/email path and a local WhatsApp intake form. The real marketplace hardening migration/RPC work remains in this branch and production stays blocked.
 
 ## Current Scope
 
@@ -104,6 +106,9 @@ Cycle 066 attempted safe GitHub workflow enablement and full Preview. RLS still 
 - GitHub CLI task-router activation with labels and seed issues
 - PayPal sandbox-only subscription smoke code and docs
 - GitHub Actions Preview pipeline for repo checks, Supabase staging, RLS smoke, and Vercel Preview
+- Real marketplace client/worker flow wiring for publish, apply, accept, reject, role selection, and protected auth redirects
+- Public demo routes removed from the routed app
+- Real product public navigation and contact surface
 
 ## Not Active
 
@@ -116,8 +121,8 @@ Cycle 066 attempted safe GitHub workflow enablement and full Preview. RLS still 
 
 ## Next Gate
 
-Resolve GitHub Actions enablement safely: configure required repo secrets, resolve PR/default-branch production risk, keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`, and only then register/run the GitHub Actions `ExpressJobs Preview Pipeline` with `full_preview`.
+Apply and verify the real product flow in Vercel Preview safely: open the remove-demos marketplace branch as a PR, confirm GitHub checks and Vercel Preview succeed, apply the new Supabase migration only to staging after safe credential approval, then run full browser smoke for signup/login -> role -> publish -> worker apply -> client accept.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: configure required GitHub Actions secrets and resolve Vercel/default-branch auto-deploy risk without triggering Production. Production remains blocked.
+Current fastest safe release-ops step: validate the no-demo public surface plus marketplace flow in PR Preview without production promotion. Production remains blocked.
