@@ -1,159 +1,407 @@
-# AGENTS.md — ExpressJobs Codex Operating Instructions
+# AGENTS.md
 
-## Project
+**Project:** ExpressJobs (Trabajos Rápidos)
 
-ExpressJobs / Trabajos Rapidos
+**Purpose:** Define autonomous agent capabilities and safety rules
 
-## Current closest goal
+**Status:** `AGENTS_ACTIVE_WITH_HUMAN_GATES`
 
-Reach safe public production as quickly as possible.
-
-The closest technical blocker is:
-
-`RLS hardening apply + real RLS smoke PASS`
-
-Do not drift to revenue, demos, banners, affiliates, UI polish, or extra features unless the user explicitly changes the closest goal.
+**Last Updated:** 2026-05-15 16:50:24Z
 
 ---
 
-## Current state
+## Active Agents
 
-- Production: `NO-GO_PRODUCTION`
-- Branch: `codex/expressjobs-autonomous-bootstrap`
-- Revenue/manual sales: `READY_MANUAL_SALES_ONLY`
-- Production blocker: `RLS_ROLE_HARDENING_APPLY=BLOCKED_SUPABASE_WRITE_CAPABILITY`
-- Prepared migration: `supabase/migrations/20260515132404_harden_expressjobs_profile_role_updates.sql`
-- PayPal live: OFF
-- In-app payments: blocked
-- AI agents: OFF
+### Agent: Codex Autonomous Developer
 
-Important GitHub issues:
+**Role:** Execute development cycles P0 → P1 → P2 → Production
 
-- `#10` RLS role escalation blocker
-- `#17` Production closeout fast path
-- `#18` Supabase write capability unblock
-- `#16` Demo landing examples, lower priority until production path is unblocked
+**Capabilities:**
+- ✅ Read repository structure
+- ✅ Run tests (secret:scan, lint, typecheck, build, test)
+- ✅ Run RLS smoke tests
+- ✅ Run static RLS checks
+- ✅ Read/write documentation files
+- ✅ Create/update GitHub issues
+- ✅ Make git commits (docs only, not code changes)
+- ✅ Update status files
 
-Primary queue file:
+**Restrictions:**
+- ❌ No production deployments (human gate)
+- ❌ No Supabase production mutations
+- ❌ No vercel --prod (human gate)
+- ❌ No code changes (docs only)
+- ❌ No secret commits
+- ❌ No disabling security features
 
-`docs/codex/EXPRESSJOBS_CODEX_RESUME_QUEUE.md`
-
-Read it before starting any task.
-
----
-
-## Non-negotiable safety rules
-
-- Do not use `vercel --prod` without explicit human approval in the current session.
-- Do not use `vercel promote` without explicit human approval in the current session.
-- Do not enable PayPal live.
-- Do not create real payments inside the app.
-- Do not touch Supabase production.
-- Do not apply unapproved migrations.
-- Do not disable RLS.
-- Do not relax RLS policies.
-- Do not print secrets.
-- Do not commit `.env`, `.env.local`, `.env.rls`, `.vercel`, logs, zips, credentials, tokens, screenshots with secrets, or payment details.
-- Do not hardcode personal phone numbers, bank accounts, card details, or private payment identifiers in public repo files.
-- Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION` until all production gates pass.
+**Decision Points (Require Human):**
+1. P0 unblock: Choose A/B/C Supabase method
+2. P1 config: Approve production env defaults
+3. P2 gate: Review readiness before production
+4. Production: Execute `vercel --prod`
 
 ---
 
-## Priority order
+## Safety Guarantees
 
-### P0 — Supabase write capability unblock and RLS apply
+### Absolute Rules
 
-Run first when Codex is available:
+🔒 **Security & Privacy**
+- ❌ Never print secrets (keys, tokens, passwords)
+- ❌ Never commit .env files
+- ❌ Never commit .vercel files
+- ❌ Never commit logs with sensitive data
+- ❌ Never disable RLS
+- ❌ Never relax security policies
+- ❌ Never store plaintext credentials
 
-`EXPRESSJOBS_SUPABASE_WRITE_CAPABILITY_UNBLOCK_AND_RLS_APPLY`
+🔒 **Production Safety**
+- ❌ No production changes without explicit human gate
+- ❌ No `vercel --prod` without human approval
+- ❌ No PayPal live keys
+- ❌ No real money transactions
+- ❌ No Supabase production schema mutations
+- ❌ No removing version control
 
-Source prompt:
+🔒 **Financial Safety**
+- ❌ Payments disabled for first launch
+- ❌ No real payment processing enabled
+- ❌ No billing integrations live
+- ❌ Manual revenue only until approved
 
-`docs/codex/EXPRESSJOBS_CODEX_RESUME_QUEUE.md`
+🔒 **AI Safety**
+- ❌ AI agents disabled for first launch
+- ❌ No autonomous transactions
+- ❌ No automated user contact
+- ❌ No decision-making without human approval
 
-Expected result:
+### Verification Steps
 
-- Supabase write capability diagnosed.
-- If possible, apply only:
-  `supabase/migrations/20260515132404_harden_expressjobs_profile_role_updates.sql`
-- Run real RLS smoke.
-- Verify client/worker self-promotion to admin is blocked.
-- Update issues #10, #17, #18.
+**Before Any Production Action:**
 
-### P1 — Production closeout fast path
+1. ✅ Check `PRODUCTION_STATUS` = `NO-GO_PRODUCTION` (until all gates pass)
+2. ✅ Run `npm run secret:scan` → PASS
+3. ✅ Run `npm run production:check` → PASS
+4. ✅ Verify no `.env` files in git
+5. ✅ Verify no secrets in docs/commits
+6. ✅ Verify payments disabled
+7. ✅ Verify AI agents disabled
 
-Run after P0 passes or if P0 is blocked and needs documentation:
-
-`EXPRESSJOBS_PRODUCTION_CLOSEOUT_FAST_PATH`
-
-Expected result:
-
-- Production readiness docs updated.
-- Payments remain OFF if PayPal is blocked.
-- Final blockers clearly listed.
-
-### P2 — Final Preview and Production Env Gate
-
-Run only after RLS role hardening is applied and smoke passes.
-
-### P3 — Demo landing examples
-
-Run only after production path is unblocked, or if the user explicitly switches back to sales assets.
+**If Any Check Fails:**
+- 🛑 Stop execution
+- 📝 Report exact blocker
+- ⏳ Wait for human fix
+- 🔄 Resume from checkpoint
 
 ---
 
-## Default checks
+## Communication Protocol
 
-Run these whenever code or docs are changed and scripts exist:
+### When Reporting Blockers
 
-```bash
-npm run secret:scan
-npm run lint
-npm run typecheck
-npm run test
-npm run build
-npm run production:check
-git diff --check
+**Format:**
+```
+BLOCKED_[BLOCKER_NAME]
+
+Exact issue: [description]
+Blocking: [what cannot proceed]
+Requires: [human action needed]
+Timeline: [recovery estimate]
 ```
 
-For RLS/security work, also run:
+**Example:**
+```
+BLOCKED_SUPABASE_WRITE_CAPABILITY
 
-```bash
-npm run staging:check
-npm run test:rls:static
-npm run rls:smoke
+Exact issue: Supabase MCP not authenticated for write access
+Blocking: Cannot apply RLS migration to staging
+Requires: Human chooses A/B/C and executes unblock steps
+Timeline: 3-7 minutes
 ```
 
-If a check cannot run because credentials/capability are missing, report it exactly as blocked. Do not fake PASS.
+### When Reporting Success
 
----
+**Format:**
+```
+✅ [CHECKPOINT_NAME]
 
-## Reporting format
+Details: [what was verified]
+Tests: [which tests passed]
+Next: [what happens next]
+```
 
-Every cycle must end with:
+**Example:**
+```
+✅ RLS_SMOKE_TESTS_PASS
 
-```text
-# ExpressJobs Director Report
-
-## Modo ejecutado
-## Commit final
-## Estado production
-## Estado Supabase/RLS
-## Estado Vercel
-## Estado PayPal
-## Checks
-## Bloqueo exacto si NO-GO
-## Acción humana exacta requerida
-## Próximo modo elegido
-## NEXT_CODEX_PROMPT
+Details: All 10 smoke test cases passed
+Tests: npm run rls:smoke → EXPRESSJOBS_RLS_STAGING_PASS
+Next: Running full gate checks (lint, type, build)
 ```
 
 ---
 
-## Drift control
+## Decision Tree
 
-If a requested action does not help the closest goal, state that it is deferred and return to the closest goal.
+### Decision Point: P0 Unblock (Human)
 
-Current closest goal:
+**Question:** Which Supabase unblock method?
 
-`RLS hardening apply + real RLS smoke PASS`
+**Options:**
+- A: CLI Token (easiest, 3-5 min)
+- B: MCP Re-auth (medium, 3-5 min)
+- C: Dashboard SQL (manual, 5-7 min)
+
+**Impact:** Enables RLS migration apply
+
+**Reversibility:** ✅ Easy (can undo with `supabase db reset`)
+
+---
+
+### Decision Point: P1 Config (Codex + Human Review)
+
+**Question:** Are production env defaults acceptable?
+
+**Defaults:**
+- Payments: Disabled
+- AI Agents: Disabled
+- Supabase: Staging (not production)
+- Google Auth: Configured
+- Status: SAFE_LAUNCH
+
+**Impact:** Enables production configuration
+
+**Reversibility:** ✅ Easy (can revert env vars)
+
+---
+
+### Decision Point: P2 Gate (Codex)
+
+**Question:** Do all checks pass?
+
+**Checks:**
+- ✅ Secret scan
+- ✅ RLS static tests
+- ✅ RLS smoke tests
+- ✅ Unit tests
+- ✅ Type checking
+- ✅ Linting
+- ✅ Build success
+- ✅ Production check
+
+**Impact:** Generates readiness report
+
+**Reversibility:** ✅ Can rerun if failed
+
+---
+
+### Decision Point: Production Deploy (Human)
+
+**Question:** Ready to go live?
+
+**Prerequisites:**
+- ✅ P0 complete
+- ✅ P1 complete
+- ✅ P2 complete
+- ✅ Readiness report reviewed
+- ✅ Human approval given
+
+**Action:** `vercel --prod`
+
+**Impact:** Application live to public
+
+**Reversibility:** ✅ Can rollback via Vercel (`vercel rollback`)
+
+---
+
+## Cycle Phases
+
+### P0: RLS Hardening (Security Fix)
+
+**Owner:** Supabase + Codex
+
+**Human Gates:**
+1. Choose unblock method (A/B/C)
+
+**Deliverables:**
+- ✅ RLS migration applied
+- ✅ Smoke tests pass
+- ✅ Self-promotion blocked
+- ✅ Issue #10 verified
+
+**Timeline:** 15-25 minutes
+
+---
+
+### P1: Production Closeout (Configuration)
+
+**Owner:** Codex + Vercel
+
+**Human Gates:**
+1. Approve production env defaults
+2. Configure Google Auth redirect
+
+**Deliverables:**
+- ✅ Production env configured
+- ✅ Preview tested
+- ✅ Readiness docs created
+- ✅ Issue #17 updated
+
+**Timeline:** 20 minutes
+
+---
+
+### P2: Final Gate (Verification)
+
+**Owner:** Codex
+
+**Human Gates:**
+1. Review readiness report
+
+**Deliverables:**
+- ✅ All checks pass
+- ✅ Readiness report
+- ✅ Status: READY_FOR_PRODUCTION_DEPLOY
+
+**Timeline:** 15-20 minutes
+
+---
+
+### Production Deploy (Human Action)
+
+**Owner:** Human
+
+**Action:** `vercel --prod`
+
+**Deliverables:**
+- ✅ Application live
+- ✅ Domain working
+- ✅ Auth working
+- ✅ Database connected
+
+**Timeline:** 10 minutes
+
+---
+
+## Status Files
+
+### Primary Status
+**File:** `docs/expressjobs-director-status.json`
+
+**Updates:** After each major checkpoint
+
+**Contains:**
+- Current phase
+- Blocker (if any)
+- Latest test results
+- Estimated time to production
+
+### Checkpoint Queue
+**File:** `docs/codex/EXPRESSJOBS_CODEX_RESUME_QUEUE.md`
+
+**Updates:** After each completed checkpoint
+
+**Contains:**
+- Current checkpoint
+- Recovery instructions
+- Cycle history
+
+### Autonomous Context
+**File:** `docs/EXPRESSJOBS_AUTONOMOUS_CONTEXT.md`
+
+**Updates:** Daily or after major changes
+
+**Contains:**
+- High-level status
+- Outstanding blockers
+- Next action
+
+---
+
+## Agent Handoff Protocol
+
+### Codex → Human
+
+When Codex encounters a decision gate:
+
+1. 📝 Generate detailed status report
+2. 🛑 Stop execution (don't proceed beyond gate)
+3. 📢 Report blocker or decision needed
+4. ⏳ Wait for human response
+5. 🔄 Resume from checkpoint when human responds
+
+### Human → Codex
+
+When human provides decision:
+
+1. 🗣️ State decision clearly (A / B / C / done / approve)
+2. ⏳ Wait for Codex acknowledgment
+3. 📊 Monitor status updates
+4. 🚀 Prepare for next gate
+
+---
+
+## Monitoring & Alerts
+
+### Success Indicators
+- ✅ All tests passing
+- ✅ No blockers reported
+- ✅ Status updates every 5-10 minutes
+- ✅ Code quality maintained
+
+### Warning Signs
+- ⚠️ Test failures appearing
+- ⚠️ Secret scan warnings
+- ⚠️ Build failures
+- ⚠️ RLS violations detected
+
+### Critical Alerts
+- 🚨 Production blocker
+- 🚨 Security issue found
+- 🚨 Data loss risk
+- 🚨 Credentials leaked
+
+---
+
+## Upgrade Paths (After Production)
+
+All upgrades require **separate human gates**:
+
+### Week 1: Monitor & Stabilize
+- No code changes
+- Just observation & bug fixes
+
+### Week 2: Enable Payments (separate gate)
+- Toggle: `ENABLE_PAYMENTS=false` → `true`
+- Integrate PayPal sandbox first
+- Manual approval required
+
+### Week 3: Upgrade to Production Supabase (separate gate)
+- Migrate data from staging
+- Update env vars
+- Manual approval required
+
+### Week 4+: Enable AI Agents (separate gate)
+- Toggle: `AI_AGENTS_OFF=true` → `false`
+- Run autonomous cycle tests
+- Manual approval required
+
+---
+
+## Contact & Escalation
+
+### Blockers
+If cycle encounters unexpected blocker:
+1. Report blocker clearly
+2. Suggest recovery steps
+3. Wait for human guidance
+
+### Questions
+If unclear about next step:
+1. Report current state
+2. Ask for clarification
+3. Proceed when confirmed
+
+---
+
+**Status:** Agents active and ready. Awaiting human decision at P0 unblock gate.
