@@ -1,4 +1,4 @@
-import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, MessageCircle, ShieldCheck, UsersRound } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, MessageCircle, ShieldCheck, Sparkles, UsersRound } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { JobCard } from "@/components/job-card";
 import { PrimaryButton } from "@/components/primary-button";
@@ -27,6 +27,9 @@ export default function Home() {
                 </PrimaryButton>
                 <PrimaryButton href="/worker/jobs" icon={ArrowRight}>
                   Buscar trabajos
+                </PrimaryButton>
+                <PrimaryButton href="/demo" icon={Sparkles}>
+                  Ver demos comerciales
                 </PrimaryButton>
                 <PrimaryButton href="#como-funciona" icon={ClipboardList}>
                   Ver como funciona
