@@ -36,14 +36,15 @@ describe("monetization config", () => {
     expect(config.paypalLiveEnabled).toBe(false);
   });
 
-  it("does not hardcode a WhatsApp number fallback", async () => {
-    const { salesCtaHref } = await loadConfig({
+  it("uses the real public WhatsApp fallback when no external link is configured", async () => {
+    const { salesCtaHref, publicSalesContact } = await loadConfig({
       APP_ENV: "staging",
       NEXT_PUBLIC_WHATSAPP_SALES_LINK: "",
       NEXT_PUBLIC_SPONSOR_INTAKE_LINK: "",
     });
 
-    expect(salesCtaHref()).toBe("#sponsor-intake");
+    expect(salesCtaHref()).toContain(`https://wa.me/${publicSalesContact.whatsappNumber}`);
+    expect(salesCtaHref()).toContain("Trabajos%20Rapidos");
   });
 
   it("uses the public WhatsApp sales link only when provided", async () => {
