@@ -18,6 +18,8 @@
   "staging_status": "PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS",
   "release_gate_status": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL_RLS_FIXED_PRODUCTION_NO_GO",
   "real_marketplace_flow": "LOCAL_READY_PR_REQUIRED_STAGING_MIGRATION_NOT_APPLIED",
+  "real_marketplace_flow_pr": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/29",
+  "real_marketplace_flow_pr_status": "OPEN_MERGEABLE_GITHUB_CHECKS_PASS_VERCEL_SUCCESS_SUPABASE_PREVIEW_IN_PROGRESS",
   "worker_apply_real": "IMPLEMENTED_LOCAL_SUPABASE_CLIENT_RLS",
   "client_accept_reject_real": "IMPLEMENTED_LOCAL_RPC_RLS",
   "worker_jobs_real_listing": "IMPLEMENTED_LOCAL_WITH_DEMO_FALLBACK",
@@ -246,6 +248,9 @@
     "github_cli_activation": "pass",
     "github_preview_pipeline_local_validation": "pass",
     "real_marketplace_flow_local": "pass",
+    "real_marketplace_flow_pr_29_github": "pass_docs_pr_security_production_no_go",
+    "real_marketplace_flow_pr_29_vercel": "success",
+    "real_marketplace_flow_pr_29_supabase_preview": "in_progress_after_wait",
     "browser_http_smoke_local": "pass_localhost_3000",
     "guard_no_production_deploy": "pass"
   },
@@ -266,7 +271,8 @@
     ,
     "PR_5_CONFLICTING_WITH_FAILED_VERCEL_AND_PRODUCTION_GATE_CONTEXTS",
     "STAGING_MIGRATION_20260516223000_NOT_APPLIED",
-    "FULL_REAL_USER_BROWSER_SMOKE_NOT_RUN"
+    "FULL_REAL_USER_BROWSER_SMOKE_NOT_RUN",
+    "PR_29_SUPABASE_PREVIEW_IN_PROGRESS_AFTER_WAIT"
   ],
   "blockedBy": [
     "BLOCKED_EXTERNAL_CREDENTIALS",
