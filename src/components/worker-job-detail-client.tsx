@@ -17,7 +17,6 @@ import {
   parseAmountUyu,
   type MarketplaceJob,
 } from "@/lib/marketplace";
-import { getJobById } from "@/services/jobs-service";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -37,7 +36,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
 
       if (!supabase) {
         if (isMounted) {
-          setJob(getJobById(jobId));
+          setJob(null);
           setLoading(false);
         }
         return;
@@ -53,7 +52,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
         return;
       }
 
-      setJob(!error && data ? mapJobRow(data) : getJobById(jobId));
+      setJob(!error && data ? mapJobRow(data) : null);
       setLoading(false);
     }
 

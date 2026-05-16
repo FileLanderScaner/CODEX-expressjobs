@@ -3,10 +3,10 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
-  "branch": "codex/real-marketplace-flow-hardening",
-  "cycle": "CYCLE_EXPRESSJOBS_069_REAL_MARKETPLACE_FLOW_HARDENING",
-  "current_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_HARDENING",
-  "mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_HARDENING",
+  "branch": "codex/remove-demos-real-product-flow",
+  "cycle": "CYCLE_REMOVE_DEMOS_AND_REAL_PRODUCT_FLOW",
+  "current_mode": "EXPRESSJOBS_PRODUCT_UX_REVIEW",
+  "mode": "EXPRESSJOBS_PRODUCT_UX_REVIEW",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -18,9 +18,12 @@
   "staging_status": "PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS",
   "release_gate_status": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL_RLS_FIXED_PRODUCTION_NO_GO",
   "real_marketplace_flow": "LOCAL_READY_PR_REQUIRED_STAGING_MIGRATION_NOT_APPLIED",
+  "public_demo_routes": "REMOVED_FROM_ROUTED_APP",
+  "public_demo_links": "REMOVED",
+  "public_surface_status": "REAL_PRODUCT_MARKETPLACE_FOCUSED",
   "worker_apply_real": "IMPLEMENTED_LOCAL_SUPABASE_CLIENT_RLS",
   "client_accept_reject_real": "IMPLEMENTED_LOCAL_RPC_RLS",
-  "worker_jobs_real_listing": "IMPLEMENTED_LOCAL_WITH_DEMO_FALLBACK",
+  "worker_jobs_real_listing": "IMPLEMENTED_LOCAL_WITH_REAL_EMPTY_STATE_NO_PUBLIC_DEMO_FALLBACK",
   "client_jobs_real_listing": "IMPLEMENTED_LOCAL_WITH_AUTH_GATE",
   "role_ui_real_rpc": "IMPLEMENTED_LOCAL_EJ_SET_PROFILE_ROLE",
   "auth_next_redirects": "IMPLEMENTED_LOCAL",
@@ -247,7 +250,11 @@
     "github_preview_pipeline_local_validation": "pass",
     "real_marketplace_flow_local": "pass",
     "browser_http_smoke_local": "pass_localhost_3000",
-    "guard_no_production_deploy": "pass"
+    "guard_no_production_deploy": "pass",
+    "remove_demos_public_surface": "pass",
+    "no_public_demo_routes": "pass",
+    "real_product_surface_tests": "pass_8_files_45_tests",
+    "remove_demos_build": "pass_no_demo_routes"
   },
   "blocking_items": [
     "SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
@@ -274,5 +281,6 @@
   ],
   "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
   "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
-  "next_prompt_generated": true
+  "next_prompt_generated": true,
+  "next_prompt": "Ejecutar EXPRESSJOBS_PREVIEW_DEPLOYMENT en C:\\CODEX-expressjobs-repo para la rama codex/remove-demos-real-product-flow. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION; no usar vercel --prod; no usar vercel promote; no modificar Vercel Production env vars; no tocar Supabase production; no activar PayPal live; no activar pagos reales; no imprimir secrets; no usar service-role key en cliente. Confirmar que no existen rutas publicas /demo ni links publicos a /demo. Confirmar que home/header/footer/ofertas apuntan a flujos reales: auth, role, publicar trabajo, buscar trabajos, contacto WhatsApp/email. Abrir PR contra main y esperar GitHub checks, Vercel Preview y Supabase Preview. No mergear a main mientras exista BLOCKED_PRODUCTION_RISK. Aplicar supabase/migrations/20260516223000_harden_real_marketplace_flow.sql solo a Supabase staging/canonical mediante credencial segura aprobada. Luego ejecutar npm run staging:check, npm run test:rls:static, npm run rls:smoke y browser smoke real signup/login -> /role -> publicar trabajo -> worker apply -> client accept. Actualizar docs/status con GO/NO-GO."
 }

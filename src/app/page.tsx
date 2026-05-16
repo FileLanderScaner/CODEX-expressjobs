@@ -1,12 +1,12 @@
-import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, LogIn, MessageCircle, ShieldCheck, Sparkles, UserRoundCheck, UsersRound } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, LogIn, MessageCircle, Search, ShieldCheck, UserRoundCheck, UsersRound } from "lucide-react";
+import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
-import { JobCard } from "@/components/job-card";
 import { PrimaryButton } from "@/components/primary-button";
 import { RoleSelector } from "@/components/role-selector";
 import { StatusFlow } from "@/components/status-flow";
 import { TrustSafetyNotice } from "@/components/trust-safety-notice";
 import { TrackingClient } from "@/components/tracking-client";
-import { categories, featuredJobs, publicBrand } from "@/lib/expressjobs-data";
+import { categories, publicBrand } from "@/lib/expressjobs-data";
 
 export default function Home() {
   return (
@@ -19,35 +19,45 @@ export default function Home() {
               <p className="text-sm font-bold uppercase tracking-wide text-[var(--brand)]">{publicBrand.statusLabel}</p>
               <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight sm:text-5xl">Publica trabajos rapidos o encontra tareas cerca tuyo.</h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-                Crea una cuenta, elegi si sos cliente o trabajador, y empeza a publicar o buscar tareas locales. El piloto mantiene pagos reales apagados y seguridad primero.
+                Crea una cuenta, elegi si sos cliente o trabajador, y empeza a publicar o buscar tareas locales con postulaciones reales. El piloto mantiene pagos online apagados y seguridad primero.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <PrimaryButton href="/auth" icon={LogIn}>
-                  Crear cuenta / Ingresar
-                </PrimaryButton>
-                <PrimaryButton href="/role" icon={UserRoundCheck}>
-                  Elegir rol
-                </PrimaryButton>
                 <PrimaryButton href="/client/jobs/new" icon={BriefcaseBusiness}>
-                  Publicar una tarea
+                  Publicar un trabajo
                 </PrimaryButton>
                 <PrimaryButton href="/worker/jobs" icon={ArrowRight}>
                   Buscar trabajos
                 </PrimaryButton>
-                <PrimaryButton href="/demo" icon={Sparkles}>
-                  Ver demos comerciales
+                <PrimaryButton href="/auth" icon={LogIn}>
+                  Ingresar / Crear cuenta
+                </PrimaryButton>
+                <PrimaryButton href="/role" icon={UserRoundCheck}>
+                  Elegir rol
                 </PrimaryButton>
               </div>
               <div className="mt-5 rounded-md border border-[var(--line)] bg-white p-4 text-sm leading-6 text-[var(--muted)]">
                 <strong className="text-[var(--foreground)]">Paso recomendado:</strong> primero crea cuenta o inicia sesion, despues elegi rol y recien ahi publica o postulate.
               </div>
             </div>
-            <div className="rounded-md border border-[var(--line)] bg-white p-4 shadow-sm">
-              <div className="grid gap-3">
-                {featuredJobs.map((job) => (
-                  <JobCard key={job.id} {...job} href={`/worker/jobs/${job.id}`} />
+            <div className="rounded-md border border-[var(--line)] bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-2">
+                <Search aria-hidden="true" className="text-[var(--brand)]" size={24} />
+                <h2 className="text-xl font-black">Buscar por categoria</h2>
+              </div>
+              <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                {categories.map((category) => (
+                  <Link
+                    className="focus-ring rounded-md border border-[var(--line)] bg-[#f7f6f2] px-3 py-2 text-sm font-bold hover:bg-[#eef4ef]"
+                    href="/worker/jobs"
+                    key={category}
+                  >
+                    {category}
+                  </Link>
                 ))}
               </div>
+              <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
+                Los trabajos disponibles se cargan desde Supabase cuando el ambiente esta configurado.
+              </p>
             </div>
           </div>
         </section>
@@ -60,7 +70,7 @@ export default function Home() {
                 { icon: LogIn, title: "1. Crea cuenta", text: "Entra con email o login social cuando este configurado en el ambiente." },
                 { icon: UserRoundCheck, title: "2. Elegi rol", text: "Selecciona cliente para publicar o trabajador para postularte." },
                 { icon: ClipboardList, title: "3. Publica o busca", text: "El cliente describe una tarea simple o el trabajador revisa trabajos abiertos." },
-                { icon: MessageCircle, title: "4. Coordina", text: "Participantes coordinan por chat, completan el trabajo y dejan resena." },
+                { icon: MessageCircle, title: "4. Coordina", text: "El cliente acepta una postulacion y las partes coordinan el trabajo." },
               ].map((item) => (
                 <article className="rounded-md border border-[var(--line)] bg-[#f7f6f2] p-5" key={item.title}>
                   <item.icon aria-hidden="true" className="text-[var(--brand)]" size={24} />
@@ -106,7 +116,7 @@ export default function Home() {
         </section>
 
         <section className="mx-auto max-w-6xl px-4 py-10">
-          <h2 className="text-2xl font-black">Ejemplos de trabajos</h2>
+          <h2 className="text-2xl font-black">Categorias de trabajos</h2>
           <div className="mt-5 flex flex-wrap gap-2">
             {categories.map((category) => (
               <span className="rounded-md border border-[var(--line)] bg-white px-3 py-2 text-sm font-semibold" key={category}>

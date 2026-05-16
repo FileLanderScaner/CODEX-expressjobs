@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { BadgeDollarSign, BriefcaseBusiness, CircleDollarSign, LayoutDashboard, LogIn, UserRoundCheck } from "lucide-react";
+import { BadgeDollarSign, BriefcaseBusiness, ClipboardPlus, Home, LogIn } from "lucide-react";
 import { productionStatus } from "@/lib/env";
 import { publicBrand } from "@/lib/expressjobs-data";
+import { defaultWhatsAppSalesHref, publicSalesContact } from "@/lib/monetization/monetization-config";
 
 const nav = [
-  { href: "/ofertas", label: "Ofertas", icon: BadgeDollarSign },
+  { href: "/", label: "Inicio", icon: Home },
   { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
-  { href: "/client", label: "Cliente", icon: LayoutDashboard },
-  { href: "/worker", label: "Trabajador", icon: UserRoundCheck },
-  { href: "/pricing", label: "Pricing", icon: CircleDollarSign },
+  { href: "/client/jobs/new", label: "Publicar trabajo", icon: ClipboardPlus },
+  { href: "/ofertas", label: "Ofertas", icon: BadgeDollarSign },
 ];
 
 export function AppShell({ children }: { children: React.ReactNode }) {
@@ -52,6 +52,18 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
       {children}
+      <footer className="border-t border-[var(--line)] bg-white">
+        <div className="mx-auto grid max-w-6xl gap-3 px-4 py-6 text-sm text-[var(--muted)] md:grid-cols-[1fr_auto]">
+          <div>
+            <p className="font-black text-[var(--foreground)]">{publicBrand.combinedName}</p>
+            <p className="mt-1">Version MVP para usuarios controlados. Pagos online, verificacion de identidad y garantias comerciales siguen desactivados.</p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 font-bold">
+            <a className="focus-ring rounded-md underline" href={defaultWhatsAppSalesHref()}>WhatsApp 097045305</a>
+            <a className="focus-ring rounded-md underline" href={`mailto:${publicSalesContact.email}`}>{publicSalesContact.email}</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

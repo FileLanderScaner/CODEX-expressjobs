@@ -12,10 +12,8 @@ import { StatusFlow } from "@/components/status-flow";
 import { WhatsAppShareButton } from "@/components/whatsapp-share-button";
 import { authHref, mapApplicationRow, mapJobRow, type MarketplaceApplication, type MarketplaceJob } from "@/lib/marketplace";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
-import { listApplicationsForJob } from "@/services/applications-service";
-import { getJobById } from "@/services/jobs-service";
 
-type DetailState = "loading" | "ready" | "signed-out" | "fallback" | "error";
+type DetailState = "loading" | "ready" | "signed-out" | "not-configured" | "error";
 
 export function ClientJobDetailClient({ jobId }: { jobId: string }) {
   const [state, setState] = useState<DetailState>("loading");
@@ -29,10 +27,9 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
     const supabase = getBrowserSupabaseClient();
 
     if (!supabase) {
-      const fallbackJob = getJobById(jobId);
-      setJob(fallbackJob);
-      setApplications(listApplicationsForJob(fallbackJob.id));
-      setState("fallback");
+      setJob(null);
+      setApplications([]);
+      setState("not-configured");
       return;
     }
 
@@ -112,17 +109,16 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
     );
   }
 
+  if (state === "not-configured") {
+    return <ErrorState message="Supabase publico no esta configurado en este ambiente. No hay datos reales para mostrar." />;
+  }
+
   if (state === "error" || !job) {
     return <ErrorState message="No pudimos cargar este trabajo con tu sesion actual." />;
   }
 
   return (
     <section>
-      {state === "fallback" ? (
-        <p className="mb-4 rounded-md border border-[var(--line)] bg-white p-3 text-sm text-[var(--muted)]">
-          Mostrando ejemplos porque Supabase no esta disponible en este ambiente.
-        </p>
-      ) : null}
       <div className="rounded-md border border-[var(--line)] bg-white p-5">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>

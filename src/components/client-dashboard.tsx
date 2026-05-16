@@ -9,9 +9,8 @@ import { LoadingState } from "@/components/loading-state";
 import { PrimaryButton } from "@/components/primary-button";
 import { authHref, mapJobRow, type MarketplaceJob } from "@/lib/marketplace";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
-import { listClientJobs } from "@/services/jobs-service";
 
-type DashboardState = "loading" | "ready" | "signed-out" | "fallback";
+type DashboardState = "loading" | "ready" | "signed-out" | "not-configured" | "error";
 
 export function ClientDashboard() {
   const [state, setState] = useState<DashboardState>("loading");
@@ -24,8 +23,8 @@ export function ClientDashboard() {
       const supabase = getBrowserSupabaseClient();
 
       if (!supabase) {
-        setJobs(listClientJobs());
-        setState("fallback");
+        setJobs([]);
+        setState("not-configured");
         return;
       }
 
@@ -49,8 +48,8 @@ export function ClientDashboard() {
       }
 
       if (error) {
-        setJobs(listClientJobs());
-        setState("fallback");
+        setJobs([]);
+        setState("error");
         return;
       }
 
@@ -89,9 +88,14 @@ export function ClientDashboard() {
         </div>
         <PrimaryButton href="/client/jobs/new" icon={ClipboardPlus}>Publicar un trabajo</PrimaryButton>
       </div>
-      {state === "fallback" ? (
+      {state === "not-configured" ? (
         <p className="mt-4 rounded-md border border-[var(--line)] bg-white p-3 text-sm text-[var(--muted)]">
-          Mostrando ejemplos porque Supabase no esta disponible en este ambiente.
+          Modo sin datos: Supabase publico no esta configurado en este ambiente.
+        </p>
+      ) : null}
+      {state === "error" ? (
+        <p className="mt-4 rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-semibold text-[var(--danger)]">
+          No pudimos cargar tus trabajos reales. Revisa tu sesion o intenta mas tarde.
         </p>
       ) : null}
       <div className="mt-6 grid gap-4 md:grid-cols-3">
