@@ -505,7 +505,11 @@ P0_RUNNING_TESTS
 ### Week 2: Enable Payments (separate gate)
 - Set ENABLE_PAYMENTS=true
 - Integrate PayPal (sandbox first)
+ codex/expressjobs-autonomous-bootstrap
 - Run payment gate tests
+
+- Run payment tests
+main
 - Manual approval required
 
 ### Week 3: Upgrade to Production Supabase (separate gate)
