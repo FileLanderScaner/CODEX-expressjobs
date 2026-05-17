@@ -1,6 +1,13 @@
 import { CheckCircle2, Star } from "lucide-react";
 import type { ApplicationStatus } from "@/lib/expressjobs-data";
 
+const statusLabels: Record<ApplicationStatus, string> = {
+  submitted: "pendiente",
+  accepted: "aceptada",
+  rejected: "rechazada",
+  withdrawn: "retirada",
+};
+
 export function ApplicationCard({
   workerName,
   message,
@@ -25,7 +32,7 @@ export function ApplicationCard({
             <Star aria-hidden="true" size={15} /> {reputationScore.toFixed(1)} reputacion
           </p>
         </div>
-        <span className="rounded-md bg-[#edf3ee] px-2 py-1 text-xs font-bold text-[var(--brand-dark)]">{status}</span>
+        <span className="rounded-md bg-[#edf3ee] px-2 py-1 text-xs font-bold text-[var(--brand-dark)]">{statusLabels[status] ?? status}</span>
       </div>
       <p className="mt-3 text-sm leading-6">{message}</p>
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">

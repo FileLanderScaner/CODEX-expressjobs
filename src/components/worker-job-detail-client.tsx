@@ -116,7 +116,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
 
     if (existingApplication) {
       setState("error");
-      setStatusMessage("Ya tenes una postulacion para este trabajo.");
+      setStatusMessage("Ya te postulaste a este trabajo.");
       return;
     }
 
@@ -130,7 +130,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
 
     if (error) {
       setState("error");
-      setStatusMessage("No se pudo enviar la postulacion. Revisa que el trabajo siga abierto.");
+      setStatusMessage("No se pudo enviar la postulacion. Revisa que el trabajo siga abierto y que no te hayas postulado antes.");
       return;
     }
 
@@ -143,7 +143,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
   }
 
   if (!job) {
-    return <ErrorState message="No pudimos cargar este trabajo." />;
+    return <ErrorState message="No se pudo cargar la informacion de este trabajo." />;
   }
 
   return (

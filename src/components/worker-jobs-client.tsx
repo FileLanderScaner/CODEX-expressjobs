@@ -58,7 +58,9 @@ export function WorkerJobsClient() {
         return;
       }
 
-      const mappedOpenJobs = (openResult.data ?? []).map(mapJobRow);
+      const mappedOpenJobs = (openResult.data ?? [])
+        .map(mapJobRow)
+        .filter((job) => !user || job.clientId !== user.id);
       setOpenJobs(mappedOpenJobs);
       setAcceptedJobs((acceptedResult.data ?? []).map(mapJobRow));
       setState("ready");
@@ -84,12 +86,12 @@ export function WorkerJobsClient() {
       ) : null}
       {state === "error" ? (
         <p className="mt-4 rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-semibold text-[var(--danger)]">
-          No pudimos cargar trabajos reales. Revisa la configuracion de Supabase o intenta mas tarde.
+          No se pudo cargar la informacion. Revisa la configuracion de Supabase o intenta mas tarde.
         </p>
       ) : null}
       <h2 className="mt-6 text-2xl font-black">Abiertos</h2>
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
-        {openJobs.length ? openJobs.map((job) => <JobCard key={job.id} {...job} href={`/worker/jobs/${job.id}`} />) : <EmptyState title="Todavia no hay trabajos disponibles" text="Cuando un cliente publique un trabajo abierto, aparecera aca." />}
+        {openJobs.length ? openJobs.map((job) => <JobCard key={job.id} {...job} href={`/worker/jobs/${job.id}`} />) : <EmptyState title="No hay trabajos disponibles todavia" text="Cuando un cliente publique un trabajo abierto, aparecera aca." />}
       </div>
       <h2 className="mt-8 text-2xl font-black">Aceptados</h2>
       <div className="mt-4 grid gap-4 lg:grid-cols-2">

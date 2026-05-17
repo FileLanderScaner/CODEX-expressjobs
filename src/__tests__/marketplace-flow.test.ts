@@ -39,10 +39,17 @@ describe("real marketplace flow wiring", () => {
   it("connects worker apply and client accept/reject through Supabase tables and RPC", () => {
     const workerDetail = readFileSync(join(process.cwd(), "src/components/worker-job-detail-client.tsx"), "utf8");
     const clientDetail = readFileSync(join(process.cwd(), "src/components/client-job-detail-client.tsx"), "utf8");
+    const workerList = readFileSync(join(process.cwd(), "src/components/worker-jobs-client.tsx"), "utf8");
+    const applicationCard = readFileSync(join(process.cwd(), "src/components/application-card.tsx"), "utf8");
 
     expect(workerDetail).toContain("ej_job_applications");
     expect(workerDetail).toContain("No podes postularte a tu propio trabajo");
+    expect(workerDetail).toContain("Ya te postulaste a este trabajo");
+    expect(workerList).toContain("job.clientId !== user.id");
     expect(clientDetail).toContain("ej_accept_job_application");
     expect(clientDetail).toContain("ej_reject_job_application");
+    expect(clientDetail).toContain("Postulacion aceptada");
+    expect(clientDetail).toContain("No tenes postulaciones todavia");
+    expect(applicationCard).toContain("pendiente");
   });
 });

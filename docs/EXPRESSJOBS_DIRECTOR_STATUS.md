@@ -131,3 +131,5 @@ Public Production exposure is neutralized. Next safe gate is to keep `PRODUCTION
 ## Current Operator Action
 
 Current fastest safe release-ops step: continue marketplace hardening in preview/staging while preserving the Production pause. Production remains blocked.
+
+Cycle 077 hardened the real marketplace staging flow locally. Worker listings now hide the signed-in user's own jobs, duplicate applications show clear copy, client accept/reject actions use pending UI and clearer resolved/forbidden errors, application status labels are user-facing, and a new idempotent migration prevents accepting/rejecting already resolved applications or applications for non-open jobs. Production remains neutralized and `PRODUCTION_STATUS=NO-GO_PRODUCTION`.

@@ -20,6 +20,7 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
   const [job, setJob] = useState<MarketplaceJob | null>(null);
   const [applications, setApplications] = useState<MarketplaceApplication[]>([]);
   const [actionMessage, setActionMessage] = useState<string | null>(null);
+  const [pendingApplicationId, setPendingApplicationId] = useState<string | null>(null);
 
   const loadDetail = useCallback(async () => {
     await Promise.resolve();
@@ -75,10 +76,12 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
 
   async function updateApplication(applicationId: string, action: "accept" | "reject") {
     setActionMessage(null);
+    setPendingApplicationId(applicationId);
     const supabase = getBrowserSupabaseClient();
 
     if (!supabase) {
       setActionMessage("Supabase no esta configurado en este ambiente.");
+      setPendingApplicationId(null);
       return;
     }
 
@@ -86,12 +89,14 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
     const { error } = await supabase.rpc(rpcName, { requested_application_id: applicationId });
 
     if (error) {
-      setActionMessage(action === "accept" ? "No se pudo aceptar esta postulacion." : "No se pudo rechazar esta postulacion.");
+      setActionMessage(action === "accept" ? "No se pudo aceptar esta postulacion. Puede estar resuelta o no pertenecer a tu trabajo." : "No se pudo rechazar esta postulacion. Puede estar resuelta o no pertenecer a tu trabajo.");
+      setPendingApplicationId(null);
       return;
     }
 
-    setActionMessage(action === "accept" ? "Trabajador aceptado." : "Postulacion rechazada.");
+    setActionMessage(action === "accept" ? "Postulacion aceptada." : "Postulacion rechazada.");
     await loadDetail();
+    setPendingApplicationId(null);
   }
 
   if (state === "loading") {
@@ -114,7 +119,7 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
   }
 
   if (state === "error" || !job) {
-    return <ErrorState message="No pudimos cargar este trabajo con tu sesion actual." />;
+    return <ErrorState message="No se pudo cargar la informacion con tu sesion actual." />;
   }
 
   return (
@@ -147,17 +152,19 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
                     <div className="flex flex-wrap gap-2">
                       <button
                         className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-3 py-2 text-sm font-bold text-white"
+                        disabled={pendingApplicationId !== null}
                         onClick={() => void updateApplication(application.id, "accept")}
                         type="button"
                       >
-                        <CheckCircle2 aria-hidden="true" size={16} /> Aceptar
+                        <CheckCircle2 aria-hidden="true" size={16} /> {pendingApplicationId === application.id ? "Procesando..." : "Aceptar"}
                       </button>
                       <button
                         className="focus-ring inline-flex items-center gap-2 rounded-md border border-[var(--line)] px-3 py-2 text-sm font-bold hover:bg-[#f3f5f1]"
+                        disabled={pendingApplicationId !== null}
                         onClick={() => void updateApplication(application.id, "reject")}
                         type="button"
                       >
-                        <XCircle aria-hidden="true" size={16} /> Rechazar
+                        <XCircle aria-hidden="true" size={16} /> {pendingApplicationId === application.id ? "Procesando..." : "Rechazar"}
                       </button>
                     </div>
                   ) : null
@@ -165,7 +172,7 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
               />
             ))
           ) : (
-            <EmptyState title="Sin postulaciones" text="Cuando un trabajador se postule, aparecera aca." />
+            <EmptyState title="No tenes postulaciones todavia" text="Cuando un trabajador se postule, aparecera aca." />
           )}
         </div>
       </div>

@@ -69,7 +69,7 @@ describe("real public product surface", () => {
     const clientDashboard = readFileSync(join(process.cwd(), "src/components/client-dashboard.tsx"), "utf8");
     const workerDetail = readFileSync(join(process.cwd(), "src/components/worker-job-detail-client.tsx"), "utf8");
 
-    expect(workerJobs).toContain("Todavia no hay trabajos disponibles");
+    expect(workerJobs).toContain("No hay trabajos disponibles todavia");
     expect(workerJobs).not.toContain("featuredJobs");
     expect(clientDashboard).not.toContain("listClientJobs");
     expect(workerDetail).not.toContain("getJobById");
