@@ -64,4 +64,3 @@ PR #35 was merged using the explicitly authorized one-time admin override.
 ## NEXT_CODEX_PROMPT
 
 Ejecutar `EXPRESSJOBS_REAL_MARKETPLACE_FLOW_STAGING_HARDENING` en `C:\CODEX-expressjobs-repo`. Crear rama nueva desde `main`. Mantener `PRODUCTION_STATUS=NO-GO_PRODUCTION` y conservar `/production-paused`. No usar `vercel --prod`; no usar `vercel promote`; no modificar Vercel Production env vars; no borrar deployments ni aliases; no tocar Supabase production; no activar PayPal live ni pagos reales; no imprimir secrets. Auditar y endurecer role RPC, worker jobs listing, worker apply, duplicate/self-apply prevention, client applications, accept/reject y estados vacios. Ejecutar checks completos, confirmar Production neutralizada y abrir PR.
-
