@@ -58,8 +58,8 @@ Audit and harden repository governance before more feature work: GitHub branch p
 | PR #32 `security-gate` | `PASS` |
 | PR #32 `production-no-go` | `PASS` |
 | PR #32 `docs-check` | `PASS` |
-| PR #32 `Vercel` | `PASS` |
-| PR #32 `Supabase Preview` | `SKIPPED` |
+| PR #32 `Vercel` | `FAIL_PREVIEW_DEPLOYMENT_ERROR` |
+| PR #32 `Supabase Preview` | `PASS` |
 
 ## Status
 
@@ -70,6 +70,7 @@ Audit and harden repository governance before more feature work: GitHub branch p
 - `REMOTE_BRANCH_CLEANUP=PLAN_READY_MANUAL`
 - `VERCEL_PRODUCTION_DEPLOYMENT_RISK=FOUND`
 - `SECURITY_AUDIT_GOVERNANCE=BLOCKED_BY_PRODUCTION_DEPLOYMENT_RISK`
+- `PR_32_VERCEL_PREVIEW=FAIL`
 
 ## NEXT_CODEX_PROMPT
 
