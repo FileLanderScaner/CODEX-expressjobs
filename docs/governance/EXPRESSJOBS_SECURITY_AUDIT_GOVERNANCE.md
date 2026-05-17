@@ -98,16 +98,16 @@ No deployment was created, promoted, removed, or modified in this cycle.
 
 ## PR Remote Checks
 
-Latest observed PR check state for #32 after the final documentation update:
+Latest observed PR check state for #32:
 
 - `pr-check`: success.
 - `security-gate`: success.
 - `production-no-go`: success.
 - `docs-check`: success.
 - `Supabase Preview`: success.
-- `Vercel`: failure on Preview deployment `https://codex-expressjobs-imp2uvo97-akuma424-projects.vercel.app`.
+- `Vercel`: success.
 
-Vercel CLI read-only inspection identified deployment `dpl_2N6GgZcazs2oBAdX4qMWLzwfEreV`, target `preview`, status `Error`. Build log retrieval through the available Vercel connector was blocked by authorization scope, and `vercel inspect --logs` returned no diagnostic lines.
+An intermediate Vercel Preview deployment failed during status documentation, but the latest observed PR HEAD returned Vercel success. No Vercel deploy, promote, deletion, or Production env mutation was performed manually.
 
 ## Recommendations
 
@@ -126,4 +126,4 @@ Vercel CLI read-only inspection identified deployment `dpl_2N6GgZcazs2oBAdX4qMWL
 - `REMOTE_BRANCH_CLEANUP=PLAN_READY_MANUAL`
 - `VERCEL_PRODUCTION_DEPLOYMENT_RISK=FOUND`
 - `SECURITY_AUDIT_GOVERNANCE=BLOCKED_BY_PRODUCTION_DEPLOYMENT_RISK`
-- `PR_32_VERCEL_PREVIEW=FAIL`
+- `PR_32_REMOTE_CHECKS=PASS`

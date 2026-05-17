@@ -47,7 +47,7 @@
   "issue_16_status": "CLOSED_NOT_PLANNED_SUPERSEDED_BY_NO_DEMO_PRODUCT_DIRECTION",
   "funding_file_status": "REMOVED_INVALID_PLACEHOLDER_FUNDIN_YML",
   "security_audit_governance_pr": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/32",
-  "security_audit_governance_pr_status": "OPEN_UNSTABLE_VERCEL_PREVIEW_FAILURE_SUPABASE_PREVIEW_PASS",
+  "security_audit_governance_pr_status": "OPEN_CLEAN_REMOTE_CHECKS_PASS_SUPABASE_PREVIEW_PASS_VERCEL_PASS",
   "payments_status": "PAYMENTS_DISABLED_SAFE",
   "ai_agents_status": "AI_AGENTS_DISABLED_SAFE",
   "first_10_testers_status": "READY_FOR_MANUAL_APPROVAL_RLS_HARDENING_PASS",
