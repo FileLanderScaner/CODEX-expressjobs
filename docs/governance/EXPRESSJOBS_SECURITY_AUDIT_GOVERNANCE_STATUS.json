@@ -1,0 +1,62 @@
+{
+  "mode": "EXPRESSJOBS_SECURITY_AUDIT_GOVERNANCE",
+  "production_status": "NO-GO_PRODUCTION",
+  "branch": "codex/expressjobs-security-audit-governance",
+  "base_branch": "main",
+  "base_commit": "e90db33",
+  "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/32",
+  "pr_status": "OPEN_CLEAN_REMOTE_CHECKS_PASS",
+  "github_branch_protection": "PLAN_READY_BRANCH_NOT_PROTECTED",
+  "delete_branch_on_merge": "PLAN_READY_CURRENT_FALSE",
+  "remote_branch_cleanup": "PLAN_READY_MANUAL",
+  "vercel_production_deployment_risk": "FOUND",
+  "vercel_recent_production_deployments": [
+    {
+      "url": "https://codex-expressjobs-3pauph0dx-akuma424-projects.vercel.app",
+      "target": "production",
+      "status": "Ready",
+      "created_at": "2026-05-16T22:48:25-03:00"
+    },
+    {
+      "url": "https://codex-expressjobs-o2t4nmkrk-akuma424-projects.vercel.app",
+      "target": "production",
+      "status": "Ready",
+      "created_at": "2026-05-16T20:41:08-03:00"
+    },
+    {
+      "url": "https://codex-expressjobs-ervp21yn3-akuma424-projects.vercel.app",
+      "target": "production",
+      "status": "Ready",
+      "created_at": "2026-05-16T20:34:26-03:00"
+    }
+  ],
+  "github_open_prs": 0,
+  "issue_16": "CLOSED_NOT_PLANNED_SUPERSEDED_BY_NO_DEMO_PRODUCT_DIRECTION",
+  "funding_file": "REMOVED_INVALID_PLACEHOLDER_FUNDIN_YML",
+  "staging_check": "PASS",
+  "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
+  "checks": {
+    "secret_scan": "PASS",
+    "production_check": "PASS",
+    "guard_no_production_deploy": "PASS",
+    "rls_static": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "test": "PASS",
+    "build": "PASS",
+    "git_diff_check": "PASS",
+    "remote_pr_check": "PASS",
+    "remote_security_gate": "PASS",
+    "remote_production_no_go": "PASS",
+    "remote_docs_check": "PASS",
+    "remote_vercel": "PASS",
+    "remote_supabase_preview": "PASS"
+  },
+  "human_actions_required": [
+    "Review active Vercel Production deployments and decide whether to remove, keep protected, or reconfigure auto-deploy behavior.",
+    "Enable main branch protection with required checks.",
+    "Enable delete_branch_on_merge=true.",
+    "Review and delete stale remote branches manually."
+  ],
+  "next_mode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO"
+}
