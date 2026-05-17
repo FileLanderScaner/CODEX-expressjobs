@@ -1,0 +1,44 @@
+{
+  "mode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO_GOVERNANCE_CLOSEOUT_SAFE",
+  "production_status": "NO-GO_PRODUCTION",
+  "branch": "codex/expressjobs-governance-release-gate-closeout",
+  "base_branch": "main",
+  "governance_pr_32": "MERGED",
+  "governance_pr_32_merge_commit": "21397adbef60e48086419edf11f09233b8e80f37",
+  "vercel_production_deployment_risk": "FOUND",
+  "vercel_latest_production_deployment": {
+    "id": "dpl_8XAPTphi71n52WSoRpXWsU7aM46Z",
+    "url": "https://codex-expressjobs-phdipmyez-akuma424-projects.vercel.app",
+    "target": "production",
+    "status": "Ready",
+    "public_alias": "https://codex-expressjobs.vercel.app",
+    "git_alias": "https://codex-expressjobs-git-main-akuma424-projects.vercel.app"
+  },
+  "recommended_vercel_decision": "OPTION_B_PROTECT_OR_NEUTRALIZE_PUBLIC_ACCESS",
+  "github_branch_protection": "BLOCKED_PENDING_HUMAN_APPROVAL",
+  "delete_branch_on_merge": "BLOCKED_PENDING_HUMAN_APPROVAL",
+  "remote_branch_cleanup": "PLAN_READY_MANUAL",
+  "issue_16": "CLOSED_NOT_PLANNED_SUPERSEDED_BY_NO_DEMO_PRODUCT_DIRECTION",
+  "release_gate": "BLOCKED_PRODUCTION_RISK",
+  "governance_closeout": "PASS_WITH_HUMAN_BLOCKERS",
+  "checks": {
+    "secret_scan": "PASS",
+    "production_check": "PASS",
+    "guard_no_production_deploy": "PASS",
+    "rls_static": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "test": "PASS",
+    "build": "PASS",
+    "git_diff_check": "PASS",
+    "staging_check": "PASS",
+    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS"
+  },
+  "human_actions_required": [
+    "Choose and apply a Vercel Production exposure decision.",
+    "Enable main branch protection only with explicit approval.",
+    "Enable delete_branch_on_merge only with explicit approval.",
+    "Review remote branches manually before deletion."
+  ],
+  "next_mode": "EXPRESSJOBS_VERCEL_PRODUCTION_ACCESS_DECISION"
+}
