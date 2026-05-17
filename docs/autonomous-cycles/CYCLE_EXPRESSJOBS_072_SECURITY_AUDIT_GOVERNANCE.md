@@ -24,6 +24,7 @@ Audit and harden repository governance before more feature work: GitHub branch p
 - Removed `.github/FUNDIN.yml` because it was a typo file containing only placeholder funding template values.
 - Created governance plans under `docs/governance`.
 - Inspected Vercel deployments read-only and found active Ready Production deployments.
+- Opened PR #32: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/32`.
 
 ## Safety
 
@@ -53,6 +54,12 @@ Audit and harden repository governance before more feature work: GitHub branch p
 | `git diff --check` | `PASS` |
 | `npm run staging:check` | `PASS` |
 | `npm run rls:smoke` | `PASS_EXPRESSJOBS_RLS_STAGING_PASS` |
+| PR #32 `pr-check` | `PASS` |
+| PR #32 `security-gate` | `PASS` |
+| PR #32 `production-no-go` | `PASS` |
+| PR #32 `docs-check` | `PASS` |
+| PR #32 `Vercel` | `PASS` |
+| PR #32 `Supabase Preview` | `SKIPPED` |
 
 ## Status
 

@@ -16,6 +16,8 @@ Base branch: `main`
 
 Base commit: `e90db33 Keep Google login visible on auth page`
 
+Pull request: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/32`
+
 ## Main State
 
 - Local `main` was clean and synchronized with `origin/main`.
@@ -93,6 +95,17 @@ No deployment was created, promoted, removed, or modified in this cycle.
 - `GITHUB_BRANCH_PROTECTION=PLAN_READY`: `main` is currently unprotected.
 - `DELETE_BRANCH_ON_MERGE=PLAN_READY`: merged branches are not automatically deleted.
 - `REMOTE_BRANCH_CLEANUP=PLAN_READY_MANUAL`: stale remote branches remain.
+
+## PR Remote Checks
+
+Initial PR check pass for #32:
+
+- `pr-check`: success.
+- `security-gate`: success.
+- `production-no-go`: success.
+- `docs-check`: success.
+- `Vercel`: success.
+- `Supabase Preview`: skipped.
 
 ## Recommendations
 
