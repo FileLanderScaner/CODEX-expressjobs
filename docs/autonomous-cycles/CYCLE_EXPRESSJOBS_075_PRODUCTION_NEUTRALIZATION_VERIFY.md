@@ -54,4 +54,3 @@ Production public access is now neutralized reversibly.
 ## NEXT_CODEX_PROMPT
 
 Ejecutar `EXPRESSJOBS_REAL_MARKETPLACE_FLOW_STAGING_HARDENING` en `C:\CODEX-expressjobs-repo`. Mantener `PRODUCTION_STATUS=NO-GO_PRODUCTION` y conservar `/production-paused` en Production. No usar `vercel --prod`; no usar `vercel promote`; no modificar Vercel Production env vars; no borrar deployments; no borrar aliases; no tocar Supabase production; no activar pagos; no imprimir secrets. Trabajar solo en rama nueva desde `main`. Revalidar worker apply, client accept/reject, role RPC, jobs real listing y estados vacios en preview/staging. Ejecutar checks completos y actualizar docs/status.
-
