@@ -6,7 +6,7 @@
   "governance_pr_32": "MERGED",
   "governance_pr_32_merge_commit": "21397adbef60e48086419edf11f09233b8e80f37",
   "governance_closeout_pr": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/33",
-  "governance_closeout_pr_status": "OPEN_UNSTABLE_VERCEL_PREVIEW_FAILURE_ACTIONS_PASS_SUPABASE_PREVIEW_PASS",
+  "governance_closeout_pr_status": "OPEN_CLEAN_REMOTE_CHECKS_PASS_VERCEL_PREVIEW_UNSTABLE_OBSERVED",
   "vercel_production_deployment_risk": "FOUND",
   "vercel_latest_production_deployment": {
     "id": "dpl_8XAPTphi71n52WSoRpXWsU7aM46Z",
@@ -17,7 +17,7 @@
     "git_alias": "https://codex-expressjobs-git-main-akuma424-projects.vercel.app"
   },
   "recommended_vercel_decision": "OPTION_B_PROTECT_OR_NEUTRALIZE_PUBLIC_ACCESS",
-  "vercel_preview_for_closeout_pr": "UNSTABLE_LATEST_FAILURE",
+  "vercel_preview_for_closeout_pr": "UNSTABLE_OBSERVED_FAILURE_AND_RECOVERY_LATEST_PASS",
   "github_branch_protection": "BLOCKED_PENDING_HUMAN_APPROVAL",
   "delete_branch_on_merge": "BLOCKED_PENDING_HUMAN_APPROVAL",
   "remote_branch_cleanup": "PLAN_READY_MANUAL",

@@ -19,8 +19,9 @@ Closeout PR:
 
 - PR: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/33`
 - State: open
-- Merge state: unstable while Vercel Preview is failing.
-- Remote checks: `pr-check`, `security-gate`, `production-no-go`, and `docs-check` passed. `Supabase Preview` passed on the latest observed run. `Vercel` is unstable and the latest observed Preview deployment failed.
+- Merge state: clean on the latest observed run.
+- Remote checks: `pr-check`, `security-gate`, `production-no-go`, `docs-check`, `Supabase Preview`, and `Vercel` passed on the latest observed run.
+- Vercel Preview instability was observed during the closeout branch: one preview deployment failed, and a later preview recovered to success without code changes beyond status documentation.
 
 The merge triggered a Vercel Git Integration Production deployment automatically. This was not a manual production deploy by Codex.
 
@@ -30,7 +31,7 @@ The merge triggered a Vercel Git Integration Production deployment automatically
 - `VERCEL_PRODUCTION_DEPLOYMENT_RISK=FOUND`
 - `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 - `RELEASE_GATE=BLOCKED_PRODUCTION_RISK`
-- `PR_33_VERCEL_PREVIEW=UNSTABLE_LATEST_FAILURE`
+- `PR_33_VERCEL_PREVIEW=UNSTABLE_OBSERVED_FAILURE_AND_RECOVERY_LATEST_PASS`
 - `GOVERNANCE_CLOSEOUT=PASS_WITH_HUMAN_BLOCKERS`
 
 ## Vercel Production State
