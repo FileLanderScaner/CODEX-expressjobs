@@ -79,4 +79,3 @@ Codex must not execute this automatically.
 Choose Option B: protect or neutralize public access without destroying deployments.
 
 This resolves the contradiction between `NO-GO_PRODUCTION` and a public Production alias while preserving deployment history and controlled testing capability.
-

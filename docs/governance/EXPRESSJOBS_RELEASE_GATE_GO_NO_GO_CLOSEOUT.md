@@ -64,4 +64,3 @@ Current decision:
 `NO-GO_PRODUCTION`
 
 The codebase can continue safe preview/staging work, but public production remains blocked until the Vercel Production exposure is resolved by a human-approved action.
-
