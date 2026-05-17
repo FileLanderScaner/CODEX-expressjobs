@@ -76,6 +76,7 @@ Cycle 066 attempted safe GitHub workflow enablement and full Preview. RLS still 
 Cycle 067 incorporated the merged product/auth/demo work from PR #22-#28 and hardened the real marketplace flow locally. Worker job detail now submits real applications through Supabase with `ej_set_profile_role('worker')`; client job detail loads real applications and accepts/rejects through RPC; `/worker/jobs` and `/client` read real Supabase jobs with demo fallback only when unavailable; `/role` uses the safe role RPC; `/auth` preserves `next` redirects. A new local migration tightens application insert RLS against self-apply and adds invoker RPCs for accept/reject. No production, live payments, service-role key, or remote migration apply was performed.
 Cycle 071 removed the public commercial demo routes and shifted the public surface back to the real marketplace product. The home now points to publish, search, auth, and role flows; header/footer expose real marketplace navigation and real contact; worker/client pages no longer present fallback jobs as real data; `/ofertas` includes the real WhatsApp/email path and a local WhatsApp intake form. The real marketplace hardening migration/RPC work remains in this branch and production stays blocked.
 Cycle 072 audited GitHub/Vercel governance from `main`. Issue #16 was closed as superseded by the no-demo product direction, `.github/FUNDIN.yml` was removed as an invalid placeholder, branch protection and repo setting plans were documented, and remote branch cleanup was classified for manual review. PR #32 was opened with `pr-check`, `security-gate`, `production-no-go`, `docs-check`, Supabase Preview, and Vercel passing on the latest observed HEAD. Vercel read-only inspection found Ready Production deployments and aliases, so production remains `NO-GO_PRODUCTION` with `VERCEL_PRODUCTION_DEPLOYMENT_RISK=FOUND`.
+Cycle 073 merged PR #32 with squash after confirming checks PASS, then pulled `main` to `21397ad`. The merge triggered a Vercel Git Integration Production deployment automatically; Codex did not run `vercel --prod`, did not promote, and did not mutate envs or aliases. Latest inspected Production deployment is `dpl_8XAPTphi71n52WSoRpXWsU7aM46Z` with alias `https://codex-expressjobs.vercel.app`, so release remains `BLOCKED_PRODUCTION_RISK`. Branch protection and `delete_branch_on_merge` remain blocked pending human approval.
 
 ## Current Scope
 
@@ -123,8 +124,8 @@ Cycle 072 audited GitHub/Vercel governance from `main`. Issue #16 was closed as 
 
 ## Next Gate
 
-Resolve the governance release gate before additional feature work: review active Vercel Production deployments, enable `main` branch protection, enable branch deletion on merge, and manually clean stale branches after human approval. Keep production blocked.
+Resolve the Vercel Production exposure before additional feature work: protect or neutralize public access, then enable `main` branch protection, enable branch deletion on merge, and manually clean stale branches after human approval. Keep production blocked.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: open the governance audit PR and get human approval for production deployment handling plus GitHub repository protection. Production remains blocked.
+Current fastest safe release-ops step: get human approval for Vercel Production access protection/neutralization, then GitHub repository protection. Production remains blocked.
