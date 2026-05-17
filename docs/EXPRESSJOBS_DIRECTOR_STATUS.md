@@ -78,6 +78,7 @@ Cycle 071 removed the public commercial demo routes and shifted the public surfa
 Cycle 072 audited GitHub/Vercel governance from `main`. Issue #16 was closed as superseded by the no-demo product direction, `.github/FUNDIN.yml` was removed as an invalid placeholder, branch protection and repo setting plans were documented, and remote branch cleanup was classified for manual review. PR #32 was opened with `pr-check`, `security-gate`, `production-no-go`, `docs-check`, Supabase Preview, and Vercel passing on the latest observed HEAD. Vercel read-only inspection found Ready Production deployments and aliases, so production remains `NO-GO_PRODUCTION` with `VERCEL_PRODUCTION_DEPLOYMENT_RISK=FOUND`.
 Cycle 073 merged PR #32 with squash after confirming checks PASS, then pulled `main` to `21397ad`. The merge triggered a Vercel Git Integration Production deployment automatically; Codex did not run `vercel --prod`, did not promote, and did not mutate envs or aliases. Latest inspected Production deployment is `dpl_8XAPTphi71n52WSoRpXWsU7aM46Z` with alias `https://codex-expressjobs.vercel.app`, so release remains `BLOCKED_PRODUCTION_RISK`. Branch protection and `delete_branch_on_merge` remain blocked pending human approval.
 Cycle 074 merged PR #33, applied `main` branch protection and `delete_branch_on_merge=true`, then attempted the authorized Vercel Production protection. Vercel native SSO `all` protection was blocked by plan entitlement (`invalid_sso_protection`), so a reversible code-level neutralization was prepared: `middleware.ts` redirects Vercel Production traffic to `/production-paused`, while previews and local remain usable. This is pending PR/merge/deploy before Production alias is neutralized.
+Cycle 075 verified the production neutralization after PR #34 merged. Latest inspected Vercel Production deployment is `dpl_KcFp575mjYM6TS6BgCAXyYYMd84C`; `https://codex-expressjobs.vercel.app/` returns `307` to `/production-paused`, and `/production-paused` returns `200` with `NO-GO_PRODUCTION`. Production remains blocked but public access is now neutralized reversibly.
 
 ## Current Scope
 
@@ -125,8 +126,8 @@ Cycle 074 merged PR #33, applied `main` branch protection and `delete_branch_on_
 
 ## Next Gate
 
-Resolve the Vercel Production exposure before additional feature work: merge and verify the reversible `/production-paused` neutralization, then manually clean stale branches after human approval. Keep production blocked.
+Public Production exposure is neutralized. Next safe gate is to keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`, monitor the paused Production page, and only then continue staging/preview marketplace hardening. Remote branch cleanup remains manual only.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: open and merge the production neutralization PR after checks pass, then verify `https://codex-expressjobs.vercel.app` redirects to `/production-paused`. Production remains blocked.
+Current fastest safe release-ops step: continue marketplace hardening in preview/staging while preserving the Production pause. Production remains blocked.
