@@ -5,6 +5,8 @@
   "base_branch": "main",
   "governance_pr_32": "MERGED",
   "governance_pr_32_merge_commit": "21397adbef60e48086419edf11f09233b8e80f37",
+  "governance_closeout_pr": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/33",
+  "governance_closeout_pr_status": "OPEN_CLEAN_REMOTE_CHECKS_PASS_SUPABASE_PREVIEW_SKIPPED",
   "vercel_production_deployment_risk": "FOUND",
   "vercel_latest_production_deployment": {
     "id": "dpl_8XAPTphi71n52WSoRpXWsU7aM46Z",
