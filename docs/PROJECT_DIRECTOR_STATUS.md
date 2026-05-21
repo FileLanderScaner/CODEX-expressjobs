@@ -4,11 +4,11 @@
 
 ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS`.
 
-Current mode: `EXPRESSJOBS_FULL_SITE_SUPABASE_CONNECTIONS_AND_WEBAPP_COMPLETION`
+Current mode: `EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE`
 Current branch: `codex/expressjobs-full-site-supabase-completion`
 
 - Supabase staging RLS smoke: PASS
-- Vercel Preview deploy: READY (`https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app`)
+- Vercel Preview deploy: READY (`<PREVIEW_URL_REDACTED>`)
 - Preview browser smoke: PASS with protected access bypass header
 - First 10 tester package: READY
 - First 10 execution dry-run: PASS
@@ -68,7 +68,7 @@ Current branch: `codex/expressjobs-full-site-supabase-completion`
 - First 100 users prep: READY_PLAN_ONLY
 - Vercel Preview safety audit: PASS_WITH_PROTECTED_BROWSER_SMOKE_BLOCKED
 - Current Preview browser smoke: BLOCKED_PREVIEW_AUTH_401
-- Current Preview URL: https://codex-expressjobs-q2apmubra-akuma424-projects.vercel.app
+- Current Preview URL: `<PREVIEW_URL_REDACTED>`
 - PayPal canonical missing envs: NEXT_PUBLIC_PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, PAYPAL_PLAN_ID, PAYPAL_API_BASE, EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE
 - Paid pilot readiness: BLOCKED_EXTERNAL_CREDENTIALS
 - GitHub task router: ACTIVE
@@ -94,10 +94,13 @@ Current branch: `codex/expressjobs-full-site-supabase-completion`
 - Supabase RLS: STATIC_PASS_REAL_PREVIEW_PENDING
 - Vercel Preview: READY_FOR_SAFE_PREVIEW_ENV_ACTIVATION
 - PR #40: OPEN
+- PR #40 review decision: REVIEW_REQUIRED
 - Supabase Preview branch: BLOCKED_CONCURRENT_BRANCH_LIMIT
 - Vercel Preview: PASS_DIRECT_PREVIEW_PROTECTED
+- Vercel Git Preview: BLOCKED_VERCEL_GIT_PREVIEW_FAILURE
+- Vercel Git Preview logs: TARGET_PREVIEW_STATUS_ERROR_LOGS_UNAVAILABLE
 - Browser smoke: PASS_VERCEL_CLI_PROTECTED_ACCESS_PUBLIC_CURL_401
 - API smoke: PARTIAL_SUPABASE_DATA_API_REVIEW_PENDING
 - RLS real smoke: PASS_EXPRESSJOBS_RLS_STAGING_PASS
 - Secrets visible: false
-- Next mode: EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE
+- Next mode: EXPRESSJOBS_PREVIEW_DEPLOYMENT

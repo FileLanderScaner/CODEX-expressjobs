@@ -5,8 +5,8 @@
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-full-site-supabase-completion",
   "cycle": "CYCLE_EXPRESSJOBS_FULL_SITE_SUPABASE_COMPLETION",
-  "current_mode": "EXPRESSJOBS_FULL_SITE_SUPABASE_CONNECTIONS_AND_WEBAPP_COMPLETION",
-  "mode": "EXPRESSJOBS_FULL_SITE_SUPABASE_CONNECTIONS_AND_WEBAPP_COMPLETION",
+  "current_mode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
+  "mode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -31,7 +31,7 @@
   "role_ui_real_rpc": "IMPLEMENTED_LOCAL_EJ_SET_PROFILE_ROLE",
   "auth_next_redirects": "IMPLEMENTED_LOCAL",
   "vercel_preview_status": "READY_PROTECTED_BROWSER_SMOKE_BLOCKED_401",
-  "preview_url": "https://codex-expressjobs-q2apmubra-akuma424-projects.vercel.app",
+  "preview_url": "<PREVIEW_URL_REDACTED>",
   "preview_deployment": "dpl_EokYhx4T8NbNh7xiTpCpipz6bmKh",
   "preview_deployment_target": "preview",
   "preview_browser_smoke_current": "BLOCKED_PREVIEW_AUTH_401",
@@ -97,7 +97,7 @@
   "remote_branch_cleanup": "PLAN_READY_MANUAL",
   "vercel_production_deployment_risk": "FOUND",
   "vercel_latest_production_deployment": "dpl_8XAPTphi71n52WSoRpXWsU7aM46Z",
-  "vercel_latest_production_url": "https://codex-expressjobs-phdipmyez-akuma424-projects.vercel.app",
+  "vercel_latest_production_url": "<PRODUCTION_DEPLOYMENT_URL_REDACTED>",
   "vercel_public_alias": "https://codex-expressjobs.vercel.app",
   "vercel_production_decision_recommendation": "OPTION_B_PROTECT_OR_NEUTRALIZE_PUBLIC_ACCESS",
   "vercel_native_production_protection": "BLOCKED_PLAN_INVALID_SSO_PROTECTION",
@@ -107,7 +107,7 @@
   "production_neutralization_pr_status": "MERGED",
   "production_neutralization_merge_commit": "d2b773adc325c36728cc89426130c3f6760696d9",
   "vercel_neutralized_production_deployment": "dpl_KcFp575mjYM6TS6BgCAXyYYMd84C",
-  "vercel_neutralized_production_url": "https://codex-expressjobs-48lcaijrd-akuma424-projects.vercel.app",
+  "vercel_neutralized_production_url": "<PRODUCTION_DEPLOYMENT_URL_REDACTED>",
   "production_alias_root_status": "REDIRECT_307_TO_PRODUCTION_PAUSED",
   "production_paused_status": "HTTP_200_CONTAINS_NO_GO_PRODUCTION",
   "vercel_preview_for_closeout_pr": "UNSTABLE_OBSERVED_FAILURE_AND_RECOVERY_LATEST_PASS",
@@ -373,10 +373,13 @@
   ],
   "blockedBy": [
     "BLOCKED_EXTERNAL_CREDENTIALS",
-    "BLOCKED_PRODUCTION_RISK"
+    "BLOCKED_PRODUCTION_RISK",
+    "BLOCKED_REVIEW_REQUIRED",
+    "BLOCKED_VERCEL_GIT_PREVIEW_FAILURE",
+    "BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT"
   ],
-  "next_mode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
-  "nextMode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
+  "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
+  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
   "next_prompt_generated": true,
-  "next_prompt": "Ejecutar EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE en C:\\CODEX-expressjobs-repo. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. Revisar PR #40 sin mezclar PR #37, consolidar feedback de Preview, resolver o documentar Supabase Preview branch limit, ejecutar QA final con acceso Preview autenticado o bypass seguro sin imprimir tokens, no mergear sin review humana, no usar admin override, no usar vercel --prod, no usar vercel promote, no modificar Production env vars."
+  "next_prompt": "Ejecutar EXPRESSJOBS_PREVIEW_DEPLOYMENT en C:\\CODEX-expressjobs-repo, branch codex/expressjobs-full-site-supabase-completion. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. No usar vercel --prod, no usar vercel promote, no modificar Production env vars, no activar pagos live, no mergear sin review humana. Resolver o documentar con evidencia el fallo de Vercel Git Preview de PR #40 comparando contra el Preview directo que ya paso, mantener URLs y secretos redaccionados, ejecutar checks de seguridad/build, actualizar docs/status y dejar PR #40 abierto para review."
 }

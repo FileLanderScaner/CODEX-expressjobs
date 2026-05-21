@@ -5,7 +5,7 @@
   "releaseGateStatus": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL",
   "rlsRealSmokeStatus": "PASS",
   "vercelPreviewStatus": "READY_GOOGLE_REDIRECT_TO_FIXED",
-  "previewUrl": "https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app",
+  "previewUrl": "<PREVIEW_URL_REDACTED>",
   "previewBrowserSmoke": "PASS",
   "first10Testers": "NO-GO_UNTIL_RLS_ROLE_HARDENING_APPLIED_AND_SMOKE_PASS",
   "first25Testers": "NO-GO_UNTIL_FIRST_10_RESULTS_AND_RLS_FIX",
@@ -14,7 +14,7 @@
   "first100UsersPrep": "READY_PLAN_ONLY",
   "vercelPreviewSafetyAudit": "PASS_WITH_PROTECTED_BROWSER_SMOKE_BLOCKED",
   "currentPreviewBrowserSmoke": "BLOCKED_PREVIEW_AUTH_401",
-  "currentPreviewUrl": "https://codex-expressjobs-q2apmubra-akuma424-projects.vercel.app",
+  "currentPreviewUrl": "<PREVIEW_URL_REDACTED>",
   "vercelProductionTouched": false,
   "first10PackageStatus": "READY",
   "first10DryRunStatus": "PASS",
@@ -135,7 +135,7 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "mode": "EXPRESSJOBS_FULL_SITE_SUPABASE_CONNECTIONS_AND_WEBAPP_COMPLETION",
+  "mode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
   "branch": "codex/expressjobs-full-site-supabase-completion",
   "publicPages": "READY",
   "privateDashboard": "READY_ENV_PENDING",
@@ -150,6 +150,8 @@
     "state": "OPEN",
     "reviewDecision": "REVIEW_REQUIRED",
     "vercelPreview": "PASS_DIRECT_PREVIEW_PROTECTED",
+    "vercelGitPreview": "BLOCKED_VERCEL_GIT_PREVIEW_FAILURE",
+    "vercelInspect": "TARGET_PREVIEW_STATUS_ERROR_LOGS_UNAVAILABLE",
     "supabasePreview": "BLOCKED_CONCURRENT_BRANCH_LIMIT"
   },
   "supabase": {
@@ -183,7 +185,8 @@
     "BLOCKED_EXTERNAL_CREDENTIALS",
     "BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT",
     "BLOCKED_PREVIEW_AUTH_401",
-    "BLOCKED_VERCEL_GIT_PREVIEW_FAILURE"
+    "BLOCKED_VERCEL_GIT_PREVIEW_FAILURE",
+    "BLOCKED_REVIEW_REQUIRED"
   ],
-  "nextMode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE"
+  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT"
 }

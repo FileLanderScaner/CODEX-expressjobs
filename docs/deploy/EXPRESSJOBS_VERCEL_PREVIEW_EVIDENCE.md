@@ -22,6 +22,7 @@ Preview URL is recorded only as `<PREVIEW_URL_REDACTED>`.
 - Public curl smoke: BLOCKED_PREVIEW_AUTH_401
 - Vercel CLI protected access: PASS for `/` and `/api/health`
 - Vercel inspect for failed Git deployment: TARGET_PREVIEW_STATUS_ERROR_LOGS_UNAVAILABLE
+- Latest PR #40 review gate: REVIEW_REQUIRED
 
 ## Expected Preview Smoke
 
