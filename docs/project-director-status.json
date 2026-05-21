@@ -149,7 +149,7 @@
     "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/40",
     "state": "OPEN",
     "reviewDecision": "REVIEW_REQUIRED",
-    "vercelPreview": "READY_PROTECTED",
+    "vercelPreview": "FAIL_CURRENT_DEPLOYMENT_TARGET_PREVIEW",
     "supabasePreview": "BLOCKED_CONCURRENT_BRANCH_LIMIT"
   },
   "supabase": {
@@ -162,7 +162,8 @@
   "qa": {
     "apiSmoke": "PARTIAL_SUPABASE_DATA_API_REVIEW_PENDING",
     "marketplaceFlow": "PARTIAL_CONFIRMED_BROWSER_SESSIONS_PENDING",
-    "browserSmoke": "BLOCKED_PREVIEW_AUTH_401"
+    "browserSmoke": "BLOCKED_PREVIEW_AUTH_401",
+    "vercelInspect": "TARGET_PREVIEW_STATUS_ERROR_LOGS_UNAVAILABLE"
   },
   "checks": {
     "secret_scan": "PASS",
@@ -181,7 +182,8 @@
   "blockers": [
     "BLOCKED_EXTERNAL_CREDENTIALS",
     "BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT",
-    "BLOCKED_PREVIEW_AUTH_401"
+    "BLOCKED_PREVIEW_AUTH_401",
+    "BLOCKED_VERCEL_PREVIEW_FAILURE"
   ],
   "nextMode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE"
 }

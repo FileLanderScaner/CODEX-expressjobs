@@ -95,7 +95,7 @@ Current branch: `codex/expressjobs-full-site-supabase-completion`
 - Vercel Preview: READY_FOR_SAFE_PREVIEW_ENV_ACTIVATION
 - PR #40: OPEN
 - Supabase Preview branch: BLOCKED_CONCURRENT_BRANCH_LIMIT
-- Vercel Preview: READY_PROTECTED
+- Vercel Preview: FAIL_CURRENT_DEPLOYMENT_TARGET_PREVIEW
 - Browser smoke: BLOCKED_PREVIEW_AUTH_401
 - API smoke: PARTIAL_SUPABASE_DATA_API_REVIEW_PENDING
 - RLS real smoke: PASS_EXPRESSJOBS_RLS_STAGING_PASS
