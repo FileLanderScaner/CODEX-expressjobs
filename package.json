@@ -21,6 +21,8 @@
     "paypal:sandbox:smoke": "node scripts/paypal-sandbox-smoke.mjs",
     "secret:scan": "node scripts/secret-scan.mjs",
     "security:scan": "node scripts/secret-scan.mjs",
+    "android:sync": "cap sync android",
+    "android:debug": "cd android && gradlew.bat assembleDebug",
     "ci": "npm run lint && npm run typecheck && npm run test && npm run build && npm run secret:scan"
   },
   "dependencies": {
@@ -33,6 +35,9 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@capacitor/android": "^8.3.4",
+    "@capacitor/cli": "^8.3.4",
+    "@capacitor/core": "^8.3.4",
     "@tailwindcss/postcss": "^4.1.17",
     "@types/node": "^24.10.1",
     "@types/react": "^19.2.7",

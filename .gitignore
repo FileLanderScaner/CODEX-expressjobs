@@ -21,6 +21,13 @@ audit.json
 *.tar
 *.tar.gz
 *.7z
+*.apk
+*.aab
+
+# Android / Capacitor build output
+android/.gradle/
+android/**/build/
+android/local.properties
 
 # Environment and secrets
 .env

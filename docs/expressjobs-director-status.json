@@ -4,9 +4,9 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-full-site-supabase-completion",
-  "cycle": "CYCLE_EXPRESSJOBS_FULL_SITE_SUPABASE_COMPLETION",
-  "current_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
-  "mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
+  "cycle": "CYCLE_EXPRESSJOBS_ANDROID_DEBUG_APK_BUILD",
+  "current_mode": "EXPRESSJOBS_ANDROID_DEBUG_APK_BUILD",
+  "mode": "EXPRESSJOBS_ANDROID_DEBUG_APK_BUILD",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -19,7 +19,9 @@
   "release_gate_status": "PASS_FOR_FIRST_10_CONTROLLED_INTERNAL_RLS_FIXED_PRODUCTION_NO_GO",
   "real_marketplace_flow": "LOCAL_READY_PR_REQUIRED_STAGING_MIGRATION_NOT_APPLIED",
   "remove_demos_real_product_pr": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/30",
-  "superseded_prs_closed": [29],
+  "superseded_prs_closed": [
+    29
+  ],
   "public_demo_routes": "REMOVED_FROM_ROUTED_APP",
   "public_demo_links": "REMOVED",
   "public_surface_status": "REAL_PRODUCT_MARKETPLACE_FOCUSED",
@@ -283,7 +285,12 @@
   "github_branch_protection_plan": "READY",
   "github_project_blueprint": "READY",
   "github_seed_issues": "CREATED",
-  "github_seed_issue_numbers": [6, 7, 8, 9],
+  "github_seed_issue_numbers": [
+    6,
+    7,
+    8,
+    9
+  ],
   "operator_secret_entry_shell_opened": true,
   "operator_secret_entry_directory": "C:\\CODEX-expressjobs-repo",
   "env_files_visible_to_codex": {
@@ -305,24 +312,24 @@
     "ENABLE_ADMIN_PANEL": false
   },
   "checks": {
-    "secret_scan": "pass",
+    "secret_scan": "PASS",
     "rls_static": "pass",
-    "production_check": "pass",
+    "production_check": "PASS_SAFE_NO_GO",
     "staging_check": "pass",
     "rest_data_api_check": "pass",
     "rls_bootstrap_anon_users": "not_run_this_cycle",
     "rls_smoke": "pass_expressjobs_rls_staging_pass",
     "rls_smoke_cleanup": "pass_client_role_restored",
-    "diff_check": "pass",
+    "diff_check": "PASS",
     "preview_deploy": "ready",
     "google_oauth_redirect_to_fix": "pass",
     "preview_http_smoke": "pass_with_bypass_header",
     "preview_browser_smoke": "blocked_preview_auth_401_current_audit",
     "google_auth_human_callback_session": "pass",
-    "lint": "pass",
-    "typecheck": "pass",
-    "test": "pass",
-    "build": "pass",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "test": "PASS_10_FILES_51_TESTS",
+    "build": "PASS",
     "paypal_audit": "partial_ready_sandbox_implemented",
     "paypal_sandbox_implementation": "ready_blocked_external_credentials",
     "supabase_tooling_audit": "partial_pass",
@@ -331,7 +338,7 @@
     "github_preview_pipeline_local_validation": "pass",
     "real_marketplace_flow_local": "pass",
     "browser_http_smoke_local": "pass_localhost_3000",
-    "guard_no_production_deploy": "pass",
+    "guard_no_production_deploy": "PASS",
     "remove_demos_public_surface": "pass",
     "no_public_demo_routes": "pass",
     "real_product_surface_tests": "pass_8_files_45_tests",
@@ -348,7 +355,8 @@
     "release_gate_build": "pass",
     "release_gate_diff_check": "pass",
     "release_gate_staging_check": "pass",
-    "release_gate_rls_smoke": "pass_expressjobs_rls_staging_pass"
+    "release_gate_rls_smoke": "pass_expressjobs_rls_staging_pass",
+    "android_debug": "PASS"
   },
   "blocking_items": [
     "SECURITY_ADVISOR_RECHECK_PENDING_OR_NOT_RECHECKED",
@@ -361,10 +369,8 @@
     "VERCEL_PREVIEW_ENV",
     "SUPABASE_WRITE_APPROVAL",
     "GITHUB_ACTIONS_SECRETS_NOT_VERIFIED",
-    "WORKFLOW_DISPATCH_UI_BLOCKED_UNTIL_WORKFLOW_EXISTS_ON_DEFAULT_BRANCH"
-    ,
-    "DEFAULT_BRANCH_WORKFLOW_ENABLEMENT_BLOCKED_PRODUCTION_AUTODEPLOY_RISK"
-    ,
+    "WORKFLOW_DISPATCH_UI_BLOCKED_UNTIL_WORKFLOW_EXISTS_ON_DEFAULT_BRANCH",
+    "DEFAULT_BRANCH_WORKFLOW_ENABLEMENT_BLOCKED_PRODUCTION_AUTODEPLOY_RISK",
     "PR_5_CONFLICTING_WITH_FAILED_VERCEL_AND_PRODUCTION_GATE_CONTEXTS",
     "STAGING_MIGRATION_20260516223000_NOT_APPLIED",
     "FULL_REAL_USER_BROWSER_SMOKE_NOT_RUN",
@@ -379,8 +385,20 @@
     "BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT",
     "BLOCKED_VERCEL_ACCESS"
   ],
-  "next_mode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO",
+  "next_mode": "EXPRESSJOBS_ANDROID_APK_DEVICE_SMOKE",
   "nextMode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO",
   "next_prompt_generated": true,
-  "next_prompt": "Ejecutar EXPRESSJOBS_RELEASE_GATE_GO_NO_GO en C:\\CODEX-expressjobs-repo, branch codex/expressjobs-full-site-supabase-completion. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. No mergear, no usar admin override, no usar vercel --prod, no usar vercel promote, no modificar Production env vars, no activar pagos live. Consolidar estado de PR #40: checks repo PASS, Vercel Git Preview BLOCKED, Supabase Preview branch limit BLOCKED, review REQUIRED. Actualizar status y emitir decision GO/NO-GO para Preview QA controlada y merge readiness."
+  "next_prompt": "Ejecutar EXPRESSJOBS_RELEASE_GATE_GO_NO_GO en C:\\CODEX-expressjobs-repo, branch codex/expressjobs-full-site-supabase-completion. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. No mergear, no usar admin override, no usar vercel --prod, no usar vercel promote, no modificar Production env vars, no activar pagos live. Consolidar estado de PR #40: checks repo PASS, Vercel Git Preview BLOCKED, Supabase Preview branch limit BLOCKED, review REQUIRED. Actualizar status y emitir decision GO/NO-GO para Preview QA controlada y merge readiness.",
+  "android_debug_apk": {
+    "status": "PASS",
+    "framework": "Capacitor WebView",
+    "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+    "size_bytes": 4117594,
+    "default_server_url": "http://10.0.2.2:3000",
+    "requires_local_next_server": true,
+    "production_touched": false,
+    "paypal_live": false,
+    "supabase_remote_mutated": false,
+    "secrets_printed": false
+  }
 }
