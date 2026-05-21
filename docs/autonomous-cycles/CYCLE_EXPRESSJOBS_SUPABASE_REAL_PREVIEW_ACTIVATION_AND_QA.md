@@ -42,7 +42,8 @@
 
 ## Vercel
 
-- PR #40 Vercel Git Preview: FAIL on the latest deployment, target `preview`.
+- PR #40 Vercel Git Preview: FAIL on the latest Git deployment, target `preview`.
+- Direct Vercel Preview deployment: PASS with explicit `--target preview`.
 - Direct Vercel CLI production deployment: NOT_USED.
 - `vercel --prod`: NOT_USED.
 - `vercel promote`: NOT_USED.
@@ -70,7 +71,7 @@
 - `BLOCKED_EXTERNAL_CREDENTIALS` for remote migration apply/admin setup.
 - `BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT` for Supabase Preview branching.
 - `BLOCKED_PREVIEW_AUTH_401` for unauthenticated browser smoke.
-- `BLOCKED_VERCEL_PREVIEW_FAILURE` for the latest Vercel Preview deployment.
+- `BLOCKED_VERCEL_GIT_PREVIEW_FAILURE` for the latest Git-triggered Vercel Preview deployment.
 
 ## NEXT_CODEX_PROMPT
 
