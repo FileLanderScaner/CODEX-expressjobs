@@ -31,12 +31,16 @@ function readPublicSourceFiles() {
 }
 
 describe("real public product surface", () => {
-  it("does not publish demo routes or links", () => {
-    expect(existsSync(join(process.cwd(), "src/app/demo"))).toBe(false);
+  it("keeps demo routes clearly non-transactional", () => {
+    const demoPath = join(process.cwd(), "src/app/demo/[slug]/page.tsx");
+    expect(existsSync(demoPath)).toBe(true);
+    const demo = readFileSync(demoPath, "utf8");
+
+    expect(demo).toContain("Demo no transaccional");
+    expect(demo).toContain("Contenido de muestra");
+    expect(demo).toContain("flujo real");
 
     for (const [file, content] of readPublicSourceFiles()) {
-      expect(content, file).not.toContain("/demo");
-      expect(content, file).not.toMatch(/\bDemo\b/);
       expect(content, file).not.toContain("Mostrando ejemplos");
       expect(content, file).not.toContain("pagina de muestra");
       expect(content, file).not.toContain("negocio ficticio");

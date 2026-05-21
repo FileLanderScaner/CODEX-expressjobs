@@ -1,4 +1,10 @@
 import { AppShell } from "@/components/app-shell";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Privacidad | Trabajos Rapidos",
+  description: "Politica inicial de privacidad del piloto Trabajos Rapidos.",
+};
 
 export default function PrivacyPage() {
   return (

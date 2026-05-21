@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BadgeDollarSign, BriefcaseBusiness, ClipboardPlus, Home, LogIn } from "lucide-react";
+import { BadgeDollarSign, BriefcaseBusiness, ClipboardPlus, Home, Info, LogIn, ShieldCheck } from "lucide-react";
 import { productionStatus } from "@/lib/env";
 import { publicBrand } from "@/lib/expressjobs-data";
 import { defaultWhatsAppSalesHref, publicSalesContact } from "@/lib/monetization/monetization-config";
@@ -8,6 +8,8 @@ const nav = [
   { href: "/", label: "Inicio", icon: Home },
   { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
   { href: "/client/jobs/new", label: "Publicar trabajo", icon: ClipboardPlus },
+  { href: "/como-funciona", label: "Como funciona", icon: Info },
+  { href: "/seguridad", label: "Seguridad", icon: ShieldCheck },
   { href: "/ofertas", label: "Ofertas", icon: BadgeDollarSign },
 ];
 

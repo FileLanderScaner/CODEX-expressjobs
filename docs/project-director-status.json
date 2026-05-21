@@ -135,5 +135,32 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "nextMode": "EXPRESSJOBS_REVENUE_OUTREACH_EXECUTION_ASSISTANT"
+  "mode": "EXPRESSJOBS_FULL_SITE_SUPABASE_CONNECTIONS_AND_WEBAPP_COMPLETION",
+  "branch": "codex/expressjobs-full-site-supabase-completion",
+  "publicPages": "READY",
+  "privateDashboard": "READY_ENV_PENDING",
+  "api": "READY_ENV_PENDING",
+  "supabaseAuth": "READY_ENV_PENDING",
+  "supabaseDatabase": "MIGRATIONS_READY_LOCAL_NOT_APPLIED_REMOTE",
+  "supabaseRls": "STATIC_PASS_REAL_PREVIEW_PENDING",
+  "vercelPreview": "READY_FOR_SAFE_PREVIEW_ENV_ACTIVATION",
+  "secretsVisible": false,
+  "checks": {
+    "secret_scan": "PASS",
+    "security_scan": "PASS",
+    "production_check": "PASS",
+    "guard_no_production_deploy": "PASS",
+    "rls_static": "PASS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "test": "PASS_10_FILES_51_TESTS",
+    "build": "PASS",
+    "staging_check": "PASS",
+    "ci": "PASS",
+    "diff_check": "PASS"
+  },
+  "blockers": [
+    "BLOCKED_EXTERNAL_CREDENTIALS_FOR_REAL_PREVIEW_QA"
+  ],
+  "nextMode": "EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA"
 }

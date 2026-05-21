@@ -1,4 +1,10 @@
 import { AppShell } from "@/components/app-shell";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Terminos | Trabajos Rapidos",
+  description: "Terminos iniciales del piloto Trabajos Rapidos.",
+};
 
 export default function TermsPage() {
   return (

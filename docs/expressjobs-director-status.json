@@ -3,10 +3,10 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
-  "branch": "codex/production-neutralization-verified",
-  "cycle": "CYCLE_EXPRESSJOBS_075_PRODUCTION_NEUTRALIZATION_VERIFY",
-  "current_mode": "EXPRESSJOBS_PRODUCTION_NEUTRALIZATION_VERIFY",
-  "mode": "EXPRESSJOBS_PRODUCTION_NEUTRALIZATION_VERIFY",
+  "branch": "codex/expressjobs-full-site-supabase-completion",
+  "cycle": "CYCLE_EXPRESSJOBS_FULL_SITE_SUPABASE_COMPLETION",
+  "current_mode": "EXPRESSJOBS_FULL_SITE_SUPABASE_CONNECTIONS_AND_WEBAPP_COMPLETION",
+  "mode": "EXPRESSJOBS_FULL_SITE_SUPABASE_CONNECTIONS_AND_WEBAPP_COMPLETION",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -39,6 +39,34 @@
   "vercel_production_touched": false,
   "productionStatus": "NO-GO_PRODUCTION",
   "production_status": "NO-GO_PRODUCTION",
+  "full_site_supabase_completion": {
+    "public_pages": "READY",
+    "private_dashboard": "READY_ENV_PENDING",
+    "api": "READY_ENV_PENDING",
+    "supabase_auth": "READY_ENV_PENDING",
+    "supabase_database": "MIGRATIONS_READY_LOCAL_NOT_APPLIED_REMOTE",
+    "supabase_rls": "STATIC_PASS_REAL_PREVIEW_PENDING",
+    "vercel_preview": "READY_FOR_SAFE_PREVIEW_ENV_ACTIVATION",
+    "secrets_visible": false,
+    "new_migration": "supabase/migrations/202605210001_complete_marketplace_connections.sql",
+    "checks": {
+      "secret_scan": "PASS",
+      "security_scan": "PASS",
+      "production_check": "PASS",
+      "guard_no_production_deploy": "PASS",
+      "rls_static": "PASS",
+      "lint": "PASS",
+      "typecheck": "PASS",
+      "test": "PASS_10_FILES_51_TESTS",
+      "build": "PASS",
+      "staging_check": "PASS",
+      "ci": "PASS",
+      "diff_check": "PASS"
+    },
+    "blockers": [
+      "BLOCKED_EXTERNAL_CREDENTIALS_FOR_REAL_PREVIEW_QA"
+    ]
+  },
   "security_audit_governance": "BLOCKED_BY_PRODUCTION_DEPLOYMENT_RISK",
   "governance_pr_32": "MERGED",
   "governance_pr_32_merge_commit": "21397adbef60e48086419edf11f09233b8e80f37",
@@ -327,8 +355,8 @@
     "BLOCKED_EXTERNAL_CREDENTIALS",
     "BLOCKED_PRODUCTION_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_STAGING_HARDENING",
-  "nextMode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_STAGING_HARDENING",
+  "next_mode": "EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA",
+  "nextMode": "EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA",
   "next_prompt_generated": true,
-  "next_prompt": "Ejecutar EXPRESSJOBS_REAL_MARKETPLACE_FLOW_STAGING_HARDENING en C:\\CODEX-expressjobs-repo. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION y conservar /production-paused en Production. No usar vercel --prod; no usar vercel promote; no modificar Vercel Production env vars; no borrar deployments; no borrar aliases; no tocar Supabase production; no activar pagos; no imprimir secrets. Trabajar solo en rama nueva desde main. Revalidar worker apply, client accept/reject, role RPC, jobs real listing y estados vacios en preview/staging. Ejecutar checks completos y actualizar docs/status."
+  "next_prompt": "Ejecutar EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA en C:\\CODEX-expressjobs-repo. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. No usar vercel --prod; no usar vercel promote; no modificar Vercel Production env vars; no tocar Supabase production; no activar pagos reales; no imprimir secrets. Configurar variables reales solo en local/Preview mediante almacenes seguros, aplicar migraciones no destructivas aprobadas a staging, ejecutar smoke real de Auth, RLS, API y marketplace, desplegar Preview seguro si el target no es production, y documentar evidencia sanitizada."
 }

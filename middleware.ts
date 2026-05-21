@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { refreshSupabaseSession } from "@/lib/supabase/middleware";
 
 const productionPausedPath = "/production-paused";
 
@@ -11,15 +12,15 @@ function isAssetOrFrameworkPath(pathname: string) {
   );
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   if (process.env.VERCEL_ENV !== "production") {
-    return NextResponse.next();
+    return refreshSupabaseSession(request, NextResponse.next());
   }
 
   const { pathname } = request.nextUrl;
 
   if (pathname === productionPausedPath || isAssetOrFrameworkPath(pathname)) {
-    return NextResponse.next();
+    return refreshSupabaseSession(request, NextResponse.next());
   }
 
   const url = request.nextUrl.clone();

@@ -4,6 +4,9 @@
 
 ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS`.
 
+Current mode: `EXPRESSJOBS_FULL_SITE_SUPABASE_CONNECTIONS_AND_WEBAPP_COMPLETION`
+Current branch: `codex/expressjobs-full-site-supabase-completion`
+
 - Supabase staging RLS smoke: PASS
 - Vercel Preview deploy: READY (`https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app`)
 - Preview browser smoke: PASS with protected access bypass header
@@ -82,4 +85,13 @@ ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_C
 - Facebook login: CONFIG_PENDING
 - Instagram login: RESEARCH_PENDING
 - Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_REVENUE_OUTREACH_EXECUTION_ASSISTANT
+- Full site completion: READY_LOCAL_CODE_ENV_PENDING
+- Public pages: READY
+- Private dashboard: READY_ENV_PENDING
+- Internal APIs: READY_ENV_PENDING
+- Supabase Auth: READY_ENV_PENDING
+- Supabase database: MIGRATIONS_READY_LOCAL_NOT_APPLIED_REMOTE
+- Supabase RLS: STATIC_PASS_REAL_PREVIEW_PENDING
+- Vercel Preview: READY_FOR_SAFE_PREVIEW_ENV_ACTIVATION
+- Secrets visible: false
+- Next mode: EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA

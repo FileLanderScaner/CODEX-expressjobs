@@ -79,6 +79,7 @@ Cycle 072 audited GitHub/Vercel governance from `main`. Issue #16 was closed as 
 Cycle 073 merged PR #32 with squash after confirming checks PASS, then pulled `main` to `21397ad`. The merge triggered a Vercel Git Integration Production deployment automatically; Codex did not run `vercel --prod`, did not promote, and did not mutate envs or aliases. Latest inspected Production deployment is `dpl_8XAPTphi71n52WSoRpXWsU7aM46Z` with alias `https://codex-expressjobs.vercel.app`, so release remains `BLOCKED_PRODUCTION_RISK`. Branch protection and `delete_branch_on_merge` remain blocked pending human approval.
 Cycle 074 merged PR #33, applied `main` branch protection and `delete_branch_on_merge=true`, then attempted the authorized Vercel Production protection. Vercel native SSO `all` protection was blocked by plan entitlement (`invalid_sso_protection`), so a reversible code-level neutralization was prepared: `middleware.ts` redirects Vercel Production traffic to `/production-paused`, while previews and local remain usable. This is pending PR/merge/deploy before Production alias is neutralized.
 Cycle 075 verified the production neutralization after PR #34 merged. Latest inspected Vercel Production deployment is `dpl_KcFp575mjYM6TS6BgCAXyYYMd84C`; `https://codex-expressjobs.vercel.app/` returns `307` to `/production-paused`, and `/production-paused` returns `200` with `NO-GO_PRODUCTION`. Production remains blocked but public access is now neutralized reversibly.
+Cycle full-site Supabase completion added missing public pages, private dashboard routes, Supabase SSR helpers, internal API route handlers, Zod validation, SEO files, local RLS hardening migration, QA/security/deploy docs, and Preview activation runbooks. Remote Supabase apply and real Preview QA remain pending external credentials.
 
 ## Current Scope
 
@@ -130,4 +131,4 @@ Public Production exposure is neutralized. Next safe gate is to keep `PRODUCTION
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: continue marketplace hardening in preview/staging while preserving the Production pause. Production remains blocked.
+Current fastest safe release-ops step: configure real Supabase variables only in local/Preview, apply approved non-destructive migrations to staging, then run Auth/RLS/browser smoke without exposing secrets. Production remains blocked.

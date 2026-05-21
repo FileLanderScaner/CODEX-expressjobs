@@ -110,5 +110,8 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(allMigrations).toContain("create or replace function public.ej_accept_job_application");
     expect(allMigrations).toContain("security invoker");
     expect(allMigrations).toContain("grant execute on function public.ej_accept_job_application(uuid) to authenticated");
+    expect(allMigrations).toContain("EXPRESSJOBS_APPLICATION_ALREADY_RESOLVED");
+    expect(allMigrations).toContain("selected_job.status <> 'open'");
+    expect(allMigrations).toContain("and status = 'submitted'");
   });
 });

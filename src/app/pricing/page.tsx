@@ -1,7 +1,13 @@
 import { CircleDollarSign } from "lucide-react";
+import type { Metadata } from "next";
 import { AppShell } from "@/components/app-shell";
 import { PricingCard } from "@/components/pricing-card";
 import { pricingPlans } from "@/lib/expressjobs-data";
+
+export const metadata: Metadata = {
+  title: "Precios | Trabajos Rapidos",
+  description: "Planes propuestos con pagos reales desactivados.",
+};
 
 export default function PricingPage() {
   return (
