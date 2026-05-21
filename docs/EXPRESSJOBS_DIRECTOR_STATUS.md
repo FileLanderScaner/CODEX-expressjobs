@@ -80,6 +80,7 @@ Cycle 073 merged PR #32 with squash after confirming checks PASS, then pulled `m
 Cycle 074 merged PR #33, applied `main` branch protection and `delete_branch_on_merge=true`, then attempted the authorized Vercel Production protection. Vercel native SSO `all` protection was blocked by plan entitlement (`invalid_sso_protection`), so a reversible code-level neutralization was prepared: `middleware.ts` redirects Vercel Production traffic to `/production-paused`, while previews and local remain usable. This is pending PR/merge/deploy before Production alias is neutralized.
 Cycle 075 verified the production neutralization after PR #34 merged. Latest inspected Vercel Production deployment is `dpl_KcFp575mjYM6TS6BgCAXyYYMd84C`; `https://codex-expressjobs.vercel.app/` returns `307` to `/production-paused`, and `/production-paused` returns `200` with `NO-GO_PRODUCTION`. Production remains blocked but public access is now neutralized reversibly.
 Cycle full-site Supabase completion added missing public pages, private dashboard routes, Supabase SSR helpers, internal API route handlers, Zod validation, SEO files, local RLS hardening migration, QA/security/deploy docs, and Preview activation runbooks. Remote Supabase apply and real Preview QA remain pending external credentials.
+Cycle Supabase real Preview activation and QA created PR #40, verified local/staging gates, ran RLS real smoke successfully, and confirmed Vercel Git Preview is Ready but protected by Vercel Authentication. Supabase Preview branching is blocked by concurrent branch limit, and remote migration apply is blocked by missing safe apply credentials.
 
 ## Current Scope
 
@@ -131,4 +132,4 @@ Public Production exposure is neutralized. Next safe gate is to keep `PRODUCTION
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: configure real Supabase variables only in local/Preview, apply approved non-destructive migrations to staging, then run Auth/RLS/browser smoke without exposing secrets. Production remains blocked.
+Current fastest safe release-ops step: review PR #40, resolve Supabase Preview branch limit or use approved staging apply path, then run authenticated Preview browser QA. Production remains blocked.

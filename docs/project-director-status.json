@@ -145,6 +145,25 @@
   "supabaseRls": "STATIC_PASS_REAL_PREVIEW_PENDING",
   "vercelPreview": "READY_FOR_SAFE_PREVIEW_ENV_ACTIVATION",
   "secretsVisible": false,
+  "pr40": {
+    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/40",
+    "state": "OPEN",
+    "reviewDecision": "REVIEW_REQUIRED",
+    "vercelPreview": "READY_PROTECTED",
+    "supabasePreview": "BLOCKED_CONCURRENT_BRANCH_LIMIT"
+  },
+  "supabase": {
+    "envStatus": "READY_LOCAL_ENV_FILES_PRESENT_IGNORED",
+    "migrationApply": "BLOCKED_EXTERNAL_CREDENTIALS",
+    "authSmoke": "PARTIAL_AUTH_PAGES_AND_ANON_GUARDS_PASS_SESSION_QA_PENDING",
+    "rlsStatic": "PASS",
+    "rlsReal": "PASS_EXPRESSJOBS_RLS_STAGING_PASS"
+  },
+  "qa": {
+    "apiSmoke": "PARTIAL_SUPABASE_DATA_API_REVIEW_PENDING",
+    "marketplaceFlow": "PARTIAL_CONFIRMED_BROWSER_SESSIONS_PENDING",
+    "browserSmoke": "BLOCKED_PREVIEW_AUTH_401"
+  },
   "checks": {
     "secret_scan": "PASS",
     "security_scan": "PASS",
@@ -160,7 +179,9 @@
     "diff_check": "PASS"
   },
   "blockers": [
-    "BLOCKED_EXTERNAL_CREDENTIALS_FOR_REAL_PREVIEW_QA"
+    "BLOCKED_EXTERNAL_CREDENTIALS",
+    "BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT",
+    "BLOCKED_PREVIEW_AUTH_401"
   ],
-  "nextMode": "EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA"
+  "nextMode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE"
 }

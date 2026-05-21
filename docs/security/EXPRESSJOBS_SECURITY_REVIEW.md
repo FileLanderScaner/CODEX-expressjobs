@@ -28,3 +28,5 @@ No secret values are documented. Use placeholders only:
 - Real Preview Supabase smoke requires external credentials.
 - Rate limiting for public contact remains a documented follow-up.
 - Remote migration apply was not performed.
+- Supabase Preview branch for PR #40 is blocked by concurrent branch limit.
+- Public Vercel Preview smoke is blocked by Deployment Protection until authenticated/bypass access is available.

@@ -67,6 +67,25 @@
       "BLOCKED_EXTERNAL_CREDENTIALS_FOR_REAL_PREVIEW_QA"
     ]
   },
+  "real_preview_activation_qa": {
+    "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/40",
+    "pr_state": "OPEN",
+    "review_decision": "REVIEW_REQUIRED",
+    "env_status": "READY_LOCAL_ENV_FILES_PRESENT_IGNORED",
+    "migration_apply": "BLOCKED_EXTERNAL_CREDENTIALS",
+    "auth_smoke": "PARTIAL_AUTH_PAGES_AND_ANON_GUARDS_PASS_SESSION_QA_PENDING",
+    "rls_static": "PASS",
+    "rls_real": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
+    "api_smoke": "PARTIAL_SUPABASE_DATA_API_REVIEW_PENDING",
+    "marketplace_flow": "PARTIAL_CONFIRMED_BROWSER_SESSIONS_PENDING",
+    "browser_smoke": "BLOCKED_PREVIEW_AUTH_401",
+    "vercel_preview": "READY_PROTECTED",
+    "supabase_preview": "BLOCKED_CONCURRENT_BRANCH_LIMIT",
+    "production_mutated": false,
+    "prod_deploy_used": false,
+    "promote_used": false,
+    "secrets_visible": false
+  },
   "security_audit_governance": "BLOCKED_BY_PRODUCTION_DEPLOYMENT_RISK",
   "governance_pr_32": "MERGED",
   "governance_pr_32_merge_commit": "21397adbef60e48086419edf11f09233b8e80f37",
@@ -355,8 +374,8 @@
     "BLOCKED_EXTERNAL_CREDENTIALS",
     "BLOCKED_PRODUCTION_RISK"
   ],
-  "next_mode": "EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA",
-  "nextMode": "EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA",
+  "next_mode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
+  "nextMode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
   "next_prompt_generated": true,
-  "next_prompt": "Ejecutar EXPRESSJOBS_SUPABASE_REAL_PREVIEW_ACTIVATION_AND_QA en C:\\CODEX-expressjobs-repo. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. No usar vercel --prod; no usar vercel promote; no modificar Vercel Production env vars; no tocar Supabase production; no activar pagos reales; no imprimir secrets. Configurar variables reales solo en local/Preview mediante almacenes seguros, aplicar migraciones no destructivas aprobadas a staging, ejecutar smoke real de Auth, RLS, API y marketplace, desplegar Preview seguro si el target no es production, y documentar evidencia sanitizada."
+  "next_prompt": "Ejecutar EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE en C:\\CODEX-expressjobs-repo. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. Revisar PR #40 sin mezclar PR #37, consolidar feedback de Preview, resolver o documentar Supabase Preview branch limit, ejecutar QA final con acceso Preview autenticado o bypass seguro sin imprimir tokens, no mergear sin review humana, no usar admin override, no usar vercel --prod, no usar vercel promote, no modificar Production env vars."
 }
