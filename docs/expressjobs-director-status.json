@@ -5,8 +5,8 @@
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-full-site-supabase-completion",
   "cycle": "CYCLE_EXPRESSJOBS_FULL_SITE_SUPABASE_COMPLETION",
-  "current_mode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
-  "mode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
+  "current_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
+  "mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
   "code_status": "CODE_READY",
   "supabase_project_ref": "gnsfyvsodslnehszanra",
   "supabase_remote_schema_status": "SUPABASE_REMOTE_SCHEMA_MATCHES_EXPECTED",
@@ -376,10 +376,11 @@
     "BLOCKED_PRODUCTION_RISK",
     "BLOCKED_REVIEW_REQUIRED",
     "BLOCKED_VERCEL_GIT_PREVIEW_FAILURE",
-    "BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT"
+    "BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT",
+    "BLOCKED_VERCEL_ACCESS"
   ],
-  "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
-  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
+  "next_mode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO",
+  "nextMode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO",
   "next_prompt_generated": true,
-  "next_prompt": "Ejecutar EXPRESSJOBS_PREVIEW_DEPLOYMENT en C:\\CODEX-expressjobs-repo, branch codex/expressjobs-full-site-supabase-completion. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. No usar vercel --prod, no usar vercel promote, no modificar Production env vars, no activar pagos live, no mergear sin review humana. Resolver o documentar con evidencia el fallo de Vercel Git Preview de PR #40 comparando contra el Preview directo que ya paso, mantener URLs y secretos redaccionados, ejecutar checks de seguridad/build, actualizar docs/status y dejar PR #40 abierto para review."
+  "next_prompt": "Ejecutar EXPRESSJOBS_RELEASE_GATE_GO_NO_GO en C:\\CODEX-expressjobs-repo, branch codex/expressjobs-full-site-supabase-completion. Mantener PRODUCTION_STATUS=NO-GO_PRODUCTION. No mergear, no usar admin override, no usar vercel --prod, no usar vercel promote, no modificar Production env vars, no activar pagos live. Consolidar estado de PR #40: checks repo PASS, Vercel Git Preview BLOCKED, Supabase Preview branch limit BLOCKED, review REQUIRED. Actualizar status y emitir decision GO/NO-GO para Preview QA controlada y merge readiness."
 }

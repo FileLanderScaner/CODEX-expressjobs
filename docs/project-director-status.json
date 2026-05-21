@@ -135,7 +135,7 @@
   "safeToOpenPublicProduction": false,
   "payments": "DISABLED_SAFE",
   "aiAgents": "DISABLED_SAFE_NOT_PRODUCTION",
-  "mode": "EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE",
+  "mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT",
   "branch": "codex/expressjobs-full-site-supabase-completion",
   "publicPages": "READY",
   "privateDashboard": "READY_ENV_PENDING",
@@ -152,6 +152,7 @@
     "vercelPreview": "PASS_DIRECT_PREVIEW_PROTECTED",
     "vercelGitPreview": "BLOCKED_VERCEL_GIT_PREVIEW_FAILURE",
     "vercelInspect": "TARGET_PREVIEW_STATUS_ERROR_LOGS_UNAVAILABLE",
+    "vercelConnectorLogs": "BLOCKED_VERCEL_ACCESS_SCOPE_403",
     "supabasePreview": "BLOCKED_CONCURRENT_BRANCH_LIMIT"
   },
   "supabase": {
@@ -186,7 +187,8 @@
     "BLOCKED_SUPABASE_PREVIEW_BRANCH_LIMIT",
     "BLOCKED_PREVIEW_AUTH_401",
     "BLOCKED_VERCEL_GIT_PREVIEW_FAILURE",
-    "BLOCKED_REVIEW_REQUIRED"
+    "BLOCKED_REVIEW_REQUIRED",
+    "BLOCKED_VERCEL_ACCESS"
   ],
-  "nextMode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT"
+  "nextMode": "EXPRESSJOBS_RELEASE_GATE_GO_NO_GO"
 }

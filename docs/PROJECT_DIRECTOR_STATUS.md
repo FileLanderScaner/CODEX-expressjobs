@@ -4,7 +4,7 @@
 
 ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS`.
 
-Current mode: `EXPRESSJOBS_PREVIEW_FEEDBACK_AND_PR_REVIEW_GATE`
+Current mode: `EXPRESSJOBS_PREVIEW_DEPLOYMENT`
 Current branch: `codex/expressjobs-full-site-supabase-completion`
 
 - Supabase staging RLS smoke: PASS
@@ -99,8 +99,9 @@ Current branch: `codex/expressjobs-full-site-supabase-completion`
 - Vercel Preview: PASS_DIRECT_PREVIEW_PROTECTED
 - Vercel Git Preview: BLOCKED_VERCEL_GIT_PREVIEW_FAILURE
 - Vercel Git Preview logs: TARGET_PREVIEW_STATUS_ERROR_LOGS_UNAVAILABLE
+- Vercel connector logs: BLOCKED_VERCEL_ACCESS_SCOPE_403
 - Browser smoke: PASS_VERCEL_CLI_PROTECTED_ACCESS_PUBLIC_CURL_401
 - API smoke: PARTIAL_SUPABASE_DATA_API_REVIEW_PENDING
 - RLS real smoke: PASS_EXPRESSJOBS_RLS_STAGING_PASS
 - Secrets visible: false
-- Next mode: EXPRESSJOBS_PREVIEW_DEPLOYMENT
+- Next mode: EXPRESSJOBS_RELEASE_GATE_GO_NO_GO

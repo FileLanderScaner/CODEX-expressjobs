@@ -82,6 +82,7 @@ Cycle 075 verified the production neutralization after PR #34 merged. Latest ins
 Cycle full-site Supabase completion added missing public pages, private dashboard routes, Supabase SSR helpers, internal API route handlers, Zod validation, SEO files, local RLS hardening migration, QA/security/deploy docs, and Preview activation runbooks. Remote Supabase apply and real Preview QA remain pending external credentials.
 Cycle Supabase real Preview activation and QA created PR #40, verified local/staging gates, and ran RLS real smoke successfully. The latest Vercel Git Preview deployment failed on target `preview`, but direct Vercel Preview deploy with explicit `--target preview` passed and authenticated `vercel curl` reached `/` and `/api/health`. Supabase Preview branching is blocked by concurrent branch limit, and remote migration apply is blocked by missing safe apply credentials.
 Cycle Preview feedback and PR review gate verified PR #40 is open, mergeable, and blocked by `REVIEW_REQUIRED`. Repository security and production checks pass, while the Vercel Git Preview context remains failed and Vercel CLI inspect exposes no actionable logs. Direct Preview evidence remains valid and Production remains untouched.
+Cycle Preview deployment rechecked the latest PR #40 Git-triggered Vercel deployment. It is a Preview target with `Error` status, CLI logs unavailable, and Vercel connector logs blocked by team-scope authorization. Repo checks remain passing; merge and production remain blocked.
 
 ## Current Scope
 
