@@ -84,6 +84,8 @@ Cycle 005 opened PR #41 for `codex/expressjobs-rls-smoke-staging`, verified GitH
 Cycle 005 marketplace core workflows created branch `codex/expressjobs-marketplace-core-workflows`, added public `/jobs`, `/jobs/[id]`, `/register`, dashboard profile/application/job routes, worker/company profile forms, Zod validation, and a non-destructive Supabase migration for `ej_company_profiles`, `ej_job_reports`, indexes, and application review states. Local checks, staging check, and `EXPRESSJOBS_RLS_STAGING_PASS` passed. PR #42 was opened, rebased/merged with `main`, and GitHub Actions, Supabase Preview, and Vercel Git integration are now PASS. Git Preview smoke passed for home/jobs/pricing/auth/dashboard routes. The new migration still needs explicit apply/verification on the current staging write path before declaring marketplace MVP fully functional.
 Cycle 007 PR42 security closeout audited the pending marketplace migration and Supabase security lints. A new local hardening migration revokes `PUBLIC`/`anon` execution for sensitive `SECURITY DEFINER` functions, keeps `ej_set_profile_role` authenticated-only as a temporary app dependency, blocks role switching after marketplace activity, and requires `client` role for job publishing. Remote apply remains blocked by missing safe Supabase write path. Leaked password protection remains a Supabase Dashboard action.
 After the security-lint commit, GitHub Actions and Supabase Preview passed, but the Vercel Git integration deployment failed with `status Error` and no actionable logs. A manual Vercel Preview for the same HEAD passed build and marketplace smoke at `https://codex-expressjobs-6q0aiyzom-akuma424-projects.vercel.app`.
+Cycle 009 revalidated `main` after PR #42 merge. Merge commit `fc8f6ac4fe36e86a7cc1ac8cadbf21ffcfd343c8` is an ancestor of current HEAD `ad1c355682a1bab012a31eb07c60844de8070a06`; lint, typecheck, secret scan, production guard, production check, staging check, static RLS tests, realtime chat RLS smoke, tests, build, and `git diff --check` passed. Worktree was clean and `android/app/build` was not present.
+Cycle 010 closed Preview UI smoke status. The Git Preview URL returns global `401` without bypass, correctly classified as Vercel Deployment Protection. With the safe local `x-vercel-protection-bypass` header, all 17 checked routes returned `200`, including `/pricing` and `/production-paused`. No secret value was printed. Supabase MCP confirmed the migration list, while security/performance advisor warnings remain open for a dedicated security advisor closeout cycle.
 
 ## Current Scope
 
@@ -122,7 +124,7 @@ After the security-lint commit, GitHub Actions and Supabase Preview passed, but 
 - Pilot pricing from Google Drive `ExpressJobs - Centro Online de Ventas`: landing basica/completa, landing + banner, banner fundador 7/30 dias, publicacion manual, publicacion + filtro, and urgente 24 h with manual WhatsApp CTAs.
 - Marketplace core profile routes, public jobs routes, dashboard routes, and Zod validation for worker profile, company profile, job publication, and applications.
 - Prepared Supabase marketplace extension migration for company profiles, job reports, application review states, and RLS policies.
-- Prepared Supabase security-lint hardening migration for `SECURITY DEFINER` RPC exposure.
+- Applied/recorded Supabase security-lint hardening migration history for `SECURITY DEFINER` RPC exposure, with advisor warnings still requiring recheck/follow-up.
 
 ## Not Active
 
@@ -135,8 +137,8 @@ After the security-lint commit, GitHub Actions and Supabase Preview passed, but 
 
 ## Next Gate
 
-Public Production exposure is neutralized. Latest safe gate revalidated staging RLS as PASS and marketplace core manual Preview smoke as PASS. PR #42 remote Actions and Supabase Preview pass, but Vercel Git integration is failing after the security-lint commit. Next safe gate is resolving Vercel Git integration, human review, and applying the marketplace/security-lint Supabase migrations through an approved staging write path while keeping `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Public Production exposure is neutralized. PR #42 is merged into `main`, local post-merge validation is PASS, realtime chat RLS smoke is PASS, and Preview UI smoke is PASS when using the safe local Vercel Deployment Protection bypass header. Without bypass, Preview remains globally `401` by Deployment Protection, not by route failure. Next safe gate is closing Supabase Advisor warnings and keeping `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: complete PR #42 human review and apply the marketplace/security hardening migrations only through an approved staging write path. Production remains blocked.
+Current fastest safe release-ops step: execute `EXPRESSJOBS_SUPABASE_SECURITY_ADVISOR_CLOSEOUT` in a scoped branch. Review SECURITY DEFINER RPC exposure, leaked-password protection, and performance lints; prepare only safe migrations/runbooks; do not touch production.

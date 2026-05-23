@@ -3,135 +3,125 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
-  "branch": "codex/expressjobs-marketplace-core-workflows",
-  "base_branch": "main",
-  "mode": "EXPRESSJOBS_PR42_HUMAN_REVIEW_SUPABASE_APPLY_AND_SECURITY_LINTS_CLOSEOUT",
-  "previous_mode": "EXPRESSJOBS_MARKETPLACE_CORE_WORKFLOWS",
-  "cycle": "CYCLE_EXPRESSJOBS_007_PR42_HUMAN_REVIEW_SUPABASE_APPLY_SECURITY_LINTS",
-  "pr_number": 42,
-  "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42",
-  "pr_merge_state": "BLOCKED_REVIEW_REQUIRED",
-  "pr_review_decision": "REVIEW_REQUIRED",
+  "branch": "main",
+  "head": "ad1c355682a1bab012a31eb07c60844de8070a06",
+  "head_summary": "ad1c355 Document ExpressJobs Supabase migration history alignment",
+  "mode": "EXPRESSJOBS_POST_MERGE_PREVIEW_UI_SMOKE_AND_RELEASE_CLOSEOUT",
+  "previous_mode": "EXPRESSJOBS_SUPABASE_MIGRATION_HISTORY_ALIGNMENT",
+  "cycle": "CYCLE_EXPRESSJOBS_010_PREVIEW_UI_SMOKE_CLOSEOUT",
+  "updated_at": "2026-05-23T03:07:46-03:00",
+  "pr_42": {
+    "status": "MERGED",
+    "merge_commit": "fc8f6ac4fe36e86a7cc1ac8cadbf21ffcfd343c8",
+    "merge_commit_is_ancestor_of_head": true,
+    "merged_scope": [
+      "marketplace public routes",
+      "worker and client dashboards",
+      "profile, job, and application forms",
+      "marketplace Zod schemas",
+      "Supabase marketplace and RLS hardening migrations",
+      "realtime job-message RLS smoke script"
+    ]
+  },
   "production_status": "NO-GO_PRODUCTION",
-  "marketplace_core_status": "MARKETPLACE_CORE_PARTIAL",
-  "code_marketplace_status": "PASS",
-  "supabase_db_auth_rls_status": "PARTIAL",
-  "supabase_preview_check_status": "PASS",
-  "supabase_preview_project": "cbykhpbwowmsopopbppz",
-  "supabase_migration_apply_status": "NOT_APPLIED_TO_CURRENT_STAGING_WRITE_ACCESS_MISSING",
-  "supabase_security_lints_status": "PARTIAL_LOCAL_FIX_READY_REMOTE_APPLY_BLOCKED",
-  "security_definer_hardening_migration": "supabase/migrations/20260523110500_harden_security_definer_rpc_exposure.sql",
-  "auth_leaked_password_protection": "BLOCKED_DASHBOARD_ACTION_REQUIRED",
-  "vercel_git_integration_status": "FAIL_STATUS_ERROR_NO_USEFUL_LOGS_AFTER_SECURITY_LINT_COMMIT",
-  "vercel_failed_deployment": "dpl_AB6JJDad5WnuV9oo8HnQo2e3ywZX",
-  "manual_preview_status": "PASS_READY",
-  "manual_preview_url": "https://codex-expressjobs-6q0aiyzom-akuma424-projects.vercel.app",
-  "vercel_git_preview_url": "https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app",
-  "preview_marketplace_smoke": "PASS_WITH_SAFE_BYPASS_HEADER",
-  "preview_pricing_smoke": "PASS_8_OFFERS_NO_LIVE_PAYMENTS",
-  "remote_checks_status": "ACTIONS_PASS_SUPABASE_PREVIEW_PASS_VERCEL_GIT_FAIL_REVIEW_REQUIRED",
-  "github_actions_checks_status": "PASS",
-  "rls_smoke_status": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
-  "staging_check_status": "PASS",
-  "production_guards": {
-    "production_check": "PASS",
-    "no_production_deploy_guard": "PASS",
-    "vercel_prod_deploy": "NO",
-    "vercel_promote": "NO",
-    "vercel_prod_env_mutation": "NO",
-    "supabase_prod_mutation": "NO",
-    "paypal_live": "OFF",
-    "real_payments": "OFF"
-  },
-  "implemented_routes": [
-    "/jobs",
-    "/jobs/[id]",
-    "/register",
-    "/dashboard/worker/profile",
-    "/dashboard/worker/applications",
-    "/dashboard/client/profile",
-    "/dashboard/client/jobs",
-    "/dashboard/client/jobs/new",
-    "/dashboard/client/jobs/[id]/applications",
-    "/admin/jobs",
-    "/admin/users"
-  ],
-  "implemented_forms": [
-    "worker_profile_form",
-    "company_profile_form",
-    "job_post_form_zod_validation",
-    "application_form_zod_validation"
-  ],
-  "supabase_artifacts": [
-    "supabase/migrations/20260523093000_marketplace_core_profiles_reports.sql",
-    "supabase/migrations/20260523110500_harden_security_definer_rpc_exposure.sql",
-    "ej_company_profiles",
-    "ej_job_reports",
-    "ej_job_applications_status_viewed_shortlisted"
-  ],
+  "post_merge_main_full_validation": "PASS",
+  "worktree_status_after_validation": "CLEAN",
+  "android_build_artifacts": "NOT_PRESENT",
   "checks": {
-    "secret_scan": "PASS",
-    "production_check": "PASS",
-    "guard_no_production_deploy": "PASS",
-    "test_rls_static": "PASS",
-    "lint": "PASS_WITH_PREEXISTING_ANDROID_WARNINGS",
+    "git_status_short_initial": "CLEAN",
+    "merge_commit_ancestor_check": "PASS",
+    "lint": "PASS",
     "typecheck": "PASS",
-    "test": "PASS_53_TESTS",
-    "build": "PASS",
-    "git_diff_check": "PASS",
+    "secret_scan": "PASS",
+    "guard_no_production_deploy": "PASS",
+    "production_check": "PASS_NO_GO_PRODUCTION",
     "staging_check": "PASS",
-    "rls_smoke": "PASS"
+    "test_rls_static": "PASS_1_FILE_11_TESTS",
+    "rls_smoke_messages": "PASS",
+    "test": "PASS_9_FILES_53_TESTS",
+    "build": "PASS_NEXT_16_2_6_STATIC_PAGES_36",
+    "git_diff_check": "PASS"
   },
-  "preview_smoke_routes": [
-    "/",
-    "/jobs",
-    "/jobs/not-real-smoke",
-    "/pricing",
-    "/auth",
-    "/dashboard/worker",
-    "/dashboard/client",
-    "/dashboard/client/jobs/new",
-    "/register"
-  ],
-  "parallel_progress_matrix": [
-    {
-      "front": "Codigo Marketplace",
-      "status": "PASS",
-      "evidence": "routes/forms/schemas/tests/build from marketplace core cycle",
-      "blockers": "none"
-    },
-    {
-      "front": "Supabase DB/Auth/RLS",
-      "status": "PARTIAL",
-      "evidence": "RLS staging smoke PASS; Supabase Preview check PASS",
-      "blockers": "BLOCKED_SUPABASE_ACCESS for applying migration to current staging"
-    },
-    {
-      "front": "Vercel Preview",
-      "status": "PARTIAL",
-      "evidence": "manual Preview PASS and route smoke PASS; Vercel Git deployment failed with status Error",
-      "blockers": "BLOCKED_VERCEL_ACCESS"
-    },
-    {
-      "front": "Produccion",
-      "status": "NO-GO_PRODUCTION",
-      "evidence": "production guard PASS",
-      "blockers": "human approval required"
-    }
-  ],
+  "supabase": {
+    "project": "supabase-expressjobs",
+    "project_ref": "gnsfyvsodslnehszanra",
+    "status": "ACTIVE_HEALTHY",
+    "migration_list_mcp": "PASS",
+    "applied_migrations_confirmed": [
+      "202605120001_expressjobs_mvp_schema",
+      "20260513081258_fix_expressjobs_function_search_path",
+      "20260515132404_harden_expressjobs_profile_role_updates",
+      "20260516210500_add_safe_profile_role_selection",
+      "20260516223000_harden_real_marketplace_flow",
+      "20260523030408_fix_ej_is_admin_rls_recursion",
+      "20260523030830_add_admin_select_policy_for_job_messages",
+      "20260523031500_fix_chat_admin_rls_smoke",
+      "20260523093000_marketplace_core_profiles_reports",
+      "20260523110500_harden_security_definer_rpc_exposure"
+    ],
+    "local_migration_alignment": "LOCAL_REPO_SPLIT_REMOTE_CHAT_FIXES_INTO_20260523030408_AND_20260523030830",
+    "realtime_chat_rls_client_side_smoke": "PASS",
+    "advisor_security_status": "WARNINGS_REMAIN",
+    "advisor_security_warnings": [
+      "anon can execute SECURITY DEFINER function public.ej_is_admin",
+      "anon can execute SECURITY DEFINER function public.ej_job_messages_broadcast_trigger",
+      "authenticated can execute SECURITY DEFINER function public.ej_is_admin",
+      "authenticated can execute SECURITY DEFINER function public.ej_job_messages_broadcast_trigger",
+      "authenticated can execute SECURITY DEFINER function public.ej_set_profile_role",
+      "auth leaked password protection disabled"
+    ],
+    "advisor_performance_status": "WARNINGS_REMAIN",
+    "advisor_performance_summary": [
+      "unindexed foreign keys on multiple ej_* tables",
+      "RLS auth initplan warnings on multiple policies",
+      "multiple permissive SELECT policies on ej_job_messages and ej_worker_profiles",
+      "unused index notices"
+    ]
+  },
+  "vercel_preview": {
+    "url": "https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app",
+    "without_bypass": "BLOCKED_BY_DEPLOYMENT_PROTECTION_GLOBAL_401",
+    "bypass_secret_present_in_local_env": true,
+    "with_safe_bypass_header": "PASS_17_ROUTES_HTTP_200",
+    "routes_checked": [
+      "/",
+      "/jobs",
+      "/jobs/not-real-smoke",
+      "/pricing",
+      "/auth",
+      "/register",
+      "/dashboard/worker",
+      "/dashboard/worker/profile",
+      "/dashboard/worker/applications",
+      "/dashboard/client",
+      "/dashboard/client/profile",
+      "/dashboard/client/jobs",
+      "/dashboard/client/jobs/new",
+      "/admin",
+      "/admin/jobs",
+      "/admin/users",
+      "/production-paused"
+    ],
+    "pricing_pilot_offers_text_present": true,
+    "pricing_payment_terms_review": "TEXT_MATCH_REVIEW_NO_LIVE_PAYMENT_EXECUTION"
+  },
+  "production_guards": {
+    "vercel_prod_deploy": "NOT_RUN",
+    "vercel_promote": "NOT_RUN",
+    "vercel_production_env_mutation": "NO",
+    "supabase_production_mutation": "NO",
+    "paypal_live": "OFF",
+    "real_payments": "OFF",
+    "secrets_printed": "NO"
+  },
   "blockers": [
     "BLOCKED_SUPABASE_ACCESS",
-    "BLOCKED_REVIEW_REQUIRED",
     "BLOCKED_VERCEL_ACCESS"
   ],
-  "risks": [
-    "New Supabase migration is prepared locally but not applied to current staging.",
-    "Supabase Preview check is PASS, but current staging migration apply remains a separate gate.",
-    "SECURITY DEFINER hardening migration is local-ready but not remotely applied.",
-    "Leaked password protection requires dashboard action.",
-    "Vercel Git integration failed after the security-lint commit, while manual Preview build and smoke passed.",
-    "PR #42 still requires human review before merge.",
-    "Untracked android/ build artifacts remain outside this branch and were not touched."
-  ],
-  "next_mode": "EXPRESSJOBS_PR42_SECURITY_LINTS_REMOTE_APPLY_AND_RECHECK"
+  "blocker_details": {
+    "BLOCKED_SUPABASE_ACCESS": "Remote advisor warnings require a dedicated reviewed migration or Dashboard action; no destructive or production action was taken in this closeout cycle.",
+    "BLOCKED_VERCEL_ACCESS": "Unauthenticated Preview remains protected by Vercel Deployment Protection 401; safe local bypass is available for Codex smoke only."
+  },
+  "next_mode": "EXPRESSJOBS_SUPABASE_SECURITY_ADVISOR_CLOSEOUT",
+  "next_mode_reason": "Security advisors still report SECURITY DEFINER RPC exposure and auth leaked-password protection; this is the highest-impact safe follow-up before broader user testing."
 }
