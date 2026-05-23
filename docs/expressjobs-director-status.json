@@ -4,30 +4,29 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-marketplace-core-workflows",
-  "base_branch": "codex/expressjobs-rls-smoke-staging",
-  "mode": "EXPRESSJOBS_MARKETPLACE_CORE_WORKFLOWS",
-  "cycle": "CYCLE_EXPRESSJOBS_005_MARKETPLACE_CORE_WORKFLOWS",
+  "base_branch": "main",
+  "mode": "EXPRESSJOBS_SUPABASE_STAGING_MIGRATION_AND_VERCEL_GIT_CLOSEOUT",
+  "previous_mode": "EXPRESSJOBS_MARKETPLACE_CORE_WORKFLOWS",
+  "cycle": "CYCLE_EXPRESSJOBS_008_MARKETPLACE_CORE_PR42_REBASE_AND_PREVIEW_CLOSEOUT",
   "pr_number": 42,
   "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42",
-  "pr_merge_state": "BLOCKED",
+  "pr_merge_state": "DIRTY_RESOLVED_LOCALLY_PENDING_PUSH_RECHECK",
   "pr_review_decision": "REVIEW_REQUIRED",
   "production_status": "NO-GO_PRODUCTION",
   "marketplace_core_status": "MARKETPLACE_CORE_PARTIAL",
   "code_marketplace_status": "PASS",
   "supabase_db_auth_rls_status": "PARTIAL",
-  "vercel_preview_status": "PARTIAL_MANUAL_PREVIEW_PASS_GIT_INTEGRATION_FAIL",
-  "manual_preview_url": "https://codex-expressjobs-2efi536fi-akuma424-projects.vercel.app",
-  "manual_preview_target": "preview",
+  "supabase_preview_check_status": "PASS_CHECK_BUT_COMMENT_REPORTS_BRANCH_LIMIT_IGNORED",
+  "supabase_preview_project": "qjgabiyrsxuspwqwxakz",
+  "supabase_migration_apply_status": "NOT_APPLIED_TO_CURRENT_STAGING_WRITE_ACCESS_MISSING",
+  "vercel_git_integration_status": "PASS",
+  "vercel_git_preview_url": "https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app",
   "preview_marketplace_smoke": "PASS_WITH_SAFE_BYPASS_HEADER",
   "preview_pricing_smoke": "PASS_8_OFFERS_NO_LIVE_PAYMENTS",
-  "remote_checks_status": "PARTIAL_ACTIONS_PASS_MANUAL_PREVIEW_PASS_VERCEL_GIT_FAIL_SUPABASE_PREVIEW_SKIPPED_REVIEW_REQUIRED",
+  "remote_checks_status": "ACTIONS_PASS_VERCEL_PASS_SUPABASE_PREVIEW_PASS_BUT_REVIEW_REQUIRED_AND_DIRTY",
   "github_actions_checks_status": "PASS",
-  "vercel_git_integration_status": "FAIL_STATUS_ERROR_NO_USEFUL_LOGS",
-  "vercel_failed_deployment": "dpl_2YbG856Tb5EUp7zxZvEW6FqwDDRs",
-  "supabase_preview_check_status": "SKIPPED_EXTERNAL_INTEGRATION",
   "rls_smoke_status": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
   "staging_check_status": "PASS",
-  "supabase_migration_apply_status": "BLOCKED_SUPABASE_ACCESS_SUPABASE_ACCESS_TOKEN_MISSING",
   "production_guards": {
     "production_check": "PASS",
     "no_production_deploy_guard": "PASS",
@@ -67,50 +66,62 @@
     "secret_scan": "PASS",
     "production_check": "PASS",
     "guard_no_production_deploy": "PASS",
-    "test_rls_static": "PASS",
-    "lint": "PASS_WITH_PREEXISTING_ANDROID_WARNINGS",
-    "typecheck": "PASS",
-    "test": "PASS",
-    "build": "PASS",
+    "test_rls_static": "PASS_PREVIOUS_CYCLE",
+    "lint": "PASS_PREVIOUS_CYCLE_WITH_PREEXISTING_ANDROID_WARNINGS",
+    "typecheck": "PASS_PREVIOUS_CYCLE",
+    "test": "PASS_PREVIOUS_CYCLE",
+    "build": "PASS_PREVIOUS_CYCLE",
     "git_diff_check": "PASS",
     "staging_check": "PASS",
     "rls_smoke": "PASS"
   },
+  "preview_smoke_routes": [
+    "/",
+    "/jobs",
+    "/jobs/not-real-smoke",
+    "/pricing",
+    "/auth",
+    "/dashboard/worker",
+    "/dashboard/client",
+    "/dashboard/client/jobs/new",
+    "/register"
+  ],
   "parallel_progress_matrix": [
     {
       "front": "Codigo Marketplace",
       "status": "PASS",
-      "evidence": "routes/forms/schemas/tests/build implemented",
+      "evidence": "routes/forms/schemas/tests/build from marketplace core cycle",
       "blockers": "none"
     },
     {
       "front": "Supabase DB/Auth/RLS",
       "status": "PARTIAL",
-      "evidence": "new non-destructive migration prepared; static RLS and existing staging smoke pass",
-      "blockers": "BLOCKED_SUPABASE_ACCESS for remote migration apply"
+      "evidence": "RLS staging smoke PASS; Supabase Preview check PASS but PR comment says branch limit ignored",
+      "blockers": "BLOCKED_SUPABASE_ACCESS for applying migration to current staging"
     },
     {
       "front": "Vercel Preview",
-      "status": "PARTIAL",
-      "evidence": "manual Preview ready and smoke passed for home/jobs/pricing/auth/dashboard routes",
-      "blockers": "Vercel Git integration failed with status Error; Supabase Preview skipped; PR review required"
+      "status": "PASS",
+      "evidence": "Vercel Git integration PASS and Preview route smoke PASS",
+      "blockers": "none"
     },
     {
       "front": "Produccion",
       "status": "NO-GO_PRODUCTION",
-      "evidence": "production guard pass",
-      "blockers": "human approval required for production"
+      "evidence": "production guard PASS",
+      "blockers": "human approval required"
     }
   ],
   "blockers": [
     "BLOCKED_SUPABASE_ACCESS",
-    "BLOCKED_VERCEL_ACCESS"
+    "BLOCKED_REVIEW_REQUIRED",
+    "BLOCKED_PR_DIRTY_NEEDS_REBASE_PUSH"
   ],
   "risks": [
-    "New Supabase migration is prepared locally but not applied to staging in this cycle.",
-    "Vercel Git integration failed while manual Preview deploy and smoke passed, so PR merge cannot be called fully green.",
-    "Supabase Preview GitHub integration is skipped and needs external integration review.",
+    "New Supabase migration is prepared locally but not applied to current staging.",
+    "Supabase Preview check is green, but GitHub comment says preview branch creation was ignored because branch limit was reached.",
+    "PR #42 was DIRTY against main before this local conflict-resolution merge is committed and pushed.",
     "Untracked android/ build artifacts remain outside this branch and were not touched."
   ],
-  "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT_AND_MARKETPLACE_SMOKE"
+  "next_mode": "EXPRESSJOBS_PR42_RECHECK_AFTER_REBASE_PUSH"
 }
