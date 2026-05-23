@@ -7,11 +7,23 @@
   "base_branch": "codex/expressjobs-rls-smoke-staging",
   "mode": "EXPRESSJOBS_MARKETPLACE_CORE_WORKFLOWS",
   "cycle": "CYCLE_EXPRESSJOBS_005_MARKETPLACE_CORE_WORKFLOWS",
+  "pr_number": 42,
+  "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42",
+  "pr_merge_state": "BLOCKED",
+  "pr_review_decision": "REVIEW_REQUIRED",
   "production_status": "NO-GO_PRODUCTION",
   "marketplace_core_status": "MARKETPLACE_CORE_PARTIAL",
   "code_marketplace_status": "PASS",
   "supabase_db_auth_rls_status": "PARTIAL",
-  "vercel_preview_status": "PENDING_AFTER_BRANCH_PUSH",
+  "vercel_preview_status": "PASS_MANUAL_PREVIEW_READY",
+  "manual_preview_url": "https://codex-expressjobs-m6gzoyq53-akuma424-projects.vercel.app",
+  "manual_preview_target": "preview",
+  "preview_marketplace_smoke": "PASS_WITH_SAFE_BYPASS_HEADER",
+  "preview_pricing_smoke": "PASS_8_OFFERS_NO_LIVE_PAYMENTS",
+  "remote_checks_status": "PARTIAL_ACTIONS_AND_VERCEL_PASS_SUPABASE_PREVIEW_CANCELLED_REVIEW_REQUIRED",
+  "github_actions_checks_status": "PASS",
+  "vercel_git_integration_status": "PASS",
+  "supabase_preview_check_status": "CANCELLED_OR_FAIL_EXTERNAL_INTEGRATION",
   "rls_smoke_status": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
   "staging_check_status": "PASS",
   "supabase_migration_apply_status": "BLOCKED_SUPABASE_ACCESS_SUPABASE_ACCESS_TOKEN_MISSING",
@@ -78,9 +90,9 @@
     },
     {
       "front": "Vercel Preview",
-      "status": "PENDING",
-      "evidence": "local build pass; preview to run after branch push",
-      "blockers": "pending branch push/deployment"
+      "status": "PASS",
+      "evidence": "manual Preview ready and smoke passed for home/jobs/pricing/auth/dashboard routes",
+      "blockers": "Supabase Preview integration cancelled/failed; PR review required"
     },
     {
       "front": "Produccion",
@@ -94,7 +106,7 @@
   ],
   "risks": [
     "New Supabase migration is prepared locally but not applied to staging in this cycle.",
-    "Vercel Git-integrated preview validation still needs the pushed branch and remote deployment smoke.",
+    "Supabase Preview GitHub integration is cancelled/failed and needs external integration review.",
     "Untracked android/ build artifacts remain outside this branch and were not touched."
   ],
   "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT_AND_MARKETPLACE_SMOKE"

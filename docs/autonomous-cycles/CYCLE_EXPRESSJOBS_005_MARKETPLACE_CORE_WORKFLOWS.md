@@ -14,6 +14,12 @@ Branch: `codex/expressjobs-marketplace-core-workflows`
 
 Base: `codex/expressjobs-rls-smoke-staging` at `30b990f`
 
+Commit: `2120811`
+
+PR: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42`
+
+Manual Preview: `https://codex-expressjobs-m6gzoyq53-akuma424-projects.vercel.app` (`target=preview`)
+
 ## Changes
 
 - Added marketplace Zod schemas.
@@ -30,8 +36,17 @@ Base: `codex/expressjobs-rls-smoke-staging` at `30b990f`
 |---|---|---|---|
 | Codigo Marketplace | PASS | routes/forms/schemas/tests/build | none |
 | Supabase DB/Auth/RLS | PARTIAL | migration prepared, static RLS PASS, staging RLS smoke PASS | BLOCKED_SUPABASE_ACCESS for remote apply |
-| Vercel Preview | PENDING | local build PASS | branch push/deployment pending |
+| Vercel Preview | PASS | manual Preview ready; smoke PASS for `/`, `/jobs`, `/jobs/not-real-smoke`, `/pricing`, `/auth`, `/dashboard/worker`, `/dashboard/client`, `/dashboard/client/jobs/new`, `/register`; Vercel Git context PASS | Supabase Preview integration cancelled/failed; PR review required |
 | Produccion | NO-GO_PRODUCTION | production guard PASS | human approval required |
+
+## PR / Remote Checks
+
+- PR: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42`
+- Merge state: `BLOCKED`
+- Review decision: `REVIEW_REQUIRED`
+- GitHub Actions: PASS (`docs-check`, `pr-check`, `production-no-go`, `security-gate`)
+- Vercel Git integration: PASS
+- Supabase Preview integration: CANCELLED/FAIL external integration
 
 ## Checks
 
@@ -46,6 +61,21 @@ Base: `codex/expressjobs-rls-smoke-staging` at `30b990f`
 - `git diff --check`: PASS
 - `npm run staging:check`: PASS
 - `npm run rls:smoke`: PASS, `EXPRESSJOBS_RLS_STAGING_PASS`
+
+## Preview Smoke
+
+- `/`: 200
+- `/jobs`: 200
+- `/jobs/not-real-smoke`: 200
+- `/pricing`: 200
+- `/auth`: 200
+- `/dashboard/worker`: 200
+- `/dashboard/client`: 200
+- `/dashboard/client/jobs/new`: 200
+- `/register`: 200
+- `/pricing` contains the 8 pilot offers.
+- PayPal live / real checkout markers: NOT FOUND
+- Secret-like markers in rendered HTML: NOT FOUND
 
 ## RLS / Staging
 
@@ -62,7 +92,7 @@ Existing staging RLS smoke passes. The new migration was not applied remotely be
 
 ## Decision
 
-`MARKETPLACE_CORE_PARTIAL`. Code is ready for Preview smoke after branch push. Supabase remote apply is blocked by staging write access.
+`MARKETPLACE_CORE_PARTIAL`. Code and manual Preview smoke are ready. Supabase remote apply is blocked by staging write access, and PR #42 still requires remote checks/review before merge.
 
 ## Next Mode
 
