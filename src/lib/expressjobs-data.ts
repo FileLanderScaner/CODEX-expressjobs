@@ -214,12 +214,96 @@ export const demoEvents = [
   },
 ];
 
-export const monetizationOptions = [
-  "Comision sugerida del 15% sobre trabajos completados",
-  "Trabajos destacados para clientes",
-  "Premium trabajador con mayor visibilidad",
-  "Plan empresa para volumen recurrente",
+export const pilotOffers = [
+  {
+    id: "landing-basica",
+    name: "Landing basica",
+    uyPrice: "1500 UYU",
+    usdPrice: "USD 39",
+    includes: "Pagina simple + WhatsApp",
+    delivery: "24-48 h",
+    priority: "Alta",
+  },
+  {
+    id: "landing-completa",
+    name: "Landing completa",
+    uyPrice: "2500 UYU",
+    usdPrice: "USD 69",
+    includes: "Textos + servicios + WhatsApp + formulario",
+    delivery: "48 h",
+    priority: "Alta",
+  },
+  {
+    id: "landing-banner",
+    name: "Landing + banner",
+    uyPrice: "3500 UYU",
+    usdPrice: "USD 99",
+    includes: "Landing + banner + publicacion inicial",
+    delivery: "48-72 h",
+    priority: "Alta",
+  },
+  {
+    id: "banner-fundador-7",
+    name: "Banner fundador 7 dias",
+    uyPrice: "500 UYU",
+    usdPrice: "USD 15",
+    includes: "Banner patrocinado + CTA",
+    delivery: "Mismo dia",
+    priority: "Media",
+  },
+  {
+    id: "banner-fundador-30",
+    name: "Banner fundador 30 dias",
+    uyPrice: "1500 UYU",
+    usdPrice: "USD 39",
+    includes: "Banner patrocinado por 30 dias",
+    delivery: "Mismo dia",
+    priority: "Media",
+  },
+  {
+    id: "publicacion-manual",
+    name: "Publicacion manual",
+    uyPrice: "500 UYU",
+    usdPrice: "USD 15",
+    includes: "Publicar tarea y recibir interesados",
+    delivery: "Mismo dia",
+    priority: "Alta",
+  },
+  {
+    id: "publicacion-filtro",
+    name: "Publicacion + filtro",
+    uyPrice: "1000 UYU",
+    usdPrice: "USD 29",
+    includes: "Publicacion + seleccion inicial",
+    delivery: "24 h",
+    priority: "Alta",
+  },
+  {
+    id: "urgente-24h",
+    name: "Urgente 24 h",
+    uyPrice: "1500 UYU",
+    usdPrice: "USD 39",
+    includes: "Coordinacion prioritaria",
+    delivery: "24 h",
+    priority: "Alta",
+  },
 ] as const;
+
+export type PilotOffer = (typeof pilotOffers)[number];
+
+export const pilotOfferDisclaimer =
+  "Precios piloto sujetos a validacion manual. Pagos reales online no estan activos; toda coordinacion se confirma por WhatsApp o canal privado sin checkout live.";
+
+export const pilotSalesCopy = {
+  main:
+    "Hola, estoy lanzando ExpressJobs y estoy tomando los primeros clientes con precio piloto. Hago paginas simples con boton a WhatsApp desde $1500 UYU, banners desde $500 UYU y publicacion de trabajos rapidos desde $500 UYU. Si queres, te preparo una muestra rapida con tu negocio.",
+  status:
+    "Estoy lanzando ExpressJobs. Esta semana tomo pocos clientes para paginas simples, banners para comercios y publicacion de trabajos rapidos. Precios piloto desde $500 UYU. Escribime INFO.",
+  workPost:
+    "Estoy probando ExpressJobs, un servicio para publicar trabajos rapidos y conseguir interesados por WhatsApp. Te ayudo a ordenar el aviso y recibir interesados desde $500 UYU.",
+} as const;
+
+export const monetizationOptions = pilotOffers.map((offer) => offer.name);
 
 export const pricingPlans = [
   {

@@ -1,4 +1,4 @@
-import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, LogIn, MessageCircle, Search, ShieldCheck, UserRoundCheck, UsersRound } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, CheckCircle2, CircleDollarSign, ClipboardList, LogIn, MessageCircle, Search, ShieldCheck, UserRoundCheck, UsersRound } from "lucide-react";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { PrimaryButton } from "@/components/primary-button";
@@ -6,7 +6,7 @@ import { RoleSelector } from "@/components/role-selector";
 import { StatusFlow } from "@/components/status-flow";
 import { TrustSafetyNotice } from "@/components/trust-safety-notice";
 import { TrackingClient } from "@/components/tracking-client";
-import { categories, publicBrand } from "@/lib/expressjobs-data";
+import { categories, pilotSalesCopy, publicBrand } from "@/lib/expressjobs-data";
 
 export default function Home() {
   return (
@@ -21,7 +21,11 @@ export default function Home() {
               <p className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)]">
                 Crea una cuenta, elegi si sos cliente o trabajador, y empeza a publicar o buscar tareas locales con postulaciones reales. El piloto mantiene pagos online apagados y seguridad primero.
               </p>
+              <p className="mt-4 max-w-2xl rounded-md border border-[var(--line)] bg-white p-4 text-sm leading-6 text-[var(--muted)]">{pilotSalesCopy.main}</p>
               <div className="mt-7 flex flex-wrap gap-3">
+                <PrimaryButton href="/pricing" icon={CircleDollarSign}>
+                  Ver ofertas piloto
+                </PrimaryButton>
                 <PrimaryButton href="/client/jobs/new" icon={BriefcaseBusiness}>
                   Publicar un trabajo
                 </PrimaryButton>
