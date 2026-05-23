@@ -106,6 +106,10 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(migration).toContain("create or replace function public.ej_is_admin()");
     expect(migration).toContain("and role = 'admin'");
     expect(allMigrations).toContain("EXPRESSJOBS_PROFILE_ROLE_UPDATE_BLOCKED");
+    expect(allMigrations).toContain("create schema if not exists private");
+    expect(allMigrations).toContain("create or replace function private.ej_is_admin()");
+    expect(allMigrations).toContain("revoke execute on function public.ej_is_admin() from authenticated");
+    expect(allMigrations).toContain("profile_id = (select auth.uid()) or (select private.ej_is_admin())");
   });
 
   it("hardens real marketplace applications against self-apply and unsafe public role changes", () => {
@@ -146,5 +150,16 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(allMigrations).toContain("reporter_profile_id = auth.uid()");
     expect(allMigrations).toContain("'shortlisted'");
     expect(allMigrations).toContain("'viewed'");
+  });
+
+  it("prepares Supabase Advisor performance closeout without disabling RLS", () => {
+    expect(allMigrations).toContain("create index if not exists ej_job_messages_job_id_idx");
+    expect(allMigrations).toContain("create index if not exists ej_job_messages_sender_id_idx");
+    expect(allMigrations).toContain("create index if not exists ej_jobs_client_id_idx");
+    expect(allMigrations).toContain("create index if not exists ej_payment_records_user_id_idx");
+    expect(allMigrations).toContain("create policy \"job_messages_select_participants_or_admin\"");
+    expect(allMigrations).toContain("or (select private.ej_is_admin())");
+    expect(allMigrations).toContain('drop policy if exists "admin_audit_admin_only" on public.ej_admin_audit_logs');
+    expect(allMigrations).toContain('drop policy if exists "categories_select_active" on public.ej_categories');
   });
 });

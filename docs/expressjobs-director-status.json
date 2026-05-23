@@ -3,107 +3,55 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
-  "branch": "main",
-  "head": "ad1c355682a1bab012a31eb07c60844de8070a06",
-  "head_summary": "ad1c355 Document ExpressJobs Supabase migration history alignment",
-  "mode": "EXPRESSJOBS_POST_MERGE_PREVIEW_UI_SMOKE_AND_RELEASE_CLOSEOUT",
-  "previous_mode": "EXPRESSJOBS_SUPABASE_MIGRATION_HISTORY_ALIGNMENT",
-  "cycle": "CYCLE_EXPRESSJOBS_010_PREVIEW_UI_SMOKE_CLOSEOUT",
-  "updated_at": "2026-05-23T03:07:46-03:00",
-  "pr_42": {
-    "status": "MERGED",
-    "merge_commit": "fc8f6ac4fe36e86a7cc1ac8cadbf21ffcfd343c8",
-    "merge_commit_is_ancestor_of_head": true,
-    "merged_scope": [
-      "marketplace public routes",
-      "worker and client dashboards",
-      "profile, job, and application forms",
-      "marketplace Zod schemas",
-      "Supabase marketplace and RLS hardening migrations",
-      "realtime job-message RLS smoke script"
+  "branch": "codex/expressjobs-supabase-security-advisor-closeout",
+  "base_branch": "main",
+  "base_head": "711dc1f6fb09bd2716ed47ffe7cc72199d9c1fbd",
+  "mode": "EXPRESSJOBS_SUPABASE_SECURITY_ADVISOR_CLOSEOUT",
+  "previous_mode": "EXPRESSJOBS_POST_MERGE_PREVIEW_UI_SMOKE_AND_RELEASE_CLOSEOUT",
+  "cycle": "CYCLE_EXPRESSJOBS_011_SUPABASE_SECURITY_ADVISOR_CLOSEOUT",
+  "updated_at": "2026-05-23T03:17:49-03:00",
+  "production_status": "NO-GO_PRODUCTION",
+  "supabase": {
+    "project": "supabase-expressjobs",
+    "project_ref": "gnsfyvsodslnehszanra",
+    "migration_list_mcp": "PASS",
+    "advisor_security_recheck": "WARNINGS_REMAIN_BEFORE_LOCAL_MIGRATION_APPLY",
+    "advisor_performance_recheck": "WARNINGS_REMAIN_BEFORE_LOCAL_MIGRATION_APPLY",
+    "local_migration_prepared": "supabase/migrations/20260523113000_advisor_security_performance_closeout.sql",
+    "remote_apply_status": "NOT_APPLIED_IN_THIS_CYCLE",
+    "remote_apply_reason": "Policy/helper migration is broad and should go through PR review plus staging apply/smoke gate before remote mutation.",
+    "security_closeout_plan": [
+      "move admin RLS helper usage to private schema",
+      "revoke direct execution from exposed public admin helper",
+      "revoke direct execution from public job-message broadcast trigger if present",
+      "keep ej_set_profile_role authenticated-only as a temporary app dependency",
+      "document leaked password protection as Dashboard-only"
+    ],
+    "performance_closeout_plan": [
+      "wrap selected auth.uid and admin-helper calls for initplan performance",
+      "consolidate job-message authenticated SELECT policies",
+      "add foreign-key covering indexes reported by Advisor"
+    ],
+    "known_remaining_after_local_plan": [
+      "ej_set_profile_role authenticated SECURITY DEFINER RPC needs a reviewed redesign or accepted exception",
+      "auth leaked password protection requires Supabase Dashboard action",
+      "unused index notices should not be dropped until real usage data exists"
     ]
   },
-  "production_status": "NO-GO_PRODUCTION",
-  "post_merge_main_full_validation": "PASS",
-  "worktree_status_after_validation": "CLEAN",
-  "android_build_artifacts": "NOT_PRESENT",
   "checks": {
-    "git_status_short_initial": "CLEAN",
-    "merge_commit_ancestor_check": "PASS",
+    "test_rls_static_initial_after_migration": "PASS_1_FILE_12_TESTS",
+    "json_parse": "PASS",
     "lint": "PASS",
     "typecheck": "PASS",
     "secret_scan": "PASS",
     "guard_no_production_deploy": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
     "staging_check": "PASS",
-    "test_rls_static": "PASS_1_FILE_11_TESTS",
+    "test_rls_static": "PASS_1_FILE_12_TESTS",
     "rls_smoke_messages": "PASS",
-    "test": "PASS_9_FILES_53_TESTS",
+    "test": "PASS_9_FILES_54_TESTS",
     "build": "PASS_NEXT_16_2_6_STATIC_PAGES_36",
     "git_diff_check": "PASS"
-  },
-  "supabase": {
-    "project": "supabase-expressjobs",
-    "project_ref": "gnsfyvsodslnehszanra",
-    "status": "ACTIVE_HEALTHY",
-    "migration_list_mcp": "PASS",
-    "applied_migrations_confirmed": [
-      "202605120001_expressjobs_mvp_schema",
-      "20260513081258_fix_expressjobs_function_search_path",
-      "20260515132404_harden_expressjobs_profile_role_updates",
-      "20260516210500_add_safe_profile_role_selection",
-      "20260516223000_harden_real_marketplace_flow",
-      "20260523030408_fix_ej_is_admin_rls_recursion",
-      "20260523030830_add_admin_select_policy_for_job_messages",
-      "20260523031500_fix_chat_admin_rls_smoke",
-      "20260523093000_marketplace_core_profiles_reports",
-      "20260523110500_harden_security_definer_rpc_exposure"
-    ],
-    "local_migration_alignment": "LOCAL_REPO_SPLIT_REMOTE_CHAT_FIXES_INTO_20260523030408_AND_20260523030830",
-    "realtime_chat_rls_client_side_smoke": "PASS",
-    "advisor_security_status": "WARNINGS_REMAIN",
-    "advisor_security_warnings": [
-      "anon can execute SECURITY DEFINER function public.ej_is_admin",
-      "anon can execute SECURITY DEFINER function public.ej_job_messages_broadcast_trigger",
-      "authenticated can execute SECURITY DEFINER function public.ej_is_admin",
-      "authenticated can execute SECURITY DEFINER function public.ej_job_messages_broadcast_trigger",
-      "authenticated can execute SECURITY DEFINER function public.ej_set_profile_role",
-      "auth leaked password protection disabled"
-    ],
-    "advisor_performance_status": "WARNINGS_REMAIN",
-    "advisor_performance_summary": [
-      "unindexed foreign keys on multiple ej_* tables",
-      "RLS auth initplan warnings on multiple policies",
-      "multiple permissive SELECT policies on ej_job_messages and ej_worker_profiles",
-      "unused index notices"
-    ]
-  },
-  "vercel_preview": {
-    "url": "https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app",
-    "without_bypass": "BLOCKED_BY_DEPLOYMENT_PROTECTION_GLOBAL_401",
-    "bypass_secret_present_in_local_env": true,
-    "with_safe_bypass_header": "PASS_17_ROUTES_HTTP_200",
-    "routes_checked": [
-      "/",
-      "/jobs",
-      "/jobs/not-real-smoke",
-      "/pricing",
-      "/auth",
-      "/register",
-      "/dashboard/worker",
-      "/dashboard/worker/profile",
-      "/dashboard/worker/applications",
-      "/dashboard/client",
-      "/dashboard/client/profile",
-      "/dashboard/client/jobs",
-      "/dashboard/client/jobs/new",
-      "/admin",
-      "/admin/jobs",
-      "/admin/users",
-      "/production-paused"
-    ],
-    "pricing_pilot_offers_text_present": true,
-    "pricing_payment_terms_review": "TEXT_MATCH_REVIEW_NO_LIVE_PAYMENT_EXECUTION"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
@@ -116,12 +64,12 @@
   },
   "blockers": [
     "BLOCKED_SUPABASE_ACCESS",
-    "BLOCKED_VERCEL_ACCESS"
+    "BLOCKED_DASHBOARD_ACTION_REQUIRED"
   ],
   "blocker_details": {
-    "BLOCKED_SUPABASE_ACCESS": "Remote advisor warnings require a dedicated reviewed migration or Dashboard action; no destructive or production action was taken in this closeout cycle.",
-    "BLOCKED_VERCEL_ACCESS": "Unauthenticated Preview remains protected by Vercel Deployment Protection 401; safe local bypass is available for Codex smoke only."
+    "BLOCKED_SUPABASE_ACCESS": "Local migration is prepared but remote staging apply and advisor recheck were intentionally deferred to a reviewed PR/staging gate.",
+    "BLOCKED_DASHBOARD_ACTION_REQUIRED": "Auth leaked password protection must be enabled in Supabase Dashboard."
   },
-  "next_mode": "EXPRESSJOBS_SUPABASE_SECURITY_ADVISOR_CLOSEOUT",
-  "next_mode_reason": "Security advisors still report SECURITY DEFINER RPC exposure and auth leaked-password protection; this is the highest-impact safe follow-up before broader user testing."
+  "next_mode": "EXPRESSJOBS_SUPABASE_ADVISOR_STAGING_APPLY_AND_RECHECK",
+  "next_mode_reason": "After review, apply the prepared advisor migration to staging, rerun RLS smoke, and recheck advisors without touching production."
 }

@@ -86,6 +86,7 @@ Cycle 007 PR42 security closeout audited the pending marketplace migration and S
 After the security-lint commit, GitHub Actions and Supabase Preview passed, but the Vercel Git integration deployment failed with `status Error` and no actionable logs. A manual Vercel Preview for the same HEAD passed build and marketplace smoke at `https://codex-expressjobs-6q0aiyzom-akuma424-projects.vercel.app`.
 Cycle 009 revalidated `main` after PR #42 merge. Merge commit `fc8f6ac4fe36e86a7cc1ac8cadbf21ffcfd343c8` is an ancestor of current HEAD `ad1c355682a1bab012a31eb07c60844de8070a06`; lint, typecheck, secret scan, production guard, production check, staging check, static RLS tests, realtime chat RLS smoke, tests, build, and `git diff --check` passed. Worktree was clean and `android/app/build` was not present.
 Cycle 010 closed Preview UI smoke status. The Git Preview URL returns global `401` without bypass, correctly classified as Vercel Deployment Protection. With the safe local `x-vercel-protection-bypass` header, all 17 checked routes returned `200`, including `/pricing` and `/production-paused`. No secret value was printed. Supabase MCP confirmed the migration list, while security/performance advisor warnings remain open for a dedicated security advisor closeout cycle.
+Cycle 011 prepared Supabase Advisor closeout locally on branch `codex/expressjobs-supabase-security-advisor-closeout`. Supabase MCP rechecked security/performance advisors. Local migration `20260523113000_advisor_security_performance_closeout.sql` moves the admin helper to private schema policy usage, revokes direct execution from exposed internal helpers, consolidates job-message SELECT policy, wraps relevant `auth.uid()`/admin helper calls for initplan performance, and adds missing foreign-key indexes. `ej_set_profile_role` remains an authenticated SECURITY DEFINER RPC by current app design, so full advisor closure requires a reviewed API redesign or accepted exception. Leaked password protection remains a Supabase Dashboard action.
 
 ## Current Scope
 
@@ -125,6 +126,7 @@ Cycle 010 closed Preview UI smoke status. The Git Preview URL returns global `40
 - Marketplace core profile routes, public jobs routes, dashboard routes, and Zod validation for worker profile, company profile, job publication, and applications.
 - Prepared Supabase marketplace extension migration for company profiles, job reports, application review states, and RLS policies.
 - Applied/recorded Supabase security-lint hardening migration history for `SECURITY DEFINER` RPC exposure, with advisor warnings still requiring recheck/follow-up.
+- Prepared local Supabase Advisor closeout migration for private admin helper usage, RLS initplan cleanup, job-message policy consolidation, and foreign-key indexes.
 
 ## Not Active
 
@@ -137,8 +139,8 @@ Cycle 010 closed Preview UI smoke status. The Git Preview URL returns global `40
 
 ## Next Gate
 
-Public Production exposure is neutralized. PR #42 is merged into `main`, local post-merge validation is PASS, realtime chat RLS smoke is PASS, and Preview UI smoke is PASS when using the safe local Vercel Deployment Protection bypass header. Without bypass, Preview remains globally `401` by Deployment Protection, not by route failure. Next safe gate is closing Supabase Advisor warnings and keeping `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Public Production exposure is neutralized. PR #42 is merged into `main`, local post-merge validation is PASS, realtime chat RLS smoke is PASS, and Preview UI smoke is PASS when using the safe local Vercel Deployment Protection bypass header. Without bypass, Preview remains globally `401` by Deployment Protection, not by route failure. Next safe gate is PR review for the local Supabase Advisor closeout migration, then staging apply plus `rls:smoke:messages` and advisor recheck.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: execute `EXPRESSJOBS_SUPABASE_SECURITY_ADVISOR_CLOSEOUT` in a scoped branch. Review SECURITY DEFINER RPC exposure, leaked-password protection, and performance lints; prepare only safe migrations/runbooks; do not touch production.
+Current fastest safe release-ops step: review branch `codex/expressjobs-supabase-security-advisor-closeout`, apply the advisor closeout migration only to staging after review, then rerun RLS smoke and Supabase Advisors. Production remains blocked.

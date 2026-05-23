@@ -2,17 +2,19 @@
 
 ## Run this next
 
-`EXPRESSJOBS_SUPABASE_SECURITY_ADVISOR_CLOSEOUT`
+`EXPRESSJOBS_SUPABASE_ADVISOR_STAGING_APPLY_AND_RECHECK`
 
 ## Why
 
-Post-merge `main` validation is PASS, realtime chat RLS smoke is PASS, build is PASS, and Preview UI smoke is PASS with the safe Vercel Deployment Protection bypass header.
+The Supabase Advisor closeout migration is prepared locally but not applied remotely. The next safe gate is a reviewed staging-only apply followed by RLS smoke and advisor recheck.
 
-Remaining safe release risk is Supabase Advisor closeout:
+## Branch / PR
 
-- SECURITY DEFINER RPC exposure warnings still appear for `ej_is_admin`, `ej_job_messages_broadcast_trigger`, and `ej_set_profile_role`.
-- Auth leaked password protection remains a Dashboard action.
-- Performance advisors report unindexed foreign keys, auth initplan warnings, multiple permissive policies, and unused indexes.
+Use branch:
+
+`codex/expressjobs-supabase-security-advisor-closeout`
+
+Do not push directly to `main`.
 
 ## Do not do
 
@@ -26,25 +28,33 @@ Remaining safe release risk is Supabase Advisor closeout:
 - Do not relax RLS.
 - Do not apply destructive migrations.
 
-## Suggested branch
-
-`codex/expressjobs-supabase-security-advisor-closeout`
-
 ## Required source files to read first
 
 1. `docs/EXPRESSJOBS_DIRECTOR_STATUS.md`
 2. `docs/expressjobs-director-status.json`
-3. `docs/autonomous-cycles/CYCLE_EXPRESSJOBS_010_PREVIEW_UI_SMOKE_CLOSEOUT.md`
-4. `supabase/migrations/20260523110500_harden_security_definer_rpc_exposure.sql`
-5. `scripts/expressjobs-rls-smoke-messages.mjs`
-6. `src/__tests__/supabase-rls-static.test.ts`
+3. `docs/autonomous-cycles/CYCLE_EXPRESSJOBS_011_SUPABASE_SECURITY_ADVISOR_CLOSEOUT.md`
+4. `supabase/migrations/20260523113000_advisor_security_performance_closeout.sql`
+5. `src/__tests__/supabase-rls-static.test.ts`
+6. `scripts/expressjobs-rls-smoke-messages.mjs`
+
+## Tasks
+
+1. Open a PR from `codex/expressjobs-supabase-security-advisor-closeout` to `main`.
+2. After review, apply `20260523113000_advisor_security_performance_closeout.sql` only to staging project `gnsfyvsodslnehszanra`.
+3. Run `npm run rls:smoke:messages`.
+4. Recheck Supabase security/performance advisors.
+5. Document remaining accepted exceptions:
+   - `ej_set_profile_role` authenticated SECURITY DEFINER RPC until API redesign.
+   - Auth leaked password protection Dashboard action.
+   - Unused index notices until real usage data exists.
 
 ## Expected output
 
 A Director Report that says one of:
 
-- `SUPABASE_SECURITY_ADVISOR_CLOSEOUT=PASS_LOCAL_READY_REMOTE_APPLY_READY`
+- `SUPABASE_ADVISOR_STAGING_APPLY_AND_RECHECK=PASS`
 - or `BLOCKED_SUPABASE_ACCESS`
 - or `BLOCKED_DASHBOARD_ACTION_REQUIRED`
+- or `BLOCKED_SECURITY_RISK`
 
 Production remains `NO-GO_PRODUCTION`.
