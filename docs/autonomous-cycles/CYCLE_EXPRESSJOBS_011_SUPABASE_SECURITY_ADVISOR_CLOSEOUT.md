@@ -49,7 +49,7 @@ Performance advisors before local apply still report:
 
 Created:
 
-`supabase/migrations/20260523113000_advisor_security_performance_closeout.sql`
+`supabase/migrations/20260523064307_advisor_security_performance_closeout.sql`
 
 The migration is idempotent and non-destructive. It prepares:
 
@@ -73,7 +73,7 @@ Unused-index notices were not fixed by dropping indexes because there is not eno
 
 ## Tooling Note
 
-Attempted `npx supabase migration new advisor_security_performance_closeout`, but the Windows process exited with crash code `-1073741819` and no output. The migration was created manually using the repo's existing timestamped migration format.
+Attempted `npx supabase migration new advisor_security_performance_closeout`, but the Windows process exited with crash code `-1073741819` and no output. The migration was created manually, then later renamed to match the remote MCP-applied migration version.
 
 ## Checks
 

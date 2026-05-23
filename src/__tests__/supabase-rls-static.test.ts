@@ -158,6 +158,8 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(allMigrations).toContain("create index if not exists ej_jobs_client_id_idx");
     expect(allMigrations).toContain("create index if not exists ej_payment_records_user_id_idx");
     expect(allMigrations).toContain("create policy \"job_messages_select_participants_or_admin\"");
+    expect(allMigrations).toContain("create policy \"job_messages_update_admin_only\"");
+    expect(allMigrations).toContain("create policy \"job_messages_delete_admin_only\"");
     expect(allMigrations).toContain("or (select private.ej_is_admin())");
     expect(allMigrations).toContain('drop policy if exists "admin_audit_admin_only" on public.ej_admin_audit_logs');
     expect(allMigrations).toContain('drop policy if exists "categories_select_active" on public.ej_categories');
