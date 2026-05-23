@@ -16,14 +16,14 @@
   "marketplace_core_status": "MARKETPLACE_CORE_PARTIAL",
   "code_marketplace_status": "PASS",
   "supabase_db_auth_rls_status": "PARTIAL",
-  "supabase_preview_check_status": "SKIPPED_EXTERNAL_INTEGRATION",
-  "supabase_preview_project": "gnsfyvsodslnehszanra",
+  "supabase_preview_check_status": "PASS",
+  "supabase_preview_project": "cbykhpbwowmsopopbppz",
   "supabase_migration_apply_status": "NOT_APPLIED_TO_CURRENT_STAGING_WRITE_ACCESS_MISSING",
   "vercel_git_integration_status": "PASS",
   "vercel_git_preview_url": "https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app",
   "preview_marketplace_smoke": "PASS_WITH_SAFE_BYPASS_HEADER",
   "preview_pricing_smoke": "PASS_8_OFFERS_NO_LIVE_PAYMENTS",
-  "remote_checks_status": "ACTIONS_PASS_VERCEL_PASS_SUPABASE_PREVIEW_SKIPPED_REVIEW_REQUIRED",
+  "remote_checks_status": "ACTIONS_PASS_VERCEL_PASS_SUPABASE_PREVIEW_PASS_REVIEW_REQUIRED",
   "github_actions_checks_status": "PASS",
   "rls_smoke_status": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
   "staging_check_status": "PASS",
@@ -96,7 +96,7 @@
     {
       "front": "Supabase DB/Auth/RLS",
       "status": "PARTIAL",
-      "evidence": "RLS staging smoke PASS; Supabase Preview skipped by external integration",
+      "evidence": "RLS staging smoke PASS; Supabase Preview check PASS",
       "blockers": "BLOCKED_SUPABASE_ACCESS for applying migration to current staging"
     },
     {
@@ -115,11 +115,11 @@
   "blockers": [
     "BLOCKED_SUPABASE_ACCESS",
     "BLOCKED_REVIEW_REQUIRED",
-    "BLOCKED_SUPABASE_PREVIEW_INTEGRATION_SKIPPED"
+    "BLOCKED_REVIEW_REQUIRED"
   ],
   "risks": [
     "New Supabase migration is prepared locally but not applied to current staging.",
-    "Supabase Preview check is skipped after rebase, so it is not evidence that the new migration was applied.",
+    "Supabase Preview check is PASS, but current staging migration apply remains a separate gate.",
     "PR #42 still requires human review before merge.",
     "Untracked android/ build artifacts remain outside this branch and were not touched."
   ],
