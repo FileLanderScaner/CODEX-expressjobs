@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { categories } from "@/lib/expressjobs-data";
 import { authHref, ensureMarketplaceRole, fullNameFromUser } from "@/lib/marketplace";
+import { jobPostSchema } from "@/lib/marketplace-schemas";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 
 type JobFormState = "idle" | "loading" | "success" | "error";
@@ -53,9 +54,18 @@ export function JobForm() {
       return;
     }
 
-    if (!title.trim() || !description.trim() || !location.trim()) {
+    const parsed = jobPostSchema.safeParse({
+      title,
+      category,
+      description,
+      location,
+      budgetUyu: parseBudget(budget),
+      urgency: "normal",
+    });
+
+    if (!parsed.success) {
       setState("error");
-      setMessage("Completa titulo, descripcion y ubicacion para publicar.");
+      setMessage(parsed.error.issues[0]?.message ?? "Completa los datos necesarios para publicar.");
       return;
     }
 
@@ -71,10 +81,10 @@ export function JobForm() {
       .from("ej_jobs")
       .insert({
         client_id: user.id,
-        title: title.trim(),
-        description: description.trim(),
-        location_text: location.trim(),
-        budget_uyu: parseBudget(budget),
+        title: parsed.data.title,
+        description: parsed.data.description,
+        location_text: parsed.data.location,
+        budget_uyu: parsed.data.budgetUyu,
         status: "open",
       })
       .select("id")

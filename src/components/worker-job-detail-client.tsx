@@ -17,6 +17,7 @@ import {
   parseAmountUyu,
   type MarketplaceJob,
 } from "@/lib/marketplace";
+import { applicationSchema } from "@/lib/marketplace-schemas";
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -93,9 +94,14 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
       return;
     }
 
-    if (!message.trim()) {
+    const parsed = applicationSchema.safeParse({
+      message,
+      proposedAmountUyu: parseAmountUyu(amount),
+    });
+
+    if (!parsed.success) {
       setState("error");
-      setStatusMessage("Agrega un mensaje corto para el cliente.");
+      setStatusMessage(parsed.error.issues[0]?.message ?? "Agrega un mensaje corto para el cliente.");
       return;
     }
 
@@ -123,8 +129,8 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
     const { error } = await supabase.from("ej_job_applications").insert({
       job_id: jobId,
       worker_id: user.id,
-      message: message.trim(),
-      proposed_amount_uyu: parseAmountUyu(amount),
+      message: parsed.data.message,
+      proposed_amount_uyu: parsed.data.proposedAmountUyu,
       status: "submitted",
     });
 

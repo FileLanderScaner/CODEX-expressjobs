@@ -11,7 +11,7 @@ export const jobStatuses = [
 
 export type JobStatus = (typeof jobStatuses)[number];
 export type UserRole = "client" | "worker" | "admin";
-export type ApplicationStatus = "submitted" | "accepted" | "rejected" | "withdrawn";
+export type ApplicationStatus = "submitted" | "viewed" | "shortlisted" | "accepted" | "rejected" | "withdrawn";
 
 export const trackingEvents = [
   "app_opened",
