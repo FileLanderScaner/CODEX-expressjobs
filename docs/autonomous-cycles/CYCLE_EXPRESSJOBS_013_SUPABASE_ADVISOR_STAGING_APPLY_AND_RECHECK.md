@@ -61,7 +61,8 @@ Post-push recheck:
 - A safe Supabase Preview branch rebase returned success.
 - Supabase Preview still reported `MIGRATIONS_FAILED` afterward.
 - No branch reset or deletion was attempted because those actions can discard branch state and require explicit authorization.
-- Vercel Preview deployment `dpl_8TPK9CMp3DaGNjweCZUn4VXBEXrQ` failed before app build with: `We were unable to fetch required git information required to complete the deployment.`
+- Vercel Preview deployment `dpl_8TPK9CMp3DaGNjweCZUn4VXBEXrQ` initially failed before app build with: `We were unable to fetch required git information required to complete the deployment.`
+- After the docs/status push, GitHub reported Vercel PASS on deployment `AeHDyTmYsJkjtSuvJofaqgY5oDeU`.
 
 Final result:
 
@@ -96,7 +97,7 @@ Performance advisors improved:
 Remote PR #44 gates:
 
 - Supabase Preview: `BLOCKED_SUPABASE_ACCESS`, existing branch remains `MIGRATIONS_FAILED` after safe rebase.
-- Vercel Preview: `BLOCKED_VERCEL_ACCESS`, Vercel could not fetch required Git information for the Preview deployment.
+- Vercel Preview: PASS after follow-up push.
 
 Next safe mode:
 

@@ -8,7 +8,7 @@
 
 The Supabase Advisor closeout migrations were applied to staging and `npm run rls:smoke:messages` is PASS after the job-message admin private-helper fix.
 
-Current safe gate is provider-access closeout for PR #44 while keeping production blocked. Supabase Preview still reports `MIGRATIONS_FAILED` after restoring the compatibility migration and running a safe rebase. Vercel Preview deployment `dpl_8TPK9CMp3DaGNjweCZUn4VXBEXrQ` failed before build because Vercel could not fetch required Git information.
+Current safe gate is provider-access closeout for PR #44 while keeping production blocked. Supabase Preview still reports `MIGRATIONS_FAILED` after restoring the compatibility migration and running a safe rebase. Vercel Preview recovered and is PASS after the follow-up docs/status push.
 
 ## Branch / PR
 
@@ -51,7 +51,7 @@ Do not push directly to `main`.
 1. Confirm PR #44 remote checks after the Supabase migration-order fix.
 2. Before any new deploy/Preview workflow, list Supabase branches and verify only one non-main branch exists, leaving capacity under the user's main-plus-two-branches limit.
 3. If Supabase Preview remains `MIGRATIONS_FAILED`, do not reset/delete the branch without explicit authorization; document `BLOCKED_SUPABASE_ACCESS`.
-4. If Vercel cannot fetch required Git information, document `BLOCKED_VERCEL_ACCESS` and do not create production deploys.
+4. Confirm Vercel remains PASS; if Vercel cannot fetch required Git information again, document `BLOCKED_VERCEL_ACCESS` and do not create production deploys.
 5. Do not merge if a merge would trigger unsafe production behavior.
 6. Keep remaining accepted exceptions documented:
    - `ej_set_profile_role` authenticated SECURITY DEFINER RPC until API redesign.
@@ -66,8 +66,8 @@ A Director Report that says one of:
 
 - `PR44_PROVIDER_ACCESS_CLOSEOUT=READY_NO_PRODUCTION`
 - or `BLOCKED_SUPABASE_ACCESS`
-- or `BLOCKED_VERCEL_ACCESS`
 - or `BLOCKED_DASHBOARD_ACTION_REQUIRED`
+- or `BLOCKED_VERCEL_ACCESS`
 - or `BLOCKED_SECURITY_RISK`
 
 Production remains `NO-GO_PRODUCTION`.
