@@ -93,6 +93,7 @@ Cycle 014 restored the no-op `20260523113000_advisor_security_performance_closeo
 
 Cycle 015 ChatGPT substitute audit/post-push validation documented PR #44 status while Codex is unavailable. Commits `76fb749` and `054e8e5` were pushed to `codex/expressjobs-supabase-security-advisor-closeout`. Local validation passed: production guard, staging check, static RLS tests, and realtime chat RLS smoke. PR #44 remains open/mergeable with production blocked. Supabase branch-capacity preflight is now mandatory before any new migration because the user's Supabase Free plan branch limit must be respected.
 Cycle 016 improved public UX without DB changes. Added `/como-funciona`, updated navigation, improved `/jobs` onboarding context, improved `/register` role-selection guidance, and documented the no-DB/no-production safety boundary. Local QA passed: production guard, staging check, lint, typecheck, and build. Vercel remote status for commit `073468a` is SUCCESS.
+Cycle 017 expanded Vercel Preview smoke coverage without DB changes. `scripts/smoke-preview.mjs` now checks `/`, `/como-funciona`, `/jobs`, `/jobs/open`, `/register`, `/auth`, `/role`, `/pricing`, and `/production-paused`; reports per-route statuses; accepts protected-preview 401/redirect behavior; and still fails on 5xx or production-host usage. Local validation passed: JSON parse, production guard, staging check, lint, typecheck, and build. Vercel remote status for commit `b062cb7` is SUCCESS.
 ## Current Scope
 
 - Landing

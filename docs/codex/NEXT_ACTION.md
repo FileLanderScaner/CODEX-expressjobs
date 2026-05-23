@@ -2,23 +2,28 @@
 
 ## Run this next
 
-`EXPRESSJOBS_WEBAPP_PUBLIC_ROUTES_QA_NO_DB_CHANGES`
+`EXPRESSJOBS_PREVIEW_ROUTE_SMOKE_EXECUTION_NO_DB_CHANGES`
 
 ## Why
 
-ChatGPT acted as safe Director substitute while Codex is unavailable and advanced PR #44 with a no-database public UX cycle.
+Cycle 017 expanded the Vercel Preview smoke script so public route QA can be executed with one command once the Preview URL is available.
 
 Latest validated branch head:
-`073468ab84f6cce4506536d5a26d0aaf92efc8f9`
+`b062cb7c62a2332fdc6138be51a887c30ac22966`
 
-Cycle 016 added:
-- public route `/como-funciona`;
-- navigation link `Como funciona`;
-- improved `/jobs` pilot/onboarding context;
-- improved `/register` safe role-selection guidance;
-- Director report `CYCLE_EXPRESSJOBS_016_WEBAPP_UX_NO_DB_CHANGES.md`.
+Routes covered by smoke:
+- `/`
+- `/como-funciona`
+- `/jobs`
+- `/jobs/open`
+- `/register`
+- `/auth`
+- `/role`
+- `/pricing`
+- `/production-paused`
 
 Validation passed:
+- `JSON parse`: PASS
 - `npm run production:check`: PASS
 - `npm run staging:check`: PASS
 - `npm run lint`: PASS
@@ -32,14 +37,30 @@ Production remains:
 ## Branch / PR
 
 Use branch:
-
 `codex/expressjobs-supabase-security-advisor-closeout`
 
 PR:
-
 `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/44`
 
 Do not push directly to `main`.
+
+## Preview smoke command
+
+Use a real Vercel Preview URL, never the production host:
+
+```powershell
+cd C:\CODEX-expressjobs-repo
+npm run smoke:preview -- --url https://preview-deployment.vercel.app
+```
+
+Expected safe output:
+
+```txt
+PREVIEW_SMOKE=PASS https://preview-deployment.vercel.app
+PREVIEW_SMOKE_RESULTS=...
+```
+
+401 from Vercel Deployment Protection is acceptable for protected Preview routes. 5xx is not acceptable.
 
 ## Critical Supabase branch-capacity rule
 
@@ -68,17 +89,12 @@ Before any new migration, DDL apply, Supabase Preview Branch workflow, or Adviso
 
 ## Tasks
 
-1. Keep PR #44 remote checks green.
-2. Continue public-route QA without Supabase schema changes.
-3. Smoke check `/`, `/como-funciona`, `/jobs`, `/register`, `/auth`, `/pricing`, `/production-paused`.
-4. Improve UX only where it does not require database migration.
-5. Document every change with production still blocked.
-6. Keep remaining accepted exceptions documented:
-   - `ej_set_profile_role` authenticated SECURITY DEFINER RPC until API redesign.
-   - Auth leaked password protection Dashboard action.
-   - Realtime policy initplan warnings.
-   - Unused index notices until real usage data exists.
-   - Multiple permissive category/worker profile policy warnings until safe consolidation is reviewed.
+1. Confirm PR #44 remote checks remain green.
+2. Copy the latest Vercel Preview deployment URL.
+3. Run `npm run smoke:preview -- --url <preview-url>`.
+4. Confirm `PREVIEW_SMOKE=PASS`.
+5. Document route results.
+6. Keep production blocked.
 
 ## Expected output
 
@@ -86,8 +102,6 @@ A Director Report that says one of:
 
 - `WEBAPP_PUBLIC_ROUTES_QA_PASS_NO_PRODUCTION`
 - or `WEBAPP_PUBLIC_ROUTES_QA_BLOCKED`
-- or `BLOCKED_SUPABASE_BRANCH_CAPACITY`
-- or `BLOCKED_DASHBOARD_ACTION_REQUIRED`
 - or `BLOCKED_VERCEL_ACCESS`
 - or `BLOCKED_SECURITY_RISK`
 

@@ -5,14 +5,14 @@
     "remote":  "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
     "branch":  "codex/expressjobs-supabase-security-advisor-closeout",
     "base_branch":  "main",
-    "head":  "073468ab84f6cce4506536d5a26d0aaf92efc8f9",
+    "head":  "b062cb7c62a2332fdc6138be51a887c30ac22966",
     "pr_number":  44,
     "pr_url":  "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/44",
     "pr_status":  "OPEN",
-    "mode":  "EXPRESSJOBS_WEBAPP_PUBLIC_ROUTES_QA_NO_DB_CHANGES",
-    "previous_mode":  "EXPRESSJOBS_WEBAPP_UX_COMPLETION_NO_DB_CHANGES",
-    "cycle":  "CYCLE_EXPRESSJOBS_016_WEBAPP_UX_NO_DB_CHANGES",
-    "updated_at":  "2026-05-23T16:20:00-03:00",
+    "mode":  "EXPRESSJOBS_PREVIEW_ROUTE_SMOKE_EXECUTION_NO_DB_CHANGES",
+    "previous_mode":  "EXPRESSJOBS_PREVIEW_SMOKE_ROUTE_COVERAGE_NO_DB_CHANGES",
+    "cycle":  "CYCLE_EXPRESSJOBS_017_PREVIEW_SMOKE_ROUTE_COVERAGE",
+    "updated_at":  "2026-05-23T16:35:00-03:00",
     "production_status":  "NO-GO_PRODUCTION",
     "supabase_branch_capacity":  {
                                      "user_limit":  "main_plus_two_branches",
@@ -92,7 +92,16 @@
                    "cycle_016_lint":  "PASS",
                    "cycle_016_typecheck":  "PASS",
                    "cycle_016_build":  "PASS_STATIC_COMO_FUNCIONA_ROUTE",
-                   "cycle_016_vercel_remote":  "SUCCESS"
+                   "cycle_016_vercel_remote":  "SUCCESS",
+                   "cycle_017_preview_smoke_coverage":  "PASS_PUSHED_B062CB7",
+                   "cycle_017_json_parse":  "PASS",
+                   "cycle_017_production_check":  "PASS_NO_GO_PRODUCTION",
+                   "cycle_017_staging_check":  "PASS",
+                   "cycle_017_lint":  "PASS",
+                   "cycle_017_typecheck":  "PASS",
+                   "cycle_017_build":  "PASS",
+                   "cycle_017_vercel_remote":  "SUCCESS",
+                   "cycle_017_preview_smoke_execution":  "PENDING_PREVIEW_URL"
                },
     "production_guards":  {
                               "vercel_prod_deploy":  "NOT_RUN",
@@ -115,6 +124,6 @@
                             "SUPABASE_BRANCH_CAPACITY_PREFLIGHT_REQUIRED":  "Before any new Supabase migration, DDL apply, Preview branch workflow, or Advisor closeout apply, list branches and confirm available capacity under the user\u0027s Supabase Free tier branch limit.",
                             "PR_REVIEW_OR_MERGE_DECISION_PENDING":  "PR #44 is technically strengthened by local/post-push validation, but merge/review decision remains pending. Do not merge if it would trigger unsafe production behavior."
                         },
-    "next_mode":  "EXPRESSJOBS_WEBAPP_PUBLIC_ROUTES_QA_NO_DB_CHANGES",
-    "next_mode_reason":  "Cycle 016 public UX changes passed local QA and Vercel remote status. Continue with public route QA and product UX improvements without Supabase schema changes."
+    "next_mode":  "EXPRESSJOBS_PREVIEW_ROUTE_SMOKE_EXECUTION_NO_DB_CHANGES",
+    "next_mode_reason":  "Cycle 017 expanded Preview smoke route coverage and Vercel remote status is SUCCESS. Next step is to run smoke:preview against the protected Preview URL without touching Supabase or production."
 }
