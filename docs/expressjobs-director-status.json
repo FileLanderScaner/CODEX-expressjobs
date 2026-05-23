@@ -36,6 +36,7 @@
       "supabase/migrations/20260523064307_advisor_security_performance_closeout.sql",
       "supabase/migrations/20260523064405_fix_job_messages_admin_private_helper.sql",
       "supabase/migrations/20260523065010_advisor_company_reports_policy_reapply.sql",
+      "supabase/migrations/20260523113000_advisor_security_performance_closeout.sql",
       "supabase/migrations/20260523120500_advisor_company_reports_policy_reapply.sql"
     ],
     "rls_smoke_messages_initial_after_apply": "FAIL_ADMIN_UPDATE_DELETE_PERMISSION_DENIED_PUBLIC_EJ_IS_ADMIN",
@@ -76,7 +77,7 @@
     "local_staging_check": "PASS",
     "local_rls_smoke_messages": "PASS",
     "local_git_diff_check": "PASS",
-    "supabase_preview_after_push": "FAILED_BEFORE_BRANCH_ORDER_FIX_COMMIT"
+    "supabase_preview_after_push": "FAILED_EXISTING_BRANCH_HISTORY_REQUIRES_20260523113000_COMPAT_FILE"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",

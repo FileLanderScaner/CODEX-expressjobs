@@ -33,9 +33,10 @@ Local migration filenames were aligned to those remote migration versions:
 - `supabase/migrations/20260523064307_advisor_security_performance_closeout.sql`
 - `supabase/migrations/20260523064405_fix_job_messages_admin_private_helper.sql`
 - `supabase/migrations/20260523065010_advisor_company_reports_policy_reapply.sql`
+- `supabase/migrations/20260523113000_advisor_security_performance_closeout.sql`
 - `supabase/migrations/20260523120500_advisor_company_reports_policy_reapply.sql`
 
-The `20260523065010` local file is guarded because that remote MCP version sorts before `20260523093000_marketplace_core_profiles_reports`, which creates `ej_company_profiles` and `ej_job_reports`. The later `20260523120500` file re-applies the same policies after those tables exist in fresh Preview branches.
+The `20260523065010` local file is guarded because that remote MCP version sorts before `20260523093000_marketplace_core_profiles_reports`, which creates `ej_company_profiles` and `ej_job_reports`. The later `20260523120500` file re-applies the same policies after those tables exist in fresh Preview branches. The `20260523113000` no-op compatibility file is retained because the existing PR #44 Supabase Preview branch had already recorded that version before staging migration history was aligned.
 
 ## RLS Smoke
 
