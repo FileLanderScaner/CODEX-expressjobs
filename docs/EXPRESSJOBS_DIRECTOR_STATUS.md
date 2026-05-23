@@ -80,6 +80,7 @@ Cycle 073 merged PR #32 with squash after confirming checks PASS, then pulled `m
 Cycle 074 merged PR #33, applied `main` branch protection and `delete_branch_on_merge=true`, then attempted the authorized Vercel Production protection. Vercel native SSO `all` protection was blocked by plan entitlement (`invalid_sso_protection`), so a reversible code-level neutralization was prepared: `middleware.ts` redirects Vercel Production traffic to `/production-paused`, while previews and local remain usable. This is pending PR/merge/deploy before Production alias is neutralized.
 Cycle 075 verified the production neutralization after PR #34 merged. Latest inspected Vercel Production deployment is `dpl_KcFp575mjYM6TS6BgCAXyYYMd84C`; `https://codex-expressjobs.vercel.app/` returns `307` to `/production-paused`, and `/production-paused` returns `200` with `NO-GO_PRODUCTION`. Production remains blocked but public access is now neutralized reversibly.
 Cycle 004 repo-integrity recovery used canonical Git checkout `C:\CODEX-expressjobs-repo`, recovered safe pricing/copy changes from `C:\CODEX-expressjobs`, validated staging RLS with `EXPRESSJOBS_RLS_STAGING_PASS`, and kept Production as `NO-GO_PRODUCTION`.
+Cycle 005 opened PR #41 for `codex/expressjobs-rls-smoke-staging`, verified remote checks PASS, inspected Vercel deployment `dpl_Ep94my2HLuHfZMzQdUw95SEkP65h` as `target=preview`, and passed protected Preview `/pricing` smoke with a safe local bypass header. Merge remains blocked by required review.
 
 ## Current Scope
 
@@ -128,8 +129,8 @@ Cycle 004 repo-integrity recovery used canonical Git checkout `C:\CODEX-expressj
 
 ## Next Gate
 
-Public Production exposure is neutralized. Latest safe gate also revalidated staging RLS as PASS from the canonical Git checkout. Next safe gate is a preview/release closeout that keeps `PRODUCTION_STATUS=NO-GO_PRODUCTION`, verifies the pricing copy in Preview, and avoids any Production deploy, promotion, live payment, or Production env mutation.
+Public Production exposure is neutralized. Latest safe gate revalidated staging RLS as PASS and Preview `/pricing` as PASS from PR #41. Next safe gate is human PR review and controlled merge decision while keeping `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: open/review the branch `codex/expressjobs-rls-smoke-staging`, confirm CI/Preview, and keep marketplace hardening in preview/staging while preserving the Production pause. Production remains blocked.
+Current fastest safe release-ops step: human review PR #41, then merge only if branch protection allows it without override and Production pause remains in force. Production remains blocked.
