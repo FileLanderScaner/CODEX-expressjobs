@@ -82,6 +82,7 @@ Cycle 075 verified the production neutralization after PR #34 merged. Latest ins
 Cycle 004 repo-integrity recovery used canonical Git checkout `C:\CODEX-expressjobs-repo`, recovered safe pricing/copy changes from `C:\CODEX-expressjobs`, validated staging RLS with `EXPRESSJOBS_RLS_STAGING_PASS`, and kept Production as `NO-GO_PRODUCTION`.
 Cycle 005 opened PR #41 for `codex/expressjobs-rls-smoke-staging`, verified GitHub checks PASS, inspected Vercel deployment `dpl_Ep94my2HLuHfZMzQdUw95SEkP65h` as `target=preview`, and passed protected Preview `/pricing` smoke with a safe local bypass header. A later Git-integrated Vercel deployment failed with `Resource provisioning failed`; a manual `vercel deploy --target preview` produced Ready Preview `dpl_4ZnMJ53ppQtUz4RV6G4F5DjFhczF` and `/pricing` smoke PASS. Merge remains blocked by required review and the failing Git-integrated Vercel status.
 Cycle 005 marketplace core workflows created branch `codex/expressjobs-marketplace-core-workflows`, added public `/jobs`, `/jobs/[id]`, `/register`, dashboard profile/application/job routes, worker/company profile forms, Zod validation, and a non-destructive Supabase migration for `ej_company_profiles`, `ej_job_reports`, indexes, and application review states. Local checks, staging check, and `EXPRESSJOBS_RLS_STAGING_PASS` passed. PR #42 was opened, rebased/merged with `main`, and GitHub Actions, Supabase Preview, and Vercel Git integration are now PASS. Git Preview smoke passed for home/jobs/pricing/auth/dashboard routes. The new migration still needs explicit apply/verification on the current staging write path before declaring marketplace MVP fully functional.
+Cycle 007 PR42 security closeout audited the pending marketplace migration and Supabase security lints. A new local hardening migration revokes `PUBLIC`/`anon` execution for sensitive `SECURITY DEFINER` functions, keeps `ej_set_profile_role` authenticated-only as a temporary app dependency, blocks role switching after marketplace activity, and requires `client` role for job publishing. Remote apply remains blocked by missing safe Supabase write path. Leaked password protection remains a Supabase Dashboard action.
 
 ## Current Scope
 
@@ -120,6 +121,7 @@ Cycle 005 marketplace core workflows created branch `codex/expressjobs-marketpla
 - Pilot pricing from Google Drive `ExpressJobs - Centro Online de Ventas`: landing basica/completa, landing + banner, banner fundador 7/30 dias, publicacion manual, publicacion + filtro, and urgente 24 h with manual WhatsApp CTAs.
 - Marketplace core profile routes, public jobs routes, dashboard routes, and Zod validation for worker profile, company profile, job publication, and applications.
 - Prepared Supabase marketplace extension migration for company profiles, job reports, application review states, and RLS policies.
+- Prepared Supabase security-lint hardening migration for `SECURITY DEFINER` RPC exposure.
 
 ## Not Active
 
@@ -132,8 +134,8 @@ Cycle 005 marketplace core workflows created branch `codex/expressjobs-marketpla
 
 ## Next Gate
 
-Public Production exposure is neutralized. Latest safe gate revalidated staging RLS as PASS, marketplace core Preview smoke as PASS on Vercel Git Preview, and PR #42 remote Actions/Supabase Preview/Vercel as PASS. Next safe gate is human review plus applying the marketplace Supabase migration through an approved staging write path while keeping `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Public Production exposure is neutralized. Latest safe gate revalidated staging RLS as PASS, marketplace core Preview smoke as PASS on Vercel Git Preview, and PR #42 remote Actions/Supabase Preview/Vercel as PASS. Next safe gate is human review plus applying the marketplace and security-lint Supabase migrations through an approved staging write path while keeping `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: complete PR #42 human review and apply the new Supabase migration only through an approved staging write path. Production remains blocked.
+Current fastest safe release-ops step: complete PR #42 human review and apply the marketplace/security hardening migrations only through an approved staging write path. Production remains blocked.

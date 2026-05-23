@@ -95,6 +95,7 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(allMigrations).toContain("grant update (full_name, phone, city, updated_at) on table public.ej_profiles to authenticated");
     expect(allMigrations).not.toContain("grant update (role)");
     expect(allMigrations).toContain("ej_prevent_profile_role_self_update");
+    expect(allMigrations).toContain("revoke execute on function public.ej_prevent_profile_role_self_update() from public");
     expect(allMigrations).toContain("revoke execute on function public.ej_prevent_profile_role_self_update() from authenticated");
     expect(allMigrations).toContain("before update of role on public.ej_profiles");
     expect(allMigrations).toContain("auth.role() = 'authenticated'");
@@ -115,6 +116,25 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(allMigrations).toContain("create or replace function public.ej_accept_job_application");
     expect(allMigrations).toContain("security invoker");
     expect(allMigrations).toContain("grant execute on function public.ej_accept_job_application(uuid) to authenticated");
+  });
+
+  it("keeps security definer role selection authenticated-only and activity-locked", () => {
+    expect(allMigrations).toContain("create or replace function public.ej_set_profile_role");
+    expect(allMigrations).toContain("security definer");
+    expect(allMigrations).toContain("set search_path = public");
+    expect(allMigrations).toContain("revoke execute on function public.ej_set_profile_role(text, text) from public");
+    expect(allMigrations).toContain("revoke execute on function public.ej_set_profile_role(text, text) from anon");
+    expect(allMigrations).toContain("grant execute on function public.ej_set_profile_role(text, text) to authenticated");
+    expect(allMigrations).toContain("requested_role not in ('client', 'worker')");
+    expect(allMigrations).toContain("EXPRESSJOBS_ROLE_CHANGE_LOCKED");
+    expect(allMigrations).toContain("exists (select 1 from public.ej_jobs where client_id = current_user_id)");
+    expect(allMigrations).toContain("exists (select 1 from public.ej_job_applications where worker_id = current_user_id)");
+    expect(allMigrations).not.toContain("requested_role in ('admin'");
+  });
+
+  it("requires client role for job publishing after role RPC hardening", () => {
+    expect(allMigrations).toContain('drop policy if exists "jobs_client_insert" on public.ej_jobs');
+    expect(allMigrations).toContain("and role = 'client'");
   });
 
   it("adds company profiles and job reports without opening broad public RLS policies", () => {

@@ -5,9 +5,9 @@
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-marketplace-core-workflows",
   "base_branch": "main",
-  "mode": "EXPRESSJOBS_SUPABASE_STAGING_MIGRATION_AND_VERCEL_GIT_CLOSEOUT",
+  "mode": "EXPRESSJOBS_PR42_HUMAN_REVIEW_SUPABASE_APPLY_AND_SECURITY_LINTS_CLOSEOUT",
   "previous_mode": "EXPRESSJOBS_MARKETPLACE_CORE_WORKFLOWS",
-  "cycle": "CYCLE_EXPRESSJOBS_008_MARKETPLACE_CORE_PR42_REBASE_AND_PREVIEW_CLOSEOUT",
+  "cycle": "CYCLE_EXPRESSJOBS_007_PR42_HUMAN_REVIEW_SUPABASE_APPLY_SECURITY_LINTS",
   "pr_number": 42,
   "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42",
   "pr_merge_state": "BLOCKED_REVIEW_REQUIRED",
@@ -19,6 +19,9 @@
   "supabase_preview_check_status": "PASS",
   "supabase_preview_project": "cbykhpbwowmsopopbppz",
   "supabase_migration_apply_status": "NOT_APPLIED_TO_CURRENT_STAGING_WRITE_ACCESS_MISSING",
+  "supabase_security_lints_status": "PARTIAL_LOCAL_FIX_READY_REMOTE_APPLY_BLOCKED",
+  "security_definer_hardening_migration": "supabase/migrations/20260523110500_harden_security_definer_rpc_exposure.sql",
+  "auth_leaked_password_protection": "BLOCKED_DASHBOARD_ACTION_REQUIRED",
   "vercel_git_integration_status": "PASS",
   "vercel_git_preview_url": "https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app",
   "preview_marketplace_smoke": "PASS_WITH_SAFE_BYPASS_HEADER",
@@ -58,6 +61,7 @@
   ],
   "supabase_artifacts": [
     "supabase/migrations/20260523093000_marketplace_core_profiles_reports.sql",
+    "supabase/migrations/20260523110500_harden_security_definer_rpc_exposure.sql",
     "ej_company_profiles",
     "ej_job_reports",
     "ej_job_applications_status_viewed_shortlisted"
@@ -66,11 +70,11 @@
     "secret_scan": "PASS",
     "production_check": "PASS",
     "guard_no_production_deploy": "PASS",
-    "test_rls_static": "PASS_PREVIOUS_CYCLE",
-    "lint": "PASS_PREVIOUS_CYCLE_WITH_PREEXISTING_ANDROID_WARNINGS",
-    "typecheck": "PASS_PREVIOUS_CYCLE",
-    "test": "PASS_PREVIOUS_CYCLE",
-    "build": "PASS_PREVIOUS_CYCLE",
+    "test_rls_static": "PASS",
+    "lint": "PASS_WITH_PREEXISTING_ANDROID_WARNINGS",
+    "typecheck": "PASS",
+    "test": "PASS_53_TESTS",
+    "build": "PASS",
     "git_diff_check": "PASS",
     "staging_check": "PASS",
     "rls_smoke": "PASS"
@@ -120,8 +124,10 @@
   "risks": [
     "New Supabase migration is prepared locally but not applied to current staging.",
     "Supabase Preview check is PASS, but current staging migration apply remains a separate gate.",
+    "SECURITY DEFINER hardening migration is local-ready but not remotely applied.",
+    "Leaked password protection requires dashboard action.",
     "PR #42 still requires human review before merge.",
     "Untracked android/ build artifacts remain outside this branch and were not touched."
   ],
-  "next_mode": "EXPRESSJOBS_PR42_HUMAN_REVIEW_AND_SUPABASE_APPLY_PREP"
+  "next_mode": "EXPRESSJOBS_PR42_SECURITY_LINTS_REMOTE_APPLY_AND_RECHECK"
 }
