@@ -8,6 +8,8 @@
 
 The Supabase Advisor closeout migration is prepared locally but not applied remotely. The next safe gate is a reviewed staging-only apply followed by RLS smoke and advisor recheck.
 
+Current PR #44 checks are passing except Vercel Preview, which failed with `status Error` and no actionable logs from `vercel inspect`. Supabase Preview passed.
+
 ## Branch / PR
 
 Use branch:
@@ -44,10 +46,11 @@ Do not push directly to `main`.
 ## Tasks
 
 1. Open a PR from `codex/expressjobs-supabase-security-advisor-closeout` to `main`.
-2. After review, apply `20260523113000_advisor_security_performance_closeout.sql` only to staging project `gnsfyvsodslnehszanra`.
-3. Run `npm run rls:smoke:messages`.
-4. Recheck Supabase security/performance advisors.
-5. Document remaining accepted exceptions:
+2. Resolve or classify Vercel Preview failure for deployment `dpl_2ZWihjeiWhKsRVMAu53D2N5a8u5o` without production deploy/promote.
+3. After review, apply `20260523113000_advisor_security_performance_closeout.sql` only to staging project `gnsfyvsodslnehszanra`.
+4. Run `npm run rls:smoke:messages`.
+5. Recheck Supabase security/performance advisors.
+6. Document remaining accepted exceptions:
    - `ej_set_profile_role` authenticated SECURITY DEFINER RPC until API redesign.
    - Auth leaked password protection Dashboard action.
    - Unused index notices until real usage data exists.

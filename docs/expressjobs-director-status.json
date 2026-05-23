@@ -56,6 +56,16 @@
     "build": "PASS_NEXT_16_2_6_STATIC_PAGES_36",
     "git_diff_check": "PASS"
   },
+  "remote_checks": {
+    "github_docs_check": "PASS",
+    "github_pr_check": "PASS",
+    "github_security_gate": "PASS",
+    "github_production_no_go": "PASS",
+    "supabase_preview": "PASS",
+    "vercel_preview": "FAIL_STATUS_ERROR_NO_ACTIONABLE_LOGS",
+    "vercel_failed_deployment": "dpl_2ZWihjeiWhKsRVMAu53D2N5a8u5o",
+    "vercel_failed_target": "preview"
+  },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
     "vercel_promote": "NOT_RUN",
@@ -66,10 +76,12 @@
     "secrets_printed": "NO"
   },
   "blockers": [
+    "BLOCKED_VERCEL_ACCESS",
     "BLOCKED_SUPABASE_ACCESS",
     "BLOCKED_DASHBOARD_ACTION_REQUIRED"
   ],
   "blocker_details": {
+    "BLOCKED_VERCEL_ACCESS": "PR #44 Vercel Preview deployment failed with status Error. vercel inspect confirmed target=preview but did not expose actionable logs.",
     "BLOCKED_SUPABASE_ACCESS": "Local migration is prepared but remote staging apply and advisor recheck were intentionally deferred to a reviewed PR/staging gate.",
     "BLOCKED_DASHBOARD_ACTION_REQUIRED": "Auth leaked password protection must be enabled in Supabase Dashboard."
   },

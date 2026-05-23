@@ -90,6 +90,30 @@ Attempted `npx supabase migration new advisor_security_performance_closeout`, bu
 - `npm run build`: PASS, Next.js 16.2.6, 36 static pages
 - `git diff --check`: PASS
 
+## Remote PR Checks
+
+PR #44 remote checks:
+
+- `docs-check`: PASS
+- `pr-check`: PASS
+- `security-gate`: PASS
+- `production-no-go`: PASS
+- `Supabase Preview`: PASS
+- `Vercel Preview Comments`: PASS
+- `Vercel`: FAIL
+
+Vercel failure details:
+
+- Deployment: `dpl_2ZWihjeiWhKsRVMAu53D2N5a8u5o`
+- Target: Preview
+- Status: Error
+- `npx vercel inspect dpl_2ZWihjeiWhKsRVMAu53D2N5a8u5o --logs`: returned only `status Error`.
+- `npx vercel inspect dpl_2ZWihjeiWhKsRVMAu53D2N5a8u5o --scope akuma424-projects`: confirmed Preview target and URL, but no actionable build logs.
+
+Classification:
+
+`BLOCKED_VERCEL_ACCESS`
+
 ## Production Safety
 
 - `vercel --prod`: NOT RUN
@@ -104,6 +128,8 @@ Attempted `npx supabase migration new advisor_security_performance_closeout`, bu
 ## Decision
 
 `SUPABASE_SECURITY_ADVISOR_CLOSEOUT=PASS_LOCAL_READY_PR_OPEN_REMOTE_APPLY_PENDING_REVIEW`
+
+`REMOTE_PR_CHECKS=PASS_EXCEPT_VERCEL_PREVIEW`
 
 Next safe gate:
 
