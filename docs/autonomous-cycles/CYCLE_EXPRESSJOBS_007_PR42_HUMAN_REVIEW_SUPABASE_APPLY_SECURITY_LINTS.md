@@ -19,6 +19,8 @@
 - Review decision: `REVIEW_REQUIRED`.
 - Merge action: NOT RUN.
 - Admin override: NOT USED.
+- After commit `7466f52`, GitHub Actions and Supabase Preview passed, but Vercel Git integration failed with `status Error`.
+- `vercel inspect dpl_AB6JJDad5WnuV9oo8HnQo2e3ywZX --logs` did not return actionable logs beyond `status Error`.
 
 ## Supabase Marketplace Migration
 
@@ -83,6 +85,10 @@ Known Preview:
 
 - `https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app`
 
+Manual Preview after security-lint commit:
+
+- `https://codex-expressjobs-6q0aiyzom-akuma424-projects.vercel.app`
+
 Expected smoke routes:
 
 - `/`
@@ -101,7 +107,7 @@ Expected smoke routes:
 
 Smoke result:
 
-- All listed routes returned HTTP 200 with the safe Preview bypass header.
+- All listed routes returned HTTP 200 with the safe Preview bypass header on manual Preview.
 - Secret-like markers in rendered HTML: NOT FOUND.
 - `/pricing` contains 8 pilot offer names.
 - PayPal live / real checkout markers: NOT FOUND.
@@ -129,7 +135,7 @@ Smoke result:
 
 ## Decision
 
-`PARTIAL_SECURITY_LINTS_LOCAL_FIX_READY_REMOTE_APPLY_BLOCKED`
+`PARTIAL_SECURITY_LINTS_LOCAL_FIX_READY_REMOTE_APPLY_BLOCKED_VERCEL_GIT_FAIL`
 
 PR #42 is not merged because `reviewDecision=REVIEW_REQUIRED`.
 

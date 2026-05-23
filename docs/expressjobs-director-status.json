@@ -22,11 +22,14 @@
   "supabase_security_lints_status": "PARTIAL_LOCAL_FIX_READY_REMOTE_APPLY_BLOCKED",
   "security_definer_hardening_migration": "supabase/migrations/20260523110500_harden_security_definer_rpc_exposure.sql",
   "auth_leaked_password_protection": "BLOCKED_DASHBOARD_ACTION_REQUIRED",
-  "vercel_git_integration_status": "PASS",
+  "vercel_git_integration_status": "FAIL_STATUS_ERROR_NO_USEFUL_LOGS_AFTER_SECURITY_LINT_COMMIT",
+  "vercel_failed_deployment": "dpl_AB6JJDad5WnuV9oo8HnQo2e3ywZX",
+  "manual_preview_status": "PASS_READY",
+  "manual_preview_url": "https://codex-expressjobs-6q0aiyzom-akuma424-projects.vercel.app",
   "vercel_git_preview_url": "https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app",
   "preview_marketplace_smoke": "PASS_WITH_SAFE_BYPASS_HEADER",
   "preview_pricing_smoke": "PASS_8_OFFERS_NO_LIVE_PAYMENTS",
-  "remote_checks_status": "ACTIONS_PASS_VERCEL_PASS_SUPABASE_PREVIEW_PASS_REVIEW_REQUIRED",
+  "remote_checks_status": "ACTIONS_PASS_SUPABASE_PREVIEW_PASS_VERCEL_GIT_FAIL_REVIEW_REQUIRED",
   "github_actions_checks_status": "PASS",
   "rls_smoke_status": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
   "staging_check_status": "PASS",
@@ -105,9 +108,9 @@
     },
     {
       "front": "Vercel Preview",
-      "status": "PASS",
-      "evidence": "Vercel Git integration PASS and Preview route smoke PASS",
-      "blockers": "none"
+      "status": "PARTIAL",
+      "evidence": "manual Preview PASS and route smoke PASS; Vercel Git deployment failed with status Error",
+      "blockers": "BLOCKED_VERCEL_ACCESS"
     },
     {
       "front": "Produccion",
@@ -119,13 +122,14 @@
   "blockers": [
     "BLOCKED_SUPABASE_ACCESS",
     "BLOCKED_REVIEW_REQUIRED",
-    "BLOCKED_REVIEW_REQUIRED"
+    "BLOCKED_VERCEL_ACCESS"
   ],
   "risks": [
     "New Supabase migration is prepared locally but not applied to current staging.",
     "Supabase Preview check is PASS, but current staging migration apply remains a separate gate.",
     "SECURITY DEFINER hardening migration is local-ready but not remotely applied.",
     "Leaked password protection requires dashboard action.",
+    "Vercel Git integration failed after the security-lint commit, while manual Preview build and smoke passed.",
     "PR #42 still requires human review before merge.",
     "Untracked android/ build artifacts remain outside this branch and were not touched."
   ],
