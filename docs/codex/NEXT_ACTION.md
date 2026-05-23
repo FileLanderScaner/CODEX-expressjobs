@@ -14,6 +14,10 @@ Use branch:
 
 `codex/expressjobs-supabase-security-advisor-closeout`
 
+PR:
+
+`https://github.com/FileLanderScaner/CODEX-expressjobs/pull/44`
+
 Do not push directly to `main`.
 
 ## Do not do

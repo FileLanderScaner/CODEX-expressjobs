@@ -10,6 +10,10 @@
 
 `codex/expressjobs-supabase-security-advisor-closeout`
 
+## Pull Request
+
+PR #44: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/44`
+
 ## Scope
 
 Prepare a safe local closeout for Supabase Advisor findings without touching production and without applying broad RLS/helper changes remotely before review.
@@ -99,7 +103,7 @@ Attempted `npx supabase migration new advisor_security_performance_closeout`, bu
 
 ## Decision
 
-`SUPABASE_SECURITY_ADVISOR_CLOSEOUT=PASS_LOCAL_READY_REMOTE_APPLY_PENDING_REVIEW`
+`SUPABASE_SECURITY_ADVISOR_CLOSEOUT=PASS_LOCAL_READY_PR_OPEN_REMOTE_APPLY_PENDING_REVIEW`
 
 Next safe gate:
 
