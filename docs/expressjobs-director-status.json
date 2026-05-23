@@ -9,10 +9,10 @@
   "pr_number": 44,
   "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/44",
   "pr_status": "OPEN",
-  "mode": "EXPRESSJOBS_SUPABASE_SECURITY_ADVISOR_CLOSEOUT",
-  "previous_mode": "EXPRESSJOBS_POST_MERGE_PREVIEW_UI_SMOKE_AND_RELEASE_CLOSEOUT",
-  "cycle": "CYCLE_EXPRESSJOBS_011_SUPABASE_SECURITY_ADVISOR_CLOSEOUT",
-  "updated_at": "2026-05-23T03:17:49-03:00",
+  "mode": "EXPRESSJOBS_VERCEL_PREVIEW_FAILURE_TRIAGE_PR44",
+  "previous_mode": "EXPRESSJOBS_SUPABASE_SECURITY_ADVISOR_CLOSEOUT",
+  "cycle": "CYCLE_EXPRESSJOBS_012_VERCEL_PREVIEW_FAILURE_TRIAGE_PR44",
+  "updated_at": "2026-05-23T03:36:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
   "supabase": {
     "project": "supabase-expressjobs",
@@ -62,9 +62,25 @@
     "github_security_gate": "PASS",
     "github_production_no_go": "PASS",
     "supabase_preview": "PASS",
-    "vercel_preview": "FAIL_STATUS_ERROR_NO_ACTIONABLE_LOGS",
-    "vercel_failed_deployment": "dpl_2ZWihjeiWhKsRVMAu53D2N5a8u5o",
-    "vercel_failed_target": "preview"
+    "vercel_preview": "PASS_AFTER_LATER_GIT_TRIGGERED_PREVIEW",
+    "vercel_ready_deployment": "dpl_4PxQw3Q7SGQKdQnkw3h9nddq9Gjv",
+    "vercel_ready_url": "https://codex-expressjobs-sg7l7e2sd-akuma424-projects.vercel.app",
+    "vercel_ready_target": "preview",
+    "vercel_previous_failed_deployment": "dpl_4VkaGYdg6nNJGMUFijXJc7rT3Hoi",
+    "vercel_previous_failure_logs": "NO_LOGS_FOUND_OR_STATUS_ERROR_ONLY"
+  },
+  "preview_smoke": {
+    "url": "https://codex-expressjobs-sg7l7e2sd-akuma424-projects.vercel.app",
+    "without_bypass": "BLOCKED_BY_DEPLOYMENT_PROTECTION_GLOBAL_401",
+    "with_safe_bypass_header": "PASS_6_ROUTES_HTTP_200",
+    "routes_checked": [
+      "/",
+      "/jobs",
+      "/pricing",
+      "/auth",
+      "/register",
+      "/production-paused"
+    ]
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
@@ -76,12 +92,10 @@
     "secrets_printed": "NO"
   },
   "blockers": [
-    "BLOCKED_VERCEL_ACCESS",
     "BLOCKED_SUPABASE_ACCESS",
     "BLOCKED_DASHBOARD_ACTION_REQUIRED"
   ],
   "blocker_details": {
-    "BLOCKED_VERCEL_ACCESS": "PR #44 Vercel Preview deployment failed with status Error. vercel inspect confirmed target=preview but did not expose actionable logs.",
     "BLOCKED_SUPABASE_ACCESS": "Local migration is prepared but remote staging apply and advisor recheck were intentionally deferred to a reviewed PR/staging gate.",
     "BLOCKED_DASHBOARD_ACTION_REQUIRED": "Auth leaked password protection must be enabled in Supabase Dashboard."
   },
