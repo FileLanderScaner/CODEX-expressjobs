@@ -5,7 +5,7 @@
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-supabase-security-advisor-closeout",
   "base_branch": "main",
-  "head": "9ce8eaa",
+  "head": "current branch head; see git rev-parse HEAD",
   "pr_number": 44,
   "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/44",
   "pr_status": "OPEN",
@@ -79,7 +79,7 @@
     "local_git_diff_check": "PASS",
     "supabase_preview_after_push": "FAILED_EXISTING_BRANCH_HISTORY_REQUIRES_20260523113000_COMPAT_FILE",
     "supabase_preview_after_compat_push": "FAILED_MIGRATIONS_FAILED_AFTER_SAFE_REBASE",
-    "vercel_preview_after_compat_push": "PASS_AFTER_DOCS_PUSH"
+    "vercel_preview_after_compat_push": "PASS_AFTER_FINAL_STATUS_PUSH"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
