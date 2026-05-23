@@ -18,7 +18,7 @@ Commit: `2120811`
 
 PR: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42`
 
-Manual Preview: `https://codex-expressjobs-m6gzoyq53-akuma424-projects.vercel.app` (`target=preview`)
+Manual Preview: `https://codex-expressjobs-2efi536fi-akuma424-projects.vercel.app` (`target=preview`)
 
 ## Changes
 
@@ -36,7 +36,7 @@ Manual Preview: `https://codex-expressjobs-m6gzoyq53-akuma424-projects.vercel.ap
 |---|---|---|---|
 | Codigo Marketplace | PASS | routes/forms/schemas/tests/build | none |
 | Supabase DB/Auth/RLS | PARTIAL | migration prepared, static RLS PASS, staging RLS smoke PASS | BLOCKED_SUPABASE_ACCESS for remote apply |
-| Vercel Preview | PASS | manual Preview ready; smoke PASS for `/`, `/jobs`, `/jobs/not-real-smoke`, `/pricing`, `/auth`, `/dashboard/worker`, `/dashboard/client`, `/dashboard/client/jobs/new`, `/register`; Vercel Git context PASS | Supabase Preview integration cancelled/failed; PR review required |
+| Vercel Preview | PARTIAL | manual Preview ready; smoke PASS for `/`, `/jobs`, `/jobs/not-real-smoke`, `/pricing`, `/auth`, `/dashboard/worker`, `/dashboard/client`, `/dashboard/client/jobs/new`, `/register` | Vercel Git context FAIL with `status Error`; Supabase Preview skipped; PR review required |
 | Produccion | NO-GO_PRODUCTION | production guard PASS | human approval required |
 
 ## PR / Remote Checks
@@ -45,8 +45,8 @@ Manual Preview: `https://codex-expressjobs-m6gzoyq53-akuma424-projects.vercel.ap
 - Merge state: `BLOCKED`
 - Review decision: `REVIEW_REQUIRED`
 - GitHub Actions: PASS (`docs-check`, `pr-check`, `production-no-go`, `security-gate`)
-- Vercel Git integration: PASS
-- Supabase Preview integration: CANCELLED/FAIL external integration
+- Vercel Git integration: FAIL, deployment `dpl_2YbG856Tb5EUp7zxZvEW6FqwDDRs`, `vercel inspect --logs` only returned `status Error`
+- Supabase Preview integration: SKIPPED external integration
 
 ## Checks
 
@@ -92,7 +92,7 @@ Existing staging RLS smoke passes. The new migration was not applied remotely be
 
 ## Decision
 
-`MARKETPLACE_CORE_PARTIAL`. Code and manual Preview smoke are ready. Supabase remote apply is blocked by staging write access, and PR #42 still requires remote checks/review before merge.
+`MARKETPLACE_CORE_PARTIAL`. Code and manual Preview smoke are ready. Supabase remote apply is blocked by staging write access, Vercel Git integration fails externally, and PR #42 still requires review before merge.
 
 ## Next Mode
 

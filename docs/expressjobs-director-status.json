@@ -15,15 +15,16 @@
   "marketplace_core_status": "MARKETPLACE_CORE_PARTIAL",
   "code_marketplace_status": "PASS",
   "supabase_db_auth_rls_status": "PARTIAL",
-  "vercel_preview_status": "PASS_MANUAL_PREVIEW_READY",
-  "manual_preview_url": "https://codex-expressjobs-m6gzoyq53-akuma424-projects.vercel.app",
+  "vercel_preview_status": "PARTIAL_MANUAL_PREVIEW_PASS_GIT_INTEGRATION_FAIL",
+  "manual_preview_url": "https://codex-expressjobs-2efi536fi-akuma424-projects.vercel.app",
   "manual_preview_target": "preview",
   "preview_marketplace_smoke": "PASS_WITH_SAFE_BYPASS_HEADER",
   "preview_pricing_smoke": "PASS_8_OFFERS_NO_LIVE_PAYMENTS",
-  "remote_checks_status": "PARTIAL_ACTIONS_AND_VERCEL_PASS_SUPABASE_PREVIEW_CANCELLED_REVIEW_REQUIRED",
+  "remote_checks_status": "PARTIAL_ACTIONS_PASS_MANUAL_PREVIEW_PASS_VERCEL_GIT_FAIL_SUPABASE_PREVIEW_SKIPPED_REVIEW_REQUIRED",
   "github_actions_checks_status": "PASS",
-  "vercel_git_integration_status": "PASS",
-  "supabase_preview_check_status": "CANCELLED_OR_FAIL_EXTERNAL_INTEGRATION",
+  "vercel_git_integration_status": "FAIL_STATUS_ERROR_NO_USEFUL_LOGS",
+  "vercel_failed_deployment": "dpl_2YbG856Tb5EUp7zxZvEW6FqwDDRs",
+  "supabase_preview_check_status": "SKIPPED_EXTERNAL_INTEGRATION",
   "rls_smoke_status": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
   "staging_check_status": "PASS",
   "supabase_migration_apply_status": "BLOCKED_SUPABASE_ACCESS_SUPABASE_ACCESS_TOKEN_MISSING",
@@ -90,9 +91,9 @@
     },
     {
       "front": "Vercel Preview",
-      "status": "PASS",
+      "status": "PARTIAL",
       "evidence": "manual Preview ready and smoke passed for home/jobs/pricing/auth/dashboard routes",
-      "blockers": "Supabase Preview integration cancelled/failed; PR review required"
+      "blockers": "Vercel Git integration failed with status Error; Supabase Preview skipped; PR review required"
     },
     {
       "front": "Produccion",
@@ -102,11 +103,13 @@
     }
   ],
   "blockers": [
-    "BLOCKED_SUPABASE_ACCESS"
+    "BLOCKED_SUPABASE_ACCESS",
+    "BLOCKED_VERCEL_ACCESS"
   ],
   "risks": [
     "New Supabase migration is prepared locally but not applied to staging in this cycle.",
-    "Supabase Preview GitHub integration is cancelled/failed and needs external integration review.",
+    "Vercel Git integration failed while manual Preview deploy and smoke passed, so PR merge cannot be called fully green.",
+    "Supabase Preview GitHub integration is skipped and needs external integration review.",
     "Untracked android/ build artifacts remain outside this branch and were not touched."
   ],
   "next_mode": "EXPRESSJOBS_PREVIEW_DEPLOYMENT_AND_MARKETPLACE_SMOKE"
