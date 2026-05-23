@@ -26,9 +26,9 @@ function jobMatchesQuery(job: MarketplaceJob, query: string) {
   const searchable = [
     job.title,
     job.description,
-    job.locationText,
+    job.location,
     job.status,
-    job.budgetUyu,
+    job.budget,
   ]
     .map(normalizeText)
     .join(" ");
@@ -37,7 +37,8 @@ function jobMatchesQuery(job: MarketplaceJob, query: string) {
 }
 
 function jobHasBudget(job: MarketplaceJob) {
-  return typeof job.budgetUyu === "number" && job.budgetUyu > 0;
+  const numericBudget = Number(String(job.budget ?? "").replace(/[^\d]/g, ""));
+  return Number.isFinite(numericBudget) && numericBudget > 0;
 }
 
 export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean }) {
