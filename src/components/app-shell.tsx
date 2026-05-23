@@ -6,8 +6,8 @@ import { defaultWhatsAppSalesHref, publicSalesContact } from "@/lib/monetization
 
 const nav = [
   { href: "/", label: "Inicio", icon: Home },
-  { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
-  { href: "/client/jobs/new", label: "Publicar trabajo", icon: ClipboardPlus },
+  { href: "/trabajos", label: "Trabajos", icon: BriefcaseBusiness },
+  { href: "/publicar", label: "Publicar trabajo", icon: ClipboardPlus },
   { href: "/ofertas", label: "Ofertas", icon: BadgeDollarSign },
 ];
 
@@ -40,7 +40,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-2">
             <Link
               className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-3 py-2 text-xs font-black text-white shadow-sm hover:bg-[var(--brand-dark)]"
-              href="/auth"
+              href="/registro"
             >
               <LogIn aria-hidden="true" size={16} />
               Ingresar
