@@ -18,6 +18,8 @@ const requiredTables = [
   "ej_job_messages",
   "ej_job_reviews",
   "ej_job_events",
+  "ej_company_profiles",
+  "ej_job_reports",
   "ej_categories",
   "ej_payment_records",
   "ej_admin_audit_logs",
@@ -42,24 +44,27 @@ const requiredPolicies = [
   "events_select_participants",
   "payment_records_select_own_or_admin",
   "admin_audit_admin_only",
+  "company_profiles_insert_own_client",
+  "company_profiles_update_own_client",
+  "job_reports_select_reporter_owner_admin",
 ];
 
 describe("ExpressJobs Supabase RLS migration", () => {
   it("creates all required ExpressJobs tables with the ej_ prefix", () => {
     for (const table of requiredTables) {
-      expect(migration).toContain(`public.${table}`);
+      expect(allMigrations).toContain(`public.${table}`);
     }
   });
 
   it("enables RLS on every required table", () => {
     for (const table of requiredTables) {
-      expect(migration).toContain(`alter table public.${table} enable row level security`);
+      expect(allMigrations).toContain(`alter table public.${table} enable row level security`);
     }
   });
 
   it("defines the required policy names", () => {
     for (const policy of requiredPolicies) {
-      expect(migration).toContain(policy);
+      expect(allMigrations).toContain(policy);
     }
   });
 
@@ -110,5 +115,16 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(allMigrations).toContain("create or replace function public.ej_accept_job_application");
     expect(allMigrations).toContain("security invoker");
     expect(allMigrations).toContain("grant execute on function public.ej_accept_job_application(uuid) to authenticated");
+  });
+
+  it("adds company profiles and job reports without opening broad public RLS policies", () => {
+    expect(allMigrations).toContain("create table if not exists public.ej_company_profiles");
+    expect(allMigrations).toContain("create table if not exists public.ej_job_reports");
+    expect(allMigrations).toContain("alter table public.ej_company_profiles enable row level security");
+    expect(allMigrations).toContain("alter table public.ej_job_reports enable row level security");
+    expect(allMigrations).toContain("profile_id = auth.uid()");
+    expect(allMigrations).toContain("reporter_profile_id = auth.uid()");
+    expect(allMigrations).toContain("'shortlisted'");
+    expect(allMigrations).toContain("'viewed'");
   });
 });
