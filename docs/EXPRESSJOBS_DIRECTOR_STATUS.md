@@ -1,4 +1,4 @@
-# ExpressJobs Director Status
+﻿# ExpressJobs Director Status
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
@@ -91,6 +91,7 @@ Cycle 012 triaged PR #44 Vercel Preview failure. Failed deployments `dpl_4VkaGYd
 Cycle 013 applied the Supabase Advisor closeout to staging project `gnsfyvsodslnehszanra` after confirming Supabase branch capacity: only `main` plus one non-main branch existed, within the user's main-plus-two-branches limit. Remote migrations `20260523064307_advisor_security_performance_closeout`, `20260523064405_fix_job_messages_admin_private_helper`, and `20260523065010_advisor_company_reports_policy_reapply` were applied. First smoke exposed an admin UPDATE/DELETE policy still calling revoked `public.ej_is_admin()`; the corrective migration switched job-message admin update/delete policies to `private.ej_is_admin()`. `npm run rls:smoke:messages` then passed. A guarded local `20260523065010` plus later `20260523120500` reapply keeps fresh Supabase Preview branches safe despite MCP timestamps sorting before marketplace extension table creation. Security advisors now only report `ej_set_profile_role` authenticated SECURITY DEFINER and leaked password protection. Performance advisors no longer report missing FK indexes; remaining items are Realtime policy initplan, unused-index notices, and multiple permissive policy warnings on categories/worker profiles.
 Cycle 014 restored the no-op `20260523113000_advisor_security_performance_closeout.sql` compatibility migration for the existing PR #44 Supabase Preview branch history and pushed commit `1c35b96`. Supabase branch capacity remained within the user limit (`main` plus one non-main branch), and a safe Preview branch rebase returned success, but Supabase Preview still reports `MIGRATIONS_FAILED`. One Vercel Preview deployment failed before build because Vercel could not fetch required Git information; a later PR #44 Vercel deployment recovered and is PASS. No branch reset/delete, production deploy, promote, production env mutation, PayPal live action, or secret exposure occurred.
 
+Cycle 015 ChatGPT substitute audit/post-push validation documented PR #44 status while Codex is unavailable. Commits `76fb749` and `054e8e5` were pushed to `codex/expressjobs-supabase-security-advisor-closeout`. Local validation passed: production guard, staging check, static RLS tests, and realtime chat RLS smoke. PR #44 remains open/mergeable with production blocked. Supabase branch-capacity preflight is now mandatory before any new migration because the user's Supabase Free plan branch limit must be respected.
 ## Current Scope
 
 - Landing
@@ -148,3 +149,4 @@ Public Production exposure is neutralized. PR #42 is merged into `main`, Supabas
 ## Current Operator Action
 
 Current fastest safe release-ops step: close out the PR #44 Supabase Preview branch blocker without production changes. Do not reset/delete the Supabase Preview branch without explicit authorization. Keep planning the remaining advisor exceptions: `ej_set_profile_role` redesign, leaked password protection Dashboard action, Realtime policy initplan, and non-destructive policy/index cleanup.
+
