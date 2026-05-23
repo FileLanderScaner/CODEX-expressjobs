@@ -26,21 +26,23 @@
 
 ## Checks remotos
 
-`REMOTE_CHECKS_PASS`
+`REMOTE_CHECKS_FAIL` after the documentation commit because the Git-integrated Vercel status failed. GitHub Actions checks passed.
 
 - `docs-check`: PASS
 - `pr-check`: PASS
 - `production-no-go`: PASS
 - `security-gate`: PASS
-- `Vercel`: PASS
+- `Vercel`: FAIL on Git-integrated deployment `dpl_EFWkv1HeDTbxrTYoY1jNUn5pFycr`; CLI-visible reason after redeploy attempt: `Resource provisioning failed`.
 - `Vercel Preview Comments`: PASS
 - `Supabase Preview`: SKIPPED porque no hubo cambios en `supabase/`; no se trato como falla.
 
 ## Preview
 
-- Preview URL: `https://codex-expressjobs-git-codex-expressjob-41000c-akuma424-projects.vercel.app`
-- Deployment ID: `dpl_Ep94my2HLuHfZMzQdUw95SEkP65h`
-- Vercel inspect: `target=preview`, `status=Ready`
+- Git-integrated Preview URL initially validated: `https://codex-expressjobs-git-codex-expressjob-41000c-akuma424-projects.vercel.app`
+- Git-integrated deployment initially validated: `dpl_Ep94my2HLuHfZMzQdUw95SEkP65h`, `target=preview`, `status=Ready`
+- Latest Git-integrated deployment after docs commit: `dpl_EFWkv1HeDTbxrTYoY1jNUn5pFycr`, `target=preview`, `status=Error`
+- Manual Preview URL validated after Git integration failure: `https://codex-expressjobs-h1zrj3byu-akuma424-projects.vercel.app`
+- Manual Preview deployment: `dpl_4ZnMJ53ppQtUz4RV6G4F5DjFhczF`, `target=preview`, `status=Ready`
 - Production deploy: no.
 - Promote: no.
 - Production env mutation: no.
@@ -59,6 +61,7 @@ Validado:
 - No checkout real activo.
 - No patrones de secrets en HTML renderizado.
 - Rutas relacionadas `/`, `/ofertas`, `/landing-negocios`: HTTP 200 con bypass seguro.
+- El mismo smoke paso en el Preview manual Ready `dpl_4ZnMJ53ppQtUz4RV6G4F5DjFhczF`.
 
 ## Checks locales
 
@@ -92,18 +95,20 @@ Validado:
 ## Bloqueos
 
 - `BLOCKED_REVIEW_REQUIRED`: PR #41 requiere revision humana antes de merge.
+- `BLOCKED_VERCEL_PREVIEW_GIT_INTEGRATION`: el ultimo deployment creado por la Git integration fallo con `Resource provisioning failed`. Manual Preview target `preview` paso, pero el status Vercel del PR sigue fallando.
 
 ## Riesgos
 
 - `android/` sigue sin trackear y contiene artefactos build previos; no fue incluido en commit.
 - Preview esta protegido por Vercel Deployment Protection; smoke automatizado requiere bypass seguro.
+- El Git-integrated Vercel status del PR no esta verde aunque existe Preview manual validado.
 - Production permanece neutralizada y no debe abrirse sin aprobacion humana explicita.
 
 ## Proximo modo elegido
 
-`EXPRESSJOBS_RELEASE_GATE_GO_NO_GO`
+`EXPRESSJOBS_PREVIEW_DEPLOYMENT_RETRY`
 
-Justificacion: PR, checks remotos, Preview smoke y RLS staging pasaron. El siguiente gate seguro es decision GO/NO-GO de release controlado, sin merge/production override automatico.
+Justificacion: GitHub Actions, RLS staging y manual Preview smoke pasaron, pero el Git-integrated Vercel status del PR fallo. El siguiente gate seguro es resolver/reintentar esa integracion sin tocar Production.
 
 ## NEXT_CODEX_PROMPT
 
@@ -111,16 +116,16 @@ Repo: `C:\CODEX-expressjobs-repo`
 
 Branch/PR: `codex/expressjobs-rls-smoke-staging`, PR #41.
 
-Objetivo: ejecutar `EXPRESSJOBS_RELEASE_GATE_GO_NO_GO` para decidir si PR #41 puede avanzar a revision/merge controlado sin tocar produccion y manteniendo `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+Objetivo: ejecutar `EXPRESSJOBS_PREVIEW_DEPLOYMENT_RETRY` para resolver el Vercel Git-integrated status fallido de PR #41 sin tocar produccion y manteniendo `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
-Contexto: PR #41 esta abierto; checks remotos PASS; Vercel Preview `dpl_Ep94my2HLuHfZMzQdUw95SEkP65h` target preview Ready; `/pricing` remoto PASS con 8 ofertas y 8 CTAs; `npm run rls:smoke` PASS con `EXPRESSJOBS_RLS_STAGING_PASS`; Production no fue tocada.
+Contexto: PR #41 esta abierto; GitHub Actions checks PASS; Vercel Git-integrated deployment `dpl_EFWkv1HeDTbxrTYoY1jNUn5pFycr` fallo con `Resource provisioning failed`; manual Preview `dpl_4ZnMJ53ppQtUz4RV6G4F5DjFhczF` target preview Ready y `/pricing` PASS con 8 ofertas y 8 CTAs; `npm run rls:smoke` PASS con `EXPRESSJOBS_RLS_STAGING_PASS`; Production no fue tocada.
 
 Reglas de seguridad: no usar `vercel --prod`; no usar `vercel promote`; no modificar Vercel Production env vars; no activar PayPal live; no activar pagos reales; no imprimir secrets; no commitear `.env`; no usar service-role en cliente; no relajar RLS; no mergear con admin override; mantener Production pausada/neutralizada.
 
-Tareas: inspeccionar PR #41; confirmar review status; confirmar checks siguen PASS; confirmar Production pause sigue activa; si hay aprobacion/review requerida pendiente, documentar `BLOCKED_REVIEW_REQUIRED`; si branch protection permite merge sin override y el usuario aprueba explicitamente, preparar merge seguro; actualizar docs/status con decision GO/NO-GO.
+Tareas: inspeccionar PR #41; reintentar Vercel Git-integrated Preview desde el dashboard/API si hay accion segura disponible o empujar un cambio documental minimo si se justifica; no usar Production; confirmar checks; repetir smoke `/pricing`; mantener `BLOCKED_REVIEW_REQUIRED` hasta revision humana; actualizar docs/status.
 
 Checks: `gh pr view 41 --json mergeStateStatus,reviewDecision,statusCheckRollup`; `gh pr checks 41`; `npm run production:check`; `npm run guard:no-production-deploy`; `npm run rls:smoke` si credenciales siguen disponibles.
 
-Criterio GO/NO-GO: GO solo para merge controlado si review requerida esta satisfecha, checks PASS, RLS PASS, Production pause intacta y no hay riesgos de pagos/production. NO-GO si falta review, falla check, falla RLS, aparece Production mutation, o se requiere override.
+Criterio GO/NO-GO: GO solo si Vercel Git-integrated status vuelve a PASS, review requerida esta satisfecha, checks PASS, RLS PASS, Production pause intacta y no hay riesgos de pagos/production. NO-GO si falta review, falla check, falla RLS, aparece Production mutation, o se requiere override.
 
 Documentacion a actualizar: `docs/EXPRESSJOBS_DIRECTOR_STATUS.md`, `docs/expressjobs-director-status.json`, `docs/autonomous-cycles/CYCLE_EXPRESSJOBS_006_RELEASE_GATE_GO_NO_GO.md`.
