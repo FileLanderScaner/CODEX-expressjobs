@@ -44,29 +44,52 @@ Code-level verification on `main` confirms that production remains neutralized:
 
 The connected Vercel fetch tool could not inspect the public alias due to scope authorization restrictions, so this cycle records code-level verification as the available evidence from this environment.
 
+## Implemented Product Hardening
+
+This cycle moved beyond documentation and added real public marketplace entry points while keeping all data operations inside the existing Supabase/RLS-controlled flows.
+
+New routes:
+
+- `src/app/trabajos/page.tsx`
+  - Public marketplace job-search entry.
+  - Reuses `WorkerJobsClient` so job loading remains governed by existing Supabase client/RLS behavior.
+  - Links users to registration and job publishing.
+
+- `src/app/publicar/page.tsx`
+  - Public job-publishing entry for clients/businesses.
+  - Reuses `JobForm`, preserving existing auth checks, role preparation through RPC, and insert behavior into `ej_jobs`.
+  - Keeps WhatsApp assistance as manual sales/support path.
+
+- `src/app/registro/page.tsx`
+  - Public registration entry route.
+  - Reuses `AuthEmailForm` and `SocialAuthButtons`.
+  - Preserves safe `next` path handling and directs users toward `/role` by default.
+
+Navigation hardening:
+
+- `src/components/app-shell.tsx` now points main navigation to `/trabajos` and `/publicar` instead of internal role-specific routes.
+- Header login entry now points to `/registro`, reducing friction for first-time users.
+
+Test coverage:
+
+- `src/__tests__/real-product-public-surface.test.ts` now verifies that `/trabajos`, `/publicar`, and `/registro` exist and that the navigation points to those public routes.
+
 ## Marketplace Core Hardening Direction
 
-The next product objective is to make ExpressJobs behave more like a real marketplace/job platform, while staying in controlled staging/preview mode.
+The next product objective is to continue making ExpressJobs behave more like a real marketplace/job platform, while staying in controlled staging/preview mode.
 
-Priority modules:
+Priority modules still pending or partially implemented:
 
-1. User registration and login.
-2. Role selection: client, worker, admin-gated.
-3. Client profile and worker profile.
-4. Public job listing.
-5. Job detail page.
-6. Job publication form.
-7. Application submission flow.
-8. Client application management.
-9. Accept/reject workflow.
-10. Worker dashboard.
-11. Client dashboard.
-12. Status lifecycle: open, applied, accepted, in_progress, completed, cancelled.
-13. Messaging boundary for accepted participants.
-14. Reviews/reputation foundation.
-15. Admin/moderation read-only safety surface.
-16. Audit events.
-17. Manual revenue/pricing CTAs without live checkout.
+1. Stronger profile completion for client and worker.
+2. Worker profile editing and availability/service radius UX.
+3. Client dashboard action shortcuts and better job lifecycle controls.
+4. Public job filtering/search by category/location.
+5. Application status visibility for workers.
+6. Messaging UI backed by Supabase instead of static service fallback.
+7. Reviews/reputation backed by Supabase instead of static fallback.
+8. Admin/moderation read-only safety surface.
+9. Audit event visibility for admin-safe review.
+10. Preview smoke for `/trabajos`, `/publicar`, and `/registro`.
 
 ## Known Safe Baselines
 
@@ -82,11 +105,23 @@ Priority modules:
 - Any future merge to `main` may trigger Vercel Git Integration automatically; production remains neutralized by middleware but must be checked after every merge.
 - Marketplace core completion must not weaken RLS or rely on client-side role trust.
 - Supabase Preview Branch limits must be monitored after the previous `Database branch limit reached` blocker.
+- Runtime checks, build, staging check, RLS smoke, and Preview smoke must still be run by Codex/local environment because this ChatGPT connector cannot execute npm commands in the repo checkout.
+
+## Current Gate Decision
+
+- `PRODUCTION_STATUS=NO-GO_PRODUCTION`
+- `PUBLIC_MARKETPLACE_ENTRY_ROUTES=IMPLEMENTED`
+- `NAVIGATION_PUBLIC_MARKETPLACE=IMPLEMENTED`
+- `REAL_PAYMENTS=OFF`
+- `PAYPAL_LIVE=OFF`
+- `SUPABASE_PRODUCTION_MUTATION=NO`
+- `VERCEL_PRODUCTION_MUTATION=NO`
+- `CHECKS_LOCAL_RUNTIME=NOT_RUN_IN_CHATGPT_CONNECTOR`
 
 ## Next Gate
 
-`EXPRESSJOBS_MARKETPLACE_CORE_COMPLETION_PREVIEW_ONLY`
+`EXPRESSJOBS_MARKETPLACE_CORE_RUNTIME_VALIDATION_AND_DASHBOARD_HARDENING`
 
 ## Next Codex Prompt
 
-Run `EXPRESSJOBS_MARKETPLACE_CORE_COMPLETION_PREVIEW_ONLY` in `C:\CODEX-expressjobs-repo`. Start from latest `main` after merge commit `d8ade316826bd71247d18a4aadd5d5a4c2c10f68`. Create a feature branch; do not commit directly to `main`. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`. Do not use `vercel --prod`; do not use `vercel promote`; do not mutate Vercel Production env vars; do not touch Supabase production; do not enable PayPal live or real payments; do not print secrets. Inspect current routes/components/schema, then implement the safest missing marketplace-core pieces for registration, role selection, job publication, job listing, applications, client/worker dashboards, and admin/moderation surfaces. Use Supabase staging/RLS patterns only, keep admin role server/database enforced, and maintain manual WhatsApp/payment CTAs only. Run full checks: secret scan, production check, no-production-deploy guard, static RLS tests, lint, typecheck, tests, build, staging check, RLS smoke if credentials are available, and Preview smoke if safe bypass is available. Update docs/status and open a PR for human review.
+Run `EXPRESSJOBS_MARKETPLACE_CORE_RUNTIME_VALIDATION_AND_DASHBOARD_HARDENING` in `C:\CODEX-expressjobs-repo` on branch `codex/post-merge-marketplace-core-hardening`. Keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`. Do not use `vercel --prod`; do not use `vercel promote`; do not mutate Vercel Production env vars; do not touch Supabase production; do not enable PayPal live or real payments; do not print secrets. Pull latest branch, run full checks: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`, `npm run staging:check`, and `npm run rls:smoke` if credentials are available. Then smoke `/trabajos`, `/publicar`, `/registro`, `/pricing`, `/role`, `/auth`, worker job detail, client job detail, and dashboards in Preview with safe bypass if available. Fix any build/test failures. Next product hardening target: dashboard UX, profile completion, worker application visibility, client lifecycle controls, and Supabase-backed messaging/reviews without weakening RLS. Update docs/status and PR #43.
