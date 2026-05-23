@@ -5,14 +5,14 @@
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/expressjobs-supabase-security-advisor-closeout",
   "base_branch": "main",
-  "head": "a41526172aa633ecf0b96a7ba32fbab260da494d",
+  "head": "1c35b96a3ff237f3f13bb9bb4845a1a86582023d",
   "pr_number": 44,
   "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/44",
   "pr_status": "OPEN",
   "mode": "EXPRESSJOBS_SUPABASE_ADVISOR_STAGING_APPLY_AND_RECHECK",
   "previous_mode": "EXPRESSJOBS_VERCEL_PREVIEW_FAILURE_TRIAGE_PR44",
   "cycle": "CYCLE_EXPRESSJOBS_013_SUPABASE_ADVISOR_STAGING_APPLY_AND_RECHECK",
-  "updated_at": "2026-05-23T03:46:00-03:00",
+  "updated_at": "2026-05-23T04:10:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
   "supabase_branch_capacity": {
     "user_limit": "main_plus_two_branches",
@@ -77,7 +77,9 @@
     "local_staging_check": "PASS",
     "local_rls_smoke_messages": "PASS",
     "local_git_diff_check": "PASS",
-    "supabase_preview_after_push": "FAILED_EXISTING_BRANCH_HISTORY_REQUIRES_20260523113000_COMPAT_FILE"
+    "supabase_preview_after_push": "FAILED_EXISTING_BRANCH_HISTORY_REQUIRES_20260523113000_COMPAT_FILE",
+    "supabase_preview_after_compat_push": "FAILED_MIGRATIONS_FAILED_AFTER_SAFE_REBASE",
+    "vercel_preview_after_compat_push": "FAIL_UNABLE_TO_FETCH_REQUIRED_GIT_INFORMATION"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
@@ -89,11 +91,15 @@
     "secrets_printed": "NO"
   },
   "blockers": [
-    "BLOCKED_DASHBOARD_ACTION_REQUIRED"
+    "BLOCKED_DASHBOARD_ACTION_REQUIRED",
+    "BLOCKED_SUPABASE_ACCESS",
+    "BLOCKED_VERCEL_ACCESS"
   ],
   "blocker_details": {
-    "BLOCKED_DASHBOARD_ACTION_REQUIRED": "Auth leaked password protection must be enabled in Supabase Dashboard."
+    "BLOCKED_DASHBOARD_ACTION_REQUIRED": "Auth leaked password protection must be enabled in Supabase Dashboard.",
+    "BLOCKED_SUPABASE_ACCESS": "PR #44 Supabase Preview branch remains MIGRATIONS_FAILED after restoring compatibility migration and running a safe rebase; reset/delete branch is destructive and not authorized.",
+    "BLOCKED_VERCEL_ACCESS": "Vercel Preview deployment dpl_8TPK9CMp3DaGNjweCZUn4VXBEXrQ failed before build because Vercel could not fetch required Git information; requires provider/Git integration access."
   },
-  "next_mode": "EXPRESSJOBS_PR44_REVIEW_MERGE_PLANNING_NO_PRODUCTION",
-  "next_mode_reason": "Staging apply and RLS smoke passed; PR #44 can move to review/merge planning with production still NO-GO."
+  "next_mode": "EXPRESSJOBS_PR44_PROVIDER_ACCESS_CLOSEOUT_NO_PRODUCTION",
+  "next_mode_reason": "Local/staging validation passed, but PR #44 remote gates are blocked by Supabase Preview branch migration state and Vercel Git access before merge planning."
 }

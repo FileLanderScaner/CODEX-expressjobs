@@ -54,6 +54,15 @@ Applied `fix_job_messages_admin_private_helper`, replacing job-message admin UPD
 
 The branch-order compatibility migration was added after Supabase Preview reported `MIGRATIONS_FAILED` for PR #44 while branch capacity was still within limits.
 
+Post-push recheck:
+
+- `supabase/migrations/20260523113000_advisor_security_performance_closeout.sql` was restored as a no-op compatibility migration for the existing PR #44 Preview branch history.
+- PR #44 branch remained within the Supabase branch limit: `main` plus one non-main branch.
+- A safe Supabase Preview branch rebase returned success.
+- Supabase Preview still reported `MIGRATIONS_FAILED` afterward.
+- No branch reset or deletion was attempted because those actions can discard branch state and require explicit authorization.
+- Vercel Preview deployment `dpl_8TPK9CMp3DaGNjweCZUn4VXBEXrQ` failed before app build with: `We were unable to fetch required git information required to complete the deployment.`
+
 Final result:
 
 `npm run rls:smoke:messages`: PASS
@@ -84,6 +93,11 @@ Performance advisors improved:
 
 `SUPABASE_ADVISOR_STAGING_APPLY_AND_RECHECK=PASS_WITH_REMAINING_DOCUMENTED_EXCEPTIONS`
 
+Remote PR #44 gates:
+
+- Supabase Preview: `BLOCKED_SUPABASE_ACCESS`, existing branch remains `MIGRATIONS_FAILED` after safe rebase.
+- Vercel Preview: `BLOCKED_VERCEL_ACCESS`, Vercel could not fetch required Git information for the Preview deployment.
+
 Next safe mode:
 
-`EXPRESSJOBS_PR44_REVIEW_MERGE_PLANNING_NO_PRODUCTION`
+`EXPRESSJOBS_PR44_PROVIDER_ACCESS_CLOSEOUT_NO_PRODUCTION`
