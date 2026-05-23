@@ -52,6 +52,17 @@ describe("real public product surface", () => {
     expect(home).not.toContain("Ver demos comerciales");
   });
 
+  it("exposes public marketplace entry routes", () => {
+    expect(existsSync(join(process.cwd(), "src/app/trabajos/page.tsx"))).toBe(true);
+    expect(existsSync(join(process.cwd(), "src/app/publicar/page.tsx"))).toBe(true);
+    expect(existsSync(join(process.cwd(), "src/app/registro/page.tsx"))).toBe(true);
+
+    const appShell = readFileSync(join(process.cwd(), "src/components/app-shell.tsx"), "utf8");
+    expect(appShell).toContain('href: "/trabajos"');
+    expect(appShell).toContain('href: "/publicar"');
+    expect(appShell).toContain('href="/registro"');
+  });
+
   it("keeps real contact channels visible", () => {
     const appShell = readFileSync(join(process.cwd(), "src/components/app-shell.tsx"), "utf8");
     const offers = readFileSync(join(process.cwd(), "src/app/ofertas/page.tsx"), "utf8");
