@@ -1,4 +1,4 @@
-﻿# ExpressJobs Director Status
+# ExpressJobs Director Status
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
@@ -149,4 +149,3 @@ Public Production exposure is neutralized. PR #42 is merged into `main`, Supabas
 ## Current Operator Action
 
 Current fastest safe release-ops step: close out the PR #44 Supabase Preview branch blocker without production changes. Do not reset/delete the Supabase Preview branch without explicit authorization. Keep planning the remaining advisor exceptions: `ej_set_profile_role` redesign, leaked password protection Dashboard action, Realtime policy initplan, and non-destructive policy/index cleanup.
-

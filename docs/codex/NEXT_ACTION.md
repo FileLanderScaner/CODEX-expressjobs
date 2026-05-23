@@ -1,4 +1,4 @@
-﻿# ExpressJobs - Next Action for Codex
+# ExpressJobs - Next Action for Codex
 
 ## Run this next
 
