@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { EmptyState } from "@/components/empty-state";
 import { JobCard } from "@/components/job-card";
 import { LoadingState } from "@/components/loading-state";
@@ -9,10 +9,43 @@ import { mapJobRow, type MarketplaceJob } from "@/lib/marketplace";
 
 type LoadState = "loading" | "ready" | "not-configured" | "error";
 
+function normalizeText(value: string | number | null | undefined) {
+  return String(value ?? "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "");
+}
+
+function jobMatchesQuery(job: MarketplaceJob, query: string) {
+  const normalizedQuery = normalizeText(query).trim();
+
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  const searchable = [
+    job.title,
+    job.description,
+    job.locationText,
+    job.status,
+    job.budgetUyu,
+  ]
+    .map(normalizeText)
+    .join(" ");
+
+  return searchable.includes(normalizedQuery);
+}
+
+function jobHasBudget(job: MarketplaceJob) {
+  return typeof job.budgetUyu === "number" && job.budgetUyu > 0;
+}
+
 export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean }) {
   const [state, setState] = useState<LoadState>("loading");
   const [openJobs, setOpenJobs] = useState<MarketplaceJob[]>([]);
   const [acceptedJobs, setAcceptedJobs] = useState<MarketplaceJob[]>([]);
+  const [query, setQuery] = useState("");
+  const [budgetOnly, setBudgetOnly] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -58,8 +91,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
         return;
       }
 
-      const mappedOpenJobs = (openResult.data ?? []).map(mapJobRow);
-      setOpenJobs(mappedOpenJobs);
+      setOpenJobs((openResult.data ?? []).map(mapJobRow));
       setAcceptedJobs((acceptedResult.data ?? []).map(mapJobRow));
       setState("ready");
     }
@@ -71,9 +103,29 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
     };
   }, []);
 
+  const filteredOpenJobs = useMemo(() => {
+    return openJobs.filter((job) => {
+      if (!jobMatchesQuery(job, query)) {
+        return false;
+      }
+
+      if (budgetOnly && !jobHasBudget(job)) {
+        return false;
+      }
+
+      return true;
+    });
+  }, [budgetOnly, openJobs, query]);
+
+  const filteredAcceptedJobs = useMemo(() => {
+    return acceptedJobs.filter((job) => jobMatchesQuery(job, query));
+  }, [acceptedJobs, query]);
+
   if (state === "loading") {
     return <LoadingState label="Cargando trabajos" />;
   }
+
+  const hasActiveFilters = query.trim().length > 0 || budgetOnly;
 
   return (
     <>
@@ -82,20 +134,90 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
           Modo sin datos: Supabase publico no esta configurado en este ambiente.
         </p>
       ) : null}
+
       {state === "error" ? (
         <p className="mt-4 rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-semibold text-[var(--danger)]">
           No pudimos cargar trabajos reales. Revisa la configuracion de Supabase o intenta mas tarde.
         </p>
       ) : null}
+
+      <section className="mt-6 rounded-md border border-[var(--line)] bg-white p-4">
+        <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-end">
+          <label className="block">
+            <span className="text-sm font-black text-[var(--foreground)]">Buscar trabajos</span>
+            <input
+              className="mt-2 w-full rounded-md border border-[var(--line)] bg-[#f7f6f2] px-3 py-2 text-sm outline-none focus:border-[var(--brand)]"
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Buscar por titulo, descripcion, zona o presupuesto"
+              type="search"
+              value={query}
+            />
+          </label>
+
+          <div className="flex flex-wrap gap-2">
+            <button
+              className={`rounded-md border px-3 py-2 text-sm font-black ${
+                budgetOnly
+                  ? "border-[var(--brand)] bg-[#eef4ef] text-[var(--brand)]"
+                  : "border-[var(--line)] bg-white text-[var(--muted)]"
+              }`}
+              onClick={() => setBudgetOnly((current) => !current)}
+              type="button"
+            >
+              Solo con presupuesto
+            </button>
+
+            {hasActiveFilters ? (
+              <button
+                className="rounded-md border border-[var(--line)] bg-white px-3 py-2 text-sm font-black text-[var(--muted)]"
+                onClick={() => {
+                  setQuery("");
+                  setBudgetOnly(false);
+                }}
+                type="button"
+              >
+                Limpiar filtros
+              </button>
+            ) : null}
+          </div>
+        </div>
+
+        <p className="mt-3 text-sm text-[var(--muted)]">
+          Mostrando {filteredOpenJobs.length} de {openJobs.length} trabajos abiertos
+          {publicMode ? "." : ` y ${filteredAcceptedJobs.length} asignados filtrados.`}
+        </p>
+      </section>
+
       <h2 className="mt-6 text-2xl font-black">{publicMode ? "Publicados" : "Abiertos"}</h2>
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
-        {openJobs.length ? openJobs.map((job) => <JobCard key={job.id} {...job} href={publicMode ? `/jobs/${job.id}` : `/worker/jobs/${job.id}`} />) : <EmptyState title="Todavia no hay trabajos disponibles" text="Cuando un cliente publique un trabajo abierto, aparecera aca." />}
+        {filteredOpenJobs.length ? (
+          filteredOpenJobs.map((job) => (
+            <JobCard key={job.id} {...job} href={publicMode ? `/jobs/${job.id}` : `/worker/jobs/${job.id}`} />
+          ))
+        ) : (
+          <EmptyState
+            title={hasActiveFilters ? "No encontramos trabajos con esos filtros" : "Todavia no hay trabajos disponibles"}
+            text={
+              hasActiveFilters
+                ? "Proba limpiar filtros o buscar por una zona, tarea o palabra mas general."
+                : "Cuando un cliente publique un trabajo abierto, aparecera aca."
+            }
+          />
+        )}
       </div>
+
       {publicMode ? null : (
         <>
           <h2 className="mt-8 text-2xl font-black">Aceptados</h2>
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
-            {acceptedJobs.length ? acceptedJobs.map((job) => <JobCard key={job.id} {...job} href={`/worker/jobs/${job.id}`} />) : <EmptyState title="Sin trabajos aceptados" text="Tus trabajos asignados apareceran aca." />}
+            {filteredAcceptedJobs.length ? (
+              filteredAcceptedJobs.map((job) => <JobCard key={job.id} {...job} href={`/worker/jobs/${job.id}`} />)
+            ) : (
+              <EmptyState
+                title={hasActiveFilters ? "Sin trabajos aceptados con esos filtros" : "Sin trabajos aceptados"}
+                text={hasActiveFilters ? "Limpia filtros para ver todos tus trabajos asignados." : "Tus trabajos asignados apareceran aca."}
+              />
+            )}
           </div>
         </>
       )}
