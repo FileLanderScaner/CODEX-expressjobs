@@ -79,6 +79,8 @@ Cycle 072 audited GitHub/Vercel governance from `main`. Issue #16 was closed as 
 Cycle 073 merged PR #32 with squash after confirming checks PASS, then pulled `main` to `21397ad`. The merge triggered a Vercel Git Integration Production deployment automatically; Codex did not run `vercel --prod`, did not promote, and did not mutate envs or aliases. Latest inspected Production deployment is `dpl_8XAPTphi71n52WSoRpXWsU7aM46Z` with alias `https://codex-expressjobs.vercel.app`, so release remains `BLOCKED_PRODUCTION_RISK`. Branch protection and `delete_branch_on_merge` remain blocked pending human approval.
 Cycle 074 merged PR #33, applied `main` branch protection and `delete_branch_on_merge=true`, then attempted the authorized Vercel Production protection. Vercel native SSO `all` protection was blocked by plan entitlement (`invalid_sso_protection`), so a reversible code-level neutralization was prepared: `middleware.ts` redirects Vercel Production traffic to `/production-paused`, while previews and local remain usable. This is pending PR/merge/deploy before Production alias is neutralized.
 Cycle 075 verified the production neutralization after PR #34 merged. Latest inspected Vercel Production deployment is `dpl_KcFp575mjYM6TS6BgCAXyYYMd84C`; `https://codex-expressjobs.vercel.app/` returns `307` to `/production-paused`, and `/production-paused` returns `200` with `NO-GO_PRODUCTION`. Production remains blocked but public access is now neutralized reversibly.
+Cycle 004 repo-integrity recovery used canonical Git checkout `C:\CODEX-expressjobs-repo`, recovered safe pricing/copy changes from `C:\CODEX-expressjobs`, validated staging RLS with `EXPRESSJOBS_RLS_STAGING_PASS`, and kept Production as `NO-GO_PRODUCTION`.
+Cycle 005 opened PR #41 for `codex/expressjobs-rls-smoke-staging`, verified GitHub checks PASS, inspected Vercel deployment `dpl_Ep94my2HLuHfZMzQdUw95SEkP65h` as `target=preview`, and passed protected Preview `/pricing` smoke with a safe local bypass header. A later Git-integrated Vercel deployment failed with `Resource provisioning failed`; a manual `vercel deploy --target preview` produced Ready Preview `dpl_4ZnMJ53ppQtUz4RV6G4F5DjFhczF` and `/pricing` smoke PASS. Merge remains blocked by required review and the failing Git-integrated Vercel status.
 
 ## Current Scope
 
@@ -114,6 +116,7 @@ Cycle 075 verified the production neutralization after PR #34 merged. Latest ins
 - Public demo routes removed from the routed app
 - Real product public navigation and contact surface
 - Governance audit docs for branch protection, repo settings, branch cleanup, and Vercel production deployment risk
+- Pilot pricing from Google Drive `ExpressJobs - Centro Online de Ventas`: landing basica/completa, landing + banner, banner fundador 7/30 dias, publicacion manual, publicacion + filtro, and urgente 24 h with manual WhatsApp CTAs.
 
 ## Not Active
 
@@ -126,8 +129,8 @@ Cycle 075 verified the production neutralization after PR #34 merged. Latest ins
 
 ## Next Gate
 
-Public Production exposure is neutralized. Next safe gate is to keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`, monitor the paused Production page, and only then continue staging/preview marketplace hardening. Remote branch cleanup remains manual only.
+Public Production exposure is neutralized. Latest safe gate revalidated staging RLS as PASS and manual Preview `/pricing` as PASS from PR #41. Next safe gate is resolving the Git-integrated Vercel status, then human PR review and controlled merge decision while keeping `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: continue marketplace hardening in preview/staging while preserving the Production pause. Production remains blocked.
+Current fastest safe release-ops step: resolve or rerun the failing Git-integrated Vercel check for PR #41, then human review. Merge only if branch protection allows it without override and Production pause remains in force. Production remains blocked.

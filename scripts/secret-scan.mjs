@@ -9,24 +9,38 @@ const patterns = [
 const files = execFileSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], { encoding: "utf8" })
   .split("\n")
   .filter(Boolean)
-  .filter((file) => !file.endsWith(".lock") && file !== ".env.example");
+  .filter((file) => !file.endsWith(".lock") && file !== ".env.example")
+  .filter(
+    (file) =>
+      !file.startsWith(".next/") &&
+      !file.startsWith("node_modules/") &&
+      !file.startsWith("android/.gradle/") &&
+      !file.startsWith("android/app/build/") &&
+      !file.startsWith("android/build/"),
+  );
 
 let failed = false;
 
 for (const pattern of patterns) {
-  try {
-    const output = execFileSync("git", ["grep", "-n", "-I", "-E", pattern, "--", ...files], {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-    if (output.trim()) {
-      failed = true;
-      console.error(`Potential secret pattern found: ${pattern}`);
-      console.error(output);
+  for (let index = 0; index < files.length; index += 200) {
+    const chunk = files.slice(index, index + 200);
+    if (!chunk.length) {
+      continue;
     }
-  } catch (error) {
-    if (error.status !== 1) {
-      throw error;
+    try {
+      const output = execFileSync("git", ["grep", "-n", "-I", "-E", pattern, "--", ...chunk], {
+        encoding: "utf8",
+        stdio: ["ignore", "pipe", "pipe"],
+      });
+      if (output.trim()) {
+        failed = true;
+        console.error(`Potential secret pattern found: ${pattern}`);
+        console.error(output);
+      }
+    } catch (error) {
+      if (error.status !== 1) {
+        throw error;
+      }
     }
   }
 }
