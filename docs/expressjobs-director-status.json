@@ -10,20 +10,20 @@
   "cycle": "CYCLE_EXPRESSJOBS_008_MARKETPLACE_CORE_PR42_REBASE_AND_PREVIEW_CLOSEOUT",
   "pr_number": 42,
   "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42",
-  "pr_merge_state": "DIRTY_RESOLVED_LOCALLY_PENDING_PUSH_RECHECK",
+  "pr_merge_state": "BLOCKED_REVIEW_REQUIRED",
   "pr_review_decision": "REVIEW_REQUIRED",
   "production_status": "NO-GO_PRODUCTION",
   "marketplace_core_status": "MARKETPLACE_CORE_PARTIAL",
   "code_marketplace_status": "PASS",
   "supabase_db_auth_rls_status": "PARTIAL",
-  "supabase_preview_check_status": "PASS_CHECK_BUT_COMMENT_REPORTS_BRANCH_LIMIT_IGNORED",
-  "supabase_preview_project": "qjgabiyrsxuspwqwxakz",
+  "supabase_preview_check_status": "SKIPPED_EXTERNAL_INTEGRATION",
+  "supabase_preview_project": "gnsfyvsodslnehszanra",
   "supabase_migration_apply_status": "NOT_APPLIED_TO_CURRENT_STAGING_WRITE_ACCESS_MISSING",
   "vercel_git_integration_status": "PASS",
   "vercel_git_preview_url": "https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-projects.vercel.app",
   "preview_marketplace_smoke": "PASS_WITH_SAFE_BYPASS_HEADER",
   "preview_pricing_smoke": "PASS_8_OFFERS_NO_LIVE_PAYMENTS",
-  "remote_checks_status": "ACTIONS_PASS_VERCEL_PASS_SUPABASE_PREVIEW_PASS_BUT_REVIEW_REQUIRED_AND_DIRTY",
+  "remote_checks_status": "ACTIONS_PASS_VERCEL_PASS_SUPABASE_PREVIEW_SKIPPED_REVIEW_REQUIRED",
   "github_actions_checks_status": "PASS",
   "rls_smoke_status": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
   "staging_check_status": "PASS",
@@ -96,7 +96,7 @@
     {
       "front": "Supabase DB/Auth/RLS",
       "status": "PARTIAL",
-      "evidence": "RLS staging smoke PASS; Supabase Preview check PASS but PR comment says branch limit ignored",
+      "evidence": "RLS staging smoke PASS; Supabase Preview skipped by external integration",
       "blockers": "BLOCKED_SUPABASE_ACCESS for applying migration to current staging"
     },
     {
@@ -115,13 +115,13 @@
   "blockers": [
     "BLOCKED_SUPABASE_ACCESS",
     "BLOCKED_REVIEW_REQUIRED",
-    "BLOCKED_PR_DIRTY_NEEDS_REBASE_PUSH"
+    "BLOCKED_SUPABASE_PREVIEW_INTEGRATION_SKIPPED"
   ],
   "risks": [
     "New Supabase migration is prepared locally but not applied to current staging.",
-    "Supabase Preview check is green, but GitHub comment says preview branch creation was ignored because branch limit was reached.",
-    "PR #42 was DIRTY against main before this local conflict-resolution merge is committed and pushed.",
+    "Supabase Preview check is skipped after rebase, so it is not evidence that the new migration was applied.",
+    "PR #42 still requires human review before merge.",
     "Untracked android/ build artifacts remain outside this branch and were not touched."
   ],
-  "next_mode": "EXPRESSJOBS_PR42_RECHECK_AFTER_REBASE_PUSH"
+  "next_mode": "EXPRESSJOBS_PR42_HUMAN_REVIEW_AND_SUPABASE_APPLY_PREP"
 }

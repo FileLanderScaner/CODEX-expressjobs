@@ -29,11 +29,13 @@ PR: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/42`
 - Rechecked PR #42.
 - Confirmed GitHub Actions checks PASS.
 - Confirmed Vercel Git integration now PASS.
-- Confirmed Supabase Preview check PASS, with caveat that the PR comment says the connected Supabase preview branch was ignored due branch limit.
+- Confirmed Supabase Preview is skipped by external integration after rebase; this is not evidence that the new migration was applied.
 - Ran Vercel Git Preview smoke with safe bypass header.
 - Fetched `origin/main` and detected `mergeStateStatus=DIRTY`.
 - Merged `origin/main` into the marketplace branch.
 - Resolved conflicts in director docs/status while preserving marketplace core status and main's PR #41 cleanup reports.
+- Pushed merge commit `19c0b1c`.
+- Rechecked PR #42: GitHub Actions PASS, Vercel PASS, Supabase Preview SKIPPED, review still required.
 
 ## Preview Smoke
 
@@ -68,7 +70,7 @@ Preview URL: `https://codex-expressjobs-git-codex-expressjob-e5dea8-akuma424-pro
 
 ## Supabase
 
-Current staging RLS remains PASS. The new marketplace migration remains not applied to the current staging write path because no safe `SUPABASE_ACCESS_TOKEN`, direct DB URL, or approved writable MCP tool is available in this Codex process.
+Current staging RLS remains PASS. Supabase Preview is skipped by external integration, and the new marketplace migration remains not applied to the current staging write path because no safe `SUPABASE_ACCESS_TOKEN`, direct DB URL, or approved writable MCP tool is available in this Codex process.
 
 ## Production
 
@@ -81,7 +83,7 @@ Current staging RLS remains PASS. The new marketplace migration remains not appl
 
 ## Decision
 
-`MARKETPLACE_CORE_PARTIAL`: code, RLS smoke, Vercel Git Preview, and Preview smoke pass. Remaining blockers are human review and staging migration apply through a safe write path.
+`MARKETPLACE_CORE_PARTIAL`: code, RLS smoke, Vercel Git Preview, and Preview smoke pass. Remaining blockers are human review, skipped Supabase Preview integration, and staging migration apply through a safe write path.
 
 ## NEXT_CODEX_PROMPT
 
