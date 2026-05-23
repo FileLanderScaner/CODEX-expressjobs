@@ -184,48 +184,11 @@ drop policy if exists "payment_records_select_own_or_admin" on public.ej_payment
 create policy "payment_records_select_own_or_admin" on public.ej_payment_records
   for select using (user_id = (select auth.uid()) or (select private.ej_is_admin()));
 
-drop policy if exists "company_profiles_select_own_or_admin" on public.ej_company_profiles;
-create policy "company_profiles_select_own_or_admin" on public.ej_company_profiles
-  for select using (profile_id = (select auth.uid()) or (select private.ej_is_admin()));
-
-drop policy if exists "company_profiles_insert_own_client" on public.ej_company_profiles;
-create policy "company_profiles_insert_own_client" on public.ej_company_profiles
-  for insert with check (
-    profile_id = (select auth.uid())
-    and exists (
-      select 1
-      from public.ej_profiles
-      where id = (select auth.uid())
-        and role = 'client'
-    )
-  );
-
-drop policy if exists "company_profiles_update_own_client" on public.ej_company_profiles;
-create policy "company_profiles_update_own_client" on public.ej_company_profiles
-  for update using (profile_id = (select auth.uid()) or (select private.ej_is_admin()))
-  with check (profile_id = (select auth.uid()) or (select private.ej_is_admin()));
-
-drop policy if exists "job_reports_insert_authenticated" on public.ej_job_reports;
-create policy "job_reports_insert_authenticated" on public.ej_job_reports
-  for insert with check (
-    reporter_profile_id = (select auth.uid())
-    and exists (select 1 from public.ej_jobs where id = job_id)
-  );
-
-drop policy if exists "job_reports_select_reporter_owner_admin" on public.ej_job_reports;
-create policy "job_reports_select_reporter_owner_admin" on public.ej_job_reports
-  for select using (
-    reporter_profile_id = (select auth.uid())
-    or exists (select 1 from public.ej_jobs where id = job_id and client_id = (select auth.uid()))
-    or (select private.ej_is_admin())
-  );
-
 create index if not exists ej_admin_audit_logs_admin_id_idx on public.ej_admin_audit_logs (admin_id);
 create index if not exists ej_job_events_actor_id_idx on public.ej_job_events (actor_id);
 create index if not exists ej_job_events_job_id_idx on public.ej_job_events (job_id);
 create index if not exists ej_job_messages_job_id_idx on public.ej_job_messages (job_id);
 create index if not exists ej_job_messages_sender_id_idx on public.ej_job_messages (sender_id);
-create index if not exists ej_job_reports_reporter_profile_id_idx on public.ej_job_reports (reporter_profile_id);
 create index if not exists ej_job_reviews_reviewee_id_idx on public.ej_job_reviews (reviewee_id);
 create index if not exists ej_job_reviews_reviewer_id_idx on public.ej_job_reviews (reviewer_id);
 create index if not exists ej_jobs_accepted_worker_id_idx on public.ej_jobs (accepted_worker_id);

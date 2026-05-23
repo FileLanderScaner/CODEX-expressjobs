@@ -41,12 +41,14 @@ Do not push directly to `main`.
 3. `docs/autonomous-cycles/CYCLE_EXPRESSJOBS_011_SUPABASE_SECURITY_ADVISOR_CLOSEOUT.md`
 4. `supabase/migrations/20260523064307_advisor_security_performance_closeout.sql`
 5. `supabase/migrations/20260523064405_fix_job_messages_admin_private_helper.sql`
-6. `src/__tests__/supabase-rls-static.test.ts`
-7. `scripts/expressjobs-rls-smoke-messages.mjs`
+6. `supabase/migrations/20260523065010_advisor_company_reports_policy_reapply.sql`
+7. `supabase/migrations/20260523120500_advisor_company_reports_policy_reapply.sql`
+8. `src/__tests__/supabase-rls-static.test.ts`
+9. `scripts/expressjobs-rls-smoke-messages.mjs`
 
 ## Tasks
 
-1. Confirm PR #44 still has remote checks PASS.
+1. Confirm PR #44 remote checks after the Supabase migration-order fix.
 2. Before any new deploy/Preview workflow, list Supabase branches and verify only one non-main branch exists, leaving capacity under the user's main-plus-two-branches limit.
 3. Do not merge if a merge would trigger unsafe production behavior.
 4. Keep remaining accepted exceptions documented:

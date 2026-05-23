@@ -29,11 +29,14 @@
     "remote_apply_status": "PASS",
     "applied_migrations": [
       "20260523064307_advisor_security_performance_closeout",
-      "20260523064405_fix_job_messages_admin_private_helper"
+      "20260523064405_fix_job_messages_admin_private_helper",
+      "20260523065010_advisor_company_reports_policy_reapply"
     ],
     "local_migration_files": [
       "supabase/migrations/20260523064307_advisor_security_performance_closeout.sql",
-      "supabase/migrations/20260523064405_fix_job_messages_admin_private_helper.sql"
+      "supabase/migrations/20260523064405_fix_job_messages_admin_private_helper.sql",
+      "supabase/migrations/20260523065010_advisor_company_reports_policy_reapply.sql",
+      "supabase/migrations/20260523120500_advisor_company_reports_policy_reapply.sql"
     ],
     "rls_smoke_messages_initial_after_apply": "FAIL_ADMIN_UPDATE_DELETE_PERMISSION_DENIED_PUBLIC_EJ_IS_ADMIN",
     "rls_smoke_messages_after_fix": "PASS",
@@ -60,6 +63,7 @@
     "supabase_branch_list": "PASS",
     "supabase_apply_advisor_closeout": "PASS",
     "supabase_apply_job_messages_admin_fix": "PASS",
+    "supabase_apply_company_reports_policy_reapply": "PASS",
     "rls_smoke_messages": "PASS",
     "supabase_migration_list": "PASS",
     "supabase_security_advisors": "PASS_RECHECKED_WITH_REMAINING_DOCUMENTED_EXCEPTIONS",
@@ -71,7 +75,8 @@
     "local_production_check": "PASS_NO_GO_PRODUCTION",
     "local_staging_check": "PASS",
     "local_rls_smoke_messages": "PASS",
-    "local_git_diff_check": "PASS"
+    "local_git_diff_check": "PASS",
+    "supabase_preview_after_push": "FAILED_BEFORE_BRANCH_ORDER_FIX_COMMIT"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",

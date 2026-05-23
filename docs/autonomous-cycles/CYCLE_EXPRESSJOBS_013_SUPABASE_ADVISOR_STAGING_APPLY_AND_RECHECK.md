@@ -26,11 +26,16 @@ Applied via Supabase MCP to staging:
 
 - `20260523064307_advisor_security_performance_closeout`
 - `20260523064405_fix_job_messages_admin_private_helper`
+- `20260523065010_advisor_company_reports_policy_reapply`
 
 Local migration filenames were aligned to those remote migration versions:
 
 - `supabase/migrations/20260523064307_advisor_security_performance_closeout.sql`
 - `supabase/migrations/20260523064405_fix_job_messages_admin_private_helper.sql`
+- `supabase/migrations/20260523065010_advisor_company_reports_policy_reapply.sql`
+- `supabase/migrations/20260523120500_advisor_company_reports_policy_reapply.sql`
+
+The `20260523065010` local file is guarded because that remote MCP version sorts before `20260523093000_marketplace_core_profiles_reports`, which creates `ej_company_profiles` and `ej_job_reports`. The later `20260523120500` file re-applies the same policies after those tables exist in fresh Preview branches.
 
 ## RLS Smoke
 
@@ -45,6 +50,8 @@ An existing job-message admin UPDATE/DELETE policy still used revoked `public.ej
 Fix:
 
 Applied `fix_job_messages_admin_private_helper`, replacing job-message admin UPDATE/DELETE policies with `private.ej_is_admin()`.
+
+The branch-order compatibility migration was added after Supabase Preview reported `MIGRATIONS_FAILED` for PR #44 while branch capacity was still within limits.
 
 Final result:
 
