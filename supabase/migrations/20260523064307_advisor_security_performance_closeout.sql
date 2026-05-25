@@ -147,6 +147,7 @@ create policy "applications_update_client_only" on public.ej_job_applications
 drop policy if exists "job_messages_select_admin_only" on public.ej_job_messages;
 drop policy if exists "job_messages_select_participants_only" on public.ej_job_messages;
 drop policy if exists "messages_select_participants" on public.ej_job_messages;
+drop policy if exists "job_messages_select_participants_or_admin" on public.ej_job_messages;
 create policy "job_messages_select_participants_or_admin" on public.ej_job_messages
   for select to authenticated using (
     public.ej_is_job_participant(job_id)
