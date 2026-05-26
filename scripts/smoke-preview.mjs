@@ -31,12 +31,29 @@ if (host === "codex-expressjobs.vercel.app") {
   process.exit(3);
 }
 
-const paths = ["/", "/auth", "/role", "/jobs/open", "/pricing"];
+const paths = [
+  "/",
+  "/como-funciona",
+  "/jobs",
+  "/jobs/open",
+  "/register",
+  "/auth",
+  "/role",
+  "/pricing",
+  "/production-paused",
+];
+
 const failures = [];
+const results = [];
 
 for (const path of paths) {
   const target = new URL(path, baseUrl);
   const response = await fetch(target, { redirect: "manual" });
+
+  results.push(`${path}:${response.status}`);
+
+  // Vercel Deployment Protection may return 401 in Preview without bypass.
+  // Redirects are also acceptable for guarded flows. Only server errors fail.
   if (response.status >= 500) {
     failures.push(`${path}:${response.status}`);
   }
@@ -44,7 +61,9 @@ for (const path of paths) {
 
 if (failures.length) {
   console.error(`PREVIEW_SMOKE=FAIL ${failures.join(",")}`);
+  console.error(`PREVIEW_SMOKE_RESULTS=${results.join(",")}`);
   process.exit(1);
 }
 
 console.log(`PREVIEW_SMOKE=PASS ${baseUrl.origin}`);
+console.log(`PREVIEW_SMOKE_RESULTS=${results.join(",")}`);

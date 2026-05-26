@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ShieldCheck } from "lucide-react";
 import { publicBrand } from "@/lib/expressjobs-data";
 
@@ -7,7 +8,11 @@ export function TrustSafetyNotice() {
       <div className="flex items-start gap-3">
         <ShieldCheck aria-hidden="true" className="mt-0.5 text-[var(--brand)]" size={20} />
         <p>
-          {publicBrand.productName} esta en preview privado. Coordina dentro de la plataforma, revisa reputacion y no compartas datos sensibles. No hay pagos reales activos, empleo garantizado ni ingresos garantizados.
+          {publicBrand.productName} esta en preview privado. Coordina dentro de la plataforma, revisa reputacion y no compartas datos sensibles. No hay pagos reales activos, empleo garantizado ni ingresos garantizados.{" "}
+          <Link className="font-black underline" href="/seguridad">
+            Ver reglas de seguridad
+          </Link>
+          .
         </p>
       </div>
     </aside>
