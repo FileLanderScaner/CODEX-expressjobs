@@ -4,6 +4,7 @@
 
 ## Status
 
+Cycle Google OAuth account separation prepared a Google-only handoff plan while keeping GitHub, Vercel, Supabase, PayPal, and Production ownership unchanged. PR #44 and PR #46 are merged into `main`; Google login remains hidden unless `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and Supabase public config are present. No Google credentials were created, no Supabase Auth Provider was modified, no Vercel Production env vars were touched, and Production remains `NO-GO_PRODUCTION`.
 Bootstrap cycle 001 created a clean Next.js MVP in the real Git repository.
 Cycle 002 expanded it into a usable MVP foundation with client, worker, admin, onboarding, legal, pricing, services, and QA documentation.
 Cycle 003 added static Supabase RLS smoke tests and identified live RLS validation as blocked by external staging Supabase access.
@@ -146,8 +147,8 @@ Cycle 017 expanded Vercel Preview smoke coverage without DB changes. `scripts/sm
 
 ## Next Gate
 
-Public Production exposure is neutralized. PR #42 is merged into `main`, Supabase Advisor closeout is applied to staging, and realtime chat RLS smoke is PASS after the admin policy fix. PR #44 local/staging evidence is good and Vercel Preview is PASS, but remote merge planning is blocked by Supabase Preview `MIGRATIONS_FAILED` on the existing branch. Preview UI smoke previously passed when using the safe local Vercel Deployment Protection bypass header. Without bypass, Preview remains globally `401` by Deployment Protection, not by route failure.
+Google-only OAuth account separation is prepared for human/provider setup. Public Production exposure remains neutralized, PR #44 and PR #46 are merged into `main`, and Google OAuth must remain disabled/hidden until the project-owned Google Cloud OAuth client is configured in Supabase and Preview/Staging flags are intentionally enabled.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: close out the PR #44 Supabase Preview branch blocker without production changes. Do not reset/delete the Supabase Preview branch without explicit authorization. Keep planning the remaining advisor exceptions: `ej_set_profile_role` redesign, leaked password protection Dashboard action, Realtime policy initplan, and non-destructive policy/index cleanup.
+Current fastest safe step: configure the new project-owned Google Cloud OAuth client manually, load its Client ID/Secret into Supabase Auth Provider Google through the Dashboard, enable `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` only in Preview/Staging, then run Google OAuth smoke. Do not migrate GitHub, Vercel, or Supabase ownership in this Google-only cycle.
