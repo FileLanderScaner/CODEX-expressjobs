@@ -131,23 +131,23 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
   return (
     <>
       {state === "not-configured" ? (
-        <p className="mt-4 rounded-md border border-[var(--line)] bg-white p-3 text-sm text-[var(--muted)]">
+        <p className="mt-4 rounded-2xl border border-white/10 bg-white/10 p-3 text-sm text-[var(--ej-text-muted)]">
           Modo sin datos: Supabase publico no esta configurado en este ambiente.
         </p>
       ) : null}
 
       {state === "error" ? (
-        <p className="mt-4 rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-semibold text-[var(--danger)]">
+        <p className="mt-4 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-semibold text-[#ffb4c2]">
           No pudimos cargar trabajos reales. Revisa la configuracion de Supabase o intenta mas tarde.
         </p>
       ) : null}
 
-      <section className="mt-6 rounded-md border border-[var(--line)] bg-white p-4">
+      <section className="ej-glass mt-6 p-4">
         <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-end">
           <label className="block">
-            <span className="text-sm font-black text-[var(--foreground)]">Buscar trabajos</span>
+            <span className="text-sm font-black text-[var(--ej-text)]">Buscar trabajos</span>
             <input
-              className="mt-2 w-full rounded-md border border-[var(--line)] bg-[#f7f6f2] px-3 py-2 text-sm outline-none focus:border-[var(--brand)]"
+              className="focus-ring ej-input mt-2 text-sm"
               onChange={(event) => setQuery(event.target.value)}
               placeholder="Buscar por titulo, descripcion, zona o presupuesto"
               type="search"
@@ -157,10 +157,10 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
 
           <div className="flex flex-wrap gap-2">
             <button
-              className={`rounded-md border px-3 py-2 text-sm font-black ${
+              className={`focus-ring rounded-full border px-3 py-2 text-sm font-black transition ${
                 budgetOnly
-                  ? "border-[var(--brand)] bg-[#eef4ef] text-[var(--brand)]"
-                  : "border-[var(--line)] bg-white text-[var(--muted)]"
+                  ? "border-[rgba(123,193,67,0.42)] bg-[var(--ej-accent-soft)] text-[#b9ef88]"
+                  : "border-white/10 bg-white/10 text-[var(--ej-text-muted)] hover:bg-white/20"
               }`}
               onClick={() => setBudgetOnly((current) => !current)}
               type="button"
@@ -170,7 +170,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
 
             {hasActiveFilters ? (
               <button
-                className="rounded-md border border-[var(--line)] bg-white px-3 py-2 text-sm font-black text-[var(--muted)]"
+                className="focus-ring rounded-full border border-white/10 bg-white/10 px-3 py-2 text-sm font-black text-[var(--ej-text-muted)] hover:bg-white/20"
                 onClick={() => {
                   setQuery("");
                   setBudgetOnly(false);
@@ -183,7 +183,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
           </div>
         </div>
 
-        <p className="mt-3 text-sm text-[var(--muted)]">
+        <p className="ej-soft mt-3 text-sm">
           Mostrando {filteredOpenJobs.length} de {openJobs.length} trabajos abiertos
           {publicMode ? "." : ` y ${filteredAcceptedJobs.length} asignados filtrados.`}
         </p>

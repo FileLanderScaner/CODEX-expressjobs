@@ -71,12 +71,12 @@ export function RoleSelector() {
         const isPending = pendingRole === choice.role;
 
         return (
-          <article className="rounded-md border border-[var(--line)] bg-white p-5 shadow-sm" key={choice.role}>
-            <Icon aria-hidden="true" className="text-[var(--brand)]" />
+          <article className="ej-card p-5" key={choice.role}>
+            <Icon aria-hidden="true" className="text-[var(--ej-accent)]" />
             <h2 className="mt-4 text-xl font-black">{choice.title}</h2>
-            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{choice.text}</p>
+            <p className="ej-muted mt-2 text-sm leading-6">{choice.text}</p>
             <button
-              className="focus-ring mt-4 inline-flex items-center justify-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white shadow-sm hover:bg-[var(--brand-dark)] disabled:cursor-not-allowed disabled:opacity-60"
+              className="focus-ring ej-btn-primary mt-4 text-sm disabled:cursor-not-allowed disabled:opacity-60"
               disabled={pendingRole !== null}
               onClick={() => void chooseRole(choice.role, choice.href)}
               type="button"
@@ -87,7 +87,7 @@ export function RoleSelector() {
           </article>
         );
       })}
-      {message ? <p className="md:col-span-2 rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-bold text-[var(--danger)]">{message}</p> : null}
+      {message ? <p className="rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2] md:col-span-2">{message}</p> : null}
     </div>
   );
 }

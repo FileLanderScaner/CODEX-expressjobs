@@ -4,7 +4,7 @@ import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
 export function WhatsAppShareButton({ text }: { text: string }) {
   return (
     <a
-      className="focus-ring inline-flex items-center gap-2 rounded-md border border-[var(--line)] px-3 py-2 text-sm font-semibold hover:bg-[#f3f5f1]"
+      className="focus-ring ej-btn-secondary px-3 py-2 text-sm"
       href={buildWhatsAppShareUrl(text)}
       rel="noreferrer"
       target="_blank"

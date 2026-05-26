@@ -43,17 +43,17 @@ export default async function ProfilePage() {
         </div>
 
         {!user ? (
-          <section className="mt-6 rounded-md border border-[var(--line)] bg-white p-5">
+          <section className="ej-card mt-6 p-5">
             <h2 className="text-xl font-black">No hay sesion activa</h2>
             <p className="mt-2 text-sm text-[var(--muted)]">Inicia sesion para ver tu perfil, rol y panel de trabajo.</p>
-            <Link className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white" href={authHref("/profile")}>
+            <Link className="focus-ring ej-btn-primary mt-4 text-sm" href={authHref("/profile")}>
               <LogIn aria-hidden="true" size={16} />
               Ingresar
             </Link>
           </section>
         ) : profile ? (
           <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1.3fr]">
-            <section className="rounded-md border border-[var(--line)] bg-white p-5">
+            <section className="ej-card p-5">
               <Settings aria-hidden="true" className="text-[var(--brand)]" />
               <h2 className="mt-3 text-xl font-black">Perfil abierto</h2>
               <dl className="mt-4 grid gap-3 text-sm">
@@ -75,7 +75,7 @@ export default async function ProfilePage() {
                 </div>
               </dl>
               <Link
-                className="focus-ring mt-5 inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white"
+                className="focus-ring ej-btn-primary mt-5 text-sm"
                 href={dashboardHref(profile.role)}
               >
                 <BriefcaseBusiness aria-hidden="true" size={16} />
@@ -85,12 +85,12 @@ export default async function ProfilePage() {
             <AccountProfileForm profile={profile} />
           </div>
         ) : (
-          <section className="mt-6 rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-5">
-            <h2 className="text-xl font-black text-[var(--danger)]">Sesion activa sin perfil</h2>
-            <p className="mt-2 text-sm font-semibold text-[var(--danger)]">
+          <section className="mt-6 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-5">
+            <h2 className="text-xl font-black text-[#ffb4c2]">Sesion activa sin perfil</h2>
+            <p className="mt-2 text-sm font-semibold text-[#ffb4c2]">
               Tu sesion existe, pero no encontramos `ej_profiles`. Vuelve a seleccionar rol para intentar reparar el perfil con el flujo seguro.
             </p>
-            <Link className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white" href="/role">
+            <Link className="focus-ring ej-btn-primary mt-4 text-sm" href="/role">
               Reparar perfil
             </Link>
           </section>

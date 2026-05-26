@@ -49,11 +49,11 @@ export function AuthEmailForm({ nextPath }: { nextPath?: string }) {
   }
 
   return (
-    <form className="mt-6 grid gap-4 rounded-md border border-[var(--line)] bg-white p-5" onSubmit={handleSubmit}>
-      <label className="grid gap-2 text-sm font-bold">
+    <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
+      <label className="grid gap-2 text-sm font-bold text-[var(--ej-text)]">
         Email
         <input
-          className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+          className="focus-ring ej-input font-normal"
           onChange={(event) => setEmail(event.target.value)}
           placeholder="tu@email.com"
           type="email"
@@ -61,7 +61,7 @@ export function AuthEmailForm({ nextPath }: { nextPath?: string }) {
         />
       </label>
       <button
-        className="focus-ring inline-flex items-center justify-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
+        className="focus-ring ej-btn-primary text-sm disabled:cursor-not-allowed disabled:opacity-60"
         disabled={status === "loading"}
         type="submit"
       >
@@ -69,7 +69,7 @@ export function AuthEmailForm({ nextPath }: { nextPath?: string }) {
         {status === "loading" ? "Enviando..." : "Crear cuenta / Ingresar"}
       </button>
       {message ? (
-        <p className={status === "error" ? "text-sm font-bold text-[var(--danger)]" : "text-sm font-bold text-[var(--brand)]"}>{message}</p>
+        <p className={status === "error" ? "rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2]" : "rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]"}>{message}</p>
       ) : null}
     </form>
   );

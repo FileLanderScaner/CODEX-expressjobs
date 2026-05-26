@@ -13,7 +13,7 @@ const labels: Record<JobStatus, string> = {
 
 export function JobStatusBadge({ status }: { status: JobStatus }) {
   return (
-    <span className="rounded-md bg-[#edf3ee] px-2 py-1 text-xs font-bold text-[var(--brand-dark)]">
+    <span className="ej-badge">
       {labels[status]}
     </span>
   );

@@ -153,21 +153,21 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
   }
 
   return (
-    <section className="rounded-md border border-[var(--line)] bg-white p-5">
+    <section className="ej-card p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-sm font-bold text-[var(--brand)]">{job.category}</p>
+          <p className="ej-chip text-sm font-bold">{job.category}</p>
           <h1 className="mt-1 text-3xl font-black">{job.title}</h1>
-          <p className="mt-2 text-sm font-bold text-[var(--muted)]">{job.location} · {job.budget}</p>
+          <p className="ej-muted mt-2 text-sm font-bold">{job.location} - {job.budget}</p>
         </div>
         <JobStatusBadge status={job.status} />
       </div>
-      <p className="mt-4 leading-7 text-[var(--muted)]">{job.description}</p>
-      <form className="mt-5 grid gap-3 rounded-md border border-[var(--line)] bg-[#f8faf7] p-4" onSubmit={handleApply}>
+      <p className="ej-muted mt-4 leading-7">{job.description}</p>
+      <form className="mt-5 grid gap-3 rounded-2xl border border-white/10 bg-white/10 p-4" onSubmit={handleApply}>
         <label className="grid gap-2 text-sm font-bold">
           Mensaje para el cliente
           <textarea
-            className="focus-ring min-h-24 rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+            className="focus-ring ej-textarea min-h-24 font-normal"
             onChange={(event) => setMessage(event.target.value)}
             placeholder="Contale disponibilidad, experiencia y dudas concretas."
             value={message}
@@ -176,7 +176,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
         <label className="grid gap-2 text-sm font-bold">
           Monto propuesto
           <input
-            className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+            className="focus-ring ej-input font-normal"
             inputMode="numeric"
             onChange={(event) => setAmount(event.target.value)}
             placeholder="UYU"
@@ -184,13 +184,13 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
           />
         </label>
         {statusMessage ? (
-          <p className={state === "error" ? "text-sm font-bold text-[var(--danger)]" : "text-sm font-bold text-[var(--brand)]"}>
+          <p className={state === "error" ? "text-sm font-bold text-[#ffb4c2]" : "text-sm font-bold text-[#d9f7bd]"}>
             {statusMessage} {statusMessage.includes("iniciar sesion") ? <Link className="underline" href={authHref(`/worker/jobs/${jobId}`)}>Ir a ingresar</Link> : null}
           </p>
         ) : null}
         <div className="flex flex-wrap gap-3">
           <button
-            className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-3 py-2 text-sm font-bold text-white disabled:cursor-not-allowed disabled:opacity-60"
+            className="focus-ring ej-btn-primary px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-60"
             disabled={state === "loading" || job.status !== "open"}
             type="submit"
           >

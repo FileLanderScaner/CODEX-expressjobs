@@ -93,7 +93,7 @@ export function WorkerProfileForm() {
   }
 
   return (
-    <form className="grid gap-4 rounded-md border border-[var(--line)] bg-white p-5" onSubmit={handleSubmit}>
+    <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nombre completo" name="fullName" placeholder="Nombre y apellido" />
         <Field label="Telefono" name="phone" placeholder="WhatsApp o celular" />
@@ -105,14 +105,14 @@ export function WorkerProfileForm() {
       <Field label="Habilidades" name="skills" placeholder="Limpieza, delivery, reparaciones" />
       <label className="grid gap-2 text-sm font-bold">
         Experiencia y disponibilidad
-        <textarea className="focus-ring min-h-32 rounded-md border border-[var(--line)] px-3 py-2 font-normal" name="bio" />
+        <textarea className="focus-ring ej-textarea font-normal" name="bio" />
       </label>
       {message ? (
-        <p className={state === "error" ? "text-sm font-bold text-[var(--danger)]" : "text-sm font-bold text-[var(--brand)]"}>
+        <p className={state === "error" ? "text-sm font-bold text-[#ffb4c2]" : "text-sm font-bold text-[#d9f7bd]"}>
           {message} {message.includes("iniciar sesion") ? <Link className="underline" href={authHref("/dashboard/worker/profile")}>Ingresar</Link> : null}
         </p>
       ) : null}
-      <button className="focus-ring inline-flex w-fit items-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white disabled:opacity-60" disabled={state === "saving"} type="submit">
+      <button className="focus-ring ej-btn-primary w-fit text-sm disabled:opacity-60" disabled={state === "saving"} type="submit">
         <Save aria-hidden="true" size={16} /> {state === "saving" ? "Guardando..." : "Guardar perfil trabajador"}
       </button>
     </form>
@@ -123,7 +123,7 @@ function Field({ label, name, placeholder, type = "text" }: { label: string; nam
   return (
     <label className="grid gap-2 text-sm font-bold">
       {label}
-      <input className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal" name={name} placeholder={placeholder} type={type} />
+      <input className="focus-ring ej-input font-normal" name={name} placeholder={placeholder} type={type} />
     </label>
   );
 }

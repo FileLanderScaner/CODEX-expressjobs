@@ -2,6 +2,14 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-26
+
+Mode `EXPRESSJOBS_GLOBAL_SOFT_PREMIUM_REDESIGN_COMPLETE` completed on branch `codex/expressjobs-global-soft-premium-redesign-manual`.
+
+Global dark premium soft redesign is applied across the current public, auth, marketplace, dashboard, monetization, loading, error, and not-found surfaces. The reusable system now lives in `src/app/globals.css` and `src/components/design-system.tsx`; usage rules are documented in `docs/design/EXPRESSJOBS_DESIGN_SYSTEM.md`, with audit evidence in `docs/design/EXPRESSJOBS_GLOBAL_VISUAL_AUDIT.md`.
+
+Validation passed: `secret:scan`, `production:check`, `guard:no-production-deploy`, `test:rls:static`, `staging:check`, `rls:smoke`, `lint`, `typecheck`, `test`, `build`, and `git diff --check`. Local browser smoke passed on desktop 1360px, tablet 768px, and mobile 390px after a header breakpoint fix. `/auth` has visible Google Login and email login. Production remains `NO-GO_PRODUCTION`; no production deploy, promote, Production env mutation, PayPal live, real payments, secrets, Supabase production action, or RLS relaxation occurred.
+
 ## Status
 
 Cycle auth session/profile persistence and account UX added server-side session/profile helpers, conditional account nav, `/profile`, safe profile editing for `full_name`/`phone`/`city`, and logout. The OAuth callback still exchanges the code, reads the Supabase user, upserts `ej_profiles` with default OAuth role `client`, preserves existing profiles through `ignoreDuplicates`, and redirects to `/role` on success. Supabase MCP confirms project `gnsfyvsodslnehszanra` is accessible and `ACTIVE_HEALTHY`; direct TEST_ACCOUNT_A/B Auth user reads remain blocked because no safe Auth-user query tool is exposed without PII/secrets. Preview `https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app` is `Ready`, target `preview`; signed-out browser smoke passes for `/auth`, `/register`, `/role`, `/profile`, and `/dashboard/client`, with Google visible and reaching Google. Full session persistence after human login remains blocked by human-controlled Google credentials. No secrets were printed, no SQL/migrations ran, no Vercel Production env vars were touched, and Production remains `NO-GO_PRODUCTION`.

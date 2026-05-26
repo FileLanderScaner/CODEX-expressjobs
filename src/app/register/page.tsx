@@ -7,12 +7,12 @@ export default function RegisterPage() {
   return (
     <AppShell>
       <main className="mx-auto max-w-5xl px-4 py-10">
-        <section className="rounded-md border border-[var(--line)] bg-[#f7f6f2] p-6">
-          <p className="text-sm font-black uppercase tracking-wide text-[var(--brand)]">
+        <section className="ej-glass p-6">
+          <p className="ej-badge">
             Alta segura
           </p>
           <h1 className="mt-3 text-3xl font-black">Elegir tipo de cuenta</h1>
-          <p className="mt-3 max-w-3xl leading-7 text-[var(--muted)]">
+          <p className="ej-muted mt-3 max-w-3xl leading-7">
             Selecciona el flujo que necesitas y el sistema preparara tu rol seguro en Supabase.
             Si todavia no iniciaste sesion, primero entra con tu cuenta y despues confirma tu rol.
           </p>

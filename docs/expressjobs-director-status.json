@@ -2,123 +2,64 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
-  "branch": "codex/google-oauth-account-separation-only",
-  "base_branch": "main",
-  "mode": "EXPRESSJOBS_AUTH_SESSION_PROFILE_PERSISTENCE_AND_ACCOUNT_UX",
-  "updated_at": "2026-05-26T10:19:14-03:00",
+  "branch": "codex/expressjobs-global-soft-premium-redesign-manual",
+  "mode": "EXPRESSJOBS_GLOBAL_SOFT_PREMIUM_REDESIGN_COMPLETE",
+  "updated_at": "2026-05-26T14:12:43-03:00",
   "production_status": "NO-GO_PRODUCTION",
-  "supabase": {
-    "project_ref": "gnsfyvsodslnehszanra",
-    "project_name": "supabase-expressjobs",
-    "status": "ACTIVE_HEALTHY",
-    "mcp_access": "PASS",
-    "local_project_ref_file": "supabase/.temp/project-ref",
-    "local_project_ref_file_exists": true,
-    "local_project_ref_ignored_by_git": true,
-    "branches": {
-      "checked": true,
-      "default_branch": "main",
-      "non_default_branches": [
-        "codex/google-oauth-account-separation-only"
-      ],
-      "branch_capacity_status": "PASS_NOT_AT_KNOWN_LIMIT",
-      "new_branch_created": false,
-      "branch_requirement": "SUPABASE_BRANCH_NOT_REQUIRED_NO_SUPABASE_DIFF"
-    },
-    "readonly_user_check": {
-      "TEST_ACCOUNT_A": "SUPABASE_READONLY_USER_CHECK_BLOCKED_NO_SAFE_AUTH_USER_QUERY_TOOL",
-      "TEST_ACCOUNT_B": "SUPABASE_READONLY_USER_CHECK_BLOCKED_NO_SAFE_AUTH_USER_QUERY_TOOL",
-      "pii_printed": false,
-      "secrets_printed": false
-    },
-    "sql_executed": false,
-    "migrations_executed": false
-  },
-  "auth_callback": {
-    "exchange_code_for_session": "CONFIRMED_IN_CODE",
-    "get_user_after_exchange": "CONFIRMED_IN_CODE",
-    "profile_upsert_table": "ej_profiles",
-    "profile_upsert_id": "user.id",
-    "default_oauth_role": "client",
-    "existing_profile_behavior": "ignoreDuplicates_true_preserves_existing_profile",
-    "success_redirect": "/role",
-    "failure_redirects": [
-      "provider_error",
-      "missing_code",
-      "not_configured",
-      "exchange_failed",
-      "profile_setup_failed"
+  "summary": {
+    "global_visual_system": "APPLIED",
+    "auth_google_button": "VISIBLE_AND_PREPARED",
+    "auth_email_login": "DARK_INTEGRATED",
+    "como_funciona": "DARK_PREMIUM_COMPLETE",
+    "worker_jobs": "DARK_MARKETPLACE_LIST",
+    "client_job_new": "DARK_TWO_COLUMN_FORM",
+    "dashboards": "DARK_SHARED_COMPONENTS",
+    "loading_error_not_found": "DARK_GLOBAL_STATES",
+    "design_docs": [
+      "docs/design/EXPRESSJOBS_DESIGN_SYSTEM.md",
+      "docs/design/EXPRESSJOBS_GLOBAL_VISUAL_AUDIT.md"
     ]
   },
-  "account_ux": {
-    "server_helpers_added": [
-      "getCurrentUser",
-      "getCurrentProfile",
-      "requireUser",
-      "requireProfile",
-      "getDisplayName",
-      "getAccountNavState"
-    ],
-    "account_nav": "CONDITIONAL_MI_CUENTA_WHEN_SIGNED_IN",
-    "profile_route": "/profile",
-    "profile_fields_editable": [
-      "full_name",
-      "phone",
-      "city"
-    ],
-    "role_direct_edit": "NOT_ALLOWED",
-    "logout": "IMPLEMENTED_CLIENT_SIGNOUT",
-    "service_role_in_client": false
-  },
-  "vercel": {
-    "project_scope": "akuma424-projects/codex-expressjobs",
-    "preview_deployment": {
-      "url": "https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app",
-      "id": "dpl_2yo2rHmzBnCM1uDXhpWZWja5sc5m",
-      "target": "preview",
-      "status": "READY"
-    },
-    "production_env_mutation": "NO",
-    "prod_deploy": "NOT_RUN",
-    "promote": "NOT_RUN"
-  },
-  "browser_smoke": {
-    "routes": {
-      "/auth": "PASS_200_SIGNED_OUT",
-      "/register": "PASS_200_SIGNED_OUT",
-      "/role": "PASS_200_SIGNED_OUT",
-      "/profile": "PASS_200_SIGNED_OUT_PROFILE_STATE_VISIBLE",
-      "/dashboard/client": "PASS_200_SIGNED_OUT"
-    },
-    "google_button_visible": true,
-    "facebook_visible": false,
-    "google_click_result": "PASS_REACHED_GOOGLE_SIGN_IN",
-    "supabase_callback_reference": "PASS_gnsfyvsodslnehszanra.supabase.co/auth/v1/callback",
-    "signed_in_session_persistence": "BLOCKED_EXTERNAL_CREDENTIALS_HUMAN_GOOGLE_LOGIN_REQUIRED",
-    "logout_live_result": "BLOCKED_EXTERNAL_CREDENTIALS_HUMAN_GOOGLE_LOGIN_REQUIRED"
+  "routes_smoked_local": [
+    "/",
+    "/auth",
+    "/como-funciona",
+    "/worker/jobs",
+    "/client/jobs/new",
+    "/jobs",
+    "/pricing",
+    "/ofertas",
+    "/register",
+    "/dashboard/client",
+    "/dashboard/worker",
+    "/dashboard/client/profile",
+    "/dashboard/worker/profile",
+    "/admin",
+    "/production-paused",
+    "/missing-visual-smoke"
+  ],
+  "visual_smoke": {
+    "local_url": "http://localhost:3000",
+    "desktop_1360": "PASS",
+    "tablet_768": "PASS_AFTER_HEADER_BREAKPOINT_FIX",
+    "mobile_390": "PASS",
+    "white_generic_blocks": "NONE_DETECTED",
+    "console_errors": "NONE_RELEVANT",
+    "auth_google_visible": true,
+    "auth_email_visible": true,
+    "no_go_visible": true
   },
   "checks": {
-    "git_status_short": "PASS_CLEAN_BEFORE_CHANGES",
-    "git_branch": "PASS_codex/google-oauth-account-separation-only",
-    "git_remote_v": "PASS_origin_PRESENT_neworigin_PRESENT_NOT_USED",
-    "git_log_oneline_5": "PASS_EXPECTED_COMMITS_PRESENT",
-    "supabase_project_ref_exists": "PASS",
-    "supabase_project_ref_value": "PASS_gnsfyvsodslnehszanra",
-    "supabase_project_ref_gitignored": "PASS",
-    "supabase_project_list": "PASS",
-    "supabase_branches": "PASS_MAIN_PLUS_CURRENT_BRANCH",
     "secret_scan": "PASS",
-    "staging_check": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
     "rls_static": "PASS_1_FILE_12_TESTS",
+    "staging_check": "PASS",
+    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
     "lint": "PASS",
     "typecheck": "PASS",
     "test": "PASS_10_FILES_59_TESTS",
     "build": "PASS",
-    "preview_browser_smoke": "PASS_SIGNED_OUT_AND_GOOGLE_START",
-    "json_parse": "PASS",
     "git_diff_check": "PASS"
   },
   "production_guards": {
@@ -128,14 +69,10 @@
     "supabase_production_mutation": "NO",
     "paypal_live": "OFF",
     "real_payments": "OFF",
-    "secrets_printed": "NO"
+    "secrets_printed": "NO",
+    "rls_disabled": "NO"
   },
-  "blockers": [
-    "BLOCKED_EXTERNAL_CREDENTIALS"
-  ],
-  "blocker_detail": {
-    "BLOCKED_EXTERNAL_CREDENTIALS": "Codex cannot complete TEST_ACCOUNT_A/B Google login, refresh/reopen persistence, profile reuse, or logout live proof without human-controlled staging/test Google accounts. Do not paste credentials, cookies, tokens, auth codes, user IDs, emails, Client ID, or Client Secret."
-  },
-  "next_mode": "EXPRESSJOBS_HUMAN_AUTH_SESSION_PERSISTENCE_VERIFY",
-  "next_mode_reason": "Code and Preview UX are ready; the remaining gate is human login verification for session/profile persistence and logout."
+  "blockers": [],
+  "next_mode": "EXPRESSJOBS_PRODUCT_UX_REVIEW",
+  "next_mode_reason": "After the global redesign, the next safe high-impact step is validating real MVP flows and copy clarity across client and worker journeys."
 }

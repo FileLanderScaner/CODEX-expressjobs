@@ -10,12 +10,12 @@ export default function WorkerPage() {
     <AppShell>
       <main className="mx-auto max-w-6xl px-4 py-10">
         <h1 className="text-3xl font-black">Trabajador</h1>
-        <section className="mt-6 rounded-md border border-[var(--line)] bg-white p-5">
+        <section className="ej-card mt-6 p-5">
           <h2 className="text-xl font-black">{worker.headline}</h2>
-          <p className="mt-2 text-[var(--muted)]">{worker.bio}</p>
+          <p className="ej-muted mt-2">{worker.bio}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {worker.skills.map((skill) => (
-              <span className="rounded-md bg-[#edf3ee] px-2 py-1 text-xs font-bold text-[var(--brand-dark)]" key={skill}>{skill}</span>
+              <span className="ej-chip text-xs" key={skill}>{skill}</span>
             ))}
           </div>
         </section>
@@ -25,9 +25,9 @@ export default function WorkerPage() {
             { icon: BadgeCheck, label: "Tarifa referencia", value: `UYU ${worker.hourlyRateUyu}/h` },
             { icon: Star, label: "Reputacion", value: "4.9" },
           ].map((item) => (
-            <article className="rounded-md border border-[var(--line)] bg-white p-5" key={item.label}>
-              <item.icon aria-hidden="true" className="text-[var(--brand)]" />
-              <p className="mt-3 text-sm font-bold text-[var(--muted)]">{item.label}</p>
+            <article className="ej-card p-5" key={item.label}>
+              <item.icon aria-hidden="true" className="text-[var(--ej-accent)]" />
+              <p className="ej-soft mt-3 text-sm font-bold">{item.label}</p>
               <p className="mt-1 text-2xl font-black">{item.value}</p>
             </article>
           ))}

@@ -14,18 +14,18 @@ export function PricingCard({
   features?: readonly string[];
 }) {
   return (
-    <article className="rounded-md border border-[var(--line)] bg-white p-5 shadow-sm">
+    <article className="ej-card p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <h2 className="text-lg font-black">{title}</h2>
-        {badge ? <span className="rounded-md bg-[#eef4ef] px-2 py-1 text-xs font-bold text-[var(--brand-dark)]">{badge}</span> : null}
+        {badge ? <span className="ej-chip text-xs">{badge}</span> : null}
       </div>
       {price ? <p className="mt-4 text-2xl font-black">{price}</p> : null}
-      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{text}</p>
+      <p className="ej-muted mt-2 text-sm leading-6">{text}</p>
       {features.length ? (
-        <ul className="mt-4 grid gap-2 text-sm text-[var(--muted)]">
+        <ul className="ej-muted mt-4 grid gap-2 text-sm">
           {features.map((feature) => (
             <li className="flex items-start gap-2" key={feature}>
-              <CheckCircle2 aria-hidden="true" className="mt-0.5 shrink-0 text-[var(--brand)]" size={16} />
+              <CheckCircle2 aria-hidden="true" className="mt-0.5 shrink-0 text-[var(--ej-accent)]" size={16} />
               <span>{feature}</span>
             </li>
           ))}
