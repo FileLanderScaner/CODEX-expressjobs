@@ -1,8 +1,9 @@
 const truthy = new Set(["1", "true", "yes", "on"]);
 
 export const publicSalesContact = {
+  ownerName: "Ronald Gonzalez",
   whatsappNumber: "59897045305",
-  email: "akuma_g1@hotmail.com",
+  email: "trabajosrapidos.uy@gmail.com",
 } as const;
 
 export const uruguayRevenuePrices = [
