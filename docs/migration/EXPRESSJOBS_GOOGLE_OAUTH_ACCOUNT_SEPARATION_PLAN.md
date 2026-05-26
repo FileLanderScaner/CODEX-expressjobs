@@ -133,6 +133,21 @@ Vercel Preview/Staging:
 - Supabase provider configuration was not read or changed in this no-SQL, no-migration, no-provider-mutation cycle.
 - Vercel env values were not read or changed.
 
+## Provider Configured Preview Smoke
+
+Cycle `EXPRESSJOBS_GOOGLE_OAUTH_PROVIDER_CONFIGURED_PREVIEW_SMOKE_TOKEN_SAVER` recorded the next safe state:
+
+- Human reported that the project-owned Google OAuth Web Client exists.
+- Human reported that the new Google Client ID and Client Secret were loaded into Supabase Authentication > Providers > Google.
+- Codex did not read, print, store, or commit Client ID/Secret values.
+- Supabase MCP confirmed project `gnsfyvsodslnehszanra` is accessible and `ACTIVE_HEALTHY`.
+- Supabase branch capacity was checked: `main` plus existing branch `codex/google-oauth-account-separation-only`; no new branch was created.
+- No Supabase branch is required for this cycle because there is no `supabase/` diff, no SQL, and no migrations.
+- Vercel Preview branch env was repaired for `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and `NEXT_PUBLIC_APP_URL`.
+- Preview used for smoke: `https://codex-expressjobs-4shv25dkd-akuma424-projects.vercel.app`.
+- Browser smoke result: `/auth` and `/register` load; Google button is visible; Facebook/Instagram remain hidden; clicking Google reaches Google sign-in with the Supabase callback reference `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback`.
+- Full return to `/role` is not proven by Codex because it requires human-controlled Google staging/test login. Do not paste credentials, cookies, tokens, auth codes, user IDs, Client ID, or Client Secret.
+
 ## Blockers
 
 | Blocker | Meaning | Human action |

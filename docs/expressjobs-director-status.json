@@ -5,69 +5,87 @@
   "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
   "branch": "codex/google-oauth-account-separation-only",
   "base_branch": "main",
-  "mode": "EXPRESSJOBS_GOOGLE_OAUTH_SUPABASE_PROVIDER_READINESS",
-  "updated_at": "2026-05-26T09:36:45-03:00",
+  "mode": "EXPRESSJOBS_GOOGLE_OAUTH_PROVIDER_CONFIGURED_PREVIEW_SMOKE_TOKEN_SAVER",
+  "updated_at": "2026-05-26T09:50:48-03:00",
   "production_status": "NO-GO_PRODUCTION",
   "supabase": {
     "project_ref": "gnsfyvsodslnehszanra",
     "project_name": "supabase-expressjobs",
-    "reported_status": "ACTIVE_HEALTHY",
-    "mcp_visibility": "VISIBLE_REPORTED_BY_OPERATOR",
+    "status": "ACTIVE_HEALTHY",
+    "mcp_access": "PASS",
     "local_project_ref_file": "supabase/.temp/project-ref",
     "local_project_ref_file_exists": true,
     "local_project_ref_ignored_by_git": true,
+    "branches": {
+      "checked": true,
+      "default_branch": "main",
+      "non_default_branches": [
+        "codex/google-oauth-account-separation-only"
+      ],
+      "branch_capacity_status": "PASS_NOT_AT_KNOWN_LIMIT",
+      "new_branch_created": false,
+      "branch_requirement": "SUPABASE_BRANCH_NOT_REQUIRED_NO_SUPABASE_DIFF"
+    },
     "sql_executed": false,
     "migrations_executed": false,
-    "google_provider_update": "NOT_RUN_NO_PROVIDER_MUTATION_IN_THIS_CYCLE"
-  },
-  "google_oauth": {
-    "scope": "GOOGLE_ONLY_SUPABASE_PROVIDER_READINESS",
-    "app_flag": "NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN",
-    "app_flag_required_value_for_preview_staging": "true",
-    "app_flag_default": "false",
-    "button_hidden_when_flag_false": true,
-    "callback_route": "/auth/callback",
-    "supabase_callback": "https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback",
-    "authorized_javascript_origins_required": [
-      "http://localhost:3000",
-      "Vercel Preview/Staging estable cuando exista"
-    ],
-    "required_scopes": [
-      "openid",
-      "email",
-      "profile"
-    ],
-    "credentials_created": false,
-    "client_secret_stored_in_repo": false,
-    "client_secret_printed": false
+    "google_provider": {
+      "manual_config_reported_by_operator": true,
+      "client_id_secret_loaded_in_dashboard_reported_by_operator": true,
+      "provider_status_readable_without_secret": false,
+      "status": "GOOGLE_PROVIDER_STATUS_NOT_READABLE_SAFE_ASSUMPTION_MANUAL_CONFIG_REPORTED",
+      "secret_read": false,
+      "secret_printed": false
+    }
   },
   "vercel": {
-    "preview_staging_required_env": {
-      "NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN": "true",
-      "NEXT_PUBLIC_APP_URL": "<preview/staging estable>"
+    "project_scope": "akuma424-projects/codex-expressjobs",
+    "mcp_access": "BLOCKED_403_SCOPE_AUTH",
+    "cli_access": "PASS",
+    "preview_env_mutation": "PREVIEW_BRANCH_ONLY_PUBLIC_FLAGS",
+    "preview_env_status": {
+      "NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN": "SET_TRUE_PREVIEW_BRANCH",
+      "NEXT_PUBLIC_APP_URL": "SET_TO_PREVIEW_URL_PREVIEW_BRANCH",
+      "NEXT_PUBLIC_SUPABASE_URL": "PRESENT_DIAGNOSTICS_OK",
+      "NEXT_PUBLIC_SUPABASE_ANON_KEY": "PRESENT_DIAGNOSTICS_OK"
+    },
+    "preview_deployment": {
+      "url": "https://codex-expressjobs-4shv25dkd-akuma424-projects.vercel.app",
+      "id": "dpl_nFM6ompChcy9YWp7iNPqxqoPZUNR",
+      "target": "preview",
+      "status": "READY"
     },
     "production_env_mutation": "NO",
     "prod_deploy": "NOT_RUN",
     "promote": "NOT_RUN"
   },
+  "google_oauth_smoke": {
+    "auth_route_status": "PASS_HTTP_200_BROWSER",
+    "register_route_status": "PASS_HTTP_200_BROWSER",
+    "diagnostics_supabase_public_config": "OK",
+    "diagnostics_google_login_flag": "OK",
+    "google_button_visible": true,
+    "facebook_visible": false,
+    "instagram_visible": false,
+    "secret_like_text_in_auth_or_register": false,
+    "google_click_result": "PASS_REACHED_GOOGLE_SIGN_IN",
+    "supabase_callback_reference": "PASS_gnsfyvsodslnehszanra.supabase.co/auth/v1/callback",
+    "full_callback_to_role": "BLOCKED_EXTERNAL_CREDENTIALS_HUMAN_GOOGLE_LOGIN_REQUIRED"
+  },
   "checks": {
     "git_status_short": "PASS_CLEAN_BEFORE_DOCS",
     "git_branch": "PASS_codex/google-oauth-account-separation-only",
     "git_remote_v": "PASS_origin_PRESENT_neworigin_PRESENT_NOT_USED",
+    "git_log_oneline_5": "PASS_EXPECTED_COMMITS_PRESENT",
     "supabase_project_ref_exists": "PASS",
     "supabase_project_ref_value": "PASS_gnsfyvsodslnehszanra",
     "supabase_project_ref_gitignored": "PASS",
-    "oauth_code_audit": "PASS",
+    "supabase_branches": "PASS_MAIN_PLUS_CURRENT_BRANCH",
+    "vercel_preview_browser_smoke": "PASS_UNTIL_GOOGLE_SIGN_IN",
     "secret_scan": "PASS",
     "staging_check": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
-    "rls_static": "PASS_1_FILE_12_TESTS",
-    "lint": "PASS",
-    "typecheck": "PASS",
-    "test": "PASS_9_FILES_54_TESTS",
-    "build": "PASS",
-    "director_json_parse": "PASS",
+    "json_parse": "PASS",
     "git_diff_check": "PASS"
   },
   "production_guards": {
@@ -80,15 +98,11 @@
     "secrets_printed": "NO"
   },
   "blockers": [
-    "BLOCKED_EXTERNAL_CREDENTIALS",
-    "BLOCKED_SUPABASE_ACCESS",
-    "BLOCKED_VERCEL_ACCESS"
+    "BLOCKED_EXTERNAL_CREDENTIALS"
   ],
   "blocker_detail": {
-    "BLOCKED_EXTERNAL_CREDENTIALS": "New project-owned Google OAuth Client ID and Client Secret must be created and loaded by a human through secure provider dashboards.",
-    "BLOCKED_SUPABASE_ACCESS": "Supabase Google provider state was not read or modified in this no-SQL, no-migration, no-provider-mutation cycle.",
-    "BLOCKED_VERCEL_ACCESS": "Preview/Staging env vars were not changed; Production env vars remain untouched."
+    "BLOCKED_EXTERNAL_CREDENTIALS": "Codex cannot complete the Google login and final /role callback without a human-controlled staging/test Google account. Do not paste credentials, cookies, tokens, auth codes, user IDs, Client ID, or Client Secret."
   },
-  "next_mode": "EXPRESSJOBS_GOOGLE_OAUTH_PROVIDER_MANUAL_CONFIG_AND_PREVIEW_SMOKE",
-  "next_mode_reason": "The repo is ready for the minimum human provider step: create/load Google OAuth credentials securely, enable Preview/Staging flags, then smoke Google login."
+  "next_mode": "EXPRESSJOBS_GOOGLE_OAUTH_HUMAN_LOGIN_CALLBACK_VERIFY",
+  "next_mode_reason": "Preview starts Google OAuth correctly; the remaining evidence is the human login completion and sanitized callback result."
 }

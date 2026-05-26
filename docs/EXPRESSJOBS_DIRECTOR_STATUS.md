@@ -4,7 +4,7 @@
 
 ## Status
 
-Cycle Google OAuth Supabase provider readiness confirmed local Supabase ref `gnsfyvsodslnehszanra`, documented the exact project-owned Google OAuth checklist, and kept the work Google-only. Google login remains hidden unless `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and Supabase public config are present. The app redirects internally to `/auth/callback`; the expected Supabase provider callback is `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback`. No Google credentials were created, no Supabase Auth Provider was modified, no Vercel Production env vars were touched, and Production remains `NO-GO_PRODUCTION`.
+Cycle Google OAuth configured Preview smoke confirmed Supabase project `gnsfyvsodslnehszanra` is accessible and `ACTIVE_HEALTHY`, confirmed the existing Supabase Preview branch for `codex/google-oauth-account-separation-only`, and avoided creating any new Supabase branch because there is no `supabase/` diff. The human-created Google OAuth Web Client was reported loaded into Supabase Authentication > Providers > Google. Vercel Preview branch env was repaired for `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and `NEXT_PUBLIC_APP_URL`, then a `--target preview` deployment was created at `https://codex-expressjobs-4shv25dkd-akuma424-projects.vercel.app`. Browser smoke shows `/auth` and `/register` load, Google is visible, Facebook/Instagram remain hidden, and clicking Google reaches `accounts.google.com` with the `gnsfyvsodslnehszanra.supabase.co/auth/v1/callback` reference. Full `/role` completion remains blocked by human Google staging login. No secrets were printed, no SQL/migrations ran, no Supabase provider mutation was attempted by Codex, no Vercel Production env vars were touched, and Production remains `NO-GO_PRODUCTION`.
 Bootstrap cycle 001 created a clean Next.js MVP in the real Git repository.
 Cycle 002 expanded it into a usable MVP foundation with client, worker, admin, onboarding, legal, pricing, services, and QA documentation.
 Cycle 003 added static Supabase RLS smoke tests and identified live RLS validation as blocked by external staging Supabase access.
@@ -147,8 +147,8 @@ Cycle 017 expanded Vercel Preview smoke coverage without DB changes. `scripts/sm
 
 ## Next Gate
 
-Google-only OAuth provider readiness is prepared for human/provider setup. Supabase local project ref points to `gnsfyvsodslnehszanra` and is ignored by git. Public Production exposure remains neutralized, and Google OAuth must remain disabled/hidden until the project-owned Google Cloud OAuth client is configured in Supabase and Preview/Staging flags are intentionally enabled.
+Google-only OAuth Preview is ready for the human login completion step. Supabase local project ref points to `gnsfyvsodslnehszanra` and is ignored by git; branch capacity is not blocking because only the default branch plus the current OAuth branch are present. Public Production exposure remains neutralized. Preview shows Google and reaches Google sign-in; final session/callback proof requires a human-controlled staging/test Google account.
 
 ## Current Operator Action
 
-Current fastest safe step: configure the new project-owned Google Cloud OAuth client manually, load its Client ID/Secret into Supabase Authentication > Providers > Google for project `gnsfyvsodslnehszanra`, enable `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and `NEXT_PUBLIC_APP_URL=<preview/staging estable>` only in Preview/Staging, then run Google OAuth smoke. Do not migrate GitHub, Vercel, or Supabase ownership in this Google-only cycle.
+Current fastest safe step: with a human-controlled staging/test Google account, open `https://codex-expressjobs-4shv25dkd-akuma424-projects.vercel.app/auth`, click `Continuar con Google`, complete login, and report only sanitized result: whether it returns to `/role` or which visible non-secret error appears. Do not share email, tokens, cookies, auth codes, user IDs, Client ID, or Client Secret.
