@@ -2,53 +2,44 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "branch": "codex/expressjobs-global-soft-premium-redesign-manual",
-  "mode": "EXPRESSJOBS_GLOBAL_SOFT_PREMIUM_REDESIGN_COMPLETE",
-  "updated_at": "2026-05-26T14:12:43-03:00",
+  "branch": "codex/expressjobs-product-ux-review-after-redesign",
+  "mode": "EXPRESSJOBS_PRODUCT_UX_REVIEW_AFTER_GLOBAL_REDESIGN",
+  "commit": "GIT_HEAD_RECORDED_IN_FINAL_DIRECTOR_REPORT",
+  "updated_at": "2026-05-26T14:46:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
+  "ux_review_status": "APPLIED_AND_VALIDATED",
   "summary": {
-    "global_visual_system": "APPLIED",
-    "auth_google_button": "VISIBLE_AND_PREPARED",
-    "auth_email_login": "DARK_INTEGRATED",
-    "como_funciona": "DARK_PREMIUM_COMPLETE",
-    "worker_jobs": "DARK_MARKETPLACE_LIST",
-    "client_job_new": "DARK_TWO_COLUMN_FORM",
-    "dashboards": "DARK_SHARED_COMPONENTS",
-    "loading_error_not_found": "DARK_GLOBAL_STATES",
-    "design_docs": [
-      "docs/design/EXPRESSJOBS_DESIGN_SYSTEM.md",
-      "docs/design/EXPRESSJOBS_GLOBAL_VISUAL_AUDIT.md"
-    ]
+    "scope": "Small post-redesign product UX improvements for MVP clarity",
+    "auth": "REVIEWED_GOOGLE_AND_EMAIL_ENTRY_REMAIN_VISIBLE",
+    "role_selection": "IMPROVED_WITH_RECOMMENDED_USE_CASES",
+    "publish_job": "IMPROVED_HELPER_COPY_ERRORS_AND_NEXT_STEP",
+    "worker_jobs": "IMPROVED_SEARCH_GUIDANCE_AND_EMPTY_STATES",
+    "job_detail_apply": "IMPROVED_POSTULATION_HELPER_COPY_AND_OUTCOME",
+    "client_review": "IMPROVED_APPLICATION_STATE_LABELS_AND_ACCEPT_REJECT_COPY",
+    "dashboards": "IMPROVED_RECOMMENDED_NEXT_STEPS",
+    "global_states": "REVIEWED_DARK_SYSTEM_RETAINED"
   },
-  "routes_smoked_local": [
+  "routes_reviewed": [
     "/",
     "/auth",
+    "/register",
     "/como-funciona",
-    "/worker/jobs",
-    "/client/jobs/new",
     "/jobs",
     "/pricing",
     "/ofertas",
-    "/register",
-    "/dashboard/client",
-    "/dashboard/worker",
-    "/dashboard/client/profile",
-    "/dashboard/worker/profile",
-    "/admin",
     "/production-paused",
-    "/missing-visual-smoke"
+    "/client/jobs/new",
+    "/client/jobs/[id]",
+    "/dashboard/client",
+    "/dashboard/client/profile",
+    "/dashboard/worker",
+    "/dashboard/worker/profile",
+    "/dashboard/worker/applications",
+    "/worker",
+    "/worker/jobs",
+    "/worker/jobs/[id]",
+    "/admin"
   ],
-  "visual_smoke": {
-    "local_url": "http://localhost:3000",
-    "desktop_1360": "PASS",
-    "tablet_768": "PASS_AFTER_HEADER_BREAKPOINT_FIX",
-    "mobile_390": "PASS",
-    "white_generic_blocks": "NONE_DETECTED",
-    "console_errors": "NONE_RELEVANT",
-    "auth_google_visible": true,
-    "auth_email_visible": true,
-    "no_go_visible": true
-  },
   "checks": {
     "secret_scan": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
@@ -60,9 +51,41 @@
     "typecheck": "PASS",
     "test": "PASS_10_FILES_59_TESTS",
     "build": "PASS",
-    "git_diff_check": "PASS"
+    "git_diff_check": "PASS",
+    "json_parse": "PASS"
+  },
+  "staging_status": {
+    "staging_check": "PASS",
+    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
+    "preview_status": "NOT_DEPLOYED_IN_THIS_CYCLE",
+    "browser_smoke_local": "PASS"
+  },
+  "browser_smoke_local": {
+    "local_url": "http://localhost:3000",
+    "desktop_1360": "PASS",
+    "tablet_768": "PASS",
+    "mobile_390": "PASS_AFTER_HEADER_BADGE_OVERFLOW_FIX",
+    "routes": [
+      "/",
+      "/auth",
+      "/register",
+      "/como-funciona",
+      "/jobs",
+      "/worker/jobs",
+      "/client/jobs/new",
+      "/dashboard/client",
+      "/dashboard/worker",
+      "/pricing",
+      "/ofertas",
+      "/production-paused"
+    ],
+    "auth_google_visible": true,
+    "no_go_visible": true,
+    "white_generic_blocks": "NONE_DETECTED",
+    "console_errors": "NONE_RELEVANT"
   },
   "production_guards": {
+    "production_status": "NO-GO_PRODUCTION",
     "vercel_prod_deploy": "NOT_RUN",
     "vercel_promote": "NOT_RUN",
     "vercel_production_env_mutation": "NO",
@@ -70,9 +93,11 @@
     "paypal_live": "OFF",
     "real_payments": "OFF",
     "secrets_printed": "NO",
+    "env_committed": "NO",
     "rls_disabled": "NO"
   },
   "blockers": [],
-  "next_mode": "EXPRESSJOBS_PRODUCT_UX_REVIEW",
-  "next_mode_reason": "After the global redesign, the next safe high-impact step is validating real MVP flows and copy clarity across client and worker journeys."
+  "next_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT",
+  "next_mode_reason": "After UX clarity improvements, the next safe high-impact step is validating the real staging marketplace journey end to end.",
+  "next_prompt": "Run EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT in C:\\CODEX-expressjobs-repo from the latest safe branch. Validate auth, role, publish, search, apply, client review, accept/reject, worker status, RLS smoke, local browser smoke, build and tests. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION and do not touch production, live payments, PayPal live, Vercel Production env vars, Supabase production, secrets, or RLS relaxations."
 }

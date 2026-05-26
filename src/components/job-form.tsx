@@ -39,7 +39,7 @@ export function JobForm() {
 
     if (!supabase) {
       setState("error");
-      setMessage("Supabase no esta configurado en este ambiente.");
+      setMessage("No pudimos conectar con los datos del piloto en este ambiente. Proba de nuevo mas tarde.");
       return;
     }
 
@@ -92,12 +92,12 @@ export function JobForm() {
 
     if (jobError || !createdJob) {
       setState("error");
-      setMessage("No se pudo publicar el trabajo. Revisa los datos e intenta de nuevo.");
+      setMessage("No se pudo publicar el trabajo. Revisa titulo, descripcion, zona y presupuesto aproximado, e intenta de nuevo.");
       return;
     }
 
     setState("success");
-    setMessage("Trabajo publicado correctamente.");
+    setMessage("Trabajo publicado correctamente. Ahora podes revisar postulaciones desde el detalle.");
     router.push(`/client/jobs/${createdJob.id}`);
   }
 
@@ -109,6 +109,7 @@ export function JobForm() {
       </div>
       <label className="grid gap-2 text-sm font-bold">
         Titulo
+        <span className="ej-soft text-xs font-semibold">Escribi la tarea en una frase concreta. Evita datos personales.</span>
         <input
           className="focus-ring ej-input font-normal"
           onChange={(event) => setTitle(event.target.value)}
@@ -118,6 +119,7 @@ export function JobForm() {
       </label>
       <label className="grid gap-2 text-sm font-bold">
         Categoria
+        <span className="ej-soft text-xs font-semibold">Elegila por el tipo de ayuda que esperas recibir.</span>
         <select
           className="focus-ring ej-select font-normal"
           onChange={(event) => setCategory(event.target.value as (typeof categories)[number])}
@@ -130,6 +132,7 @@ export function JobForm() {
       </label>
       <label className="grid gap-2 text-sm font-bold">
         Descripcion
+        <span className="ej-soft text-xs font-semibold">Inclui que hay que hacer, cuando lo necesitas y cualquier condicion importante.</span>
         <textarea
           className="focus-ring ej-textarea font-normal"
           onChange={(event) => setDescription(event.target.value)}
@@ -140,6 +143,7 @@ export function JobForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold">
           Ubicacion
+          <span className="ej-soft text-xs font-semibold">Zona aproximada; no publiques direccion exacta.</span>
           <div className="relative">
             <MapPin aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ej-text-soft)]" size={16} />
             <input
@@ -151,8 +155,9 @@ export function JobForm() {
           </div>
         </label>
         <label className="grid gap-2 text-sm font-bold">
-        Presupuesto aproximado
-        <input
+          Presupuesto aproximado
+          <span className="ej-soft text-xs font-semibold">Puede ser estimado. Sirve para comparar propuestas, no es pago dentro de la app.</span>
+          <input
             className="focus-ring ej-input font-normal"
             inputMode="numeric"
             onChange={(event) => setBudget(event.target.value)}
@@ -175,7 +180,7 @@ export function JobForm() {
         disabled={state === "loading"}
         type="submit"
       >
-        {state === "loading" ? "Publicando..." : "Publicar una tarea"}
+        {state === "loading" ? "Publicando..." : "Publicar trabajo"}
       </button>
     </form>
   );

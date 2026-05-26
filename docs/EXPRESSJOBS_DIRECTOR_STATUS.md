@@ -4,6 +4,12 @@
 
 ## Current Status - 2026-05-26
 
+Mode `EXPRESSJOBS_PRODUCT_UX_REVIEW_AFTER_GLOBAL_REDESIGN` completed on branch `codex/expressjobs-product-ux-review-after-redesign`.
+
+Post-redesign UX review applied small product clarity improvements without architecture, database, payment, production, Supabase production, or RLS changes. Role selection now explains who each path is for; job publication has safer helper copy and clearer next-step/error messages; worker search and empty states explain how to continue; client and worker dashboards show recommended next steps; application status chips now use Spanish labels; client accept/reject and worker application messages are clearer.
+
+Current production state remains `NO-GO_PRODUCTION`. Final checks and local smoke passed and are recorded in `docs/expressjobs-director-status.json`.
+
 Mode `EXPRESSJOBS_GLOBAL_SOFT_PREMIUM_REDESIGN_COMPLETE` completed on branch `codex/expressjobs-global-soft-premium-redesign-manual`.
 
 Global dark premium soft redesign is applied across the current public, auth, marketplace, dashboard, monetization, loading, error, and not-found surfaces. The reusable system now lives in `src/app/globals.css` and `src/components/design-system.tsx`; usage rules are documented in `docs/design/EXPRESSJOBS_DESIGN_SYSTEM.md`, with audit evidence in `docs/design/EXPRESSJOBS_GLOBAL_VISUAL_AUDIT.md`.

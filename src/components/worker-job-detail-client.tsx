@@ -73,7 +73,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
 
     if (!supabase) {
       setState("error");
-      setStatusMessage("Supabase no esta configurado en este ambiente.");
+      setStatusMessage("No pudimos conectar con los datos del piloto en este ambiente.");
       return;
     }
 
@@ -141,7 +141,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
     }
 
     setState("success");
-    setStatusMessage("Postulacion enviada.");
+    setStatusMessage("Postulacion enviada. El cliente podra verla y marcarla como aceptada o rechazada.");
   }
 
   if (loading) {
@@ -166,6 +166,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
       <form className="mt-5 grid gap-3 rounded-2xl border border-white/10 bg-white/10 p-4" onSubmit={handleApply}>
         <label className="grid gap-2 text-sm font-bold">
           Mensaje para el cliente
+          <span className="ej-soft text-xs font-semibold">Explica disponibilidad, experiencia y cualquier duda importante.</span>
           <textarea
             className="focus-ring ej-textarea min-h-24 font-normal"
             onChange={(event) => setMessage(event.target.value)}
@@ -175,6 +176,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
         </label>
         <label className="grid gap-2 text-sm font-bold">
           Monto propuesto
+          <span className="ej-soft text-xs font-semibold">Es aproximado y no activa pagos dentro de la app.</span>
           <input
             className="focus-ring ej-input font-normal"
             inputMode="numeric"

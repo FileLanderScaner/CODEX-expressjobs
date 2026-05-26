@@ -15,6 +15,7 @@ const choices = [
     icon: BriefcaseBusiness,
     title: "Busco ayuda",
     text: "Publica una tarea, compara postulaciones y coordina con mas claridad.",
+    fit: "Recomendado si necesitas resolver una tarea concreta y recibir propuestas.",
     button: "Publicar una tarea",
   },
   {
@@ -23,6 +24,7 @@ const choices = [
     icon: UserRoundCheck,
     title: "Quiero trabajar",
     text: "Encuentra tareas cercanas y postulate sin promesas de empleo o ingresos garantizados.",
+    fit: "Recomendado si queres ver trabajos abiertos y enviar una postulacion clara.",
     button: "Buscar trabajos",
   },
 ];
@@ -75,6 +77,7 @@ export function RoleSelector() {
             <Icon aria-hidden="true" className="text-[var(--ej-accent)]" />
             <h2 className="mt-4 text-xl font-black">{choice.title}</h2>
             <p className="ej-muted mt-2 text-sm leading-6">{choice.text}</p>
+            <p className="ej-soft mt-3 rounded-xl border border-white/10 bg-white/5 p-3 text-xs font-semibold leading-5">{choice.fit}</p>
             <button
               className="focus-ring ej-btn-primary mt-4 text-sm disabled:cursor-not-allowed disabled:opacity-60"
               disabled={pendingRole !== null}
