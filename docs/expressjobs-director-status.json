@@ -1,129 +1,141 @@
 {
-    "project":  "ExpressJobs",
-    "public_brand":  "Trabajos Rapidos",
-    "workingDirectory":  "C:\\CODEX-expressjobs-repo",
-    "remote":  "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
-    "branch":  "codex/expressjobs-supabase-security-advisor-closeout",
-    "base_branch":  "main",
-    "head":  "b062cb7c62a2332fdc6138be51a887c30ac22966",
-    "pr_number":  44,
-    "pr_url":  "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/44",
-    "pr_status":  "OPEN",
-    "mode":  "EXPRESSJOBS_PREVIEW_ROUTE_SMOKE_EXECUTION_NO_DB_CHANGES",
-    "previous_mode":  "EXPRESSJOBS_PREVIEW_SMOKE_ROUTE_COVERAGE_NO_DB_CHANGES",
-    "cycle":  "CYCLE_EXPRESSJOBS_017_PREVIEW_SMOKE_ROUTE_COVERAGE",
-    "updated_at":  "2026-05-23T16:35:00-03:00",
-    "production_status":  "NO-GO_PRODUCTION",
-    "supabase_branch_capacity":  {
-                                     "user_limit":  "main_plus_two_branches",
-                                     "checked_before_apply":  true,
-                                     "default_branch":  "main",
-                                     "non_main_branches":  [
-                                                               "codex/expressjobs-supabase-security-advisor-closeout"
-                                                           ],
-                                     "capacity_status":  "PASS_ONLY_ONE_NON_MAIN_BRANCH"
-                                 },
-    "supabase":  {
-                     "project":  "supabase-expressjobs",
-                     "project_ref":  "gnsfyvsodslnehszanra",
-                     "remote_apply_status":  "PASS",
-                     "applied_migrations":  [
-                                                "20260523064307_advisor_security_performance_closeout",
-                                                "20260523064405_fix_job_messages_admin_private_helper",
-                                                "20260523065010_advisor_company_reports_policy_reapply"
-                                            ],
-                     "local_migration_files":  [
-                                                   "supabase/migrations/20260523064307_advisor_security_performance_closeout.sql",
-                                                   "supabase/migrations/20260523064405_fix_job_messages_admin_private_helper.sql",
-                                                   "supabase/migrations/20260523065010_advisor_company_reports_policy_reapply.sql",
-                                                   "supabase/migrations/20260523113000_advisor_security_performance_closeout.sql",
-                                                   "supabase/migrations/20260523120500_advisor_company_reports_policy_reapply.sql"
-                                               ],
-                     "rls_smoke_messages_initial_after_apply":  "FAIL_ADMIN_UPDATE_DELETE_PERMISSION_DENIED_PUBLIC_EJ_IS_ADMIN",
-                     "rls_smoke_messages_after_fix":  "PASS",
-                     "advisor_security_status":  "PARTIAL_REMAINING_DOCUMENTED_EXCEPTIONS",
-                     "advisor_security_remaining":  [
-                                                        "authenticated can execute public.ej_set_profile_role(text, text) SECURITY DEFINER RPC",
-                                                        "auth leaked password protection disabled"
-                                                    ],
-                     "advisor_performance_status":  "PARTIAL_REMAINING_NON_BLOCKING_ITEMS",
-                     "advisor_performance_closed":  [
-                                                        "unindexed foreign keys on public ej_* tables",
-                                                        "public table auth initplan warnings covered by migration where targeted",
-                                                        "multiple permissive ej_job_messages SELECT policies"
-                                                    ],
-                     "advisor_performance_remaining":  [
-                                                           "realtime.messages job_chat_receive initplan warning",
-                                                           "realtime.messages job_chat_send initplan warning",
-                                                           "unused index notices until real usage data exists",
-                                                           "multiple permissive policies on ej_categories",
-                                                           "multiple permissive policies on ej_worker_profiles"
-                                                       ]
-                 },
-    "checks":  {
-                   "supabase_branch_list":  "PASS",
-                   "supabase_apply_advisor_closeout":  "PASS",
-                   "supabase_apply_job_messages_admin_fix":  "PASS",
-                   "supabase_apply_company_reports_policy_reapply":  "PASS",
-                   "rls_smoke_messages":  "PASS",
-                   "supabase_migration_list":  "PASS",
-                   "supabase_security_advisors":  "PASS_RECHECKED_WITH_REMAINING_DOCUMENTED_EXCEPTIONS",
-                   "supabase_performance_advisors":  "PASS_RECHECKED_WITH_REMAINING_DOCUMENTED_ITEMS",
-                   "local_json_parse":  "PASS",
-                   "local_test_rls_static":  "PASS_1_FILE_12_TESTS",
-                   "local_secret_scan":  "PASS",
-                   "local_guard_no_production_deploy":  "PASS",
-                   "local_production_check":  "PASS_NO_GO_PRODUCTION",
-                   "local_staging_check":  "PASS",
-                   "local_rls_smoke_messages":  "PASS",
-                   "local_git_diff_check":  "PASS",
-                   "supabase_preview_after_push":  "FAILED_EXISTING_BRANCH_HISTORY_REQUIRES_20260523113000_COMPAT_FILE",
-                   "supabase_preview_after_compat_push":  "FAILED_MIGRATIONS_FAILED_AFTER_SAFE_REBASE",
-                   "vercel_preview_after_compat_push":  "PASS_AFTER_FINAL_STATUS_PUSH",
-                   "chatgpt_substitute_cycle_014":  "PASS_PUSHED_76fb749",
-                   "chatgpt_substitute_cycle_015":  "PASS_PUSHED_054e8e5",
-                   "post_push_production_check":  "PASS_NO_GO_PRODUCTION",
-                   "post_push_staging_check":  "PASS",
-                   "post_push_rls_static":  "PASS_1_FILE_12_TESTS",
-                   "post_push_rls_smoke_messages":  "PASS",
-                   "cycle_016_public_ux_no_db_changes":  "PASS_PUSHED_073468A",
-                   "cycle_016_production_check":  "PASS_NO_GO_PRODUCTION",
-                   "cycle_016_staging_check":  "PASS",
-                   "cycle_016_lint":  "PASS",
-                   "cycle_016_typecheck":  "PASS",
-                   "cycle_016_build":  "PASS_STATIC_COMO_FUNCIONA_ROUTE",
-                   "cycle_016_vercel_remote":  "SUCCESS",
-                   "cycle_017_preview_smoke_coverage":  "PASS_PUSHED_B062CB7",
-                   "cycle_017_json_parse":  "PASS",
-                   "cycle_017_production_check":  "PASS_NO_GO_PRODUCTION",
-                   "cycle_017_staging_check":  "PASS",
-                   "cycle_017_lint":  "PASS",
-                   "cycle_017_typecheck":  "PASS",
-                   "cycle_017_build":  "PASS",
-                   "cycle_017_vercel_remote":  "SUCCESS",
-                   "cycle_017_preview_smoke_execution":  "PENDING_PREVIEW_URL"
-               },
-    "production_guards":  {
-                              "vercel_prod_deploy":  "NOT_RUN",
-                              "vercel_promote":  "NOT_RUN",
-                              "vercel_production_env_mutation":  "NO",
-                              "supabase_production_mutation":  "NO",
-                              "paypal_live":  "OFF",
-                              "real_payments":  "OFF",
-                              "secrets_printed":  "NO"
-                          },
-    "blockers":  [
-                     "BLOCKED_DASHBOARD_ACTION_REQUIRED",
-                     "BLOCKED_SUPABASE_ACCESS",
-                     "SUPABASE_BRANCH_CAPACITY_PREFLIGHT_REQUIRED",
-                     "PR_REVIEW_OR_MERGE_DECISION_PENDING"
-                 ],
-    "blocker_details":  {
-                            "BLOCKED_DASHBOARD_ACTION_REQUIRED":  "Auth leaked password protection must be enabled in Supabase Dashboard.",
-                            "BLOCKED_SUPABASE_ACCESS":  "PR #44 Supabase Preview branch remains MIGRATIONS_FAILED after restoring compatibility migration and running a safe rebase; reset/delete branch is destructive and not authorized.",
-                            "SUPABASE_BRANCH_CAPACITY_PREFLIGHT_REQUIRED":  "Before any new Supabase migration, DDL apply, Preview branch workflow, or Advisor closeout apply, list branches and confirm available capacity under the user\u0027s Supabase Free tier branch limit.",
-                            "PR_REVIEW_OR_MERGE_DECISION_PENDING":  "PR #44 is technically strengthened by local/post-push validation, but merge/review decision remains pending. Do not merge if it would trigger unsafe production behavior."
-                        },
-    "next_mode":  "EXPRESSJOBS_PREVIEW_ROUTE_SMOKE_EXECUTION_NO_DB_CHANGES",
-    "next_mode_reason":  "Cycle 017 expanded Preview smoke route coverage and Vercel remote status is SUCCESS. Next step is to run smoke:preview against the protected Preview URL without touching Supabase or production."
+  "project": "ExpressJobs",
+  "public_brand": "Trabajos Rapidos",
+  "workingDirectory": "C:\\CODEX-expressjobs-repo",
+  "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
+  "branch": "codex/google-oauth-account-separation-only",
+  "base_branch": "main",
+  "mode": "EXPRESSJOBS_AUTH_SESSION_PROFILE_PERSISTENCE_AND_ACCOUNT_UX",
+  "updated_at": "2026-05-26T10:19:14-03:00",
+  "production_status": "NO-GO_PRODUCTION",
+  "supabase": {
+    "project_ref": "gnsfyvsodslnehszanra",
+    "project_name": "supabase-expressjobs",
+    "status": "ACTIVE_HEALTHY",
+    "mcp_access": "PASS",
+    "local_project_ref_file": "supabase/.temp/project-ref",
+    "local_project_ref_file_exists": true,
+    "local_project_ref_ignored_by_git": true,
+    "branches": {
+      "checked": true,
+      "default_branch": "main",
+      "non_default_branches": [
+        "codex/google-oauth-account-separation-only"
+      ],
+      "branch_capacity_status": "PASS_NOT_AT_KNOWN_LIMIT",
+      "new_branch_created": false,
+      "branch_requirement": "SUPABASE_BRANCH_NOT_REQUIRED_NO_SUPABASE_DIFF"
+    },
+    "readonly_user_check": {
+      "TEST_ACCOUNT_A": "SUPABASE_READONLY_USER_CHECK_BLOCKED_NO_SAFE_AUTH_USER_QUERY_TOOL",
+      "TEST_ACCOUNT_B": "SUPABASE_READONLY_USER_CHECK_BLOCKED_NO_SAFE_AUTH_USER_QUERY_TOOL",
+      "pii_printed": false,
+      "secrets_printed": false
+    },
+    "sql_executed": false,
+    "migrations_executed": false
+  },
+  "auth_callback": {
+    "exchange_code_for_session": "CONFIRMED_IN_CODE",
+    "get_user_after_exchange": "CONFIRMED_IN_CODE",
+    "profile_upsert_table": "ej_profiles",
+    "profile_upsert_id": "user.id",
+    "default_oauth_role": "client",
+    "existing_profile_behavior": "ignoreDuplicates_true_preserves_existing_profile",
+    "success_redirect": "/role",
+    "failure_redirects": [
+      "provider_error",
+      "missing_code",
+      "not_configured",
+      "exchange_failed",
+      "profile_setup_failed"
+    ]
+  },
+  "account_ux": {
+    "server_helpers_added": [
+      "getCurrentUser",
+      "getCurrentProfile",
+      "requireUser",
+      "requireProfile",
+      "getDisplayName",
+      "getAccountNavState"
+    ],
+    "account_nav": "CONDITIONAL_MI_CUENTA_WHEN_SIGNED_IN",
+    "profile_route": "/profile",
+    "profile_fields_editable": [
+      "full_name",
+      "phone",
+      "city"
+    ],
+    "role_direct_edit": "NOT_ALLOWED",
+    "logout": "IMPLEMENTED_CLIENT_SIGNOUT",
+    "service_role_in_client": false
+  },
+  "vercel": {
+    "project_scope": "akuma424-projects/codex-expressjobs",
+    "preview_deployment": {
+      "url": "https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app",
+      "id": "dpl_2yo2rHmzBnCM1uDXhpWZWja5sc5m",
+      "target": "preview",
+      "status": "READY"
+    },
+    "production_env_mutation": "NO",
+    "prod_deploy": "NOT_RUN",
+    "promote": "NOT_RUN"
+  },
+  "browser_smoke": {
+    "routes": {
+      "/auth": "PASS_200_SIGNED_OUT",
+      "/register": "PASS_200_SIGNED_OUT",
+      "/role": "PASS_200_SIGNED_OUT",
+      "/profile": "PASS_200_SIGNED_OUT_PROFILE_STATE_VISIBLE",
+      "/dashboard/client": "PASS_200_SIGNED_OUT"
+    },
+    "google_button_visible": true,
+    "facebook_visible": false,
+    "google_click_result": "PASS_REACHED_GOOGLE_SIGN_IN",
+    "supabase_callback_reference": "PASS_gnsfyvsodslnehszanra.supabase.co/auth/v1/callback",
+    "signed_in_session_persistence": "BLOCKED_EXTERNAL_CREDENTIALS_HUMAN_GOOGLE_LOGIN_REQUIRED",
+    "logout_live_result": "BLOCKED_EXTERNAL_CREDENTIALS_HUMAN_GOOGLE_LOGIN_REQUIRED"
+  },
+  "checks": {
+    "git_status_short": "PASS_CLEAN_BEFORE_CHANGES",
+    "git_branch": "PASS_codex/google-oauth-account-separation-only",
+    "git_remote_v": "PASS_origin_PRESENT_neworigin_PRESENT_NOT_USED",
+    "git_log_oneline_5": "PASS_EXPECTED_COMMITS_PRESENT",
+    "supabase_project_ref_exists": "PASS",
+    "supabase_project_ref_value": "PASS_gnsfyvsodslnehszanra",
+    "supabase_project_ref_gitignored": "PASS",
+    "supabase_project_list": "PASS",
+    "supabase_branches": "PASS_MAIN_PLUS_CURRENT_BRANCH",
+    "secret_scan": "PASS",
+    "staging_check": "PASS",
+    "production_check": "PASS_NO_GO_PRODUCTION",
+    "guard_no_production_deploy": "PASS",
+    "rls_static": "PASS_1_FILE_12_TESTS",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "test": "PASS_10_FILES_59_TESTS",
+    "build": "PASS",
+    "preview_browser_smoke": "PASS_SIGNED_OUT_AND_GOOGLE_START",
+    "json_parse": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "production_guards": {
+    "vercel_prod_deploy": "NOT_RUN",
+    "vercel_promote": "NOT_RUN",
+    "vercel_production_env_mutation": "NO",
+    "supabase_production_mutation": "NO",
+    "paypal_live": "OFF",
+    "real_payments": "OFF",
+    "secrets_printed": "NO"
+  },
+  "blockers": [
+    "BLOCKED_EXTERNAL_CREDENTIALS"
+  ],
+  "blocker_detail": {
+    "BLOCKED_EXTERNAL_CREDENTIALS": "Codex cannot complete TEST_ACCOUNT_A/B Google login, refresh/reopen persistence, profile reuse, or logout live proof without human-controlled staging/test Google accounts. Do not paste credentials, cookies, tokens, auth codes, user IDs, emails, Client ID, or Client Secret."
+  },
+  "next_mode": "EXPRESSJOBS_HUMAN_AUTH_SESSION_PERSISTENCE_VERIFY",
+  "next_mode_reason": "Code and Preview UX are ready; the remaining gate is human login verification for session/profile persistence and logout."
 }

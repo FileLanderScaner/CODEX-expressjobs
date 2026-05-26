@@ -4,6 +4,7 @@
 
 ## Status
 
+Cycle auth session/profile persistence and account UX added server-side session/profile helpers, conditional account nav, `/profile`, safe profile editing for `full_name`/`phone`/`city`, and logout. The OAuth callback still exchanges the code, reads the Supabase user, upserts `ej_profiles` with default OAuth role `client`, preserves existing profiles through `ignoreDuplicates`, and redirects to `/role` on success. Supabase MCP confirms project `gnsfyvsodslnehszanra` is accessible and `ACTIVE_HEALTHY`; direct TEST_ACCOUNT_A/B Auth user reads remain blocked because no safe Auth-user query tool is exposed without PII/secrets. Preview `https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app` is `Ready`, target `preview`; signed-out browser smoke passes for `/auth`, `/register`, `/role`, `/profile`, and `/dashboard/client`, with Google visible and reaching Google. Full session persistence after human login remains blocked by human-controlled Google credentials. No secrets were printed, no SQL/migrations ran, no Vercel Production env vars were touched, and Production remains `NO-GO_PRODUCTION`.
 Bootstrap cycle 001 created a clean Next.js MVP in the real Git repository.
 Cycle 002 expanded it into a usable MVP foundation with client, worker, admin, onboarding, legal, pricing, services, and QA documentation.
 Cycle 003 added static Supabase RLS smoke tests and identified live RLS validation as blocked by external staging Supabase access.
@@ -146,8 +147,8 @@ Cycle 017 expanded Vercel Preview smoke coverage without DB changes. `scripts/sm
 
 ## Next Gate
 
-Public Production exposure is neutralized. PR #42 is merged into `main`, Supabase Advisor closeout is applied to staging, and realtime chat RLS smoke is PASS after the admin policy fix. PR #44 local/staging evidence is good and Vercel Preview is PASS, but remote merge planning is blocked by Supabase Preview `MIGRATIONS_FAILED` on the existing branch. Preview UI smoke previously passed when using the safe local Vercel Deployment Protection bypass header. Without bypass, Preview remains globally `401` by Deployment Protection, not by route failure.
+Google-only OAuth Preview now has clearer account UX for the human login completion step. Supabase local project ref points to `gnsfyvsodslnehszanra` and is ignored by git; branch capacity is not blocking because only the default branch plus the current OAuth branch are present. Public Production exposure remains neutralized. Preview shows Google and reaches Google sign-in; final session/profile persistence proof requires a human-controlled staging/test Google account.
 
 ## Current Operator Action
 
-Current fastest safe release-ops step: close out the PR #44 Supabase Preview branch blocker without production changes. Do not reset/delete the Supabase Preview branch without explicit authorization. Keep planning the remaining advisor exceptions: `ej_set_profile_role` redesign, leaked password protection Dashboard action, Realtime policy initplan, and non-destructive policy/index cleanup.
+Current fastest safe step: with a human-controlled staging/test Google account, open `https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app/auth`, click `Continuar con Google`, complete login, confirm `/role`, then open `/profile`, refresh, reopen Preview, and logout. Report only sanitized labels: TEST_ACCOUNT_A/TEST_ACCOUNT_B and PASS/FAIL for session persistence/profile/logout. Do not share email, tokens, cookies, auth codes, user IDs, Client ID, or Client Secret.

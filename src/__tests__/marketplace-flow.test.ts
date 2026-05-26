@@ -92,6 +92,7 @@ describe("real marketplace flow wiring", () => {
       "src/app/jobs/page.tsx",
       "src/app/jobs/[id]/page.tsx",
       "src/app/register/page.tsx",
+      "src/app/profile/page.tsx",
       "src/app/dashboard/worker/profile/page.tsx",
       "src/app/dashboard/worker/applications/page.tsx",
       "src/app/dashboard/client/profile/page.tsx",

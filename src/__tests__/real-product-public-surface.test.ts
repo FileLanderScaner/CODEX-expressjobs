@@ -60,8 +60,9 @@ describe("real public product surface", () => {
     expect(appShell).toContain("WhatsApp 097045305");
     expect(offers).toContain("097045305");
     expect(offers).toContain("publicSalesContact.email");
+    expect(monetizationConfig).toContain('ownerName: "Ronald Gonzalez"');
     expect(monetizationConfig).toContain('whatsappNumber: "59897045305"');
-    expect(monetizationConfig).toContain('email: "akuma_g1@hotmail.com"');
+    expect(monetizationConfig).toContain('email: "trabajosrapidos.uy@gmail.com"');
   });
 
   it("uses real empty states instead of presenting fallback jobs as real", () => {
