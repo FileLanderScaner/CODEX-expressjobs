@@ -1,7 +1,6 @@
 "use client";
 
 import { Globe2, Users } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 import { isSupabaseConfigured } from "@/lib/env";
 import {
@@ -24,26 +23,26 @@ const providerIcons = {
 export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
   const flags = getSocialAuthFlags();
   const enabledProviders = getEnabledSocialAuthProviders(flags);
-  const visibleProviders: SocialAuthProvider[] = [
-    "google",
-    ...enabledProviders.filter((provider) => provider !== "google"),
-  ];
+  const visibleProviders = enabledProviders;
   const [pendingProvider, setPendingProvider] = useState<SocialAuthProvider | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const supabaseConfigured = isSupabaseConfigured();
-  const googleVisibleButDisabled = !flags.google || !supabaseConfigured;
+
+  if (!supabaseConfigured || visibleProviders.length === 0) {
+    return null;
+  }
 
   async function handleOAuth(provider: SocialAuthProvider) {
     setErrorMessage(null);
 
     if (!flags[provider]) {
-      setErrorMessage("Google login todavia no esta activado para este ambiente. Revisa /auth/diagnostics.");
+      setErrorMessage("Este login social todavia no esta activado para este ambiente.");
       return;
     }
 
     if (!supabaseConfigured) {
-      setErrorMessage("Supabase Auth no esta configurado en este ambiente. Revisa /auth/diagnostics.");
+      setErrorMessage("Supabase Auth no esta configurado en este ambiente.");
       return;
     }
 
@@ -67,13 +66,13 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
       {visibleProviders.map((provider) => {
         const Icon = providerIcons[provider];
         const isPending = pendingProvider === provider;
-        const isDisabled = provider === "google" ? googleVisibleButDisabled : !flags[provider] || !supabaseConfigured;
+        const isDisabled = !flags[provider] || !supabaseConfigured;
 
         return (
           <button
             aria-disabled={isDisabled}
             className="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-[var(--line)] bg-white px-4 py-3 text-sm font-bold text-[var(--foreground)] hover:border-[var(--brand)] disabled:cursor-not-allowed disabled:opacity-60"
-            disabled={isPending}
+            disabled={isDisabled || isPending}
             key={provider}
             onClick={() => void handleOAuth(provider)}
             type="button"
@@ -83,11 +82,6 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
           </button>
         );
       })}
-      {googleVisibleButDisabled ? (
-        <p className="rounded-md border border-[var(--line)] bg-[#f8faf8] p-3 text-sm text-[var(--muted)]">
-          Google login esta visible, pero falta activarlo para este ambiente. Revisa <Link className="font-bold underline" href="/auth/diagnostics">/auth/diagnostics</Link> y configura <code>NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true</code> junto con el provider Google en Supabase.
-        </p>
-      ) : null}
       {errorMessage ? <p className="text-sm font-bold text-[var(--danger)]">{errorMessage}</p> : null}
     </section>
   );
