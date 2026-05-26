@@ -158,7 +158,7 @@ Cycle `EXPRESSJOBS_AUTH_SESSION_PROFILE_PERSISTENCE_AND_ACCOUNT_UX` added the ac
 - Editable profile fields are limited to `full_name`, `phone`, and `city`; direct role editing is not exposed.
 - Logout uses `supabase.auth.signOut()` from the browser client and redirects to `/auth`.
 - The role update API no longer logs full user IDs on RPC errors.
-- Preview smoke URL: `https://codex-expressjobs-1x2o220r5-akuma424-projects.vercel.app`.
+- Preview smoke URL: `https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app`.
 - Signed-out browser smoke passes for `/auth`, `/register`, `/role`, `/profile`, and `/dashboard/client`; Google remains visible and reaches Google sign-in with the expected Supabase callback reference.
 - Full TEST_ACCOUNT_A/B persistence remains blocked until a human completes Google login and reports sanitized PASS/FAIL for `/role`, `/profile`, refresh/reopen, returning-user behavior, and logout.
 

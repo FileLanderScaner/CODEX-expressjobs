@@ -54,8 +54,8 @@ Close the authenticated-account UX gap after Google OAuth starts successfully: m
 
 ## Preview Smoke
 
-- Preview URL: `https://codex-expressjobs-1x2o220r5-akuma424-projects.vercel.app`
-- Deployment: `dpl_BFN7naB2sQwiNMYe6Xf3pKm8KAaa`
+- Preview URL: `https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app`
+- Deployment: `dpl_2yo2rHmzBnCM1uDXhpWZWja5sc5m`
 - Target: `preview`
 - Status: `Ready`
 
@@ -131,7 +131,7 @@ Continue in `C:\CODEX-expressjobs-repo` on branch `codex/google-oauth-account-se
 
 Mode: `EXPRESSJOBS_HUMAN_AUTH_SESSION_PERSISTENCE_VERIFY`.
 
-Objective: verify the final human Google login persistence flow on Preview `https://codex-expressjobs-1x2o220r5-akuma424-projects.vercel.app` without exposing PII or secrets.
+Objective: verify the final human Google login persistence flow on Preview `https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app` without exposing PII or secrets.
 
 Rules: keep `PRODUCTION_STATUS=NO-GO_PRODUCTION`; do not use `vercel --prod`; do not use `vercel promote`; do not modify Vercel Production env vars; do not print secrets or PII; do not run SQL or migrations; do not use service role in client; do not relax RLS.
 

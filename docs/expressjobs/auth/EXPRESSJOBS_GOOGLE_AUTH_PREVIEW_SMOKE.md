@@ -88,7 +88,7 @@ Keep Facebook disabled and Instagram disabled until their separate provider gate
 Latest account UX Preview:
 
 ```text
-https://codex-expressjobs-1x2o220r5-akuma424-projects.vercel.app
+https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app
 ```
 
 Added after the original Google smoke:
