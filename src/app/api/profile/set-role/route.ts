@@ -90,7 +90,7 @@ export async function POST(request: Request) {
     if (error) {
       console.error("set-role failed", {
         code: error.code,
-        userId: user.id,
+        userRef: "authenticated_user",
       });
 
       return NextResponse.json(

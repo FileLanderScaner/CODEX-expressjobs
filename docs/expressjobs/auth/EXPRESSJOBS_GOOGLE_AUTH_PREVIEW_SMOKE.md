@@ -82,3 +82,21 @@ Do not include Vercel bypass query parameters in any redirect URL.
 The operator completed the browser login flow and reached `/role`. No tokens, cookies, auth codes, user IDs, account details, or secrets were recorded.
 
 Keep Facebook disabled and Instagram disabled until their separate provider gates are executed.
+
+## Account UX Follow-Up
+
+Latest account UX Preview:
+
+```text
+https://codex-expressjobs-1x2o220r5-akuma424-projects.vercel.app
+```
+
+Added after the original Google smoke:
+
+- Conditional header account state: signed out shows `Ingresar`; signed in shows `Mi cuenta`.
+- New `/profile` route for session state, profile fields, dashboard CTA, and logout.
+- Safe profile edits are limited to `full_name`, `phone`, and `city`.
+- Direct role editing is not exposed on `/profile`.
+- Logout uses Supabase browser sign-out and returns to `/auth`.
+
+Codex validated signed-out routes and Google start again. TEST_ACCOUNT_A/B persistence after human Google login remains pending because Codex must not receive test emails, cookies, tokens, auth codes, user IDs, Client ID, or Client Secret.

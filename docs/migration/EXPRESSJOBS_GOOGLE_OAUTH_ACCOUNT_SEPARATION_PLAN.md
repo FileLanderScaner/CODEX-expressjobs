@@ -148,6 +148,20 @@ Cycle `EXPRESSJOBS_GOOGLE_OAUTH_PROVIDER_CONFIGURED_PREVIEW_SMOKE_TOKEN_SAVER` r
 - Browser smoke result: `/auth` and `/register` load; Google button is visible; Facebook/Instagram remain hidden; clicking Google reaches Google sign-in with the Supabase callback reference `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback`.
 - Full return to `/role` is not proven by Codex because it requires human-controlled Google staging/test login. Do not paste credentials, cookies, tokens, auth codes, user IDs, Client ID, or Client Secret.
 
+## Auth Session Profile Persistence And Account UX
+
+Cycle `EXPRESSJOBS_AUTH_SESSION_PROFILE_PERSISTENCE_AND_ACCOUNT_UX` added the account UX layer needed after Google sign-in:
+
+- Server-side helpers now read Supabase Auth cookies and the current `ej_profiles` row without service-role usage in client code.
+- Header/nav now shows `Ingresar` when signed out and `Mi cuenta` only when a session is detected.
+- `/profile` shows session state, profile name, role, provider label, profile creation date, dashboard CTA, safe editable profile fields, and logout.
+- Editable profile fields are limited to `full_name`, `phone`, and `city`; direct role editing is not exposed.
+- Logout uses `supabase.auth.signOut()` from the browser client and redirects to `/auth`.
+- The role update API no longer logs full user IDs on RPC errors.
+- Preview smoke URL: `https://codex-expressjobs-1x2o220r5-akuma424-projects.vercel.app`.
+- Signed-out browser smoke passes for `/auth`, `/register`, `/role`, `/profile`, and `/dashboard/client`; Google remains visible and reaches Google sign-in with the expected Supabase callback reference.
+- Full TEST_ACCOUNT_A/B persistence remains blocked until a human completes Google login and reports sanitized PASS/FAIL for `/role`, `/profile`, refresh/reopen, returning-user behavior, and logout.
+
 ## Blockers
 
 | Blocker | Meaning | Human action |

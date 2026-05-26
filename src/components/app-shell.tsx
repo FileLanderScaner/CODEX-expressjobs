@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { BadgeDollarSign, BriefcaseBusiness, ClipboardPlus, HelpCircle, Home, LogIn } from "lucide-react";
+import { BadgeDollarSign, BriefcaseBusiness, ClipboardPlus, HelpCircle, Home, LogIn, UserCircle } from "lucide-react";
+import { getAccountNavState } from "@/lib/account";
 import { productionStatus } from "@/lib/env";
 import { publicBrand } from "@/lib/expressjobs-data";
 import { defaultWhatsAppSalesHref, publicSalesContact } from "@/lib/monetization/monetization-config";
@@ -12,7 +13,9 @@ const nav = [
   { href: "/ofertas", label: "Ofertas", icon: BadgeDollarSign },
 ];
 
-export function AppShell({ children }: { children: React.ReactNode }) {
+export async function AppShell({ children }: { children: React.ReactNode }) {
+  const accountNav = await getAccountNavState();
+
   return (
     <div className="min-h-screen">
       <header className="sticky top-0 z-20 border-b border-[var(--line)] bg-white/92 backdrop-blur">
@@ -37,14 +40,23 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 {item.label}
               </Link>
             ))}
+            {accountNav.isSignedIn ? (
+              <Link
+                className="focus-ring inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-[var(--muted)] hover:bg-[#edf3ee] hover:text-[var(--foreground)]"
+                href="/profile"
+              >
+                <UserCircle aria-hidden="true" size={17} />
+                Mi cuenta
+              </Link>
+            ) : null}
           </nav>
           <div className="flex items-center gap-2">
             <Link
-              className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-3 py-2 text-xs font-black text-white shadow-sm hover:bg-[var(--brand-dark)]"
-              href="/auth"
+              className="focus-ring inline-flex max-w-[11rem] items-center gap-2 truncate rounded-md bg-[var(--brand)] px-3 py-2 text-xs font-black text-white shadow-sm hover:bg-[var(--brand-dark)]"
+              href={accountNav.href}
             >
-              <LogIn aria-hidden="true" size={16} />
-              Ingresar
+              {accountNav.isSignedIn ? <UserCircle aria-hidden="true" size={16} /> : <LogIn aria-hidden="true" size={16} />}
+              <span className="truncate">{accountNav.isSignedIn ? "Mi cuenta" : accountNav.label}</span>
             </Link>
             <span className="hidden rounded-md border border-[#e2b8b1] bg-[#fff4f2] px-2 py-1 text-xs font-bold text-[var(--danger)] sm:inline-flex">
               {productionStatus()}
