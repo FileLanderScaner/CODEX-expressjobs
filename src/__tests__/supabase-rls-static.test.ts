@@ -10,6 +10,13 @@ const allMigrations = readdirSync(migrationsDir)
   .map((file) => readFileSync(join(migrationsDir, file), "utf8"))
   .join("\n");
 
+const finalRoleRpcMigration = readFileSync(
+  join(migrationsDir, "20260525193000_revoke_profile_role_rpc_from_authenticated.sql"),
+  "utf8",
+);
+const marketplaceLib = readFileSync(join(process.cwd(), "src/lib/marketplace.ts"), "utf8");
+const roleApiRoute = readFileSync(join(process.cwd(), "src/app/api/profile/set-role/route.ts"), "utf8");
+
 const requiredTables = [
   "ej_profiles",
   "ej_worker_profiles",
@@ -122,18 +129,36 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(allMigrations).toContain("grant execute on function public.ej_accept_job_application(uuid) to authenticated");
   });
 
-  it("keeps security definer role selection authenticated-only and activity-locked", () => {
+  it("moves role selection behind a server-only RPC and revokes direct client execution", () => {
     expect(allMigrations).toContain("create or replace function public.ej_set_profile_role");
     expect(allMigrations).toContain("security definer");
     expect(allMigrations).toContain("set search_path = public");
-    expect(allMigrations).toContain("revoke execute on function public.ej_set_profile_role(text, text) from public");
-    expect(allMigrations).toContain("revoke execute on function public.ej_set_profile_role(text, text) from anon");
-    expect(allMigrations).toContain("grant execute on function public.ej_set_profile_role(text, text) to authenticated");
     expect(allMigrations).toContain("requested_role not in ('client', 'worker')");
     expect(allMigrations).toContain("EXPRESSJOBS_ROLE_CHANGE_LOCKED");
-    expect(allMigrations).toContain("exists (select 1 from public.ej_jobs where client_id = current_user_id)");
-    expect(allMigrations).toContain("exists (select 1 from public.ej_job_applications where worker_id = current_user_id)");
     expect(allMigrations).not.toContain("requested_role in ('admin'");
+
+    expect(finalRoleRpcMigration).toContain("create or replace function public.ej_set_profile_role_for_user");
+    expect(finalRoleRpcMigration).toContain("target_user_id uuid");
+    expect(finalRoleRpcMigration).toContain(
+      "revoke execute on function public.ej_set_profile_role(text, text) from authenticated",
+    );
+    expect(finalRoleRpcMigration).toContain(
+      "revoke execute on function public.ej_set_profile_role_for_user(uuid, text, text) from authenticated",
+    );
+    expect(finalRoleRpcMigration).toContain(
+      "grant execute on function public.ej_set_profile_role_for_user(uuid, text, text) to service_role",
+    );
+    expect(finalRoleRpcMigration).not.toContain(
+      "grant execute on function public.ej_set_profile_role(text, text) to authenticated",
+    );
+    expect(finalRoleRpcMigration).not.toContain(
+      "grant execute on function public.ej_set_profile_role_for_user(uuid, text, text) to authenticated",
+    );
+
+    expect(marketplaceLib).toContain('fetch("/api/profile/set-role"');
+    expect(marketplaceLib).not.toContain('supabase.rpc("ej_set_profile_role"');
+    expect(roleApiRoute).toContain("SUPABASE_SERVICE_ROLE_KEY");
+    expect(roleApiRoute).toContain('adminSupabase.rpc("ej_set_profile_role_for_user"');
   });
 
   it("requires client role for job publishing after role RPC hardening", () => {

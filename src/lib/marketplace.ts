@@ -100,12 +100,40 @@ export function authHref(nextPath: string) {
 }
 
 export async function ensureMarketplaceRole(
-  supabase: SupabaseClient,
+  _supabase: SupabaseClient,
   role: "client" | "worker",
   fullName: string,
 ) {
-  return supabase.rpc("ej_set_profile_role", {
-    requested_role: role,
-    requested_full_name: fullName,
+  const response = await fetch("/api/profile/set-role", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ role, fullName }),
   });
+
+  if (!response.ok) {
+    return {
+      data: null,
+      error: {
+        message: "No se pudo actualizar el rol del perfil.",
+      },
+    };
+  }
+
+  const data = (await response.json()) as { ok?: boolean; role?: "client" | "worker" };
+
+  if (!data.ok) {
+    return {
+      data: null,
+      error: {
+        message: "No se pudo actualizar el rol del perfil.",
+      },
+    };
+  }
+
+  return {
+    data,
+    error: null,
+  };
 }
