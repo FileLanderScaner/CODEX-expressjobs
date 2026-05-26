@@ -48,7 +48,8 @@ describe("real public product surface", () => {
 
     expect(home).toContain("Publicar un trabajo");
     expect(home).toContain("Buscar trabajos");
-    expect(home).toContain("Ingresar / Crear cuenta");
+    expect(home).toContain("Crear cuenta");
+    expect(home).toContain("Crear mi perfil");
     expect(home).not.toContain("Ver demos comerciales");
   });
 
