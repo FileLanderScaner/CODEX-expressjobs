@@ -1,15 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f6f2;
-  --foreground: #17211b;
+  --background: #f6f8f4;
+  --foreground: #101820;
   --muted: #5f6f66;
   --surface: #ffffff;
   --line: #d9ded7;
-  --brand: #0f7b63;
-  --brand-dark: #0b5144;
-  --accent: #e8b15f;
+  --brand: #16a365;
+  --brand-dark: #0f5132;
+  --brand-soft: #e7f6ed;
+  --accent: #f59e0b;
   --danger: #b42318;
+  --dark: #0b0f14;
+  --dark-2: #111827;
+  --dark-3: #17212f;
+  --dark-line: #2b3440;
+  --dark-muted: #b7c0cc;
 }
 
 * {
@@ -25,7 +31,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -41,6 +47,46 @@ textarea {
 }
 
 .focus-ring:focus-visible {
-  outline: 3px solid rgba(15, 123, 99, 0.35);
+  outline: 3px solid rgba(34, 197, 94, 0.38);
   outline-offset: 2px;
+}
+
+.nav-underline {
+  position: relative;
+}
+
+.nav-underline::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: calc(100% - 0.75rem);
+  bottom: 0.2rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0;
+  transition: right 180ms ease, opacity 180ms ease;
+}
+
+.nav-underline:hover::after,
+.nav-underline:focus-visible::after {
+  right: 0.75rem;
+  opacity: 1;
+}
+
+.hero-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.visual-card-clip {
+  clip-path: polygon(0 0, 94% 0, 100% 100%, 6% 100%);
+}
+
+@media (max-width: 767px) {
+  .visual-card-clip {
+    clip-path: none;
+  }
 }
