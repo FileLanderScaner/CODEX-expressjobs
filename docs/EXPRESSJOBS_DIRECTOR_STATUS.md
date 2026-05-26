@@ -4,7 +4,7 @@
 
 ## Status
 
-Cycle Google OAuth account separation prepared a Google-only handoff plan while keeping GitHub, Vercel, Supabase, PayPal, and Production ownership unchanged. PR #44 and PR #46 are merged into `main`; Google login remains hidden unless `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and Supabase public config are present. No Google credentials were created, no Supabase Auth Provider was modified, no Vercel Production env vars were touched, and Production remains `NO-GO_PRODUCTION`.
+Cycle Google OAuth Supabase provider readiness confirmed local Supabase ref `gnsfyvsodslnehszanra`, documented the exact project-owned Google OAuth checklist, and kept the work Google-only. Google login remains hidden unless `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and Supabase public config are present. The app redirects internally to `/auth/callback`; the expected Supabase provider callback is `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback`. No Google credentials were created, no Supabase Auth Provider was modified, no Vercel Production env vars were touched, and Production remains `NO-GO_PRODUCTION`.
 Bootstrap cycle 001 created a clean Next.js MVP in the real Git repository.
 Cycle 002 expanded it into a usable MVP foundation with client, worker, admin, onboarding, legal, pricing, services, and QA documentation.
 Cycle 003 added static Supabase RLS smoke tests and identified live RLS validation as blocked by external staging Supabase access.
@@ -147,8 +147,8 @@ Cycle 017 expanded Vercel Preview smoke coverage without DB changes. `scripts/sm
 
 ## Next Gate
 
-Google-only OAuth account separation is prepared for human/provider setup. Public Production exposure remains neutralized, PR #44 and PR #46 are merged into `main`, and Google OAuth must remain disabled/hidden until the project-owned Google Cloud OAuth client is configured in Supabase and Preview/Staging flags are intentionally enabled.
+Google-only OAuth provider readiness is prepared for human/provider setup. Supabase local project ref points to `gnsfyvsodslnehszanra` and is ignored by git. Public Production exposure remains neutralized, and Google OAuth must remain disabled/hidden until the project-owned Google Cloud OAuth client is configured in Supabase and Preview/Staging flags are intentionally enabled.
 
 ## Current Operator Action
 
-Current fastest safe step: configure the new project-owned Google Cloud OAuth client manually, load its Client ID/Secret into Supabase Auth Provider Google through the Dashboard, enable `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` only in Preview/Staging, then run Google OAuth smoke. Do not migrate GitHub, Vercel, or Supabase ownership in this Google-only cycle.
+Current fastest safe step: configure the new project-owned Google Cloud OAuth client manually, load its Client ID/Secret into Supabase Authentication > Providers > Google for project `gnsfyvsodslnehszanra`, enable `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and `NEXT_PUBLIC_APP_URL=<preview/staging estable>` only in Preview/Staging, then run Google OAuth smoke. Do not migrate GitHub, Vercel, or Supabase ownership in this Google-only cycle.

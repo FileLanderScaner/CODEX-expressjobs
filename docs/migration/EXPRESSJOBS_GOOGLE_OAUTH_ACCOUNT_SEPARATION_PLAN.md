@@ -35,10 +35,11 @@ No OAuth Client, Client Secret, downloaded credential, or Google API key should 
 | Public enable flag | `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN` |
 | Default flag value | `false` |
 | Social providers whitelisted in app | `google`, `facebook` |
-| Google button behavior | Hidden when Supabase public config is missing or no social provider flag is enabled |
+| Google button behavior | Visible only when `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` and Supabase public config is present; hidden when the flag is `false` |
 | OAuth start helper | `signInWithSocialOAuth()` in `src/lib/social-auth.ts` |
 | App callback route | `/auth/callback` |
 | Redirect builder | current browser origin + `/auth/callback` |
+| Expected Supabase provider callback | `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback` |
 | New OAuth profile role | `client` |
 | Public admin assignment | Blocked by app logic and RLS hardening |
 
@@ -58,15 +59,15 @@ OAuth consent screen:
 
 OAuth Client:
 
-- Type: Web application
+- OAuth Client type: Web application
 - Name: `ExpressJobs Web OAuth Client`
 
 Authorized JavaScript origins:
 
 - `http://localhost:3000`
-- A stable Vercel Preview/Staging origin if available
+- Vercel Preview/Staging stable origin when it exists
 
-Authorized redirect URIs:
+Authorized redirect URI:
 
 - `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback`
 
@@ -74,12 +75,14 @@ Do not use arbitrary wildcard Preview URLs. Google OAuth requires exact origins/
 
 ## Supabase Provider Setup
 
-In Supabase project `gnsfyvsodslnehszanra`, configure Authentication Providers -> Google:
+In Supabase project `gnsfyvsodslnehszanra`, configure Authentication > Providers > Google:
 
 - Enable Google provider.
-- Load the new project-owned Google Client ID.
-- Load the new project-owned Google Client Secret.
+- Load the new Client ID.
+- Load the new Client Secret.
 - Confirm the Supabase redirect URL is exactly `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback`.
+- Do not save the Client Secret in the repo.
+- Do not print the Client Secret.
 
 Do not paste secrets into chat, GitHub, docs, screenshots, or `.env` files. Do not modify Supabase Auth Provider Google until the user explicitly authorizes it and the new credentials are available through a secure channel.
 
@@ -90,16 +93,44 @@ Only Preview/Staging may be changed in a future authorized cycle:
 | Variable | Environment | Required state |
 | --- | --- | --- |
 | `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN` | Preview/Staging | `true` only after Supabase Google provider is configured |
-| `NEXT_PUBLIC_SUPABASE_URL` | Preview/Staging | existing staging Supabase URL |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Preview/Staging | existing staging anon key |
-| `NEXT_PUBLIC_APP_URL` | Preview/Staging | exact stable Preview/Staging origin if server-render fallback is needed |
+| `NEXT_PUBLIC_APP_URL` | Preview/Staging | `<preview/staging estable>` |
 
 Do not modify Vercel Production env vars. Do not use `vercel --prod` or `vercel promote`.
 
+## Exact Readiness Checklist
+
+Google Cloud nuevo:
+
+- App name: `ExpressJobs / Trabajos Rapidos`
+- Scopes: `openid`, `email`, `profile`
+- OAuth Client type: Web application
+- Authorized JavaScript origins:
+  - `http://localhost:3000`
+  - Vercel Preview/Staging estable cuando exista
+- Authorized redirect URI:
+  - `https://gnsfyvsodslnehszanra.supabase.co/auth/v1/callback`
+
+Supabase:
+
+- Project: `gnsfyvsodslnehszanra`
+- Authentication > Providers > Google
+- cargar Client ID nuevo
+- cargar Client Secret nuevo
+- no guardar secret en repo
+- no imprimir secret
+
+Vercel Preview/Staging:
+
+- `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true`
+- `NEXT_PUBLIC_APP_URL=<preview/staging estable>`
+- no tocar Production env vars
+
 ## Read-Only Access Findings
 
-- `gcloud` is not installed or not available in the current shell, so Google Cloud account/project state could not be inspected.
-- Supabase provider write/readiness check was not changed; CLI project listing did not provide a confirmed provider state in this cycle.
+- Supabase MCP visibility was reported restored by the operator, and local Supabase project ref is restored to `gnsfyvsodslnehszanra`.
+- `supabase/.temp/project-ref` exists locally, contains `gnsfyvsodslnehszanra`, and is ignored by git through `supabase/.gitignore`.
+- Supabase project status from operator context: `supabase-expressjobs`, `ACTIVE_HEALTHY`.
+- Supabase provider configuration was not read or changed in this no-SQL, no-migration, no-provider-mutation cycle.
 - Vercel env values were not read or changed.
 
 ## Blockers
@@ -122,4 +153,3 @@ Do not modify Vercel Production env vars. Do not use `vercel --prod` or `vercel 
 8. Enable `NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN=true` only in Vercel Preview/Staging.
 9. Smoke `/auth -> Google -> /auth/callback -> /role`.
 10. Keep Production `NO-GO_PRODUCTION`.
-
