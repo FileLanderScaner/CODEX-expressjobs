@@ -62,6 +62,7 @@
     "staging_check": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
+    "rls_static": "PASS_1_FILE_12_TESTS",
     "lint": "PASS",
     "typecheck": "PASS",
     "test": "PASS_9_FILES_54_TESTS",

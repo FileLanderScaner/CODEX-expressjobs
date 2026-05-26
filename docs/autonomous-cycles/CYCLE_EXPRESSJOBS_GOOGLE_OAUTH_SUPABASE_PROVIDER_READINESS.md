@@ -88,6 +88,7 @@ Vercel Preview/Staging:
 | `npm run staging:check` | PASS |
 | `npm run production:check` | PASS, `PRODUCTION_STATUS=NO-GO_PRODUCTION` |
 | `npm run guard:no-production-deploy` | PASS |
+| `npm run test:rls:static` | PASS, 1 file / 12 tests |
 | `npm run lint` | PASS |
 | `npm run typecheck` | PASS |
 | `npm run test` | PASS, 9 files / 54 tests |
