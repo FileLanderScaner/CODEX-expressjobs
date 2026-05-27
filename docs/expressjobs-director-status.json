@@ -40,16 +40,19 @@
     "project_ref": "gnsfyvsodslnehszanra",
     "default_branch": "main",
     "non_main_branches": [
+      "codex/expressjobs-product-ux-review-after-redesign",
       "codex/premium-visual-home-nav-refresh"
     ],
     "capacity_rule": "main_plus_two_non_main",
-    "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE",
+    "capacity_result": "FULL_AFTER_PUSH_NO_NEW_NON_MAIN_BRANCH_SAFE",
     "post_push_supabase_preview": "SKIPPED_NO_SUPABASE_DIRECTORY_CHANGES",
-    "post_push_new_branch_created": false
+    "post_push_new_branch_created": true,
+    "post_push_branch_status": "CREATING_PROJECT",
+    "post_push_preview_project_status": "COMING_UP"
   },
   "supabase_rls": "PASS",
   "staging_check": "PASS",
-  "preview_deploy": "GIT_INTEGRATION_PREVIEW_TRIGGERED_BY_PUSH_PENDING_AT_INITIAL_READ",
+  "preview_deploy": "VERCEL_PREVIEW_READY_BY_INSPECT_GITHUB_CONTEXT_PENDING_AT_LAST_READ",
   "checks": {
     "secret_scan": "PASS_REPEATED_THIS_CYCLE",
     "production_check": "PASS_REPEATED_THIS_CYCLE",
@@ -78,8 +81,10 @@
     "env_committed": "NO",
     "rls_relaxed": "NO"
   },
-  "blockers": [],
-  "next_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT",
-  "next_mode_reason": "Local reconcile work is protected and pushed; next safe step is auditing the real marketplace flow without production or live payments.",
-  "next_prompt": "Run EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT in C:\\CODEX-expressjobs-repo from a new branch codex/expressjobs-real-marketplace-flow-audit based on the pushed PR #51 branch or latest safe main after review. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION. Do not use vercel --prod, vercel promote, Vercel Production env mutation, Supabase production writes, destructive migrations, service-role in client code, RLS relaxation, live payments, PayPal live, MercadoPago live, secrets, or automatic real-user contact. First read git status, PR #51 status/checks, docs/expressjobs-director-status.json, and docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md. Audit /auth, /role, /profile, client publish/list/applications/accept-reject, worker search/detail/apply/status, duplicate/self-apply guards, cards, categories, navigation, responsive layout, empty/error states, endpoints, and RLS. Run relevant checks: secret:scan, production:check, guard:no-production-deploy, test:rls:static, staging:check, rls:smoke if env remains available, lint, typecheck, test, build, git diff --check, and local browser smoke. Use Preview only after confirming PR #51 preview status is Ready and no Supabase branch capacity risk exists. Update director docs and a new autonomous cycle report."
+  "blockers": [
+    "BLOCKED_SUPABASE_BRANCH_CAPACITY_FULL_FOR_NEW_BRANCHES"
+  ],
+  "next_mode": "EXPRESSJOBS_PR51_PREVIEW_AND_SUPABASE_BRANCH_CLOSEOUT",
+  "next_mode_reason": "PR #51 is protected and pushed, but Supabase branch capacity is now full and the newly created branch should finish or be handled before opening a new marketplace-audit branch.",
+  "next_prompt": "Run EXPRESSJOBS_PR51_PREVIEW_AND_SUPABASE_BRANCH_CLOSEOUT in C:\\CODEX-expressjobs-repo from branch codex/expressjobs-product-ux-review-after-redesign. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION. Do not use vercel --prod, vercel promote, Production env mutation, destructive Supabase actions, branch delete/merge/reset, live payments, secrets, RLS relaxation, or automatic user contact. Recheck PR #51 status, Vercel context, Vercel inspect target preview, and Supabase MCP branch list for project gnsfyvsodslnehszanra. If PR checks and Vercel are green and the Supabase branch becomes ACTIVE_HEALTHY, document that PR #51 is ready for human review/merge. If Supabase remains COMING_UP or fails, document BLOCKED_SUPABASE_BRANCH_STATUS and required human action. Do not create a new marketplace audit branch until branch capacity is available. Run minimum checks after docs edits: secret:scan, production:check, guard:no-production-deploy, JSON parse, git diff --check."
 }
