@@ -86,11 +86,11 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
     const { error } = await supabase.rpc(rpcName, { requested_application_id: applicationId });
 
     if (error) {
-      setActionMessage(action === "accept" ? "No se pudo aceptar esta postulacion." : "No se pudo rechazar esta postulacion.");
+      setActionMessage(action === "accept" ? "No se pudo aceptar esta postulacion. Revisa que siga abierta y que tu sesion tenga permiso." : "No se pudo rechazar esta postulacion. Revisa tu sesion e intenta de nuevo.");
       return;
     }
 
-    setActionMessage(action === "accept" ? "Trabajador aceptado." : "Postulacion rechazada.");
+    setActionMessage(action === "accept" ? "Trabajador aceptado. Ahora coordina los detalles con cuidado y sin compartir datos sensibles." : "Postulacion rechazada. El estado quedo actualizado para este trabajo.");
     await loadDetail();
   }
 
@@ -135,6 +135,12 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
       </div>
       <div className="mt-6">
         <h2 className="text-2xl font-black">Postulaciones</h2>
+ codex/expressjobs-global-soft-premium-redesign-manual
+
+        <p className="ej-muted mt-2 text-sm leading-6">
+          Compara mensaje, monto y reputacion. Aceptar o rechazar actualiza el estado protegido por RLS.
+        </p>
+ main
         {actionMessage ? <p className="mt-3 rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]">{actionMessage}</p> : null}
         <div className="mt-4 grid gap-3">
           {applications.length ? (
@@ -165,7 +171,7 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
               />
             ))
           ) : (
-            <EmptyState title="Sin postulaciones" text="Cuando un trabajador se postule, aparecera aca." />
+            <EmptyState title="Sin postulaciones" text="Cuando un trabajador se postule, aparecera aca. Compartir el trabajo puede ayudar, pero los pagos dentro de la app siguen apagados." />
           )}
         </div>
       </div>

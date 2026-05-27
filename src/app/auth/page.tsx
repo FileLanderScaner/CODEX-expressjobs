@@ -29,6 +29,17 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
           <p className="ej-badge">Acceso seguro</p>
           <h1 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Crear cuenta o ingresar</h1>
           <p className="ej-muted mt-3 leading-7">Entra para publicar trabajos, postularte o elegir tu rol dentro de Trabajos Rapidos.</p>
+ codex/expressjobs-global-soft-premium-redesign-manual
+
+          <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
+            <p className="font-black text-[var(--ej-text)]">Flujo recomendado</p>
+            <ol className="mt-3 grid gap-2 font-semibold leading-6">
+              <li>1. Ingresa con el enlace seguro enviado por email.</li>
+              <li>2. Elegi si vas a publicar trabajo o postularte.</li>
+              <li>3. Completa tu perfil antes de coordinar fuera de la app.</li>
+            </ol>
+          </div>
+ main
           {oauthErrorMessage ? (
             <div className="mt-5 flex items-start gap-3 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-4 text-sm font-semibold text-[#ffb4c2]" role="alert">
               <AlertTriangle aria-hidden="true" className="mt-0.5 shrink-0" size={18} />
@@ -40,12 +51,21 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
           ) : null}
           <div className="mt-6">
             <SocialAuthButtons nextPath={nextPath} />
+ codex/expressjobs-global-soft-premium-redesign-manual
           </div>
           <div className="my-6 flex items-center gap-3 text-xs font-black uppercase tracking-[0.16em] text-[var(--ej-text-soft)]">
             <span className="h-px flex-1 bg-white/10" />
             o ingresar con email
             <span className="h-px flex-1 bg-white/10" />
           </div>
+
+          </div>
+          <div className="my-6 flex items-center gap-3 text-xs font-black uppercase tracking-[0.16em] text-[var(--ej-text-soft)]">
+            <span className="h-px flex-1 bg-white/10" />
+            o ingresar con email
+            <span className="h-px flex-1 bg-white/10" />
+          </div>
+          main
           <AuthEmailForm nextPath={nextPath} />
           <p className="ej-soft mt-5 text-center text-xs font-semibold uppercase tracking-[0.12em]">
             Piloto controlado - Sin pagos reales activos - Produccion publica bloqueada.

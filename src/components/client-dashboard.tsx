@@ -88,6 +88,15 @@ export function ClientDashboard() {
         </div>
         <PrimaryButton href="/client/jobs/new" icon={ClipboardPlus}>Publicar un trabajo</PrimaryButton>
       </div>
+      <section className="ej-glass mt-5 p-4">
+        <p className="ej-badge">Proximo paso recomendado</p>
+        <h2 className="mt-3 text-xl font-black">{jobs.length ? "Revisa postulaciones desde cada trabajo" : "Publica tu primer trabajo real"}</h2>
+        <p className="ej-muted mt-2 text-sm leading-6">
+          {jobs.length
+            ? "Abri una publicacion para comparar mensajes, aceptar o rechazar postulantes y coordinar sin compartir datos sensibles."
+            : "Crea una publicacion con titulo claro, zona aproximada y presupuesto estimado para recibir postulaciones relevantes."}
+        </p>
+      </section>
       {state === "not-configured" ? (
         <p className="mt-4 rounded-2xl border border-white/10 bg-white/10 p-3 text-sm text-[var(--ej-text-muted)]">
           Modo sin datos: Supabase publico no esta configurado en este ambiente.
@@ -112,7 +121,7 @@ export function ClientDashboard() {
         ))}
       </div>
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        {jobs.length ? jobs.map((job) => <JobCard key={job.id} {...job} href={`/client/jobs/${job.id}`} />) : <EmptyState title="Sin trabajos publicados" text="Publica tu primer trabajo para recibir postulaciones." />}
+        {jobs.length ? jobs.map((job) => <JobCard key={job.id} {...job} href={`/client/jobs/${job.id}`} />) : <EmptyState title="Sin trabajos publicados" text="Publica tu primer trabajo para recibir postulaciones. Vas a poder aceptar o rechazar desde el detalle." />}
       </div>
     </>
   );

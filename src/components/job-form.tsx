@@ -39,7 +39,7 @@ export function JobForm() {
 
     if (!supabase) {
       setState("error");
-      setMessage("Supabase no esta configurado en este ambiente.");
+      setMessage("No pudimos conectar con los datos del piloto en este ambiente. Proba de nuevo mas tarde.");
       return;
     }
 
@@ -92,12 +92,12 @@ export function JobForm() {
 
     if (jobError || !createdJob) {
       setState("error");
-      setMessage("No se pudo publicar el trabajo. Revisa los datos e intenta de nuevo.");
+      setMessage("No se pudo publicar el trabajo. Revisa titulo, descripcion, zona y presupuesto aproximado, e intenta de nuevo.");
       return;
     }
 
     setState("success");
-    setMessage("Trabajo publicado correctamente.");
+    setMessage("Trabajo publicado correctamente. Ahora podes revisar postulaciones desde el detalle.");
     router.push(`/client/jobs/${createdJob.id}`);
   }
 
@@ -107,8 +107,17 @@ export function JobForm() {
         <CheckCircle2 aria-hidden="true" className="mr-2 inline" size={16} />
         Publica una tarea real con tu cuenta. Los pagos dentro de la app siguen desactivados.
       </div>
+      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
+        <p className="font-black text-[var(--ej-text)]">Antes de publicar</p>
+        <ol className="mt-3 grid gap-2 font-semibold leading-6">
+          <li>1. Describe el resultado esperado, no solo el rubro.</li>
+          <li>2. Usa una zona aproximada y evita datos personales.</li>
+          <li>3. Revisa postulaciones antes de coordinar por fuera.</li>
+        </ol>
+      </div>
       <label className="grid gap-2 text-sm font-bold">
         Titulo
+        <span className="ej-soft text-xs font-semibold">Escribi la tarea en una frase concreta. Evita datos personales.</span>
         <input
           className="focus-ring ej-input font-normal"
           onChange={(event) => setTitle(event.target.value)}
@@ -118,6 +127,7 @@ export function JobForm() {
       </label>
       <label className="grid gap-2 text-sm font-bold">
         Categoria
+        <span className="ej-soft text-xs font-semibold">Elegila por el tipo de ayuda que esperas recibir.</span>
         <select
           className="focus-ring ej-select font-normal"
           onChange={(event) => setCategory(event.target.value as (typeof categories)[number])}
@@ -130,6 +140,7 @@ export function JobForm() {
       </label>
       <label className="grid gap-2 text-sm font-bold">
         Descripcion
+        <span className="ej-soft text-xs font-semibold">Inclui que hay que hacer, cuando lo necesitas y cualquier condicion importante.</span>
         <textarea
           className="focus-ring ej-textarea font-normal"
           onChange={(event) => setDescription(event.target.value)}
@@ -140,6 +151,7 @@ export function JobForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold">
           Ubicacion
+          <span className="ej-soft text-xs font-semibold">Zona aproximada; no publiques direccion exacta.</span>
           <div className="relative">
             <MapPin aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ej-text-soft)]" size={16} />
             <input
@@ -151,8 +163,14 @@ export function JobForm() {
           </div>
         </label>
         <label className="grid gap-2 text-sm font-bold">
+ codex/expressjobs-global-soft-premium-redesign-manual
         Presupuesto aproximado
         <input
+
+          Presupuesto aproximado
+          <span className="ej-soft text-xs font-semibold">Puede ser estimado. Sirve para comparar propuestas, no es pago dentro de la app.</span>
+          <input
+ main
             className="focus-ring ej-input font-normal"
             inputMode="numeric"
             onChange={(event) => setBudget(event.target.value)}
@@ -175,7 +193,7 @@ export function JobForm() {
         disabled={state === "loading"}
         type="submit"
       >
-        {state === "loading" ? "Publicando..." : "Publicar una tarea"}
+        {state === "loading" ? "Publicando..." : "Publicar trabajo"}
       </button>
     </form>
   );

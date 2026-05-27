@@ -66,6 +66,13 @@ describe("real public product surface", () => {
     expect(monetizationConfig).toContain('email: "trabajosrapidos.uy@gmail.com"');
   });
 
+  it("does not rewrite legitimate titles containing generic smoke wording", () => {
+    const jobCard = readFileSync(join(process.cwd(), "src/components/job-card.tsx"), "utf8");
+
+    expect(jobCard).toContain("RLS_SMOKE|SMOKE_TEST|TEST_JOB");
+    expect(jobCard).not.toContain("RLS_SMOKE|SMOKE_TEST|SMOKE|TEST_JOB");
+  });
+
   it("uses real empty states instead of presenting fallback jobs as real", () => {
     const workerJobs = readFileSync(join(process.cwd(), "src/components/worker-jobs-client.tsx"), "utf8");
     const clientDashboard = readFileSync(join(process.cwd(), "src/components/client-dashboard.tsx"), "utf8");

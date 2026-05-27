@@ -146,6 +146,10 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
         <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-end">
           <label className="block">
             <span className="text-sm font-black text-[var(--ej-text)]">Buscar trabajos</span>
+ codex/expressjobs-global-soft-premium-redesign-manual
+
+            <span className="ej-soft mt-1 block text-xs font-semibold">Busca por tarea, barrio, descripcion o presupuesto aproximado.</span>
+ main
             <input
               className="focus-ring ej-input mt-2 text-sm"
               onChange={(event) => setQuery(event.target.value)}
@@ -186,6 +190,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
         <p className="ej-soft mt-3 text-sm">
           Mostrando {filteredOpenJobs.length} de {openJobs.length} trabajos abiertos
           {publicMode ? "." : ` y ${filteredAcceptedJobs.length} asignados filtrados.`}
+          {" "}Para postularte, abri el detalle y envia un mensaje claro al cliente.
         </p>
       </section>
 
@@ -201,7 +206,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
             text={
               hasActiveFilters
                 ? "Proba limpiar filtros o buscar por una zona, tarea o palabra mas general."
-                : "Cuando un cliente publique un trabajo abierto, aparecera aca."
+                : "Cuando un cliente publique un trabajo abierto, aparecera aca. Tambien podes volver luego o crear una cuenta para guardar tu rol trabajador."
             }
           />
         )}
@@ -216,7 +221,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
             ) : (
               <EmptyState
                 title={hasActiveFilters ? "Sin trabajos aceptados con esos filtros" : "Sin trabajos aceptados"}
-                text={hasActiveFilters ? "Limpia filtros para ver todos tus trabajos asignados." : "Tus trabajos asignados apareceran aca."}
+                text={hasActiveFilters ? "Limpia filtros para ver todos tus trabajos asignados." : "Tus trabajos aceptados apareceran aca cuando un cliente confirme tu postulacion."}
               />
             )}
           </div>

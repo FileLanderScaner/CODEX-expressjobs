@@ -1,6 +1,7 @@
-import { ClipboardList } from "lucide-react";
+import { BriefcaseBusiness, ClipboardList } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { EmptyState } from "@/components/empty-state";
+import { PrimaryButton } from "@/components/primary-button";
 
 export default function WorkerApplicationsPage() {
   return (
@@ -13,8 +14,17 @@ export default function WorkerApplicationsPage() {
             <p className="mt-2 text-[var(--muted)]">Estados esperados: enviada, vista, preseleccionada, aceptada, rechazada o retirada.</p>
           </div>
         </div>
+        <section className="ej-glass mt-6 p-4">
+          <p className="ej-badge">Como leer estados</p>
+          <p className="ej-muted mt-3 text-sm leading-6">
+            Enviada significa que el cliente puede verla. Aceptada indica que el cliente eligio avanzar. Rechazada o retirada cierran esa postulacion sin prometer contratacion.
+          </p>
+        </section>
         <div className="mt-6">
-          <EmptyState title="Sin postulaciones cargadas en esta vista" text="El detalle real queda protegido por RLS en ej_job_applications y se muestra al abrir cada trabajo." />
+          <EmptyState title="Sin postulaciones cargadas en esta vista" text="Busca un trabajo abierto y postulate desde el detalle. Esta vista mantiene los datos protegidos hasta que el flujo completo este habilitado." />
+        </div>
+        <div className="mt-5">
+          <PrimaryButton href="/worker/jobs" icon={BriefcaseBusiness}>Buscar trabajos abiertos</PrimaryButton>
         </div>
       </main>
     </AppShell>

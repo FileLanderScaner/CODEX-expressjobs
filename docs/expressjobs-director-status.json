@@ -2,6 +2,7 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
+codex/expressjobs-global-soft-premium-redesign-manual
   "branch": "codex/expressjobs-global-soft-premium-redesign-manual",
   "mode": "EXPRESSJOBS_GLOBAL_SOFT_PREMIUM_REDESIGN_COMPLETE",
   "updated_at": "2026-05-26T14:12:43-03:00",
@@ -61,12 +62,94 @@
     "test": "PASS_10_FILES_59_TESTS",
     "build": "PASS",
     "git_diff_check": "PASS"
+
+  "mode": "EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK",
+  "updated_at": "2026-05-27T00:22:00-03:00",
+  "production_status": "NO-GO_PRODUCTION",
+  "base_pr": 51,
+  "base_pr_status": {
+    "state": "OPEN",
+    "mergeable": "MERGEABLE",
+    "review_decision": "REVIEW_REQUIRED",
+    "checks": "SUCCESS",
+    "merged": false,
+    "bypass_used": false,
+    "admin_override_used": false
   },
+  "stacked_branch": "codex/expressjobs-post-pr51-product-completion",
+  "stacked_base": "codex/expressjobs-product-ux-review-after-redesign",
+  "stacked_commit": "3d98ebc",
+  "stacked_commit_protection": {
+    "patch_backup": "docs/local-patches/0001-Continue-product-completion-after-PR51.patch",
+    "patch_committed": false,
+    "patch_ignored": true,
+    "stat_backup": "docs/local-patches/EXPRESSJOBS_3d98ebc_COMMIT_STAT.txt",
+    "secret_pattern_scan": "PASS_NO_SECRET_VALUES"
+  },
+  "stacked_pr": {
+    "number": 52,
+    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/52",
+    "base": "codex/expressjobs-product-ux-review-after-redesign",
+    "head": "codex/expressjobs-post-pr51-product-completion",
+    "state": "OPEN",
+    "mergeable": "MERGEABLE",
+    "status": "OPEN",
+    "initial_checks": {
+      "production_no_go": "PASS",
+      "supabase_preview": "PASS",
+      "vercel": "PASS",
+      "docs_check": "PASS",
+      "pr_check": "PASS",
+      "security_gate": "PASS"
+    }
+  },
+  "stacked_pr_status": "OPEN",
+  "authenticated_e2e": "DEFERRED_BY_HUMAN_DECISION",
+  "supabase_preview_capacity": "VERIFIED",
+  "supabase_preview_capacity_detail": {
+    "method": "SUPABASE_MCP_READ_ONLY_LIST_BRANCHES",
+    "capacity_rule": "main_plus_two_non_main",
+    "branches_before_push": [
+      "main",
+      "codex/expressjobs-product-ux-review-after-redesign"
+    ],
+    "branches_after_push": [
+      "main",
+      "codex/expressjobs-product-ux-review-after-redesign",
+      "codex/expressjobs-post-pr51-product-completion"
+    ],
+    "pr51_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
+    "pr52_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
+    "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE_BEFORE_PUSH",
+    "capacity_after_push": "AT_LIMIT_MAIN_PLUS_TWO_NON_MAIN",
+    "manual_branch_created": false,
+    "manual_branch_deleted": false
+  },
+  "checks": {
+    "secret_scan": "PASS",
+    "production_check": "PASS",
+    "guard_no_production_deploy": "PASS",
+    "git_diff_check": "PASS",
+    "json_parse": "PASS",
+    "lint": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "typecheck": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "test": "PASS_PREVIOUS_SAME_BRANCH_10_FILES_60_TESTS_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "build": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "test_rls_static": "NOT_RUN_NO_RLS_CHANGE",
+    "staging_check": "NOT_RUN_NO_RLS_CHANGE",
+    "rls_smoke": "NOT_RUN_NO_RLS_CHANGE"
+main
+  },
+  "payments_live": false,
+  "users_contacted_automatically": false,
+  "secrets_exposed": false,
+  "production_touched": false,
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
     "vercel_promote": "NOT_RUN",
     "vercel_production_env_mutation": "NO",
     "supabase_production_mutation": "NO",
+ codex/expressjobs-global-soft-premium-redesign-manual
     "paypal_live": "OFF",
     "real_payments": "OFF",
     "secrets_printed": "NO",
@@ -75,4 +158,15 @@
   "blockers": [],
   "next_mode": "EXPRESSJOBS_PRODUCT_UX_REVIEW",
   "next_mode_reason": "After the global redesign, the next safe high-impact step is validating real MVP flows and copy clarity across client and worker journeys."
+    "paypal_live": false,
+    "mercadopago_live": false,
+    "payments_live": false,
+    "users_contacted_automatically": false,
+    "env_committed": "NO",
+    "rls_relaxed": "NO"
+  },
+  "blockers": [],
+  "next_mode": "EXPRESSJOBS_PR52_REVIEW_AND_BRANCH_CAPACITY_CLOSEOUT",
+  "next_mode_reason": "Stacked PR is open and green; Supabase branch capacity is now at main plus two non-main branches, so the next safe cycle should avoid creating another preview branch."
+ main
 }

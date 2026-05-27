@@ -52,6 +52,7 @@ export function AuthEmailForm({ nextPath }: { nextPath?: string }) {
     <form className="mt-6 grid gap-4" onSubmit={handleSubmit}>
       <label className="grid gap-2 text-sm font-bold text-[var(--ej-text)]">
         Email
+        <span className="ej-soft text-xs font-semibold">Te mandamos un enlace de acceso. No usamos contraseña en este formulario.</span>
         <input
           className="focus-ring ej-input font-normal"
           onChange={(event) => setEmail(event.target.value)}

@@ -14,7 +14,8 @@ const choices = [
     href: "/client/jobs/new",
     icon: BriefcaseBusiness,
     title: "Busco ayuda",
-    text: "Publica una tarea, compara postulaciones y coordina con mas claridad.",
+    text: "Publica una tarea, recibe postulaciones y coordina con mas claridad.",
+    fit: "Recomendado si necesitas resolver una tarea concreta y recibir propuestas.",
     button: "Publicar una tarea",
   },
   {
@@ -23,6 +24,7 @@ const choices = [
     icon: UserRoundCheck,
     title: "Quiero trabajar",
     text: "Encuentra tareas cercanas y postulate sin promesas de empleo o ingresos garantizados.",
+    fit: "Recomendado si queres ver trabajos abiertos y enviar una postulacion clara.",
     button: "Buscar trabajos",
   },
 ];
@@ -56,7 +58,7 @@ export function RoleSelector() {
     const { error } = await ensureMarketplaceRole(supabase, role, fullNameFromUser(user));
 
     if (error) {
-      setMessage("No pudimos guardar tu rol. Intenta de nuevo.");
+      setMessage("No pudimos guardar tu rol con seguridad. Intenta de nuevo o vuelve a iniciar sesion.");
       setPendingRole(null);
       return;
     }
@@ -75,6 +77,10 @@ export function RoleSelector() {
             <Icon aria-hidden="true" className="text-[var(--ej-accent)]" />
             <h2 className="mt-4 text-xl font-black">{choice.title}</h2>
             <p className="ej-muted mt-2 text-sm leading-6">{choice.text}</p>
+ codex/expressjobs-global-soft-premium-redesign-manual
+
+            <p className="ej-soft mt-3 rounded-xl border border-white/10 bg-white/5 p-3 text-xs font-semibold leading-5">{choice.fit}</p>
+ main
             <button
               className="focus-ring ej-btn-primary mt-4 text-sm disabled:cursor-not-allowed disabled:opacity-60"
               disabled={pendingRole !== null}

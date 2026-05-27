@@ -60,7 +60,11 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
               {accountNav.isSignedIn ? <UserCircle aria-hidden="true" size={16} /> : <LogIn aria-hidden="true" size={16} />}
               <span className="truncate">{accountNav.isSignedIn ? "Mi cuenta" : accountNav.label}</span>
             </Link>
+ codex/expressjobs-global-soft-premium-redesign-manual
             <span className="ej-danger-badge hidden text-[10px] uppercase tracking-[0.16em] xl:inline-flex">
+
+            <span className="ej-danger-badge ej-desktop-only-badge text-[10px] uppercase tracking-[0.16em]">
+ main
               {productionStatus()}
             </span>
           </div>

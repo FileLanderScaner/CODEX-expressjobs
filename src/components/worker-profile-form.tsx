@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { authHref, ensureMarketplaceRole, fullNameFromUser } from "@/lib/marketplace";
 import { workerProfileSchema } from "@/lib/marketplace-schemas";
+import { ProfileProcessSteps } from "@/components/profile-process-steps";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 
 type SaveState = "idle" | "saving" | "saved" | "error";
@@ -94,6 +95,10 @@ export function WorkerProfileForm() {
 
   return (
     <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
+ codex/expressjobs-global-soft-premium-redesign-manual
+
+      <ProfileProcessSteps currentStep={3} />
+ main
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nombre completo" name="fullName" placeholder="Nombre y apellido" />
         <Field label="Telefono" name="phone" placeholder="WhatsApp o celular" />

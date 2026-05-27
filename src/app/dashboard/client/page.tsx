@@ -1,4 +1,4 @@
-import { CheckCircle2, ClipboardPlus, MessageSquareText } from "lucide-react";
+import { CheckCircle2, ClipboardList, ClipboardPlus, MessageSquareText, UserRoundCheck } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { PrimaryButton } from "@/components/primary-button";
 

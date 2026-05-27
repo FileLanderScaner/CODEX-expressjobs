@@ -23,6 +23,7 @@ const providerIcons = {
 export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
   const flags = getSocialAuthFlags();
   const enabledProviders = getEnabledSocialAuthProviders(flags);
+ codex/expressjobs-global-soft-premium-redesign-manual
   const visibleProviders = [
     "google",
     ...enabledProviders.filter((provider) => provider !== "google"),
@@ -32,6 +33,13 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
 
   const supabaseConfigured = isSupabaseConfigured();
 
+
+  const supabaseConfigured = isSupabaseConfigured();
+  const visibleProviders = supabaseConfigured ? enabledProviders : [];
+  const [pendingProvider, setPendingProvider] = useState<SocialAuthProvider | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+ main
   async function handleOAuth(provider: SocialAuthProvider) {
     setErrorMessage(null);
 
@@ -62,14 +70,25 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
 
   return (
     <section className="mt-4 grid gap-3" aria-label="Login social">
+      {visibleProviders.length === 0 ? (
+        <p className="rounded-2xl border border-white/10 bg-white/[0.04] p-3 text-sm font-semibold text-[var(--ej-text-muted)]">
+          Google Login no esta activo en este ambiente. Usa email o espera la configuracion OAuth oficial.
+        </p>
+      ) : null}
       {visibleProviders.map((provider) => {
         const Icon = providerIcons[provider];
         const isPending = pendingProvider === provider;
+ codex/expressjobs-global-soft-premium-redesign-manual
         const isExternallyBlocked = !flags[provider] || !supabaseConfigured;
 
         return (
           <GoogleLoginButton
             ariaDisabled={isExternallyBlocked}
+
+
+        return (
+          <GoogleLoginButton
+ main
             disabled={isPending}
             icon={Icon}
             key={provider}
@@ -89,7 +108,10 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
 export function GoogleLoginButton({
   children,
   disabled,
+ codex/expressjobs-global-soft-premium-redesign-manual
   ariaDisabled,
+
+ main
   icon: Icon,
   onClick,
   providerLabel,
@@ -97,7 +119,10 @@ export function GoogleLoginButton({
 }: {
   children: React.ReactNode;
   disabled?: boolean;
+ codex/expressjobs-global-soft-premium-redesign-manual
   ariaDisabled?: boolean;
+
+ main
   icon: typeof Globe2;
   onClick: () => void;
   providerLabel: string;
@@ -105,7 +130,10 @@ export function GoogleLoginButton({
 }) {
   return (
     <button
+ codex/expressjobs-global-soft-premium-redesign-manual
       aria-disabled={ariaDisabled}
+
+ main
       aria-label={pending ? `Conectando ${providerLabel}` : providerLabel}
       className="focus-ring ej-btn-secondary w-full px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-70"
       disabled={disabled}
