@@ -3,85 +3,66 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "branch": "codex/expressjobs-product-ux-review-after-redesign",
-  "mode": "EXPRESSJOBS_PR_RECONCILE_UX_OAUTH_MANUAL_PILOT",
-  "updated_at": "2026-05-26T22:05:00-03:00",
+  "mode": "EXPRESSJOBS_LOCAL_RECONCILE_COMMIT_PUSH_CLOSEOUT",
+  "updated_at": "2026-05-26T22:55:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
+  "local_commit": "2861c35918f413ca55ae6fe9fc5263d5213f6e7f",
+  "push_status": "PUSHED",
+  "pushed_branch": "codex/expressjobs-product-ux-review-after-redesign",
+  "pull_request": {
+    "number": 51,
+    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/51",
+    "state": "OPEN",
+    "mergeable": "MERGEABLE",
+    "review_decision": "REVIEW_REQUIRED"
+  },
+  "commit_protection": {
+    "format_patch_local": "docs/local-patches/0001-Reconcile-ExpressJobs-PRs-and-refine-UX-pilot-flow.patch",
+    "format_patch_committed": false,
+    "format_patch_commit_note": "Local patch is ignored because raw format-patch content can fail whitespace diff checks when committed.",
+    "stat_backup_committed": "docs/local-patches/EXPRESSJOBS_2861c359_COMMIT_STAT.txt",
+    "patch_secret_scan": "PASS_NO_SECRET_VALUES_FOUND"
+  },
   "github_reconciliation": {
     "canonical_repo": "FileLanderScaner/CODEX-expressjobs",
-    "origin_main": "dfb1bac Prepare Google OAuth account separation (#47)",
-    "local_branch_has_open_pr": false,
-    "current_branch_relationship": "one commit ahead of PR_50 branch before this cycle",
-    "matrix_doc": "docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md",
     "prs_read": [50, 49, 48, 47, 46, 44, 42, 41, 40],
+    "status_changed_since_matrix": false,
     "primary_visual_source": "PR_50",
     "superseded_visual_pr": "PR_49",
     "design_directive_pr": "PR_48",
-    "do_not_merge_as_is": "PR_40"
+    "do_not_merge_as_is": "PR_40",
+    "matrix_doc": "docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md"
   },
-  "summary": {
-    "ux_categories": "HOME_CATEGORY_CHIPS_REPLACED_WITH_CLEAN_TEXT_LINKS",
-    "profile_process": "SIX_STEP_PROFILE_GUIDE_ADDED",
-    "oauth_inactive_state": "DEAD_GOOGLE_BUTTON_HIDDEN_WHEN_INACTIVE",
-    "oauth_official_account_doc": "expressjobs.uy@gmail.com",
-    "staging_title_detection": "NARROWED_TO_SYNTHETIC_SMOKE_LABELS",
-    "manual_pilot_sales_docs": "ADDED"
-  },
-  "files_updated": [
-    "docs/EXPRESSJOBS_DIRECTOR_STATUS.md",
-    "docs/expressjobs-director-status.json",
-    "docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md",
-    "docs/autonomous-cycles/CYCLE_EXPRESSJOBS_2026_05_26_RECONCILE_AND_CONTINUE.md",
-    "docs/expressjobs/auth/EXPRESSJOBS_GOOGLE_OAUTH_SETUP.md",
-    "docs/sales/EXPRESSJOBS_MANUAL_PILOT_SALES_SYSTEM.md",
-    "docs/sales/EXPRESSJOBS_PILOT_OFFERS.md",
-    "docs/sales/EXPRESSJOBS_PILOT_CRM_WORKFLOW.md",
-    "src/app/page.tsx",
-    "src/components/profile-process-steps.tsx",
-    "src/components/social-auth-buttons.tsx",
-    "src/components/job-card.tsx"
-  ],
-  "checks": {
-    "secret_scan": "PASS",
-    "production_check": "PASS_NO_GO_PRODUCTION",
-    "guard_no_production_deploy": "PASS",
-    "rls_static": "PASS_12_TESTS",
-    "staging_check": "PASS",
-    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
-    "lint": "PASS",
-    "typecheck": "PASS",
-    "test": "PASS_10_FILES_60_TESTS",
-    "build": "PASS",
-    "git_diff_check": "PASS"
-  },
-  "browser_smoke_local": {
-    "desktop_1360x900": "PASS",
-    "mobile_390x844": "PASS",
-    "routes_checked": [
-      "/",
-      "/auth",
-      "/profile",
-      "/dashboard/worker/profile",
-      "/dashboard/client/profile",
-      "/client/jobs/new",
-      "/worker/jobs",
-      "/pricing"
+  "supabase_preview_branch_capacity": {
+    "verified": true,
+    "method": "SUPABASE_MCP_READ_ONLY_LIST_BRANCHES",
+    "cli_status": "BLOCKED_SUPABASE_BRANCH_CAPACITY_CLI_TIMEOUT",
+    "project_ref": "gnsfyvsodslnehszanra",
+    "default_branch": "main",
+    "non_main_branches": [
+      "codex/premium-visual-home-nav-refresh"
     ],
-    "no_horizontal_overflow": true,
-    "console_errors": "NONE",
-    "auth_google_dead_button": "NOT_RENDERED_WHEN_INACTIVE",
-    "profile_six_steps_visible": true
+    "capacity_rule": "main_plus_two_non_main",
+    "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE",
+    "post_push_supabase_preview": "SKIPPED_NO_SUPABASE_DIRECTORY_CHANGES",
+    "post_push_new_branch_created": false
   },
-  "staging_status": {
-    "staging_check": "PASS",
-    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
-    "supabase_branch_capacity_check": "CHECK_NOT_RUN_TIMEOUT_NPX_SUPABASE",
-    "remote_migration_applied": false
-  },
-  "preview_status": {
-    "vercel_pr50_preview": "READY_TARGET_PREVIEW",
-    "deployment_id": "dpl_AM1oLhQtiNkEWyvdUXmXTQViTbdj",
-    "preview_deploy_created_this_cycle": false,
-    "browser_smoke_preview": "NOT_RUN_NO_NEW_PREVIEW_AND_BRANCH_CAPACITY_NOT_FRESHLY_VERIFIED"
+  "supabase_rls": "PASS",
+  "staging_check": "PASS",
+  "preview_deploy": "GIT_INTEGRATION_PREVIEW_TRIGGERED_BY_PUSH_PENDING_AT_INITIAL_READ",
+  "checks": {
+    "secret_scan": "PASS_REPEATED_THIS_CYCLE",
+    "production_check": "PASS_REPEATED_THIS_CYCLE",
+    "guard_no_production_deploy": "PASS_REPEATED_THIS_CYCLE",
+    "git_diff_check": "PASS_REPEATED_THIS_CYCLE",
+    "json_parse": "PASS_REPEATED_THIS_CYCLE",
+    "test_rls_static": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
+    "staging_check": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
+    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
+    "lint": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
+    "typecheck": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
+    "test": "PASS_10_FILES_60_TESTS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
+    "build": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER"
   },
   "production_guards": {
     "production_status": "NO-GO_PRODUCTION",
@@ -89,21 +70,16 @@
     "vercel_promote": "NOT_RUN",
     "vercel_production_env_mutation": "NO",
     "supabase_production_mutation": "NO",
-    "paypal_live": "OFF",
-    "mercadopago_live": "OFF",
-    "real_payments": "OFF",
+    "paypal_live": false,
+    "mercadopago_live": false,
+    "payments_live": false,
+    "users_contacted_automatically": false,
     "secrets_printed": "NO",
     "env_committed": "NO",
-    "rls_disabled": "NO",
-    "users_contacted_automatically": "NO"
+    "rls_relaxed": "NO"
   },
-  "blockers": [
-    "BLOCKED_SUPABASE_ACCESS"
-  ],
-  "blocker_details": {
-    "BLOCKED_SUPABASE_ACCESS": "Supabase branch-capacity inspection through npx supabase timed out, so no new Preview/deploy was attempted."
-  },
+  "blockers": [],
   "next_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT",
-  "next_mode_reason": "PR and UX reconciliation are locally coherent; next safe high-impact step is validating the real client/worker marketplace flow end to end in staging without production.",
-  "next_prompt": "Run EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT in C:\\CODEX-expressjobs-repo on branch codex/expressjobs-product-ux-review-after-redesign or a new child branch. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION. Do not use vercel --prod, vercel promote, Vercel Production env mutation, Supabase production writes, live payments, PayPal live, MercadoPago live, service-role in client code, RLS relaxation, destructive migrations, or automatic real-user contact. First read git status, origin/main, open PRs, docs/expressjobs-director-status.json, and docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md. Validate the real marketplace flow locally/staging: auth inactive/active states, /profile, role selection through /api/profile/set-role, client publish, worker job search, worker apply, client application review, accept/reject, empty/error states, and mobile layout. Run npm run secret:scan, npm run production:check, npm run guard:no-production-deploy, npm run test:rls:static, npm run staging:check, npm run rls:smoke if env is available, npm run lint, npm run typecheck, npm run test, npm run build, and git diff --check. Use Preview only if Supabase branch capacity is freshly verified and safe. Update docs/EXPRESSJOBS_DIRECTOR_STATUS.md, docs/expressjobs-director-status.json, and a new docs/autonomous-cycles report. GO only for controlled staging evidence; production remains NO-GO_PRODUCTION."
+  "next_mode_reason": "Local reconcile work is protected and pushed; next safe step is auditing the real marketplace flow without production or live payments.",
+  "next_prompt": "Run EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT in C:\\CODEX-expressjobs-repo from a new branch codex/expressjobs-real-marketplace-flow-audit based on the pushed PR #51 branch or latest safe main after review. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION. Do not use vercel --prod, vercel promote, Vercel Production env mutation, Supabase production writes, destructive migrations, service-role in client code, RLS relaxation, live payments, PayPal live, MercadoPago live, secrets, or automatic real-user contact. First read git status, PR #51 status/checks, docs/expressjobs-director-status.json, and docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md. Audit /auth, /role, /profile, client publish/list/applications/accept-reject, worker search/detail/apply/status, duplicate/self-apply guards, cards, categories, navigation, responsive layout, empty/error states, endpoints, and RLS. Run relevant checks: secret:scan, production:check, guard:no-production-deploy, test:rls:static, staging:check, rls:smoke if env remains available, lint, typecheck, test, build, git diff --check, and local browser smoke. Use Preview only after confirming PR #51 preview status is Ready and no Supabase branch capacity risk exists. Update director docs and a new autonomous cycle report."
 }
