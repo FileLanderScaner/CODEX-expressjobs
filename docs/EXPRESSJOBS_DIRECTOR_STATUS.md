@@ -4,6 +4,18 @@
 
 ## Current Status - 2026-05-26
 
+Mode `EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK` completed on 2026-05-27 from branch `codex/expressjobs-post-pr51-product-completion`.
+
+Commit `3d98ebc Continue product completion after PR51` was protected with a local ignored patch and a stat backup. PR #51 was rechecked as `OPEN`, `MERGEABLE`, checks green, and blocked by `REVIEW_REQUIRED`; no merge, bypass, admin override, close, or comment action was performed. Supabase Preview Branch capacity was verified through MCP as `main` plus PR #51's non-main branch, leaving capacity for the stacked branch under the `main + 2 non-main` rule.
+
+The branch was pushed and stacked PR #52 was opened against `codex/expressjobs-product-ux-review-after-redesign`, not `main`: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/52`. PR #52 checks passed: docs-check, pr-check, production-no-go, security-gate, Supabase Preview, Vercel, and Vercel Preview Comments. Final Supabase MCP readback shows `main` plus two non-main branches (`codex/expressjobs-product-ux-review-after-redesign` and `codex/expressjobs-post-pr51-product-completion`), both `ACTIVE_HEALTHY`; the project is now at the preview branch-capacity limit. Production remains `NO-GO_PRODUCTION`; no production deploy, promote, Production env mutation, live payments, secrets, RLS relaxation, or automatic user contact occurred.
+
+Mode `EXPRESSJOBS_CONTINUE_AFTER_PR51_WITHOUT_AUTH_E2E` completed locally on branch `codex/expressjobs-post-pr51-product-completion`, created from PR #51 branch without merging PR #51.
+
+Human decision recorded: authenticated browser E2E is deferred as `AUTHENTICATED_E2E_DEFERRED_BY_HUMAN_DECISION`. PR #51 was rechecked as open, mergeable, checks green, and blocked only by required review. No "Merge without waiting for requirements", admin override, bypass rules, production deploy, promote, Production env mutation, payment action, secret exposure, RLS relaxation, or automatic user contact occurred.
+
+This cycle continues product completion with safe public-flow improvements: clearer `/auth` magic-link guidance, clearer `/role` explanation, stronger pre-publish checklist, client/worker dashboard CTAs, worker applications CTA, and a staging authenticated smoke matrix at `docs/testing/EXPRESSJOBS_AUTHENTICATED_SMOKE_TEST_MATRIX.md`. Checks passed: `secret:scan`, `production:check`, `guard:no-production-deploy`, `lint`, `typecheck`, `test`, `build`, `git diff --check`, JSON parse, and local HTTP smoke for `/auth`, `/role`, `/profile`, `/jobs`, `/pricing`, `/dashboard/client`, and `/dashboard/worker`.
+
 Mode `EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT` completed as a safe local audit on PR #51 branch.
 
 Audit results: targeted marketplace tests passed (`marketplace-flow`, `supabase-rls-static`, `account-ux`, `social-auth`: 34 tests). Local browser smoke passed on desktop 1360px and mobile 390px for `/auth`, `/role`, `/profile`, `/client/jobs/new`, `/client`, `/worker/jobs`, `/jobs`, `/dashboard/client`, `/dashboard/worker`, `/pricing`, and `/dashboard/worker/profile` mobile. Observed no horizontal overflow and no browser console errors. Code audit confirmed role selection uses the server-side `/api/profile/set-role` path, UI does not expose `admin`, worker self-apply and duplicate apply are guarded client-side, client accept/reject uses RPC, and static RLS tests cover self-promotion, self-apply, role RPC exposure, and application policies.

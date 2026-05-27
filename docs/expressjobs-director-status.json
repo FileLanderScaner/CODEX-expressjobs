@@ -2,105 +2,87 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "branch": "codex/expressjobs-product-ux-review-after-redesign",
-  "mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT",
-  "updated_at": "2026-05-26T23:05:00-03:00",
+  "mode": "EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK",
+  "updated_at": "2026-05-27T00:22:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
-  "local_commit": "2861c35918f413ca55ae6fe9fc5263d5213f6e7f",
-  "push_status": "PUSHED",
-  "pushed_branch": "codex/expressjobs-product-ux-review-after-redesign",
-  "pull_request": {
-    "number": 51,
-    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/51",
+  "base_pr": 51,
+  "base_pr_status": {
     "state": "OPEN",
     "mergeable": "MERGEABLE",
-    "review_decision": "REVIEW_REQUIRED"
+    "review_decision": "REVIEW_REQUIRED",
+    "checks": "SUCCESS",
+    "merged": false,
+    "bypass_used": false,
+    "admin_override_used": false
   },
-  "commit_protection": {
-    "format_patch_local": "docs/local-patches/0001-Reconcile-ExpressJobs-PRs-and-refine-UX-pilot-flow.patch",
-    "format_patch_committed": false,
-    "format_patch_commit_note": "Local patch is ignored because raw format-patch content can fail whitespace diff checks when committed.",
-    "stat_backup_committed": "docs/local-patches/EXPRESSJOBS_2861c359_COMMIT_STAT.txt",
-    "patch_secret_scan": "PASS_NO_SECRET_VALUES_FOUND"
+  "stacked_branch": "codex/expressjobs-post-pr51-product-completion",
+  "stacked_base": "codex/expressjobs-product-ux-review-after-redesign",
+  "stacked_commit": "3d98ebc",
+  "stacked_commit_protection": {
+    "patch_backup": "docs/local-patches/0001-Continue-product-completion-after-PR51.patch",
+    "patch_committed": false,
+    "patch_ignored": true,
+    "stat_backup": "docs/local-patches/EXPRESSJOBS_3d98ebc_COMMIT_STAT.txt",
+    "secret_pattern_scan": "PASS_NO_SECRET_VALUES"
   },
-  "github_reconciliation": {
-    "canonical_repo": "FileLanderScaner/CODEX-expressjobs",
-    "prs_read": [50, 49, 48, 47, 46, 44, 42, 41, 40],
-    "status_changed_since_matrix": false,
-    "primary_visual_source": "PR_50",
-    "superseded_visual_pr": "PR_49",
-    "design_directive_pr": "PR_48",
-    "do_not_merge_as_is": "PR_40",
-    "matrix_doc": "docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md"
+  "stacked_pr": {
+    "number": 52,
+    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/52",
+    "base": "codex/expressjobs-product-ux-review-after-redesign",
+    "head": "codex/expressjobs-post-pr51-product-completion",
+    "state": "OPEN",
+    "mergeable": "MERGEABLE",
+    "status": "OPEN",
+    "initial_checks": {
+      "production_no_go": "PASS",
+      "supabase_preview": "PASS",
+      "vercel": "PASS",
+      "docs_check": "PASS",
+      "pr_check": "PASS",
+      "security_gate": "PASS"
+    }
   },
-  "supabase_preview_branch_capacity": {
-    "verified": true,
+  "stacked_pr_status": "OPEN",
+  "authenticated_e2e": "DEFERRED_BY_HUMAN_DECISION",
+  "supabase_preview_capacity": "VERIFIED",
+  "supabase_preview_capacity_detail": {
     "method": "SUPABASE_MCP_READ_ONLY_LIST_BRANCHES",
-    "cli_status": "BLOCKED_SUPABASE_BRANCH_CAPACITY_CLI_TIMEOUT",
-    "project_ref": "gnsfyvsodslnehszanra",
-    "default_branch": "main",
-    "non_main_branches": [
+    "capacity_rule": "main_plus_two_non_main",
+    "branches_before_push": [
+      "main",
       "codex/expressjobs-product-ux-review-after-redesign"
     ],
-    "capacity_rule": "main_plus_two_non_main",
-    "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE_AT_FINAL_READ_RECHECK_BEFORE_NEW_BRANCH",
-    "post_push_supabase_preview": "PASS",
-    "post_push_new_branch_created": true,
-    "post_push_branch_status": "FUNCTIONS_DEPLOYED",
-    "post_push_preview_project_status": "ACTIVE_HEALTHY"
+    "branches_after_push": [
+      "main",
+      "codex/expressjobs-product-ux-review-after-redesign",
+      "codex/expressjobs-post-pr51-product-completion"
+    ],
+    "pr51_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
+    "pr52_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
+    "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE_BEFORE_PUSH",
+    "capacity_after_push": "AT_LIMIT_MAIN_PLUS_TWO_NON_MAIN",
+    "manual_branch_created": false,
+    "manual_branch_deleted": false
   },
-  "supabase_rls": "PASS",
-  "staging_check": "PASS",
-  "preview_deploy": "VERCEL_PREVIEW_READY_AND_GITHUB_CONTEXT_SUCCESS",
   "checks": {
-    "secret_scan": "PASS_REPEATED_THIS_CYCLE",
-    "production_check": "PASS_REPEATED_THIS_CYCLE",
-    "guard_no_production_deploy": "PASS_REPEATED_THIS_CYCLE",
-    "git_diff_check": "PASS_REPEATED_THIS_CYCLE",
-    "json_parse": "PASS_REPEATED_THIS_CYCLE",
-    "test_rls_static": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
-    "staging_check": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
-    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
-    "lint": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
-    "typecheck": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
-    "test": "PASS_10_FILES_60_TESTS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
-    "build": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
-    "marketplace_targeted_tests": "PASS_4_FILES_34_TESTS",
-    "local_marketplace_browser_smoke": "PASS_DESKTOP_AND_MOBILE"
+    "secret_scan": "PASS",
+    "production_check": "PASS",
+    "guard_no_production_deploy": "PASS",
+    "git_diff_check": "PASS",
+    "json_parse": "PASS",
+    "lint": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "typecheck": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "test": "PASS_PREVIOUS_SAME_BRANCH_10_FILES_60_TESTS_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "build": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "test_rls_static": "NOT_RUN_NO_RLS_CHANGE",
+    "staging_check": "NOT_RUN_NO_RLS_CHANGE",
+    "rls_smoke": "NOT_RUN_NO_RLS_CHANGE"
   },
-  "marketplace_audit": {
-    "status": "PASS_WITH_AUTHENTICATED_BROWSER_E2E_NOT_RUN",
-    "routes_checked_desktop": [
-      "/auth",
-      "/role",
-      "/profile",
-      "/client/jobs/new",
-      "/client",
-      "/worker/jobs",
-      "/jobs",
-      "/dashboard/client",
-      "/dashboard/worker",
-      "/pricing"
-    ],
-    "routes_checked_mobile": [
-      "/auth",
-      "/role",
-      "/dashboard/worker/profile",
-      "/client/jobs/new",
-      "/worker/jobs"
-    ],
-    "browser_console_errors": "NONE",
-    "horizontal_overflow": "NONE",
-    "auth_google_inactive_notice": "PASS",
-    "profile_six_steps_mobile": "PASS",
-    "role_selection": "SERVER_SIDE_SET_ROLE_API_NO_ADMIN_UI",
-    "client_flow": "CODE_AUDIT_PASS_PUBLISH_LIST_ACCEPT_REJECT_PATHS_PRESENT",
-    "worker_flow": "CODE_AUDIT_PASS_SEARCH_DETAIL_APPLY_DUPLICATE_AND_SELF_APPLY_GUARDS_PRESENT",
-    "security": "RLS_STATIC_AND_RLS_SMOKE_PREVIOUSLY_PASS",
-    "authenticated_browser_e2e": "NOT_RUN_NO_USERS_CREATED_NO_CREDENTIALS_USED"
-  },
+  "payments_live": false,
+  "users_contacted_automatically": false,
+  "secrets_exposed": false,
+  "production_touched": false,
   "production_guards": {
-    "production_status": "NO-GO_PRODUCTION",
     "vercel_prod_deploy": "NOT_RUN",
     "vercel_promote": "NOT_RUN",
     "vercel_production_env_mutation": "NO",
@@ -109,12 +91,10 @@
     "mercadopago_live": false,
     "payments_live": false,
     "users_contacted_automatically": false,
-    "secrets_printed": "NO",
     "env_committed": "NO",
     "rls_relaxed": "NO"
   },
   "blockers": [],
-  "next_mode": "EXPRESSJOBS_CONTROLLED_AUTHENTICATED_MARKETPLACE_SMOKE",
-  "next_mode_reason": "Static/code/browser audit passed; remaining MVP proof is controlled authenticated client-worker journey with safe test accounts and no production.",
-  "next_prompt": "Run EXPRESSJOBS_CONTROLLED_AUTHENTICATED_MARKETPLACE_SMOKE in C:\\CODEX-expressjobs-repo from PR #51 branch or a safe child branch only after rechecking Supabase branch capacity. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION. Do not use vercel --prod, vercel promote, Production env mutation, destructive Supabase actions, branch delete/merge/reset, live payments, PayPal live, MercadoPago live, secrets, RLS relaxation, or automatic real-user contact. Use only existing staging test accounts loaded from ignored env files or human-provided sanitized browser evidence; never print emails, passwords, tokens, cookies, auth codes, user IDs, or service-role keys. Validate authenticated client publish, worker search/detail/apply, duplicate/self-apply guard, client applications view, accept/reject, worker status, /profile persistence/logout, mobile layout, and RLS smoke. Run secret:scan, production:check, guard:no-production-deploy, test:rls:static, staging:check, rls:smoke, lint/typecheck/test/build only as needed based on code changes, plus git diff --check and docs JSON parse. Update director docs and autonomous-cycle report."
+  "next_mode": "EXPRESSJOBS_PR52_REVIEW_AND_BRANCH_CAPACITY_CLOSEOUT",
+  "next_mode_reason": "Stacked PR is open and green; Supabase branch capacity is now at main plus two non-main branches, so the next safe cycle should avoid creating another preview branch."
 }

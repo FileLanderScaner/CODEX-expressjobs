@@ -1,6 +1,7 @@
-import { ClipboardList } from "lucide-react";
+import { BriefcaseBusiness, ClipboardList } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { EmptyState } from "@/components/empty-state";
+import { PrimaryButton } from "@/components/primary-button";
 
 export default function WorkerApplicationsPage() {
   return (
@@ -21,6 +22,9 @@ export default function WorkerApplicationsPage() {
         </section>
         <div className="mt-6">
           <EmptyState title="Sin postulaciones cargadas en esta vista" text="Busca un trabajo abierto y postulate desde el detalle. Esta vista mantiene los datos protegidos hasta que el flujo completo este habilitado." />
+        </div>
+        <div className="mt-5">
+          <PrimaryButton href="/worker/jobs" icon={BriefcaseBusiness}>Buscar trabajos abiertos</PrimaryButton>
         </div>
       </main>
     </AppShell>

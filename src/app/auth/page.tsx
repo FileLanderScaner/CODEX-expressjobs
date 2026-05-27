@@ -29,6 +29,14 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
           <p className="ej-badge">Acceso seguro</p>
           <h1 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Crear cuenta o ingresar</h1>
           <p className="ej-muted mt-3 leading-7">Entra para publicar trabajos, postularte o elegir tu rol dentro de Trabajos Rapidos.</p>
+          <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
+            <p className="font-black text-[var(--ej-text)]">Flujo recomendado</p>
+            <ol className="mt-3 grid gap-2 font-semibold leading-6">
+              <li>1. Ingresa con el enlace seguro enviado por email.</li>
+              <li>2. Elegi si vas a publicar trabajo o postularte.</li>
+              <li>3. Completa tu perfil antes de coordinar fuera de la app.</li>
+            </ol>
+          </div>
           {oauthErrorMessage ? (
             <div className="mt-5 flex items-start gap-3 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-4 text-sm font-semibold text-[#ffb4c2]" role="alert">
               <AlertTriangle aria-hidden="true" className="mt-0.5 shrink-0" size={18} />
