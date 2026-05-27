@@ -59,12 +59,12 @@ Supabase MCP read-only branch list succeeded:
 
 Result: `CAPACITY_OK_ONE_NON_MAIN_SLOT_AVAILABLE`.
 
-After PR #51 creation, GitHub/Supabase commented that Supabase Preview was skipped because no `supabase` directory changes were detected. MCP readback after the closeout push showed Supabase still created a branch for `codex/expressjobs-product-ux-review-after-redesign`:
+After PR #51 creation, Supabase created a branch for `codex/expressjobs-product-ux-review-after-redesign`. Final MCP readback showed:
 
-- status: `CREATING_PROJECT`
-- preview project status: `COMING_UP`
+- status: `FUNCTIONS_DEPLOYED`
+- preview project status: `ACTIVE_HEALTHY`
 
-Capacity is now full for new non-main branches under the `main + 2 non-main` project rule until one branch is merged, removed, or otherwise resolved through the safe path.
+Final listed branches were `main` and `codex/expressjobs-product-ux-review-after-redesign`. Under the `main + 2 non-main` rule, one non-main slot appears available at final read, but branch capacity must be rechecked before any new branch, push, or deploy.
 
 ## Push / PR
 
@@ -85,8 +85,8 @@ Initial PR state:
 - Open.
 - Mergeable.
 - Review required.
-- Supabase Preview: GitHub check skipped, but MCP shows branch created and coming up.
-- Vercel Preview: triggered by Git integration; `vercel inspect` showed target `preview`, status `Ready`; GitHub Vercel context lagged as `PENDING` at last read.
+- Supabase Preview: PASS.
+- Vercel Preview: PASS; `vercel inspect` showed target `preview`, status `Ready`.
 - Codex review: blocked by usage limits.
 
 ## Checks
@@ -131,6 +131,6 @@ Carried forward from same branch with no code changes after PASS:
 
 ## Next Mode
 
-`EXPRESSJOBS_PR51_PREVIEW_AND_SUPABASE_BRANCH_CLOSEOUT`
+`EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT`
 
-Reason: local reconcile work is now protected and pushed, but Supabase branch capacity is full after PR #51 branch creation. Close out PR #51 checks and Supabase branch status before creating another marketplace audit branch.
+Reason: local reconcile work is now protected and pushed, PR #51 is green, and Supabase branch status is healthy. Recheck branch capacity before creating/pushing any new marketplace-audit branch.
