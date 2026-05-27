@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { BadgeDollarSign, BriefcaseBusiness, ClipboardPlus, HelpCircle, Home, LogIn, UserCircle } from "lucide-react";
 import { getAccountNavState } from "@/lib/account";
 import { productionStatus } from "@/lib/env";
@@ -26,7 +26,9 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
             </span>
             <span className="leading-tight">
               <span className="block text-lg font-black tracking-tight">{publicBrand.productName}</span>
-              <span className="block text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--ej-text-soft)]">{publicBrand.technicalName}</span>
+              <span className="block text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--ej-text-soft)]">
+                {publicBrand.technicalName}
+              </span>
             </span>
           </Link>
 
@@ -60,15 +62,12 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
               {accountNav.isSignedIn ? <UserCircle aria-hidden="true" size={16} /> : <LogIn aria-hidden="true" size={16} />}
               <span className="truncate">{accountNav.isSignedIn ? "Mi cuenta" : accountNav.label}</span>
             </Link>
- codex/expressjobs-global-soft-premium-redesign-manual
-            <span className="ej-danger-badge hidden text-[10px] uppercase tracking-[0.16em] xl:inline-flex">
-
             <span className="ej-danger-badge ej-desktop-only-badge text-[10px] uppercase tracking-[0.16em]">
- main
               {productionStatus()}
             </span>
           </div>
         </div>
+
         <nav className="ej-container flex gap-2 overflow-x-auto pb-3 lg:hidden" aria-label="Navegacion movil">
           {nav.map((item) => (
             <Link

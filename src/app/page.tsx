@@ -1,4 +1,4 @@
-import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, LogIn, MessageCircle, Search, ShieldCheck, UserRoundCheck, UsersRound } from "lucide-react";
+﻿import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, LogIn, MessageCircle, Search, ShieldCheck, UserRoundCheck, UsersRound } from "lucide-react";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { RoleSelector } from "@/components/role-selector";
@@ -165,11 +165,6 @@ export default function Home() {
               <h2 className="mt-4 text-3xl font-black tracking-tight">Trabajos reales para necesidades concretas</h2>
               <p className="ej-muted mt-4 text-sm leading-6">{pilotSalesCopy.main}</p>
             </div>
- codex/expressjobs-global-soft-premium-redesign-manual
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <Link className="focus-ring ej-chip px-4 py-2 text-sm" href="/worker/jobs" key={category}>{category}</Link>
-
             <div className="grid gap-3 sm:grid-cols-2">
               {categories.map((category) => (
                 <Link
@@ -180,7 +175,6 @@ export default function Home() {
                   <span>{category}</span>
                   <ArrowRight aria-hidden="true" className="text-[var(--ej-accent)] opacity-70 transition group-hover:translate-x-1 group-hover:opacity-100" size={16} />
                 </Link>
- main
               ))}
             </div>
           </div>

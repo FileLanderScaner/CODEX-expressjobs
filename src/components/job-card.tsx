@@ -1,4 +1,4 @@
-import { MapPin, MessageCircle, Send, Star } from "lucide-react";
+﻿import { MapPin, MessageCircle, Send, Star } from "lucide-react";
 import { JobStatusBadge } from "@/components/job-status-badge";
 import type { JobStatus } from "@/lib/expressjobs-data";
 import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
