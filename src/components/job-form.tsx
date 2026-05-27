@@ -107,6 +107,14 @@ export function JobForm() {
         <CheckCircle2 aria-hidden="true" className="mr-2 inline" size={16} />
         Publica una tarea real con tu cuenta. Los pagos dentro de la app siguen desactivados.
       </div>
+      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
+        <p className="font-black text-[var(--ej-text)]">Antes de publicar</p>
+        <ol className="mt-3 grid gap-2 font-semibold leading-6">
+          <li>1. Describe el resultado esperado, no solo el rubro.</li>
+          <li>2. Usa una zona aproximada y evita datos personales.</li>
+          <li>3. Revisa postulaciones antes de coordinar por fuera.</li>
+        </ol>
+      </div>
       <label className="grid gap-2 text-sm font-bold">
         Titulo
         <span className="ej-soft text-xs font-semibold">Escribi la tarea en una frase concreta. Evita datos personales.</span>

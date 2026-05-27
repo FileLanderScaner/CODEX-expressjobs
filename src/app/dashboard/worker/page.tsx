@@ -1,4 +1,4 @@
-import { BadgeCheck, BriefcaseBusiness, Send, Star } from "lucide-react";
+import { BadgeCheck, BriefcaseBusiness, Send, Star, UserRoundCheck } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { PrimaryButton } from "@/components/primary-button";
 
@@ -31,6 +31,7 @@ export default function WorkerDashboardPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <PrimaryButton href="/worker/jobs" icon={BriefcaseBusiness}>Ver trabajos</PrimaryButton>
             <PrimaryButton href="/dashboard/worker/applications" icon={Send}>Mis postulaciones</PrimaryButton>
+            <PrimaryButton href="/dashboard/worker/profile" icon={UserRoundCheck}>Perfil trabajador</PrimaryButton>
           </div>
         </div>
       </main>

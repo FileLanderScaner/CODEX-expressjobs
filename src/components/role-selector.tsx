@@ -14,7 +14,7 @@ const choices = [
     href: "/client/jobs/new",
     icon: BriefcaseBusiness,
     title: "Busco ayuda",
-    text: "Publica una tarea, compara postulaciones y coordina con mas claridad.",
+    text: "Publica una tarea, recibe postulaciones y coordina con mas claridad.",
     fit: "Recomendado si necesitas resolver una tarea concreta y recibir propuestas.",
     button: "Publicar una tarea",
   },
@@ -58,7 +58,7 @@ export function RoleSelector() {
     const { error } = await ensureMarketplaceRole(supabase, role, fullNameFromUser(user));
 
     if (error) {
-      setMessage("No pudimos guardar tu rol. Intenta de nuevo.");
+      setMessage("No pudimos guardar tu rol con seguridad. Intenta de nuevo o vuelve a iniciar sesion.");
       setPendingRole(null);
       return;
     }
