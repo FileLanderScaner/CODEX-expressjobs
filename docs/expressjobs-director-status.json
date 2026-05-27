@@ -3,8 +3,8 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "branch": "codex/expressjobs-product-ux-review-after-redesign",
-  "mode": "EXPRESSJOBS_LOCAL_RECONCILE_COMMIT_PUSH_CLOSEOUT",
-  "updated_at": "2026-05-26T22:55:00-03:00",
+  "mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT",
+  "updated_at": "2026-05-26T23:05:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
   "local_commit": "2861c35918f413ca55ae6fe9fc5263d5213f6e7f",
   "push_status": "PUSHED",
@@ -64,7 +64,40 @@
     "lint": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
     "typecheck": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
     "test": "PASS_10_FILES_60_TESTS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
-    "build": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER"
+    "build": "PASS_PREVIOUSLY_ON_SAME_BRANCH_NO_CODE_CHANGES_AFTER",
+    "marketplace_targeted_tests": "PASS_4_FILES_34_TESTS",
+    "local_marketplace_browser_smoke": "PASS_DESKTOP_AND_MOBILE"
+  },
+  "marketplace_audit": {
+    "status": "PASS_WITH_AUTHENTICATED_BROWSER_E2E_NOT_RUN",
+    "routes_checked_desktop": [
+      "/auth",
+      "/role",
+      "/profile",
+      "/client/jobs/new",
+      "/client",
+      "/worker/jobs",
+      "/jobs",
+      "/dashboard/client",
+      "/dashboard/worker",
+      "/pricing"
+    ],
+    "routes_checked_mobile": [
+      "/auth",
+      "/role",
+      "/dashboard/worker/profile",
+      "/client/jobs/new",
+      "/worker/jobs"
+    ],
+    "browser_console_errors": "NONE",
+    "horizontal_overflow": "NONE",
+    "auth_google_inactive_notice": "PASS",
+    "profile_six_steps_mobile": "PASS",
+    "role_selection": "SERVER_SIDE_SET_ROLE_API_NO_ADMIN_UI",
+    "client_flow": "CODE_AUDIT_PASS_PUBLISH_LIST_ACCEPT_REJECT_PATHS_PRESENT",
+    "worker_flow": "CODE_AUDIT_PASS_SEARCH_DETAIL_APPLY_DUPLICATE_AND_SELF_APPLY_GUARDS_PRESENT",
+    "security": "RLS_STATIC_AND_RLS_SMOKE_PREVIOUSLY_PASS",
+    "authenticated_browser_e2e": "NOT_RUN_NO_USERS_CREATED_NO_CREDENTIALS_USED"
   },
   "production_guards": {
     "production_status": "NO-GO_PRODUCTION",
@@ -81,7 +114,7 @@
     "rls_relaxed": "NO"
   },
   "blockers": [],
-  "next_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT",
-  "next_mode_reason": "PR #51 is protected, pushed, and green; next safe step is marketplace flow audit with branch capacity rechecked before any new branch.",
-  "next_prompt": "Run EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT in C:\\CODEX-expressjobs-repo. Before creating or pushing any new branch, recheck Supabase MCP branch capacity for project gnsfyvsodslnehszanra and PR #51 status. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION. Do not use vercel --prod, vercel promote, Production env mutation, destructive Supabase actions, branch delete/merge/reset, live payments, PayPal live, MercadoPago live, secrets, RLS relaxation, or automatic user contact. Audit /auth, /role, /profile, client publish/list/applications/accept-reject, worker search/detail/apply/status, duplicate/self-apply guards, cards, categories, navigation, responsive layout, empty/error states, endpoints, and RLS. Run relevant checks: secret:scan, production:check, guard:no-production-deploy, test:rls:static, staging:check, rls:smoke if env remains available, lint, typecheck, test, build, git diff --check, and local browser smoke. Use Preview only after confirming the target is Preview, Ready, and safe."
+  "next_mode": "EXPRESSJOBS_CONTROLLED_AUTHENTICATED_MARKETPLACE_SMOKE",
+  "next_mode_reason": "Static/code/browser audit passed; remaining MVP proof is controlled authenticated client-worker journey with safe test accounts and no production.",
+  "next_prompt": "Run EXPRESSJOBS_CONTROLLED_AUTHENTICATED_MARKETPLACE_SMOKE in C:\\CODEX-expressjobs-repo from PR #51 branch or a safe child branch only after rechecking Supabase branch capacity. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION. Do not use vercel --prod, vercel promote, Production env mutation, destructive Supabase actions, branch delete/merge/reset, live payments, PayPal live, MercadoPago live, secrets, RLS relaxation, or automatic real-user contact. Use only existing staging test accounts loaded from ignored env files or human-provided sanitized browser evidence; never print emails, passwords, tokens, cookies, auth codes, user IDs, or service-role keys. Validate authenticated client publish, worker search/detail/apply, duplicate/self-apply guard, client applications view, accept/reject, worker status, /profile persistence/logout, mobile layout, and RLS smoke. Run secret:scan, production:check, guard:no-production-deploy, test:rls:static, staging:check, rls:smoke, lint/typecheck/test/build only as needed based on code changes, plus git diff --check and docs JSON parse. Update director docs and autonomous-cycle report."
 }

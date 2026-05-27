@@ -4,6 +4,12 @@
 
 ## Current Status - 2026-05-26
 
+Mode `EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT` completed as a safe local audit on PR #51 branch.
+
+Audit results: targeted marketplace tests passed (`marketplace-flow`, `supabase-rls-static`, `account-ux`, `social-auth`: 34 tests). Local browser smoke passed on desktop 1360px and mobile 390px for `/auth`, `/role`, `/profile`, `/client/jobs/new`, `/client`, `/worker/jobs`, `/jobs`, `/dashboard/client`, `/dashboard/worker`, `/pricing`, and `/dashboard/worker/profile` mobile. Observed no horizontal overflow and no browser console errors. Code audit confirmed role selection uses the server-side `/api/profile/set-role` path, UI does not expose `admin`, worker self-apply and duplicate apply are guarded client-side, client accept/reject uses RPC, and static RLS tests cover self-promotion, self-apply, role RPC exposure, and application policies.
+
+Marketplace authenticated E2E browser actions were not executed because this cycle did not create users, contact users, print credentials, or use human Google/test account secrets. The next safe step is a controlled authenticated smoke using existing staging test accounts or human-run sanitized evidence, with `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+
 Mode `EXPRESSJOBS_LOCAL_RECONCILE_COMMIT_PUSH_CLOSEOUT` completed on branch `codex/expressjobs-product-ux-review-after-redesign`.
 
 Local commit `2861c35918f413ca55ae6fe9fc5263d5213f6e7f` was protected before push. A local `git format-patch` backup exists at `docs/local-patches/0001-Reconcile-ExpressJobs-PRs-and-refine-UX-pilot-flow.patch` and the committed stat backup is `docs/local-patches/EXPRESSJOBS_2861c359_COMMIT_STAT.txt`. The `.patch` file is intentionally ignored because raw format-patch content can trip whitespace checks when committed as a PR diff.
