@@ -1,14 +1,10 @@
 import { MapPin, MessageCircle, Send, Star } from "lucide-react";
-import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
-import type { JobStatus } from "@/lib/expressjobs-data";
 import { JobStatusBadge } from "@/components/job-status-badge";
+import type { JobStatus } from "@/lib/expressjobs-data";
+import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
 
 function isTechnicalStagingTitle(value: string) {
- codex/expressjobs-global-soft-premium-redesign-manual
-  return /(^|[_\s-])(RLS_SMOKE|SMOKE_TEST|SMOKE|TEST_JOB)([_\s-]|$)/i.test(value);
-
   return /(^|[_\s-])(RLS_SMOKE|SMOKE_TEST|TEST_JOB)([_\s-]|$)/i.test(value);
- main
 }
 
 export function JobCard({
