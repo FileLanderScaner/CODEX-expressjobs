@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { CheckCircle2, XCircle } from "lucide-react";
 import Link from "next/link";
@@ -135,12 +135,10 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
       </div>
       <div className="mt-6">
         <h2 className="text-2xl font-black">Postulaciones</h2>
- codex/expressjobs-global-soft-premium-redesign-manual
 
         <p className="ej-muted mt-2 text-sm leading-6">
           Compara mensaje, monto y reputacion. Aceptar o rechazar actualiza el estado protegido por RLS.
         </p>
- main
         {actionMessage ? <p className="mt-3 rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]">{actionMessage}</p> : null}
         <div className="mt-4 grid gap-3">
           {applications.length ? (

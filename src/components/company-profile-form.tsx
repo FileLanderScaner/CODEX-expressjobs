@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Building2, Save } from "lucide-react";
 import Link from "next/link";
@@ -95,10 +95,8 @@ export function CompanyProfileForm() {
 
   return (
     <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
- codex/expressjobs-global-soft-premium-redesign-manual
 
       <ProfileProcessSteps currentStep={3} />
- main
       <div className="flex items-center gap-2">
         <Building2 aria-hidden="true" className="text-[var(--ej-accent)]" />
         <p className="ej-muted text-sm font-bold">Datos visibles para publicar y gestionar postulantes.</p>

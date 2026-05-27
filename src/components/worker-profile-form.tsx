@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Save } from "lucide-react";
 import Link from "next/link";
@@ -95,10 +95,8 @@ export function WorkerProfileForm() {
 
   return (
     <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
- codex/expressjobs-global-soft-premium-redesign-manual
 
       <ProfileProcessSteps currentStep={3} />
- main
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Nombre completo" name="fullName" placeholder="Nombre y apellido" />
         <Field label="Telefono" name="phone" placeholder="WhatsApp o celular" />
