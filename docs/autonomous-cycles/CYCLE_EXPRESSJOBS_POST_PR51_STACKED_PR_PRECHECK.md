@@ -45,10 +45,11 @@ Branches observed:
 
 - `main`, default branch, preview status `ACTIVE_HEALTHY`
 - `codex/expressjobs-product-ux-review-after-redesign`, PR #51 branch, `FUNCTIONS_DEPLOYED`, preview status `ACTIVE_HEALTHY`
+- `codex/expressjobs-post-pr51-product-completion`, PR #52 branch, `FUNCTIONS_DEPLOYED`, preview status `ACTIVE_HEALTHY`
 
 Result: `VERIFIED_CAPACITY_AVAILABLE`.
 
-Under the project rule `main + 2 non-main`, one additional non-main branch was available before the stacked PR push. After PR #52 creation, Supabase Preview reported `SKIPPED` because this stacked PR has no `supabase/` directory changes; MCP still listed only `main` plus PR #51's branch.
+Under the project rule `main + 2 non-main`, one additional non-main branch was available before the stacked PR push. After PR #52 creation, Supabase initially posted a skipped/no-change comment, then created the stacked preview branch. Final MCP readback listed `main` plus two non-main branches, so the project is now at the branch-capacity limit and must not receive another preview branch until capacity is freed through the safe path.
 
 No Supabase branch was created manually, deleted, rebased, or reset.
 
@@ -59,9 +60,9 @@ No Supabase branch was created manually, deleted, rebased, or reset.
 - Head: `codex/expressjobs-post-pr51-product-completion`
 - State: `OPEN`
 - Mergeable: `MERGEABLE`
-- Supabase Preview: `SKIPPED_NO_SUPABASE_CHANGES`
-- Vercel: pending at initial read
-- GitHub Actions: docs-check, pr-check, and security-gate pending at initial read; production-no-go already passing
+- Supabase Preview: `SUCCESS`, preview branch `ACTIVE_HEALTHY`
+- Vercel: `SUCCESS`
+- GitHub Actions: docs-check, pr-check, production-no-go, and security-gate `SUCCESS`
 
 ## Checks
 
@@ -97,6 +98,6 @@ Not repeated:
 
 ## Next Mode
 
-`EXPRESSJOBS_PR52_CHECKS_AND_REVIEW_CLOSEOUT`
+`EXPRESSJOBS_PR52_REVIEW_AND_BRANCH_CAPACITY_CLOSEOUT`
 
-Wait for PR #52 checks to settle, inspect failures if any, and keep PR #51 unmerged unless required review is completed by the normal path.
+Keep PR #52 open for review. Do not create new preview branches while Supabase is at `main + 2 non-main` unless an obsolete branch is removed by the safe human-approved path.

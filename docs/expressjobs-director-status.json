@@ -3,7 +3,7 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "mode": "EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK",
-  "updated_at": "2026-05-27T00:15:24-03:00",
+  "updated_at": "2026-05-27T00:22:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
   "base_pr": 51,
   "base_pr_status": {
@@ -35,11 +35,11 @@
     "status": "OPEN",
     "initial_checks": {
       "production_no_go": "PASS",
-      "supabase_preview": "SKIPPED_NO_SUPABASE_CHANGES",
-      "vercel": "PENDING_AT_INITIAL_READ",
-      "docs_check": "PENDING_AT_INITIAL_READ",
-      "pr_check": "PENDING_AT_INITIAL_READ",
-      "security_gate": "PENDING_AT_INITIAL_READ"
+      "supabase_preview": "PASS",
+      "vercel": "PASS",
+      "docs_check": "PASS",
+      "pr_check": "PASS",
+      "security_gate": "PASS"
     }
   },
   "stacked_pr_status": "OPEN",
@@ -52,8 +52,15 @@
       "main",
       "codex/expressjobs-product-ux-review-after-redesign"
     ],
+    "branches_after_push": [
+      "main",
+      "codex/expressjobs-product-ux-review-after-redesign",
+      "codex/expressjobs-post-pr51-product-completion"
+    ],
     "pr51_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
+    "pr52_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
     "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE_BEFORE_PUSH",
+    "capacity_after_push": "AT_LIMIT_MAIN_PLUS_TWO_NON_MAIN",
     "manual_branch_created": false,
     "manual_branch_deleted": false
   },
@@ -88,6 +95,6 @@
     "rls_relaxed": "NO"
   },
   "blockers": [],
-  "next_mode": "EXPRESSJOBS_PR52_CHECKS_AND_REVIEW_CLOSEOUT",
-  "next_mode_reason": "Stacked PR is open; wait for remote checks to complete and address any failure without touching production or bypassing PR #51."
+  "next_mode": "EXPRESSJOBS_PR52_REVIEW_AND_BRANCH_CAPACITY_CLOSEOUT",
+  "next_mode_reason": "Stacked PR is open and green; Supabase branch capacity is now at main plus two non-main branches, so the next safe cycle should avoid creating another preview branch."
 }
