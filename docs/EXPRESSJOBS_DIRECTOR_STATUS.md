@@ -4,6 +4,14 @@
 
 ## Current Status - 2026-05-26
 
+Mode `EXPRESSJOBS_PR_RECONCILE_UX_OAUTH_MANUAL_PILOT` completed on branch `codex/expressjobs-product-ux-review-after-redesign`.
+
+GitHub was reconciled against the canonical repo `FileLanderScaner/CODEX-expressjobs`. PR #50 is the primary visual source, PR #49 is a partial predecessor, PR #48 is docs-only design guidance, PR #47/#46/#44/#42/#41 are merged, and PR #40 remains open/conflicting and should not be merged as-is. Full matrix: `docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md`.
+
+This cycle applied safe local follow-up changes: home categories now render as clean text links instead of heavy chips, profile forms expose a 6-step completion guide, inactive Google OAuth no longer renders a dead button, and PR #50's staging-title matcher was narrowed to known synthetic smoke labels. Manual commercial pilot docs were added under `docs/sales`, and Google OAuth setup now references the official account `expressjobs.uy@gmail.com` without moving GitHub, Vercel, Supabase, remotes, or ownership.
+
+Validation passed: `secret:scan`, `production:check`, `guard:no-production-deploy`, `test:rls:static`, `staging:check`, `rls:smoke`, `lint`, `typecheck`, `test`, `build`, `git diff --check`, and local browser smoke on desktop 1360px and mobile 390px. Vercel PR #50 Preview was inspected as `target=preview`, `Ready`; no deploy was created. Supabase branch-capacity CLI inspection timed out, so no Preview/deploy was attempted from this cycle.
+
 Mode `EXPRESSJOBS_PRODUCT_UX_REVIEW_AFTER_GLOBAL_REDESIGN` completed on branch `codex/expressjobs-product-ux-review-after-redesign`.
 
 Post-redesign UX review applied small product clarity improvements without architecture, database, payment, production, Supabase production, or RLS changes. Role selection now explains who each path is for; job publication has safer helper copy and clearer next-step/error messages; worker search and empty states explain how to continue; client and worker dashboards show recommended next steps; application status chips now use Spanish labels; client accept/reject and worker application messages are clearer.

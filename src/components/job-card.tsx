@@ -4,7 +4,7 @@ import type { JobStatus } from "@/lib/expressjobs-data";
 import { JobStatusBadge } from "@/components/job-status-badge";
 
 function isTechnicalStagingTitle(value: string) {
-  return /(^|[_\s-])(RLS_SMOKE|SMOKE_TEST|SMOKE|TEST_JOB)([_\s-]|$)/i.test(value);
+  return /(^|[_\s-])(RLS_SMOKE|SMOKE_TEST|TEST_JOB)([_\s-]|$)/i.test(value);
 }
 
 export function JobCard({

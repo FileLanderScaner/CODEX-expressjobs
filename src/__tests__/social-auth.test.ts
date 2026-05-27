@@ -67,20 +67,18 @@ describe("social auth phase one", () => {
     expect(canPublicOAuthAssignAdmin("admin")).toBe(false);
   });
 
-  it("keeps Google visible while hiding inactive secondary providers", () => {
+  it("hides inactive OAuth buttons while keeping a clear Google status", () => {
     const authPage = readFileSync(join(process.cwd(), "src/app/auth/page.tsx"), "utf8");
     const socialButtons = readFileSync(join(process.cwd(), "src/components/social-auth-buttons.tsx"), "utf8");
 
     expect(authPage).toContain("SocialAuthButtons");
     expect(socialButtons).toContain("getEnabledSocialAuthProviders");
     expect(socialButtons).toContain("getSocialAuthFlags");
-    expect(socialButtons).toContain('"google"');
-    expect(socialButtons).toContain('provider !== "google"');
     expect(socialButtons).toContain("GoogleLoginButton");
-    expect(socialButtons).toContain("Google Login requiere habilitar");
+    expect(socialButtons).toContain("visibleProviders.length === 0");
+    expect(socialButtons).toContain("Google Login no esta activo");
     expect(socialButtons).toContain("Continuar con Google");
     expect(socialButtons).toContain("Continuar con Facebook");
-    expect(socialButtons).not.toContain("visibleProviders.length === 0");
   });
 
   it("renders visible OAuth error reasons on the auth page", () => {

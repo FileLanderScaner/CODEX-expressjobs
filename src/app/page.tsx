@@ -165,9 +165,16 @@ export default function Home() {
               <h2 className="mt-4 text-3xl font-black tracking-tight">Trabajos reales para necesidades concretas</h2>
               <p className="ej-muted mt-4 text-sm leading-6">{pilotSalesCopy.main}</p>
             </div>
-            <div className="flex flex-wrap gap-2">
+            <div className="grid gap-3 sm:grid-cols-2">
               {categories.map((category) => (
-                <Link className="focus-ring ej-chip px-4 py-2 text-sm" href="/worker/jobs" key={category}>{category}</Link>
+                <Link
+                  className="focus-ring group flex items-center justify-between border-b border-white/10 py-3 text-sm font-bold text-[var(--ej-text-muted)] transition hover:border-[var(--ej-accent)] hover:text-white"
+                  href="/worker/jobs"
+                  key={category}
+                >
+                  <span>{category}</span>
+                  <ArrowRight aria-hidden="true" className="text-[var(--ej-accent)] opacity-70 transition group-hover:translate-x-1 group-hover:opacity-100" size={16} />
+                </Link>
               ))}
             </div>
           </div>

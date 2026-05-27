@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { authHref, ensureMarketplaceRole, fullNameFromUser } from "@/lib/marketplace";
 import { companyProfileSchema } from "@/lib/marketplace-schemas";
+import { ProfileProcessSteps } from "@/components/profile-process-steps";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 
 type SaveState = "idle" | "saving" | "saved" | "error";
@@ -94,6 +95,7 @@ export function CompanyProfileForm() {
 
   return (
     <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
+      <ProfileProcessSteps currentStep={3} />
       <div className="flex items-center gap-2">
         <Building2 aria-hidden="true" className="text-[var(--ej-accent)]" />
         <p className="ej-muted text-sm font-bold">Datos visibles para publicar y gestionar postulantes.</p>

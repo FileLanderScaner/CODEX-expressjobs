@@ -3,86 +3,85 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "branch": "codex/expressjobs-product-ux-review-after-redesign",
-  "mode": "EXPRESSJOBS_PRODUCT_UX_REVIEW_AFTER_GLOBAL_REDESIGN",
-  "commit": "GIT_HEAD_RECORDED_IN_FINAL_DIRECTOR_REPORT",
-  "updated_at": "2026-05-26T14:46:00-03:00",
+  "mode": "EXPRESSJOBS_PR_RECONCILE_UX_OAUTH_MANUAL_PILOT",
+  "updated_at": "2026-05-26T22:05:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
-  "ux_review_status": "APPLIED_AND_VALIDATED",
-  "summary": {
-    "scope": "Small post-redesign product UX improvements for MVP clarity",
-    "auth": "REVIEWED_GOOGLE_AND_EMAIL_ENTRY_REMAIN_VISIBLE",
-    "role_selection": "IMPROVED_WITH_RECOMMENDED_USE_CASES",
-    "publish_job": "IMPROVED_HELPER_COPY_ERRORS_AND_NEXT_STEP",
-    "worker_jobs": "IMPROVED_SEARCH_GUIDANCE_AND_EMPTY_STATES",
-    "job_detail_apply": "IMPROVED_POSTULATION_HELPER_COPY_AND_OUTCOME",
-    "client_review": "IMPROVED_APPLICATION_STATE_LABELS_AND_ACCEPT_REJECT_COPY",
-    "dashboards": "IMPROVED_RECOMMENDED_NEXT_STEPS",
-    "global_states": "REVIEWED_DARK_SYSTEM_RETAINED"
+  "github_reconciliation": {
+    "canonical_repo": "FileLanderScaner/CODEX-expressjobs",
+    "origin_main": "dfb1bac Prepare Google OAuth account separation (#47)",
+    "local_branch_has_open_pr": false,
+    "current_branch_relationship": "one commit ahead of PR_50 branch before this cycle",
+    "matrix_doc": "docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md",
+    "prs_read": [50, 49, 48, 47, 46, 44, 42, 41, 40],
+    "primary_visual_source": "PR_50",
+    "superseded_visual_pr": "PR_49",
+    "design_directive_pr": "PR_48",
+    "do_not_merge_as_is": "PR_40"
   },
-  "routes_reviewed": [
-    "/",
-    "/auth",
-    "/register",
-    "/como-funciona",
-    "/jobs",
-    "/pricing",
-    "/ofertas",
-    "/production-paused",
-    "/client/jobs/new",
-    "/client/jobs/[id]",
-    "/dashboard/client",
-    "/dashboard/client/profile",
-    "/dashboard/worker",
-    "/dashboard/worker/profile",
-    "/dashboard/worker/applications",
-    "/worker",
-    "/worker/jobs",
-    "/worker/jobs/[id]",
-    "/admin"
+  "summary": {
+    "ux_categories": "HOME_CATEGORY_CHIPS_REPLACED_WITH_CLEAN_TEXT_LINKS",
+    "profile_process": "SIX_STEP_PROFILE_GUIDE_ADDED",
+    "oauth_inactive_state": "DEAD_GOOGLE_BUTTON_HIDDEN_WHEN_INACTIVE",
+    "oauth_official_account_doc": "expressjobs.uy@gmail.com",
+    "staging_title_detection": "NARROWED_TO_SYNTHETIC_SMOKE_LABELS",
+    "manual_pilot_sales_docs": "ADDED"
+  },
+  "files_updated": [
+    "docs/EXPRESSJOBS_DIRECTOR_STATUS.md",
+    "docs/expressjobs-director-status.json",
+    "docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md",
+    "docs/autonomous-cycles/CYCLE_EXPRESSJOBS_2026_05_26_RECONCILE_AND_CONTINUE.md",
+    "docs/expressjobs/auth/EXPRESSJOBS_GOOGLE_OAUTH_SETUP.md",
+    "docs/sales/EXPRESSJOBS_MANUAL_PILOT_SALES_SYSTEM.md",
+    "docs/sales/EXPRESSJOBS_PILOT_OFFERS.md",
+    "docs/sales/EXPRESSJOBS_PILOT_CRM_WORKFLOW.md",
+    "src/app/page.tsx",
+    "src/components/profile-process-steps.tsx",
+    "src/components/social-auth-buttons.tsx",
+    "src/components/job-card.tsx"
   ],
   "checks": {
     "secret_scan": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
-    "rls_static": "PASS_1_FILE_12_TESTS",
+    "rls_static": "PASS_12_TESTS",
     "staging_check": "PASS",
     "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
     "lint": "PASS",
     "typecheck": "PASS",
-    "test": "PASS_10_FILES_59_TESTS",
+    "test": "PASS_10_FILES_60_TESTS",
     "build": "PASS",
-    "git_diff_check": "PASS",
-    "json_parse": "PASS"
+    "git_diff_check": "PASS"
+  },
+  "browser_smoke_local": {
+    "desktop_1360x900": "PASS",
+    "mobile_390x844": "PASS",
+    "routes_checked": [
+      "/",
+      "/auth",
+      "/profile",
+      "/dashboard/worker/profile",
+      "/dashboard/client/profile",
+      "/client/jobs/new",
+      "/worker/jobs",
+      "/pricing"
+    ],
+    "no_horizontal_overflow": true,
+    "console_errors": "NONE",
+    "auth_google_dead_button": "NOT_RENDERED_WHEN_INACTIVE",
+    "profile_six_steps_visible": true
   },
   "staging_status": {
     "staging_check": "PASS",
     "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
-    "preview_status": "NOT_DEPLOYED_IN_THIS_CYCLE",
-    "browser_smoke_local": "PASS"
+    "supabase_branch_capacity_check": "CHECK_NOT_RUN_TIMEOUT_NPX_SUPABASE",
+    "remote_migration_applied": false
   },
-  "browser_smoke_local": {
-    "local_url": "http://localhost:3000",
-    "desktop_1360": "PASS",
-    "tablet_768": "PASS",
-    "mobile_390": "PASS_AFTER_HEADER_BADGE_OVERFLOW_FIX",
-    "routes": [
-      "/",
-      "/auth",
-      "/register",
-      "/como-funciona",
-      "/jobs",
-      "/worker/jobs",
-      "/client/jobs/new",
-      "/dashboard/client",
-      "/dashboard/worker",
-      "/pricing",
-      "/ofertas",
-      "/production-paused"
-    ],
-    "auth_google_visible": true,
-    "no_go_visible": true,
-    "white_generic_blocks": "NONE_DETECTED",
-    "console_errors": "NONE_RELEVANT"
+  "preview_status": {
+    "vercel_pr50_preview": "READY_TARGET_PREVIEW",
+    "deployment_id": "dpl_AM1oLhQtiNkEWyvdUXmXTQViTbdj",
+    "preview_deploy_created_this_cycle": false,
+    "browser_smoke_preview": "NOT_RUN_NO_NEW_PREVIEW_AND_BRANCH_CAPACITY_NOT_FRESHLY_VERIFIED"
   },
   "production_guards": {
     "production_status": "NO-GO_PRODUCTION",
@@ -91,13 +90,20 @@
     "vercel_production_env_mutation": "NO",
     "supabase_production_mutation": "NO",
     "paypal_live": "OFF",
+    "mercadopago_live": "OFF",
     "real_payments": "OFF",
     "secrets_printed": "NO",
     "env_committed": "NO",
-    "rls_disabled": "NO"
+    "rls_disabled": "NO",
+    "users_contacted_automatically": "NO"
   },
-  "blockers": [],
+  "blockers": [
+    "BLOCKED_SUPABASE_ACCESS"
+  ],
+  "blocker_details": {
+    "BLOCKED_SUPABASE_ACCESS": "Supabase branch-capacity inspection through npx supabase timed out, so no new Preview/deploy was attempted."
+  },
   "next_mode": "EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT",
-  "next_mode_reason": "After UX clarity improvements, the next safe high-impact step is validating the real staging marketplace journey end to end.",
-  "next_prompt": "Run EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT in C:\\CODEX-expressjobs-repo from the latest safe branch. Validate auth, role, publish, search, apply, client review, accept/reject, worker status, RLS smoke, local browser smoke, build and tests. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION and do not touch production, live payments, PayPal live, Vercel Production env vars, Supabase production, secrets, or RLS relaxations."
+  "next_mode_reason": "PR and UX reconciliation are locally coherent; next safe high-impact step is validating the real client/worker marketplace flow end to end in staging without production.",
+  "next_prompt": "Run EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT in C:\\CODEX-expressjobs-repo on branch codex/expressjobs-product-ux-review-after-redesign or a new child branch. Keep PRODUCTION_STATUS=NO-GO_PRODUCTION. Do not use vercel --prod, vercel promote, Vercel Production env mutation, Supabase production writes, live payments, PayPal live, MercadoPago live, service-role in client code, RLS relaxation, destructive migrations, or automatic real-user contact. First read git status, origin/main, open PRs, docs/expressjobs-director-status.json, and docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md. Validate the real marketplace flow locally/staging: auth inactive/active states, /profile, role selection through /api/profile/set-role, client publish, worker job search, worker apply, client application review, accept/reject, empty/error states, and mobile layout. Run npm run secret:scan, npm run production:check, npm run guard:no-production-deploy, npm run test:rls:static, npm run staging:check, npm run rls:smoke if env is available, npm run lint, npm run typecheck, npm run test, npm run build, and git diff --check. Use Preview only if Supabase branch capacity is freshly verified and safe. Update docs/EXPRESSJOBS_DIRECTOR_STATUS.md, docs/expressjobs-director-status.json, and a new docs/autonomous-cycles report. GO only for controlled staging evidence; production remains NO-GO_PRODUCTION."
 }
