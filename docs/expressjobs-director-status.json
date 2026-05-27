@@ -2,56 +2,79 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "branch": "codex/expressjobs-post-pr51-product-completion",
-  "base_branch": "codex/expressjobs-product-ux-review-after-redesign",
-  "mode": "EXPRESSJOBS_CONTINUE_AFTER_PR51_WITHOUT_AUTH_E2E",
-  "updated_at": "2026-05-26T23:59:00-03:00",
+  "mode": "EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK",
+  "updated_at": "2026-05-27T00:15:24-03:00",
   "production_status": "NO-GO_PRODUCTION",
-  "pull_request_51": {
-    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/51",
+  "base_pr": 51,
+  "base_pr_status": {
     "state": "OPEN",
     "mergeable": "MERGEABLE",
     "review_decision": "REVIEW_REQUIRED",
     "checks": "SUCCESS",
     "merged": false,
-    "bypass_used": false
+    "bypass_used": false,
+    "admin_override_used": false
   },
-  "authenticated_marketplace_smoke": "AUTHENTICATED_E2E_DEFERRED_BY_HUMAN_DECISION",
-  "authenticated_db_smoke_reference": "EXPRESSJOBS_RLS_STAGING_PASS_PREVIOUS_CYCLE_AND_AVAILABLE_AS_GATE",
-  "client_flow": "PRODUCT_COPY_AND_CTA_IMPROVED_WITHOUT_NEW_AUTH_E2E",
-  "worker_flow": "PRODUCT_COPY_AND_CTA_IMPROVED_WITHOUT_NEW_AUTH_E2E",
-  "rls_status": "UNCHANGED_NOT_RELAXED",
-  "browser_smoke": "LOCAL_HTTP_SMOKE_PASS_AUTH_ROLE_PROFILE_JOBS_PRICING_DASHBOARDS",
-  "staging_test_accounts": {
-    "client": "AVAILABLE_IN_IGNORED_ENV_VALUES_NOT_PRINTED",
-    "worker": "AVAILABLE_IN_IGNORED_ENV_VALUES_NOT_PRINTED",
-    "admin": "AVAILABLE_IN_IGNORED_ENV_VALUES_NOT_PRINTED",
-    "outsider": "NOT_AVAILABLE"
+  "stacked_branch": "codex/expressjobs-post-pr51-product-completion",
+  "stacked_base": "codex/expressjobs-product-ux-review-after-redesign",
+  "stacked_commit": "3d98ebc",
+  "stacked_commit_protection": {
+    "patch_backup": "docs/local-patches/0001-Continue-product-completion-after-PR51.patch",
+    "patch_committed": false,
+    "patch_ignored": true,
+    "stat_backup": "docs/local-patches/EXPRESSJOBS_3d98ebc_COMMIT_STAT.txt",
+    "secret_pattern_scan": "PASS_NO_SECRET_VALUES"
   },
-  "product_completion_changes": [
-    "auth_magic_link_guidance",
-    "role_selection_guidance",
-    "job_publish_precheck",
-    "client_dashboard_next_steps",
-    "worker_dashboard_profile_cta",
-    "worker_applications_empty_state_cta",
-    "authenticated_smoke_matrix_doc"
-  ],
+  "stacked_pr": {
+    "number": 52,
+    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/52",
+    "base": "codex/expressjobs-product-ux-review-after-redesign",
+    "head": "codex/expressjobs-post-pr51-product-completion",
+    "state": "OPEN",
+    "mergeable": "MERGEABLE",
+    "status": "OPEN",
+    "initial_checks": {
+      "production_no_go": "PASS",
+      "supabase_preview": "SKIPPED_NO_SUPABASE_CHANGES",
+      "vercel": "PENDING_AT_INITIAL_READ",
+      "docs_check": "PENDING_AT_INITIAL_READ",
+      "pr_check": "PENDING_AT_INITIAL_READ",
+      "security_gate": "PENDING_AT_INITIAL_READ"
+    }
+  },
+  "stacked_pr_status": "OPEN",
+  "authenticated_e2e": "DEFERRED_BY_HUMAN_DECISION",
+  "supabase_preview_capacity": "VERIFIED",
+  "supabase_preview_capacity_detail": {
+    "method": "SUPABASE_MCP_READ_ONLY_LIST_BRANCHES",
+    "capacity_rule": "main_plus_two_non_main",
+    "branches_before_push": [
+      "main",
+      "codex/expressjobs-product-ux-review-after-redesign"
+    ],
+    "pr51_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
+    "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE_BEFORE_PUSH",
+    "manual_branch_created": false,
+    "manual_branch_deleted": false
+  },
   "checks": {
     "secret_scan": "PASS",
     "production_check": "PASS",
     "guard_no_production_deploy": "PASS",
-    "lint": "PASS",
-    "typecheck": "PASS",
-    "test": "PASS_10_FILES_60_TESTS",
-    "build": "PASS",
     "git_diff_check": "PASS",
     "json_parse": "PASS",
-    "local_http_smoke": "PASS_AUTH_ROLE_PROFILE_JOBS_PRICING_DASHBOARDS",
+    "lint": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "typecheck": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "test": "PASS_PREVIOUS_SAME_BRANCH_10_FILES_60_TESTS_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "build": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
     "test_rls_static": "NOT_RUN_NO_RLS_CHANGE",
     "staging_check": "NOT_RUN_NO_RLS_CHANGE",
     "rls_smoke": "NOT_RUN_NO_RLS_CHANGE"
   },
+  "payments_live": false,
+  "users_contacted_automatically": false,
+  "secrets_exposed": false,
+  "production_touched": false,
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
     "vercel_promote": "NOT_RUN",
@@ -61,11 +84,10 @@
     "mercadopago_live": false,
     "payments_live": false,
     "users_contacted_automatically": false,
-    "secrets_exposed": false,
     "env_committed": "NO",
     "rls_relaxed": "NO"
   },
   "blockers": [],
-  "next_mode": "EXPRESSJOBS_POST_PR51_LOCAL_QA_AND_PR_PREP",
-  "next_mode_reason": "Product copy and CTA improvements need final local QA; push/PR should happen only after Supabase branch capacity is rechecked."
+  "next_mode": "EXPRESSJOBS_PR52_CHECKS_AND_REVIEW_CLOSEOUT",
+  "next_mode_reason": "Stacked PR is open; wait for remote checks to complete and address any failure without touching production or bypassing PR #51."
 }
