@@ -48,7 +48,8 @@ describe("real public product surface", () => {
 
     expect(home).toContain("Publicar un trabajo");
     expect(home).toContain("Buscar trabajos");
-    expect(home).toContain("Ingresar / Crear cuenta");
+    expect(home).toContain("Crear cuenta");
+    expect(home).toContain("Crear mi perfil");
     expect(home).not.toContain("Ver demos comerciales");
   });
 
@@ -63,6 +64,13 @@ describe("real public product surface", () => {
     expect(monetizationConfig).toContain('ownerName: "Ronald Gonzalez"');
     expect(monetizationConfig).toContain('whatsappNumber: "59897045305"');
     expect(monetizationConfig).toContain('email: "trabajosrapidos.uy@gmail.com"');
+  });
+
+  it("does not rewrite legitimate titles containing generic smoke wording", () => {
+    const jobCard = readFileSync(join(process.cwd(), "src/components/job-card.tsx"), "utf8");
+
+    expect(jobCard).toContain("RLS_SMOKE|SMOKE_TEST|TEST_JOB");
+    expect(jobCard).not.toContain("RLS_SMOKE|SMOKE_TEST|SMOKE|TEST_JOB");
   });
 
   it("uses real empty states instead of presenting fallback jobs as real", () => {

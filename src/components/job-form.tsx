@@ -39,7 +39,7 @@ export function JobForm() {
 
     if (!supabase) {
       setState("error");
-      setMessage("Supabase no esta configurado en este ambiente.");
+      setMessage("No pudimos conectar con los datos del piloto en este ambiente. Proba de nuevo mas tarde.");
       return;
     }
 
@@ -92,25 +92,34 @@ export function JobForm() {
 
     if (jobError || !createdJob) {
       setState("error");
-      setMessage("No se pudo publicar el trabajo. Revisa los datos e intenta de nuevo.");
+      setMessage("No se pudo publicar el trabajo. Revisa titulo, descripcion, zona y presupuesto aproximado, e intenta de nuevo.");
       return;
     }
 
     setState("success");
-    setMessage("Trabajo publicado correctamente.");
+    setMessage("Trabajo publicado correctamente. Ahora podes revisar postulaciones desde el detalle.");
     router.push(`/client/jobs/${createdJob.id}`);
   }
 
   return (
-    <form className="grid gap-4 rounded-md border border-[var(--line)] bg-white p-5 shadow-sm" onSubmit={handleSubmit}>
-      <div className="rounded-md bg-[#eef7f1] p-3 text-sm text-[var(--brand-dark)]">
+    <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
+      <div className="rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-semibold text-[#d9f7bd]">
         <CheckCircle2 aria-hidden="true" className="mr-2 inline" size={16} />
         Publica una tarea real con tu cuenta. Los pagos dentro de la app siguen desactivados.
       </div>
+      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
+        <p className="font-black text-[var(--ej-text)]">Antes de publicar</p>
+        <ol className="mt-3 grid gap-2 font-semibold leading-6">
+          <li>1. Describe el resultado esperado, no solo el rubro.</li>
+          <li>2. Usa una zona aproximada y evita datos personales.</li>
+          <li>3. Revisa postulaciones antes de coordinar por fuera.</li>
+        </ol>
+      </div>
       <label className="grid gap-2 text-sm font-bold">
         Titulo
+        <span className="ej-soft text-xs font-semibold">Escribi la tarea en una frase concreta. Evita datos personales.</span>
         <input
-          className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+          className="focus-ring ej-input font-normal"
           onChange={(event) => setTitle(event.target.value)}
           placeholder="Ej: Pintar una habitacion, mover cajas, reparar una canilla"
           value={title}
@@ -118,8 +127,9 @@ export function JobForm() {
       </label>
       <label className="grid gap-2 text-sm font-bold">
         Categoria
+        <span className="ej-soft text-xs font-semibold">Elegila por el tipo de ayuda que esperas recibir.</span>
         <select
-          className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+          className="focus-ring ej-select font-normal"
           onChange={(event) => setCategory(event.target.value as (typeof categories)[number])}
           value={category}
         >
@@ -130,51 +140,55 @@ export function JobForm() {
       </label>
       <label className="grid gap-2 text-sm font-bold">
         Descripcion
+        <span className="ej-soft text-xs font-semibold">Inclui que hay que hacer, cuando lo necesitas y cualquier condicion importante.</span>
         <textarea
-          className="focus-ring min-h-32 rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+          className="focus-ring ej-textarea font-normal"
           onChange={(event) => setDescription(event.target.value)}
+          placeholder="Conta que necesitas, cuando, en que zona y cualquier detalle importante."
           value={description}
         />
       </label>
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold">
           Ubicacion
+          <span className="ej-soft text-xs font-semibold">Zona aproximada; no publiques direccion exacta.</span>
           <div className="relative">
-            <MapPin aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]" size={16} />
+            <MapPin aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ej-text-soft)]" size={16} />
             <input
-              className="focus-ring w-full rounded-md border border-[var(--line)] py-2 pl-9 pr-3 font-normal"
+              className="focus-ring ej-input py-2 pl-9 pr-3 font-normal"
               onChange={(event) => setLocation(event.target.value)}
-              placeholder="Barrio, ciudad"
+              placeholder="Ej: Montevideo, Cordon"
               value={location}
             />
           </div>
         </label>
         <label className="grid gap-2 text-sm font-bold">
           Presupuesto aproximado
+          <span className="ej-soft text-xs font-semibold">Puede ser estimado. Sirve para comparar propuestas, no es pago dentro de la app.</span>
           <input
-            className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+            className="focus-ring ej-input font-normal"
             inputMode="numeric"
             onChange={(event) => setBudget(event.target.value)}
-            placeholder="UYU"
+            placeholder="Ej: UYU 800"
             value={budget}
           />
         </label>
       </div>
-      <p className="flex items-start gap-2 text-xs leading-5 text-[var(--muted)]">
+      <p className="ej-soft flex items-start gap-2 text-xs leading-5">
         <AlertCircle aria-hidden="true" className="mt-0.5 shrink-0" size={14} />
         No publiques tareas peligrosas, ilegales o con datos sensibles.
       </p>
       {message ? (
-        <div className={state === "error" ? "rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-bold text-[var(--danger)]" : "rounded-md border border-[var(--line)] bg-[#eef7f1] p-3 text-sm font-bold text-[var(--brand)]"}>
+        <div className={state === "error" ? "rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2]" : "rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]"}>
           {message} {state === "error" && message.includes("sesion") ? <Link className="underline" href={authHref("/client/jobs/new")}>Ir a ingresar</Link> : null}
         </div>
       ) : null}
       <button
-        className="focus-ring rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white hover:bg-[var(--brand-dark)] disabled:cursor-not-allowed disabled:opacity-60"
+        className="focus-ring ej-btn-primary text-sm disabled:cursor-not-allowed disabled:opacity-60"
         disabled={state === "loading"}
         type="submit"
       >
-        {state === "loading" ? "Publicando..." : "Publicar una tarea"}
+        {state === "loading" ? "Publicando..." : "Publicar trabajo"}
       </button>
     </form>
   );

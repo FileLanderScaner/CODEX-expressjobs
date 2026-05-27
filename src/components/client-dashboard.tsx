@@ -70,9 +70,9 @@ export function ClientDashboard() {
 
   if (state === "signed-out") {
     return (
-      <div className="rounded-md border border-[var(--line)] bg-white p-5">
+      <div className="ej-card p-5">
         <h2 className="text-xl font-black">Debes iniciar sesion para publicar y ver tus trabajos.</h2>
-        <Link className="focus-ring mt-4 inline-flex rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white" href={authHref("/client")}>
+        <Link className="focus-ring ej-btn-primary mt-4 text-sm" href={authHref("/client")}>
           Ir a ingresar
         </Link>
       </div>
@@ -84,17 +84,26 @@ export function ClientDashboard() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black">Cliente</h1>
-          <p className="mt-2 text-[var(--muted)]">Administra trabajos, postulaciones, estados y reseñas.</p>
+          <p className="ej-muted mt-2">Administra trabajos, postulaciones, estados y resenas.</p>
         </div>
         <PrimaryButton href="/client/jobs/new" icon={ClipboardPlus}>Publicar un trabajo</PrimaryButton>
       </div>
+      <section className="ej-glass mt-5 p-4">
+        <p className="ej-badge">Proximo paso recomendado</p>
+        <h2 className="mt-3 text-xl font-black">{jobs.length ? "Revisa postulaciones desde cada trabajo" : "Publica tu primer trabajo real"}</h2>
+        <p className="ej-muted mt-2 text-sm leading-6">
+          {jobs.length
+            ? "Abri una publicacion para comparar mensajes, aceptar o rechazar postulantes y coordinar sin compartir datos sensibles."
+            : "Crea una publicacion con titulo claro, zona aproximada y presupuesto estimado para recibir postulaciones relevantes."}
+        </p>
+      </section>
       {state === "not-configured" ? (
-        <p className="mt-4 rounded-md border border-[var(--line)] bg-white p-3 text-sm text-[var(--muted)]">
+        <p className="mt-4 rounded-2xl border border-white/10 bg-white/10 p-3 text-sm text-[var(--ej-text-muted)]">
           Modo sin datos: Supabase publico no esta configurado en este ambiente.
         </p>
       ) : null}
       {state === "error" ? (
-        <p className="mt-4 rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-semibold text-[var(--danger)]">
+        <p className="mt-4 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-semibold text-[#ffb4c2]">
           No pudimos cargar tus trabajos reales. Revisa tu sesion o intenta mas tarde.
         </p>
       ) : null}
@@ -102,17 +111,17 @@ export function ClientDashboard() {
         {[
           { icon: ClipboardPlus, label: "Trabajos", value: jobs.length },
           { icon: MessageSquareText, label: "Postulaciones", value: "Ver detalle" },
-          { icon: Star, label: "Reseñas", value: "Pendiente" },
+          { icon: Star, label: "Resenas", value: "Pendiente" },
         ].map((item) => (
-          <article className="rounded-md border border-[var(--line)] bg-white p-5" key={item.label}>
-            <item.icon aria-hidden="true" className="text-[var(--brand)]" />
-            <p className="mt-3 text-sm font-bold text-[var(--muted)]">{item.label}</p>
+          <article className="ej-card p-5" key={item.label}>
+            <item.icon aria-hidden="true" className="text-[var(--ej-accent)]" />
+            <p className="ej-soft mt-3 text-sm font-bold">{item.label}</p>
             <p className="mt-1 text-2xl font-black">{item.value}</p>
           </article>
         ))}
       </div>
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        {jobs.length ? jobs.map((job) => <JobCard key={job.id} {...job} href={`/client/jobs/${job.id}`} />) : <EmptyState title="Sin trabajos publicados" text="Publica tu primer trabajo para recibir postulaciones." />}
+        {jobs.length ? jobs.map((job) => <JobCard key={job.id} {...job} href={`/client/jobs/${job.id}`} />) : <EmptyState title="Sin trabajos publicados" text="Publica tu primer trabajo para recibir postulaciones. Vas a poder aceptar o rechazar desde el detalle." />}
       </div>
     </>
   );

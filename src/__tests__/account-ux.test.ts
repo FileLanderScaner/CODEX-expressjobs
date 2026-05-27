@@ -42,10 +42,20 @@ describe("account session and profile UX", () => {
     const profilePage = readFileSync(join(process.cwd(), "src/app/profile/page.tsx"), "utf8");
     const profileForm = readFileSync(join(process.cwd(), "src/components/account-profile-form.tsx"), "utf8");
     const appShell = readFileSync(join(process.cwd(), "src/components/app-shell.tsx"), "utf8");
+    const profileSteps = readFileSync(join(process.cwd(), "src/components/profile-process-steps.tsx"), "utf8");
 
     expect(profilePage).toContain("Perfil abierto");
     expect(profilePage).toContain("Sesion activa");
     expect(profilePage).toContain("Reparar perfil");
+    expect(profileForm).toContain("ProfileProcessSteps");
+    expect(profileSteps).toContain("Datos basicos");
+    expect(profileSteps).toContain("Rol y objetivo");
+    expect(profileSteps).toContain("Experiencia o necesidad");
+    expect(profileSteps).toContain("Ubicacion y disponibilidad");
+    expect(profileSteps).toContain("Confianza y contacto");
+    expect(profileSteps).toContain("Confirmacion / publicacion");
+    expect(profileSteps).toContain("Paso {normalizedStep}/6");
+    expect(profileSteps).not.toContain("8 pasos");
     expect(profileForm).toContain("Cerrar sesion");
     expect(profileForm).toContain("supabase.auth.signOut()");
     expect(profileForm).toContain("full_name");

@@ -1,6 +1,15 @@
 import { CheckCircle2, Star } from "lucide-react";
 import type { ApplicationStatus } from "@/lib/expressjobs-data";
 
+const statusLabels: Record<ApplicationStatus, string> = {
+  submitted: "Enviada",
+  viewed: "Vista",
+  shortlisted: "Preseleccionada",
+  accepted: "Aceptada",
+  rejected: "Rechazada",
+  withdrawn: "Retirada",
+};
+
 export function ApplicationCard({
   workerName,
   message,
@@ -17,15 +26,15 @@ export function ApplicationCard({
   actions?: React.ReactNode;
 }) {
   return (
-    <article className="rounded-md border border-[var(--line)] bg-white p-4">
+    <article className="ej-card p-4">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <h3 className="font-black">{workerName}</h3>
-          <p className="mt-1 flex items-center gap-1 text-sm text-[var(--muted)]">
+          <p className="ej-muted mt-1 flex items-center gap-1 text-sm">
             <Star aria-hidden="true" size={15} /> {reputationScore.toFixed(1)} reputacion
           </p>
         </div>
-        <span className="rounded-md bg-[#edf3ee] px-2 py-1 text-xs font-bold text-[var(--brand-dark)]">{status}</span>
+        <span className="ej-chip text-xs">{statusLabels[status]}</span>
       </div>
       <p className="mt-3 text-sm leading-6">{message}</p>
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">

@@ -2,6 +2,54 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-26
+
+Mode `EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK` completed on 2026-05-27 from branch `codex/expressjobs-post-pr51-product-completion`.
+
+Commit `3d98ebc Continue product completion after PR51` was protected with a local ignored patch and a stat backup. PR #51 was rechecked as `OPEN`, `MERGEABLE`, checks green, and blocked by `REVIEW_REQUIRED`; no merge, bypass, admin override, close, or comment action was performed. Supabase Preview Branch capacity was verified through MCP as `main` plus PR #51's non-main branch, leaving capacity for the stacked branch under the `main + 2 non-main` rule.
+
+The branch was pushed and stacked PR #52 was opened against `codex/expressjobs-product-ux-review-after-redesign`, not `main`: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/52`. PR #52 checks passed: docs-check, pr-check, production-no-go, security-gate, Supabase Preview, Vercel, and Vercel Preview Comments. Final Supabase MCP readback shows `main` plus two non-main branches (`codex/expressjobs-product-ux-review-after-redesign` and `codex/expressjobs-post-pr51-product-completion`), both `ACTIVE_HEALTHY`; the project is now at the preview branch-capacity limit. Production remains `NO-GO_PRODUCTION`; no production deploy, promote, Production env mutation, live payments, secrets, RLS relaxation, or automatic user contact occurred.
+
+Mode `EXPRESSJOBS_CONTINUE_AFTER_PR51_WITHOUT_AUTH_E2E` completed locally on branch `codex/expressjobs-post-pr51-product-completion`, created from PR #51 branch without merging PR #51.
+
+Human decision recorded: authenticated browser E2E is deferred as `AUTHENTICATED_E2E_DEFERRED_BY_HUMAN_DECISION`. PR #51 was rechecked as open, mergeable, checks green, and blocked only by required review. No "Merge without waiting for requirements", admin override, bypass rules, production deploy, promote, Production env mutation, payment action, secret exposure, RLS relaxation, or automatic user contact occurred.
+
+This cycle continues product completion with safe public-flow improvements: clearer `/auth` magic-link guidance, clearer `/role` explanation, stronger pre-publish checklist, client/worker dashboard CTAs, worker applications CTA, and a staging authenticated smoke matrix at `docs/testing/EXPRESSJOBS_AUTHENTICATED_SMOKE_TEST_MATRIX.md`. Checks passed: `secret:scan`, `production:check`, `guard:no-production-deploy`, `lint`, `typecheck`, `test`, `build`, `git diff --check`, JSON parse, and local HTTP smoke for `/auth`, `/role`, `/profile`, `/jobs`, `/pricing`, `/dashboard/client`, and `/dashboard/worker`.
+
+Mode `EXPRESSJOBS_REAL_MARKETPLACE_FLOW_AUDIT` completed as a safe local audit on PR #51 branch.
+
+Audit results: targeted marketplace tests passed (`marketplace-flow`, `supabase-rls-static`, `account-ux`, `social-auth`: 34 tests). Local browser smoke passed on desktop 1360px and mobile 390px for `/auth`, `/role`, `/profile`, `/client/jobs/new`, `/client`, `/worker/jobs`, `/jobs`, `/dashboard/client`, `/dashboard/worker`, `/pricing`, and `/dashboard/worker/profile` mobile. Observed no horizontal overflow and no browser console errors. Code audit confirmed role selection uses the server-side `/api/profile/set-role` path, UI does not expose `admin`, worker self-apply and duplicate apply are guarded client-side, client accept/reject uses RPC, and static RLS tests cover self-promotion, self-apply, role RPC exposure, and application policies.
+
+Marketplace authenticated E2E browser actions were not executed because this cycle did not create users, contact users, print credentials, or use human Google/test account secrets. The next safe step is a controlled authenticated smoke using existing staging test accounts or human-run sanitized evidence, with `PRODUCTION_STATUS=NO-GO_PRODUCTION`.
+
+Mode `EXPRESSJOBS_LOCAL_RECONCILE_COMMIT_PUSH_CLOSEOUT` completed on branch `codex/expressjobs-product-ux-review-after-redesign`.
+
+Local commit `2861c35918f413ca55ae6fe9fc5263d5213f6e7f` was protected before push. A local `git format-patch` backup exists at `docs/local-patches/0001-Reconcile-ExpressJobs-PRs-and-refine-UX-pilot-flow.patch` and the committed stat backup is `docs/local-patches/EXPRESSJOBS_2861c359_COMMIT_STAT.txt`. The `.patch` file is intentionally ignored because raw format-patch content can trip whitespace checks when committed as a PR diff.
+
+Supabase Preview Branch capacity was verified through Supabase MCP read-only after the CLI timed out. Before push, branches were `main` plus one non-main branch (`codex/premium-visual-home-nav-refresh`), leaving one non-main slot under the project rule `main + 2 non-main`. The pushed delta contains no `supabase/` changes. PR #51 was opened: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/51`. Supabase created a branch for `codex/expressjobs-product-ux-review-after-redesign`; final MCP readback shows that branch `FUNCTIONS_DEPLOYED` with `preview_project_status=ACTIVE_HEALTHY`. At final read, only `main` plus this PR #51 branch were listed, so capacity is not blocked for one additional non-main branch, but it must be rechecked before any new branch/push/deploy.
+
+Push status: `PUSHED`. PR status after final read: open, mergeable, review required; docs-check, pr-check, security-gate, production-no-go, Supabase Preview, Vercel, and Vercel Preview Comments passed. Vercel inspect showed the Git Preview deployment as `target=preview`, `Ready`. Codex review was blocked by usage limits. Production remains `NO-GO_PRODUCTION`; no production deploy, promote, Production env mutation, live payments, secrets, RLS relaxation, or automatic user contact occurred.
+
+Mode `EXPRESSJOBS_PR_RECONCILE_UX_OAUTH_MANUAL_PILOT` completed on branch `codex/expressjobs-product-ux-review-after-redesign`.
+
+GitHub was reconciled against the canonical repo `FileLanderScaner/CODEX-expressjobs`. PR #50 is the primary visual source, PR #49 is a partial predecessor, PR #48 is docs-only design guidance, PR #47/#46/#44/#42/#41 are merged, and PR #40 remains open/conflicting and should not be merged as-is. Full matrix: `docs/EXPRESSJOBS_PR_RECONCILIATION_2026-05-26.md`.
+
+This cycle applied safe local follow-up changes: home categories now render as clean text links instead of heavy chips, profile forms expose a 6-step completion guide, inactive Google OAuth no longer renders a dead button, and PR #50's staging-title matcher was narrowed to known synthetic smoke labels. Manual commercial pilot docs were added under `docs/sales`, and Google OAuth setup now references the official account `expressjobs.uy@gmail.com` without moving GitHub, Vercel, Supabase, remotes, or ownership.
+
+Validation passed: `secret:scan`, `production:check`, `guard:no-production-deploy`, `test:rls:static`, `staging:check`, `rls:smoke`, `lint`, `typecheck`, `test`, `build`, `git diff --check`, and local browser smoke on desktop 1360px and mobile 390px. Vercel PR #50 Preview was inspected as `target=preview`, `Ready`; no deploy was created. Supabase branch-capacity CLI inspection timed out, so no Preview/deploy was attempted from this cycle.
+
+Mode `EXPRESSJOBS_PRODUCT_UX_REVIEW_AFTER_GLOBAL_REDESIGN` completed on branch `codex/expressjobs-product-ux-review-after-redesign`.
+
+Post-redesign UX review applied small product clarity improvements without architecture, database, payment, production, Supabase production, or RLS changes. Role selection now explains who each path is for; job publication has safer helper copy and clearer next-step/error messages; worker search and empty states explain how to continue; client and worker dashboards show recommended next steps; application status chips now use Spanish labels; client accept/reject and worker application messages are clearer.
+
+Current production state remains `NO-GO_PRODUCTION`. Final checks and local smoke passed and are recorded in `docs/expressjobs-director-status.json`.
+
+Mode `EXPRESSJOBS_GLOBAL_SOFT_PREMIUM_REDESIGN_COMPLETE` completed on branch `codex/expressjobs-global-soft-premium-redesign-manual`.
+
+Global dark premium soft redesign is applied across the current public, auth, marketplace, dashboard, monetization, loading, error, and not-found surfaces. The reusable system now lives in `src/app/globals.css` and `src/components/design-system.tsx`; usage rules are documented in `docs/design/EXPRESSJOBS_DESIGN_SYSTEM.md`, with audit evidence in `docs/design/EXPRESSJOBS_GLOBAL_VISUAL_AUDIT.md`.
+
+Validation passed: `secret:scan`, `production:check`, `guard:no-production-deploy`, `test:rls:static`, `staging:check`, `rls:smoke`, `lint`, `typecheck`, `test`, `build`, and `git diff --check`. Local browser smoke passed on desktop 1360px, tablet 768px, and mobile 390px after a header breakpoint fix. `/auth` has visible Google Login and email login. Production remains `NO-GO_PRODUCTION`; no production deploy, promote, Production env mutation, PayPal live, real payments, secrets, Supabase production action, or RLS relaxation occurred.
+
 ## Status
 
 Cycle auth session/profile persistence and account UX added server-side session/profile helpers, conditional account nav, `/profile`, safe profile editing for `full_name`/`phone`/`city`, and logout. The OAuth callback still exchanges the code, reads the Supabase user, upserts `ej_profiles` with default OAuth role `client`, preserves existing profiles through `ignoreDuplicates`, and redirects to `/role` on success. Supabase MCP confirms project `gnsfyvsodslnehszanra` is accessible and `ACTIVE_HEALTHY`; direct TEST_ACCOUNT_A/B Auth user reads remain blocked because no safe Auth-user query tool is exposed without PII/secrets. Preview `https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app` is `Ready`, target `preview`; signed-out browser smoke passes for `/auth`, `/register`, `/role`, `/profile`, and `/dashboard/client`, with Google visible and reaching Google. Full session persistence after human login remains blocked by human-controlled Google credentials. No secrets were printed, no SQL/migrations ran, no Vercel Production env vars were touched, and Production remains `NO-GO_PRODUCTION`.

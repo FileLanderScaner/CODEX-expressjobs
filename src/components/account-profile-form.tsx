@@ -4,6 +4,7 @@ import { LogOut, Save } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import type { AccountProfile } from "@/lib/account";
+import { ProfileProcessSteps } from "@/components/profile-process-steps";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 
 type SaveState = "idle" | "saving" | "saved" | "error";
@@ -77,12 +78,13 @@ export function AccountProfileForm({ profile }: { profile: AccountProfile }) {
 
   return (
     <section className="grid gap-5">
-      <form className="grid gap-4 rounded-md border border-[var(--line)] bg-white p-5" onSubmit={handleSubmit}>
+      <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
+        <ProfileProcessSteps currentStep={5} />
         <div className="grid gap-4 sm:grid-cols-2">
           <label className="grid gap-2 text-sm font-bold">
             Nombre visible
             <input
-              className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+              className="focus-ring ej-input font-normal"
               defaultValue={profile.full_name}
               name="fullName"
             />
@@ -90,7 +92,7 @@ export function AccountProfileForm({ profile }: { profile: AccountProfile }) {
           <label className="grid gap-2 text-sm font-bold">
             Telefono
             <input
-              className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+              className="focus-ring ej-input font-normal"
               defaultValue={profile.phone ?? ""}
               inputMode="tel"
               name="phone"
@@ -99,23 +101,23 @@ export function AccountProfileForm({ profile }: { profile: AccountProfile }) {
           <label className="grid gap-2 text-sm font-bold">
             Ciudad
             <input
-              className="focus-ring rounded-md border border-[var(--line)] px-3 py-2 font-normal"
+              className="focus-ring ej-input font-normal"
               defaultValue={profile.city ?? ""}
               name="city"
             />
           </label>
-          <div className="rounded-md border border-[var(--line)] bg-[#f7f6f2] p-3">
-            <p className="text-xs font-bold uppercase tracking-wide text-[var(--muted)]">Rol actual</p>
+          <div className="rounded-2xl border border-white/10 bg-white/10 p-3">
+            <p className="ej-soft text-xs font-bold uppercase tracking-wide">Rol actual</p>
             <p className="mt-1 text-sm font-black">{profile.role}</p>
           </div>
         </div>
         {message ? (
-          <p className={state === "error" ? "text-sm font-bold text-[var(--danger)]" : "text-sm font-bold text-[var(--brand)]"}>
+          <p className={state === "error" ? "text-sm font-bold text-[#ffb4c2]" : "text-sm font-bold text-[#d9f7bd]"}>
             {message}
           </p>
         ) : null}
         <button
-          className="focus-ring inline-flex w-fit items-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white disabled:opacity-60"
+          className="focus-ring ej-btn-primary w-fit text-sm disabled:opacity-60"
           disabled={state === "saving"}
           type="submit"
         >
@@ -124,11 +126,11 @@ export function AccountProfileForm({ profile }: { profile: AccountProfile }) {
         </button>
       </form>
 
-      <div className="rounded-md border border-[var(--line)] bg-white p-5">
+      <div className="ej-card p-5">
         <h2 className="text-xl font-black">Sesion</h2>
-        <p className="mt-2 text-sm text-[var(--muted)]">Cerrar sesion borra la sesion local del navegador y vuelve a la pantalla de ingreso.</p>
+        <p className="ej-muted mt-2 text-sm">Cerrar sesion borra la sesion local del navegador y vuelve a la pantalla de ingreso.</p>
         <button
-          className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md border border-[var(--line)] bg-white px-4 py-3 text-sm font-bold text-[var(--foreground)] hover:border-[var(--danger)] hover:text-[var(--danger)] disabled:opacity-60"
+          className="focus-ring ej-btn-secondary mt-4 text-sm hover:border-[rgba(255,90,120,0.35)] hover:text-[#ffb4c2] disabled:opacity-60"
           disabled={state === "saving"}
           onClick={() => void handleLogout()}
           type="button"

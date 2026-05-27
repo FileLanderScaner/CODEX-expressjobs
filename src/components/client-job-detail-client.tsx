@@ -86,11 +86,11 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
     const { error } = await supabase.rpc(rpcName, { requested_application_id: applicationId });
 
     if (error) {
-      setActionMessage(action === "accept" ? "No se pudo aceptar esta postulacion." : "No se pudo rechazar esta postulacion.");
+      setActionMessage(action === "accept" ? "No se pudo aceptar esta postulacion. Revisa que siga abierta y que tu sesion tenga permiso." : "No se pudo rechazar esta postulacion. Revisa tu sesion e intenta de nuevo.");
       return;
     }
 
-    setActionMessage(action === "accept" ? "Trabajador aceptado." : "Postulacion rechazada.");
+    setActionMessage(action === "accept" ? "Trabajador aceptado. Ahora coordina los detalles con cuidado y sin compartir datos sensibles." : "Postulacion rechazada. El estado quedo actualizado para este trabajo.");
     await loadDetail();
   }
 
@@ -100,9 +100,9 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
 
   if (state === "signed-out") {
     return (
-      <div className="rounded-md border border-[var(--line)] bg-white p-5">
+      <div className="ej-card p-5">
         <h1 className="text-2xl font-black">Debes iniciar sesion para gestionar este trabajo.</h1>
-        <Link className="focus-ring mt-4 inline-flex rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white" href={authHref(`/client/jobs/${jobId}`)}>
+        <Link className="focus-ring ej-btn-primary mt-4 text-sm" href={authHref(`/client/jobs/${jobId}`)}>
           Ir a ingresar
         </Link>
       </div>
@@ -119,23 +119,26 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
 
   return (
     <section>
-      <div className="rounded-md border border-[var(--line)] bg-white p-5">
+      <div className="ej-card p-5">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="text-sm font-bold text-[var(--brand)]">{job.category}</p>
+            <p className="ej-chip text-sm font-bold">{job.category}</p>
             <h1 className="mt-1 text-3xl font-black">{job.title}</h1>
-            <p className="mt-2 text-sm font-bold text-[var(--muted)]">{job.location} · {job.budget}</p>
+            <p className="ej-muted mt-2 text-sm font-bold">{job.location} - {job.budget}</p>
           </div>
           <JobStatusBadge status={job.status} />
         </div>
-        <p className="mt-4 leading-7 text-[var(--muted)]">{job.description}</p>
+        <p className="ej-muted mt-4 leading-7">{job.description}</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <WhatsAppShareButton text={`Trabajo en Trabajos Rapidos: ${job.title}`} />
         </div>
       </div>
       <div className="mt-6">
         <h2 className="text-2xl font-black">Postulaciones</h2>
-        {actionMessage ? <p className="mt-3 rounded-md border border-[var(--line)] bg-white p-3 text-sm font-bold text-[var(--brand)]">{actionMessage}</p> : null}
+        <p className="ej-muted mt-2 text-sm leading-6">
+          Compara mensaje, monto y reputacion. Aceptar o rechazar actualiza el estado protegido por RLS.
+        </p>
+        {actionMessage ? <p className="mt-3 rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]">{actionMessage}</p> : null}
         <div className="mt-4 grid gap-3">
           {applications.length ? (
             applications.map((application) => (
@@ -146,14 +149,14 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
                   application.status === "submitted" && state === "ready" ? (
                     <div className="flex flex-wrap gap-2">
                       <button
-                        className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--brand)] px-3 py-2 text-sm font-bold text-white"
+                        className="focus-ring ej-btn-primary px-3 py-2 text-sm"
                         onClick={() => void updateApplication(application.id, "accept")}
                         type="button"
                       >
                         <CheckCircle2 aria-hidden="true" size={16} /> Aceptar
                       </button>
                       <button
-                        className="focus-ring inline-flex items-center gap-2 rounded-md border border-[var(--line)] px-3 py-2 text-sm font-bold hover:bg-[#f3f5f1]"
+                        className="focus-ring ej-btn-secondary px-3 py-2 text-sm"
                         onClick={() => void updateApplication(application.id, "reject")}
                         type="button"
                       >
@@ -165,7 +168,7 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
               />
             ))
           ) : (
-            <EmptyState title="Sin postulaciones" text="Cuando un trabajador se postule, aparecera aca." />
+            <EmptyState title="Sin postulaciones" text="Cuando un trabajador se postule, aparecera aca. Compartir el trabajo puede ayudar, pero los pagos dentro de la app siguen apagados." />
           )}
         </div>
       </div>

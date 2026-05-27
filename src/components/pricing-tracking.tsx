@@ -20,7 +20,7 @@ export function PilotOfferWhatsAppCta({ offer }: { offer: PilotOffer }) {
 
   return (
     <a
-      className="focus-ring inline-flex w-full items-center justify-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white shadow-sm hover:bg-[var(--brand-dark)]"
+      className="focus-ring ej-btn-primary w-full text-sm"
       href={buildWhatsAppShareUrl(message)}
       onClick={() =>
         trackEvent("premium_cta_clicked", {

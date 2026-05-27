@@ -23,21 +23,16 @@ const providerIcons = {
 export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
   const flags = getSocialAuthFlags();
   const enabledProviders = getEnabledSocialAuthProviders(flags);
-  const visibleProviders = enabledProviders;
+  const supabaseConfigured = isSupabaseConfigured();
+  const visibleProviders = supabaseConfigured ? enabledProviders : [];
   const [pendingProvider, setPendingProvider] = useState<SocialAuthProvider | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const supabaseConfigured = isSupabaseConfigured();
-
-  if (!supabaseConfigured || visibleProviders.length === 0) {
-    return null;
-  }
 
   async function handleOAuth(provider: SocialAuthProvider) {
     setErrorMessage(null);
 
     if (!flags[provider]) {
-      setErrorMessage("Este login social todavia no esta activado para este ambiente.");
+      setErrorMessage(provider === "google" ? "Google Login requiere habilitar NEXT_PUBLIC_ENABLE_GOOGLE_LOGIN y el provider en Supabase Auth." : "Este login social todavia no esta activado para este ambiente.");
       return;
     }
 
@@ -63,26 +58,58 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
 
   return (
     <section className="mt-4 grid gap-3" aria-label="Login social">
+      {visibleProviders.length === 0 ? (
+        <p className="rounded-2xl border border-white/10 bg-white/[0.04] p-3 text-sm font-semibold text-[var(--ej-text-muted)]">
+          Google Login no esta activo en este ambiente. Usa email o espera la configuracion OAuth oficial.
+        </p>
+      ) : null}
       {visibleProviders.map((provider) => {
         const Icon = providerIcons[provider];
         const isPending = pendingProvider === provider;
-        const isDisabled = !flags[provider] || !supabaseConfigured;
 
         return (
-          <button
-            aria-disabled={isDisabled}
-            className="focus-ring inline-flex items-center justify-center gap-2 rounded-md border border-[var(--line)] bg-white px-4 py-3 text-sm font-bold text-[var(--foreground)] hover:border-[var(--brand)] disabled:cursor-not-allowed disabled:opacity-60"
-            disabled={isDisabled || isPending}
+          <GoogleLoginButton
+            disabled={isPending}
+            icon={Icon}
             key={provider}
             onClick={() => void handleOAuth(provider)}
-            type="button"
+            pending={isPending}
+            providerLabel={providerLabels[provider]}
           >
-            <Icon aria-hidden="true" size={18} />
             {isPending ? "Conectando..." : providerLabels[provider]}
-          </button>
+          </GoogleLoginButton>
         );
       })}
-      {errorMessage ? <p className="text-sm font-bold text-[var(--danger)]">{errorMessage}</p> : null}
+      {errorMessage ? <p className="rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2]">{errorMessage}</p> : null}
     </section>
+  );
+}
+
+export function GoogleLoginButton({
+  children,
+  disabled,
+  icon: Icon,
+  onClick,
+  providerLabel,
+  pending,
+}: {
+  children: React.ReactNode;
+  disabled?: boolean;
+  icon: typeof Globe2;
+  onClick: () => void;
+  providerLabel: string;
+  pending?: boolean;
+}) {
+  return (
+    <button
+      aria-label={pending ? `Conectando ${providerLabel}` : providerLabel}
+      className="focus-ring ej-btn-secondary w-full px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-70"
+      disabled={disabled}
+      onClick={onClick}
+      type="button"
+    >
+      <Icon aria-hidden="true" size={18} />
+      {children}
+    </button>
   );
 }

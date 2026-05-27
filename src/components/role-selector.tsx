@@ -14,7 +14,8 @@ const choices = [
     href: "/client/jobs/new",
     icon: BriefcaseBusiness,
     title: "Busco ayuda",
-    text: "Publica una tarea, compara postulaciones y coordina con mas claridad.",
+    text: "Publica una tarea, recibe postulaciones y coordina con mas claridad.",
+    fit: "Recomendado si necesitas resolver una tarea concreta y recibir propuestas.",
     button: "Publicar una tarea",
   },
   {
@@ -23,6 +24,7 @@ const choices = [
     icon: UserRoundCheck,
     title: "Quiero trabajar",
     text: "Encuentra tareas cercanas y postulate sin promesas de empleo o ingresos garantizados.",
+    fit: "Recomendado si queres ver trabajos abiertos y enviar una postulacion clara.",
     button: "Buscar trabajos",
   },
 ];
@@ -56,7 +58,7 @@ export function RoleSelector() {
     const { error } = await ensureMarketplaceRole(supabase, role, fullNameFromUser(user));
 
     if (error) {
-      setMessage("No pudimos guardar tu rol. Intenta de nuevo.");
+      setMessage("No pudimos guardar tu rol con seguridad. Intenta de nuevo o vuelve a iniciar sesion.");
       setPendingRole(null);
       return;
     }
@@ -71,12 +73,13 @@ export function RoleSelector() {
         const isPending = pendingRole === choice.role;
 
         return (
-          <article className="rounded-md border border-[var(--line)] bg-white p-5 shadow-sm" key={choice.role}>
-            <Icon aria-hidden="true" className="text-[var(--brand)]" />
+          <article className="ej-card p-5" key={choice.role}>
+            <Icon aria-hidden="true" className="text-[var(--ej-accent)]" />
             <h2 className="mt-4 text-xl font-black">{choice.title}</h2>
-            <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{choice.text}</p>
+            <p className="ej-muted mt-2 text-sm leading-6">{choice.text}</p>
+            <p className="ej-soft mt-3 rounded-xl border border-white/10 bg-white/5 p-3 text-xs font-semibold leading-5">{choice.fit}</p>
             <button
-              className="focus-ring mt-4 inline-flex items-center justify-center gap-2 rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white shadow-sm hover:bg-[var(--brand-dark)] disabled:cursor-not-allowed disabled:opacity-60"
+              className="focus-ring ej-btn-primary mt-4 text-sm disabled:cursor-not-allowed disabled:opacity-60"
               disabled={pendingRole !== null}
               onClick={() => void chooseRole(choice.role, choice.href)}
               type="button"
@@ -87,7 +90,7 @@ export function RoleSelector() {
           </article>
         );
       })}
-      {message ? <p className="md:col-span-2 rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-3 text-sm font-bold text-[var(--danger)]">{message}</p> : null}
+      {message ? <p className="rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2] md:col-span-2">{message}</p> : null}
     </div>
   );
 }

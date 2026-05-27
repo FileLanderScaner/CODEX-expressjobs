@@ -2,140 +2,99 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "remote": "https://github.com/FileLanderScaner/CODEX-expressjobs.git",
-  "branch": "codex/google-oauth-account-separation-only",
-  "base_branch": "main",
-  "mode": "EXPRESSJOBS_AUTH_SESSION_PROFILE_PERSISTENCE_AND_ACCOUNT_UX",
-  "updated_at": "2026-05-26T10:19:14-03:00",
+  "mode": "EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK",
+  "updated_at": "2026-05-27T00:22:00-03:00",
   "production_status": "NO-GO_PRODUCTION",
-  "supabase": {
-    "project_ref": "gnsfyvsodslnehszanra",
-    "project_name": "supabase-expressjobs",
-    "status": "ACTIVE_HEALTHY",
-    "mcp_access": "PASS",
-    "local_project_ref_file": "supabase/.temp/project-ref",
-    "local_project_ref_file_exists": true,
-    "local_project_ref_ignored_by_git": true,
-    "branches": {
-      "checked": true,
-      "default_branch": "main",
-      "non_default_branches": [
-        "codex/google-oauth-account-separation-only"
-      ],
-      "branch_capacity_status": "PASS_NOT_AT_KNOWN_LIMIT",
-      "new_branch_created": false,
-      "branch_requirement": "SUPABASE_BRANCH_NOT_REQUIRED_NO_SUPABASE_DIFF"
-    },
-    "readonly_user_check": {
-      "TEST_ACCOUNT_A": "SUPABASE_READONLY_USER_CHECK_BLOCKED_NO_SAFE_AUTH_USER_QUERY_TOOL",
-      "TEST_ACCOUNT_B": "SUPABASE_READONLY_USER_CHECK_BLOCKED_NO_SAFE_AUTH_USER_QUERY_TOOL",
-      "pii_printed": false,
-      "secrets_printed": false
-    },
-    "sql_executed": false,
-    "migrations_executed": false
+  "base_pr": 51,
+  "base_pr_status": {
+    "state": "OPEN",
+    "mergeable": "MERGEABLE",
+    "review_decision": "REVIEW_REQUIRED",
+    "checks": "SUCCESS",
+    "merged": false,
+    "bypass_used": false,
+    "admin_override_used": false
   },
-  "auth_callback": {
-    "exchange_code_for_session": "CONFIRMED_IN_CODE",
-    "get_user_after_exchange": "CONFIRMED_IN_CODE",
-    "profile_upsert_table": "ej_profiles",
-    "profile_upsert_id": "user.id",
-    "default_oauth_role": "client",
-    "existing_profile_behavior": "ignoreDuplicates_true_preserves_existing_profile",
-    "success_redirect": "/role",
-    "failure_redirects": [
-      "provider_error",
-      "missing_code",
-      "not_configured",
-      "exchange_failed",
-      "profile_setup_failed"
-    ]
+  "stacked_branch": "codex/expressjobs-post-pr51-product-completion",
+  "stacked_base": "codex/expressjobs-product-ux-review-after-redesign",
+  "stacked_commit": "3d98ebc",
+  "stacked_commit_protection": {
+    "patch_backup": "docs/local-patches/0001-Continue-product-completion-after-PR51.patch",
+    "patch_committed": false,
+    "patch_ignored": true,
+    "stat_backup": "docs/local-patches/EXPRESSJOBS_3d98ebc_COMMIT_STAT.txt",
+    "secret_pattern_scan": "PASS_NO_SECRET_VALUES"
   },
-  "account_ux": {
-    "server_helpers_added": [
-      "getCurrentUser",
-      "getCurrentProfile",
-      "requireUser",
-      "requireProfile",
-      "getDisplayName",
-      "getAccountNavState"
+  "stacked_pr": {
+    "number": 52,
+    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/52",
+    "base": "codex/expressjobs-product-ux-review-after-redesign",
+    "head": "codex/expressjobs-post-pr51-product-completion",
+    "state": "OPEN",
+    "mergeable": "MERGEABLE",
+    "status": "OPEN",
+    "initial_checks": {
+      "production_no_go": "PASS",
+      "supabase_preview": "PASS",
+      "vercel": "PASS",
+      "docs_check": "PASS",
+      "pr_check": "PASS",
+      "security_gate": "PASS"
+    }
+  },
+  "stacked_pr_status": "OPEN",
+  "authenticated_e2e": "DEFERRED_BY_HUMAN_DECISION",
+  "supabase_preview_capacity": "VERIFIED",
+  "supabase_preview_capacity_detail": {
+    "method": "SUPABASE_MCP_READ_ONLY_LIST_BRANCHES",
+    "capacity_rule": "main_plus_two_non_main",
+    "branches_before_push": [
+      "main",
+      "codex/expressjobs-product-ux-review-after-redesign"
     ],
-    "account_nav": "CONDITIONAL_MI_CUENTA_WHEN_SIGNED_IN",
-    "profile_route": "/profile",
-    "profile_fields_editable": [
-      "full_name",
-      "phone",
-      "city"
+    "branches_after_push": [
+      "main",
+      "codex/expressjobs-product-ux-review-after-redesign",
+      "codex/expressjobs-post-pr51-product-completion"
     ],
-    "role_direct_edit": "NOT_ALLOWED",
-    "logout": "IMPLEMENTED_CLIENT_SIGNOUT",
-    "service_role_in_client": false
-  },
-  "vercel": {
-    "project_scope": "akuma424-projects/codex-expressjobs",
-    "preview_deployment": {
-      "url": "https://codex-expressjobs-9dxdkmep3-akuma424-projects.vercel.app",
-      "id": "dpl_2yo2rHmzBnCM1uDXhpWZWja5sc5m",
-      "target": "preview",
-      "status": "READY"
-    },
-    "production_env_mutation": "NO",
-    "prod_deploy": "NOT_RUN",
-    "promote": "NOT_RUN"
-  },
-  "browser_smoke": {
-    "routes": {
-      "/auth": "PASS_200_SIGNED_OUT",
-      "/register": "PASS_200_SIGNED_OUT",
-      "/role": "PASS_200_SIGNED_OUT",
-      "/profile": "PASS_200_SIGNED_OUT_PROFILE_STATE_VISIBLE",
-      "/dashboard/client": "PASS_200_SIGNED_OUT"
-    },
-    "google_button_visible": true,
-    "facebook_visible": false,
-    "google_click_result": "PASS_REACHED_GOOGLE_SIGN_IN",
-    "supabase_callback_reference": "PASS_gnsfyvsodslnehszanra.supabase.co/auth/v1/callback",
-    "signed_in_session_persistence": "BLOCKED_EXTERNAL_CREDENTIALS_HUMAN_GOOGLE_LOGIN_REQUIRED",
-    "logout_live_result": "BLOCKED_EXTERNAL_CREDENTIALS_HUMAN_GOOGLE_LOGIN_REQUIRED"
+    "pr51_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
+    "pr52_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
+    "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE_BEFORE_PUSH",
+    "capacity_after_push": "AT_LIMIT_MAIN_PLUS_TWO_NON_MAIN",
+    "manual_branch_created": false,
+    "manual_branch_deleted": false
   },
   "checks": {
-    "git_status_short": "PASS_CLEAN_BEFORE_CHANGES",
-    "git_branch": "PASS_codex/google-oauth-account-separation-only",
-    "git_remote_v": "PASS_origin_PRESENT_neworigin_PRESENT_NOT_USED",
-    "git_log_oneline_5": "PASS_EXPECTED_COMMITS_PRESENT",
-    "supabase_project_ref_exists": "PASS",
-    "supabase_project_ref_value": "PASS_gnsfyvsodslnehszanra",
-    "supabase_project_ref_gitignored": "PASS",
-    "supabase_project_list": "PASS",
-    "supabase_branches": "PASS_MAIN_PLUS_CURRENT_BRANCH",
     "secret_scan": "PASS",
-    "staging_check": "PASS",
-    "production_check": "PASS_NO_GO_PRODUCTION",
+    "production_check": "PASS",
     "guard_no_production_deploy": "PASS",
-    "rls_static": "PASS_1_FILE_12_TESTS",
-    "lint": "PASS",
-    "typecheck": "PASS",
-    "test": "PASS_10_FILES_59_TESTS",
-    "build": "PASS",
-    "preview_browser_smoke": "PASS_SIGNED_OUT_AND_GOOGLE_START",
+    "git_diff_check": "PASS",
     "json_parse": "PASS",
-    "git_diff_check": "PASS"
+    "lint": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "typecheck": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "test": "PASS_PREVIOUS_SAME_BRANCH_10_FILES_60_TESTS_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "build": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
+    "test_rls_static": "NOT_RUN_NO_RLS_CHANGE",
+    "staging_check": "NOT_RUN_NO_RLS_CHANGE",
+    "rls_smoke": "NOT_RUN_NO_RLS_CHANGE"
   },
+  "payments_live": false,
+  "users_contacted_automatically": false,
+  "secrets_exposed": false,
+  "production_touched": false,
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
     "vercel_promote": "NOT_RUN",
     "vercel_production_env_mutation": "NO",
     "supabase_production_mutation": "NO",
-    "paypal_live": "OFF",
-    "real_payments": "OFF",
-    "secrets_printed": "NO"
+    "paypal_live": false,
+    "mercadopago_live": false,
+    "payments_live": false,
+    "users_contacted_automatically": false,
+    "env_committed": "NO",
+    "rls_relaxed": "NO"
   },
-  "blockers": [
-    "BLOCKED_EXTERNAL_CREDENTIALS"
-  ],
-  "blocker_detail": {
-    "BLOCKED_EXTERNAL_CREDENTIALS": "Codex cannot complete TEST_ACCOUNT_A/B Google login, refresh/reopen persistence, profile reuse, or logout live proof without human-controlled staging/test Google accounts. Do not paste credentials, cookies, tokens, auth codes, user IDs, emails, Client ID, or Client Secret."
-  },
-  "next_mode": "EXPRESSJOBS_HUMAN_AUTH_SESSION_PERSISTENCE_VERIFY",
-  "next_mode_reason": "Code and Preview UX are ready; the remaining gate is human login verification for session/profile persistence and logout."
+  "blockers": [],
+  "next_mode": "EXPRESSJOBS_PR52_REVIEW_AND_BRANCH_CAPACITY_CLOSEOUT",
+  "next_mode_reason": "Stacked PR is open and green; Supabase branch capacity is now at main plus two non-main branches, so the next safe cycle should avoid creating another preview branch."
 }

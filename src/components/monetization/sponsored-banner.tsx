@@ -9,16 +9,16 @@ export function SponsoredBanner() {
   }
 
   return (
-    <aside className="rounded-md border border-[var(--line)] bg-white p-5 shadow-sm">
+    <aside className="ej-card p-5">
       <div className="flex items-center gap-2">
-        <Megaphone aria-hidden="true" className="text-[var(--brand)]" size={22} />
+        <Megaphone aria-hidden="true" className="text-[var(--ej-accent)]" size={22} />
         <p className="text-sm font-black uppercase">Banner fundador</p>
       </div>
       <h2 className="mt-3 text-xl font-black">Tu negocio visible durante el piloto</h2>
-      <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+      <p className="ej-muted mt-2 text-sm leading-6">
         Espacio patrocinado manual, sin cobro dentro de la app y sin promesas de produccion publica.
       </p>
-      <a className="focus-ring mt-4 inline-flex rounded-md bg-[var(--brand)] px-4 py-3 text-sm font-bold text-white" href={salesCtaHref()}>
+      <a className="focus-ring ej-btn-primary mt-4 text-sm" href={salesCtaHref()}>
         Reservar banner
       </a>
     </aside>

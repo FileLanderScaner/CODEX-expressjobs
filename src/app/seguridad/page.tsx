@@ -39,10 +39,10 @@ export default function SeguridadPage() {
   return (
     <AppShell>
       <main className="mx-auto max-w-6xl px-4 py-10">
-        <section className="rounded-md border border-[var(--line)] bg-[#f7f6f2] p-6">
-          <p className="text-sm font-black uppercase tracking-wide text-[var(--brand)]">Confianza y seguridad</p>
+        <section className="ej-glass p-6">
+          <p className="ej-badge">Confianza y seguridad</p>
           <h1 className="mt-3 text-4xl font-black leading-tight">Usa Trabajos Rapidos con reglas claras.</h1>
-          <p className="mt-4 max-w-3xl leading-7 text-[var(--muted)]">
+          <p className="ej-muted mt-4 max-w-3xl leading-7">
             Esta pagina resume los limites del piloto, buenas practicas y advertencias para clientes y trabajadores.
           </p>
         </section>
@@ -52,27 +52,27 @@ export default function SeguridadPage() {
         </section>
 
         <section className="mt-8 grid gap-4 md:grid-cols-2">
-          <article className="rounded-md border border-[var(--line)] bg-white p-5">
+          <article className="ej-card p-5">
             <div className="flex items-center gap-2">
-              <ShieldCheck aria-hidden="true" className="text-[var(--brand)]" size={24} />
+              <ShieldCheck aria-hidden="true" className="text-[var(--ej-accent)]" size={24} />
               <h2 className="text-2xl font-black">Reglas basicas</h2>
             </div>
-            <ul className="mt-4 grid gap-3 text-sm leading-6 text-[var(--muted)]">
+            <ul className="ej-muted mt-4 grid gap-3 text-sm leading-6">
               {rules.map((rule) => (
                 <li className="flex gap-2" key={rule}>
-                  <CheckCircle2 aria-hidden="true" className="mt-1 shrink-0 text-[var(--brand)]" size={16} />
+                  <CheckCircle2 aria-hidden="true" className="mt-1 shrink-0 text-[var(--ej-accent)]" size={16} />
                   <span>{rule}</span>
                 </li>
               ))}
             </ul>
           </article>
 
-          <article className="rounded-md border border-[#e2b8b1] bg-[#fff4f2] p-5">
+          <article className="rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-5">
             <div className="flex items-center gap-2">
-              <AlertTriangle aria-hidden="true" className="text-[var(--danger)]" size={24} />
+              <AlertTriangle aria-hidden="true" className="text-[#ffb4c2]" size={24} />
               <h2 className="text-2xl font-black">No presentar como activo</h2>
             </div>
-            <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
+            <p className="mt-4 text-sm leading-6 text-[#ffb4c2]">
               No presentes pagos online, verificacion de identidad, garantias comerciales, soporte 24/7,
               empleo garantizado o ingresos garantizados como funciones activas del piloto.
             </p>
@@ -83,9 +83,9 @@ export default function SeguridadPage() {
           <h2 className="text-2xl font-black">Preguntas frecuentes</h2>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
             {faqs.map((faq) => (
-              <article className="rounded-md border border-[var(--line)] bg-white p-5" key={faq.question}>
+              <article className="ej-card p-5" key={faq.question}>
                 <h3 className="font-black">{faq.question}</h3>
-                <p className="mt-2 text-sm leading-6 text-[var(--muted)]">{faq.answer}</p>
+                <p className="ej-muted mt-2 text-sm leading-6">{faq.answer}</p>
               </article>
             ))}
           </div>
