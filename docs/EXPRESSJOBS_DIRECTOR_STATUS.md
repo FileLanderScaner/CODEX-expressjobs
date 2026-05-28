@@ -6,6 +6,8 @@
 
 Mode `EXPRESSJOBS_LATAM_PREMIUM_VISUAL_REDESIGN_AND_UX_COMPLETION` completed on branch `codex/latam-premium-ux-ui`.
 
+PR: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/55`.
+
 Final state: `READY_FOR_CONTROLLED_STAGING_USERS_VISUAL_POLISH_PASS`.
 
 This cycle applied a real premium LatAm marketplace polish without DB migrations, production actions, live payments, secrets, or RLS relaxation. The visual system now uses navy surfaces, blue trust accents, emerald primary actions, amber urgency, and red only for blocked/error states. Header navigation points "Como funciona" to `/#como-funciona`, the home now explains client/worker/account paths within 10 seconds, categories were aligned to Fletes, Limpieza, Reparaciones, Jardineria, Cuidado, Eventos, Tecnologia, Oficios, and Servicios generales, and job cards now show title, category, zone, budget, state, optional urgency, short description, and one clear detail CTA.

@@ -8,6 +8,8 @@
 
 Rama: `codex/latam-premium-ux-ui`
 
+PR: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/55`
+
 ## Resultado
 
 Estado final declarado: `READY_FOR_CONTROLLED_STAGING_USERS_VISUAL_POLISH_PASS`.

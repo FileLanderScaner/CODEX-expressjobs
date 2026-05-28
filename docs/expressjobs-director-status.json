@@ -55,6 +55,12 @@
     "desktop": "output/playwright/latam-premium-home-desktop.png",
     "mobile": "output/playwright/latam-premium-home-mobile.png"
   },
+  "pull_request": {
+    "number": 55,
+    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/55",
+    "head": "codex/latam-premium-ux-ui",
+    "base": "main"
+  },
   "staging": {
     "staging_status": "PASS_STAGING_CHECK",
     "preview_status": "LOCAL_ONLY_NO_NEW_VERCEL_PREVIEW_CREATED",
