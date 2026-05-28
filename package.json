@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:rls:static": "vitest run src/__tests__/supabase-rls-static.test.ts",
     "staging:check": "node scripts/expressjobs-staging-check.mjs",
+    "commercial:pilot:check": "node scripts/expressjobs-commercial-pilot-check.mjs",
     "production:check": "node scripts/expressjobs-production-check.mjs",
     "guard:no-production-deploy": "node scripts/assert-no-production-deploy.mjs",
     "smoke:preview": "node scripts/smoke-preview.mjs",

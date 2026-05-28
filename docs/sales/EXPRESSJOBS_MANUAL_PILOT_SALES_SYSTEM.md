@@ -41,3 +41,10 @@ Validate demand manually before automated payments or public production launch. 
 `MANUAL_PILOT_SYSTEM=READY_FOR_HUMAN_OPERATOR`
 
 Codex may prepare docs, copy, UI disclaimers, and trackers. Codex must not contact users, create live payments, or claim public production readiness.
+
+## Operator Artifacts
+
+- Controlled user matrix: `docs/testing/EXPRESSJOBS_CONTROLLED_STAGING_USER_PILOT_MATRIX.md`.
+- Sanitized feedback form: `docs/testing/EXPRESSJOBS_CONTROLLED_USER_FEEDBACK_FORM.md`.
+- Sanitized lead register template: `docs/sales/EXPRESSJOBS_SANITIZED_LEAD_REGISTER_TEMPLATE.md`.
+- Commercial guard script: `npm run commercial:pilot:check`.

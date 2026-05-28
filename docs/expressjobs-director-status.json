@@ -2,46 +2,54 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "branch": "codex/pr55-preview-gate-commercial-closeout",
-  "mode": "EXPRESSJOBS_PR55_PREVIEW_GATE_COMMERCIAL_READY_CLOSEOUT",
-  "updated_at": "2026-05-28T19:07:13-03:00",
-  "final_state": "READY_FOR_CONTROLLED_STAGING_USERS_VISUAL_POLISH_REMOTE_VERIFIED",
+  "branch": "codex/controlled-staging-user-commercial-pilot",
+  "mode": "EXPRESSJOBS_CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_EXECUTION",
+  "updated_at": "2026-05-28T20:04:47-03:00",
+  "final_state": "CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_OPERATOR_HANDOFF_READY",
   "production_status": "NO-GO_PRODUCTION",
-  "pr54": {
-    "number": 54,
-    "title": "Document ExpressJobs UX UI colorimetry review",
-    "state": "CLOSED",
-    "merged_at": null,
-    "used_as_implementation_evidence": false,
-    "reopened": false
-  },
-  "pr55": {
-    "number": 55,
-    "title": "Polish ExpressJobs LatAm premium UX/UI",
-    "state": "MERGED",
-    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/55",
-    "head": "codex/latam-premium-ux-ui",
-    "base": "main",
-    "head_sha": "3e45fe75b6843abae3de416a54bf65108d41e9b3",
-    "merge_commit": "0431063c3730832917dead246dc9e43310727a0e",
-    "merged_at": "2026-05-28T21:37:50Z",
-    "checks": {
-      "docs_check": "PASS",
-      "pr_check": "PASS",
-      "production_no_go": "PASS",
-      "security_gate": "PASS",
-      "vercel": "PASS_READY_PREVIEW",
-      "vercel_preview_comments": "PASS",
-      "supabase_preview": "PASS"
+  "upstream_prs": {
+    "pr54": {
+      "number": 54,
+      "state": "CLOSED",
+      "merged": false,
+      "used_as_implementation_evidence": false
+    },
+    "pr55": {
+      "number": 55,
+      "state": "MERGED",
+      "title": "Polish ExpressJobs LatAm premium UX/UI",
+      "status": "READY_FOR_CONTROLLED_STAGING_USERS_VISUAL_POLISH_REMOTE_VERIFIED"
+    },
+    "pr56": {
+      "number": 56,
+      "state": "MERGED",
+      "title": "Close PR55 preview gate and manual sales readiness"
     }
   },
-  "preview": {
-    "deployment_id": "dpl_H94qLQYu7b3gKJ8FE1R6pYvwJbvh",
-    "target": "preview",
-    "status": "READY",
-    "alias": "https://codex-expressjobs-git-codex-latam-prem-d1136d-akuma424-projects.vercel.app",
-    "remote_browser_smoke": "PROTECTED_PREVIEW_EXPECTED",
-    "remote_routes_checked": [
+  "operator_artifacts": {
+    "controlled_user_matrix": "docs/testing/EXPRESSJOBS_CONTROLLED_STAGING_USER_PILOT_MATRIX.md",
+    "feedback_form": "docs/testing/EXPRESSJOBS_CONTROLLED_USER_FEEDBACK_FORM.md",
+    "sanitized_lead_register": "docs/sales/EXPRESSJOBS_SANITIZED_LEAD_REGISTER_TEMPLATE.md",
+    "commercial_guard_script": "scripts/expressjobs-commercial-pilot-check.mjs"
+  },
+  "commercial_manual": {
+    "status": "READY_MANUAL_PILOT_OPERATOR_HANDOFF",
+    "pricing_page": "MANUAL_WHATSAPP_EMAIL_NO_CHECKOUT_LIVE",
+    "offers_page": "MANUAL_WHATSAPP_EMAIL_NO_CHECKOUT_LIVE",
+    "paypal_live": "OFF",
+    "in_app_payments": "OFF",
+    "automatic_user_contact": "OFF",
+    "lead_storage": "SANITIZED_TEMPLATE_ONLY_NO_PII_IN_REPO"
+  },
+  "controlled_staging_users": {
+    "status": "READY_FOR_HUMAN_OPERATOR",
+    "roles": [
+      "client",
+      "worker",
+      "local_business",
+      "reviewer_admin"
+    ],
+    "route_smoke_required_before_invite": [
       "/",
       "/jobs",
       "/worker/jobs",
@@ -53,47 +61,34 @@
       "/dashboard/worker/applications",
       "/admin"
     ],
-    "remote_viewports": [
-      "1360x900",
-      "390x844"
-    ],
-    "local_equivalent_browser_smoke": "PASS_NO_OVERFLOW_NO_CONSOLE_ERRORS_NO_ERROR_BOUNDARY"
-  },
-  "commercial_manual": {
-    "status": "READY_MANUAL_PILOT_NO_LIVE_PAYMENTS",
-    "pricing_page": "PASS_MANUAL_WHATSAPP_EMAIL_NO_CHECKOUT_LIVE",
-    "offers_page": "PASS_MANUAL_WHATSAPP_EMAIL_NO_CHECKOUT_LIVE",
-    "paypal_live": "OFF",
-    "in_app_payments": "OFF",
-    "tracking": [
-      "pricing_viewed",
-      "premium_cta_clicked",
-      "whatsapp_lead_clicked",
-      "offer_selected"
-    ],
-    "checklist": "docs/sales/EXPRESSJOBS_PR55_MANUAL_SALES_CHECKLIST.md"
+    "feedback_capture": "SANITIZED_ONLY",
+    "real_user_contact_by_codex": "OFF"
   },
   "checks": {
+    "commercial_pilot_check": "PASS_MANUAL_ONLY_NO_LIVE_PAYMENT_SURFACE",
     "secret_scan": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
-    "test_rls_static": "PASS_12_TESTS",
+    "test_rls_static": "PASS",
     "lint": "PASS",
     "typecheck": "PASS",
-    "test": "PASS_10_FILES_62_TESTS",
+    "test": "PASS",
     "build": "PASS",
     "staging_check": "PASS",
     "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
     "git_diff_check": "PASS",
-    "local_browser_smoke": "PASS",
-    "final_rerun_at": "2026-05-28T19:07:13-03:00"
+    "local_route_smoke": "PASS_20_DESKTOP_MOBILE_NO_OVERFLOW_NO_CONSOLE_ERRORS_NO_LIVE_PAYMENT_HREFS"
   },
-  "production_neutralization": {
-    "git_integrated_production_deployment_observed": true,
-    "codex_ran_vercel_prod": false,
-    "codex_ran_vercel_promote": false,
-    "root_redirect": "PASS_307_TO_PRODUCTION_PAUSED",
-    "production_paused": "PASS_200_HAS_NO_GO_PRODUCTION"
+  "production_guards": {
+    "vercel_prod_deploy": "NOT_RUN",
+    "vercel_promote": "NOT_RUN",
+    "vercel_production_env_mutation": false,
+    "supabase_production_mutation": false,
+    "paypal_live": "OFF",
+    "real_payments": "OFF",
+    "secrets_printed": false,
+    "service_role_in_client": false,
+    "rls_relaxed": false
   },
   "production_blockers": [
     "BLOCKED_PRODUCTION_RISK",
@@ -103,5 +98,5 @@
     "BLOCKED_PAYMENT_PROVIDER",
     "BLOCKED_SUPABASE_MAIN_GATE_EVIDENCE"
   ],
-  "next_mode": "EXPRESSJOBS_CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_EXECUTION"
+  "next_mode": "EXPRESSJOBS_CONTROLLED_STAGING_PILOT_FEEDBACK_LOOP"
 }

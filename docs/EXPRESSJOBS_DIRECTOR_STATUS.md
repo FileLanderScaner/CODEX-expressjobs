@@ -2,6 +2,22 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-28 Controlled Staging User Commercial Pilot
+
+Mode `EXPRESSJOBS_CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_EXECUTION` running on branch `codex/controlled-staging-user-commercial-pilot`.
+
+Starting state: PR #54 is closed and not merged; PR #55 and PR #56 are merged into `main`; production remains `NO-GO_PRODUCTION`.
+
+This cycle prepares the operator handoff for controlled staging users and manual commercial lead capture without automatic outreach, live payments, Production env mutations, Supabase production writes, or public production launch. Added artifacts: `docs/testing/EXPRESSJOBS_CONTROLLED_STAGING_USER_PILOT_MATRIX.md`, `docs/testing/EXPRESSJOBS_CONTROLLED_USER_FEEDBACK_FORM.md`, `docs/sales/EXPRESSJOBS_SANITIZED_LEAD_REGISTER_TEMPLATE.md`, and `scripts/expressjobs-commercial-pilot-check.mjs` exposed as `npm run commercial:pilot:check`.
+
+Commercial safety remains manual-only: `/pricing` and `/ofertas` use WhatsApp/email contact, `inAppPaymentsEnabled=false`, `paypalLiveEnabled=false`, and no checkout live or payment link is introduced.
+
+Local route smoke passed across desktop `1360x900` and mobile `390x844` for `/`, `/jobs`, `/worker/jobs`, `/client/jobs/new`, `/pricing`, `/ofertas`, `/dashboard/client`, `/dashboard/worker`, `/dashboard/worker/applications`, and `/admin`: no HTTP 5xx, no horizontal overflow, no app error boundary, no browser console errors, and no live payment hrefs on commercial pages.
+
+Final checks passed: `npm run commercial:pilot:check`, `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`, `npm run staging:check`, `npm run rls:smoke`, and `git diff --check`.
+
+Current state: `CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_OPERATOR_HANDOFF_READY`.
+
 ## Current Status - 2026-05-28 PR55 Preview Gate Commercial Closeout
 
 Mode `EXPRESSJOBS_PR55_PREVIEW_GATE_COMMERCIAL_READY_CLOSEOUT` completed on branch `codex/pr55-preview-gate-commercial-closeout`.

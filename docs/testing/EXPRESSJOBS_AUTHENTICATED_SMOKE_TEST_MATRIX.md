@@ -53,3 +53,7 @@ Future browser E2E should verify:
 - No real users contacted automatically.
 - No secrets or credentials in logs, commits, docs, screenshots, or PR bodies.
 - No RLS relaxation.
+
+## Controlled Pilot Link
+
+Use `docs/testing/EXPRESSJOBS_CONTROLLED_STAGING_USER_PILOT_MATRIX.md` for the human pilot plan and `docs/testing/EXPRESSJOBS_CONTROLLED_USER_FEEDBACK_FORM.md` for sanitized feedback capture. Authenticated browser E2E remains deferred until a controlled inbox or sanitized human evidence is available.

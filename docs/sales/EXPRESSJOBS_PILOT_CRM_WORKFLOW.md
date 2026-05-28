@@ -56,3 +56,7 @@ No secrets/PII included: yes
 ```
 
 Current status: `CRM_WORKFLOW=READY_FOR_MANUAL_OPERATOR`.
+
+## Register Template
+
+Use `docs/sales/EXPRESSJOBS_SANITIZED_LEAD_REGISTER_TEMPLATE.md` as the canonical field list for human-owned lead tracking. Keep any sheet with real contact details outside git.
