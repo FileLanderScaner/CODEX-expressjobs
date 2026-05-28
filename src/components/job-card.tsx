@@ -1,4 +1,4 @@
-﻿import { MapPin, MessageCircle, Send, Star } from "lucide-react";
+import { MapPin, Send, Star } from "lucide-react";
 import { JobStatusBadge } from "@/components/job-status-badge";
 import type { JobStatus } from "@/lib/expressjobs-data";
 import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
@@ -61,10 +61,6 @@ export function JobCard({
           <Send aria-hidden="true" size={16} />
           WhatsApp
         </a>
-        <button className="focus-ring ej-btn-secondary px-3 py-2 text-sm" type="button">
-          <MessageCircle aria-hidden="true" size={16} />
-          Chat
-        </button>
         <a className="focus-ring ej-btn-primary px-3 py-2 text-sm" href={href}>
           Ver detalle
         </a>
