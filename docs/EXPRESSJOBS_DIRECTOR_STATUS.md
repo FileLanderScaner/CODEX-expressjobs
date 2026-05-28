@@ -2,6 +2,14 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-28 Full Platform Review
+
+Mode `EXPRESSJOBS_FULL_PLATFORM_REAL_USER_REVIEW_AND_COMPLETION` completed on branch `codex/full-platform-real-user-review`.
+
+User-flow review covered public home, jobs, pricing, auth/register, client dashboard, worker dashboard, worker applications, admin, and production-paused on local desktop 1360px and mobile 390px. Browser smoke found no horizontal overflow, no console errors, and no dead `Chat` button after fixes. Client flow remains wired to real Supabase job creation and application review. Worker flow now includes a real `/dashboard/worker/applications` reader for the authenticated worker's own `ej_job_applications` plus linked job summaries instead of a placeholder-only view. `/admin` no longer renders demo operational data and now requires an authenticated `admin` profile before querying admin metrics through RLS. Branch PR #53 is open at `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/53` with docs-check, pr-check, production-no-go, security-gate, Supabase Preview, Vercel, and Vercel Preview Comments passing on the current branch head.
+
+Supabase Preview `vbpuwujbngjydbelbjbr` is `ACTIVE_HEALTHY`, includes migrations `20260523113000`, `20260523120500`, and `20260525193000`, and security Advisor reports 0 lints. Supabase/default production-readiness gates remain blocked: project `gnsfyvsodslnehszanra` is `ACTIVE_HEALTHY` but branch `main` still reports `MIGRATIONS_FAILED`, is missing those three migrations, and security Advisor still reports `ej_set_profile_role` callable by authenticated plus leaked password protection disabled. Vercel Production env audit still lacks the required app/payment env names, custom domains cannot be inspected with current access, backup/PITR evidence is not verified, and PayPal sandbox smoke remains ready-not-run because `ENABLE_PAYMENTS` is not true. Controlled staging is ready for human/tester use through PR #53 Preview, but production remains `NO-GO_PRODUCTION`.
+
 ## Current Status - 2026-05-26
 
 codex/expressjobs-global-soft-premium-redesign-manual

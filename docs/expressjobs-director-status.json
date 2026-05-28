@@ -2,32 +2,60 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "branch": "codex/expressjobs-global-soft-premium-redesign-manual",
-  "mode": "EXPRESSJOBS_FINAL_AUTONOMOUS_COMPLETION",
-  "updated_at": "2026-05-28T13:31:00-03:00",
-  "final_state": "EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS",
+  "branch": "codex/full-platform-real-user-review",
+  "mode": "EXPRESSJOBS_FULL_PLATFORM_REAL_USER_REVIEW_AND_COMPLETION",
+  "updated_at": "2026-05-28T15:20:00-03:00",
+  "final_state": "READY_FOR_CONTROLLED_STAGING_USERS",
   "production_status": "NO-GO_PRODUCTION",
   "changes": [
-    "Removed visible merge artifact text from worker dashboard.",
-    "Added dashboard route aliases for /dashboard, /dashboard/profile, and /dashboard/jobs.",
-    "Added regression coverage for MVP route aliases and merge artifact markers.",
-    "Added final production, revenue, Vercel/Supabase, and autonomous cycle closeout docs."
+    "Removed dead Chat button from job cards.",
+    "Connected worker applications dashboard to real authenticated Supabase/RLS data.",
+    "Protected /admin with authenticated admin profile gating and removed demo operational counts.",
+    "Fixed client dashboard lint warnings and admin blocked-state UX."
   ],
+  "user_flow_review": {
+    "client_flow": "LOCAL_PASS_REAL_SUPABASE_WIRING_FOR_CREATE_JOB_AND_REVIEW_APPLICATIONS",
+    "worker_flow": "LOCAL_PASS_REAL_SUPABASE_WIRING_FOR_JOBS_APPLY_AND_APPLICATIONS_DASHBOARD",
+    "admin_flow": "LOCAL_PASS_PROTECTED_NO_DEMO_OPERATIONAL_DATA",
+    "public_flow": "LOCAL_PASS_HOME_JOBS_PRICING_AUTH_REGISTER",
+    "desktop_browser_smoke": "PASS_1360_NO_OVERFLOW_NO_CONSOLE_ERRORS",
+    "mobile_browser_smoke": "PASS_390_NO_OVERFLOW_NO_CONSOLE_ERRORS"
+  },
   "checks": {
     "secret_scan": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
-    "test_rls_static": "PASS",
+    "test_rls_static": "PASS_12_TESTS",
     "staging_check": "PASS",
     "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
     "paypal_sandbox_smoke": "PASS_READY_NOT_RUN_PAYMENTS_DISABLED",
     "lint": "PASS",
     "typecheck": "PASS",
-    "test": "PASS",
+    "test": "PASS_10_FILES_62_TESTS",
     "build": "PASS",
     "git_diff_check": "PASS",
     "local_http_smoke": "PASS",
     "browser_smoke": "PASS"
+  },
+  "supabase": {
+    "preview_project_vbpuwujbngjydbelbjbr": "PASS_ACTIVE_HEALTHY_MIGRATIONS_APPLIED_SECURITY_ADVISOR_0_LINTS",
+    "default_project_gnsfyvsodslnehszanra": "ACTIVE_HEALTHY_MAIN_MIGRATIONS_FAILED",
+    "default_missing_migrations": [
+      "20260523113000",
+      "20260523120500",
+      "20260525193000"
+    ],
+    "security_advisor": [
+      "WARN_AUTHENTICATED_SECURITY_DEFINER_EJ_SET_PROFILE_ROLE",
+      "WARN_AUTH_LEAKED_PASSWORD_PROTECTION_DISABLED"
+    ],
+    "backup_pitr_evidence": "BLOCKED_NO_VERIFIABLE_EVIDENCE"
+  },
+  "vercel": {
+    "production_env_required_names": "BLOCKED_MISSING_ALL_REQUESTED_APP_AND_PAYPAL_NAMES",
+    "custom_domains": "BLOCKED_DOMAIN_ACCESS",
+    "prod_deploy": "NOT_RUN",
+    "promote": "NOT_RUN"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
@@ -39,22 +67,23 @@
     "secrets_printed": false,
     "rls_relaxed": false
   },
-  "pull_request": {
-    "number": 50,
-    "status": "OPEN",
-    "base": "main",
-    "head": "codex/expressjobs-global-soft-premium-redesign-manual",
-    "merge_strategy": "NO_BYPASS_REVIEW_REQUIRED",
-    "github_actions": "PASS",
-    "supabase_preview": "PASS",
-    "vercel_preview": "PASS_READY",
-    "preview_url": "https://codex-expressjobs-mhne2gt0k-akuma424-projects.vercel.app",
-    "deployment_id": "dpl_BkjbV7QdyYhf7x6JBwJDZKJVmVgC",
-    "protected_preview_smoke": "PASS_EXPECTED_401"
-  },
   "blockers": [
-    "BLOCKED_PRODUCTION_RISK",
-    "BLOCKED_PAYMENT_PROVIDER"
+    "BLOCKED_SUPABASE_MAIN_MIGRATIONS_FAILED",
+    "BLOCKED_SUPABASE_SECURITY_ADVISOR_WARNS",
+    "BLOCKED_VERCEL_PRODUCTION_ENVS_MISSING",
+    "BLOCKED_CUSTOM_DOMAIN_ACCESS",
+    "BLOCKED_BACKUP_PITR_EVIDENCE",
+    "BLOCKED_PAYMENT_PROVIDER_SANDBOX_EXECUTION"
   ],
-  "next_mode": "HUMAN_PRODUCTION_APPROVAL_AFTER_REVIEW"
+  "pull_request": {
+    "number": 53,
+    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/53",
+    "head": "codex/full-platform-real-user-review",
+    "review": "REVIEW_REQUIRED",
+    "checks": "PASS_EXCEPT_REVIEW_REQUIRED",
+    "vercel_preview": "PASS_READY",
+    "preview_url": "https://codex-expressjobs-git-codex-full-platf-51598e-akuma424-projects.vercel.app",
+    "supabase_preview_project": "vbpuwujbngjydbelbjbr"
+  },
+  "next_mode": "EXPRESSJOBS_PRODUCTION_EXTERNAL_GATE_REPAIR"
 }

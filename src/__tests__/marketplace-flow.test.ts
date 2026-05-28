@@ -40,11 +40,28 @@ describe("real marketplace flow wiring", () => {
   it("connects worker apply and client accept/reject through Supabase tables and RPC", () => {
     const workerDetail = readFileSync(join(process.cwd(), "src/components/worker-job-detail-client.tsx"), "utf8");
     const clientDetail = readFileSync(join(process.cwd(), "src/components/client-job-detail-client.tsx"), "utf8");
+    const workerApplications = readFileSync(join(process.cwd(), "src/components/worker-applications-client.tsx"), "utf8");
 
     expect(workerDetail).toContain("ej_job_applications");
     expect(workerDetail).toContain("No podes postularte a tu propio trabajo");
     expect(clientDetail).toContain("ej_accept_job_application");
     expect(clientDetail).toContain("ej_reject_job_application");
+    expect(workerApplications).toContain("ej_job_applications");
+    expect(workerApplications).toContain("worker_id");
+    expect(workerApplications).toContain("ej_jobs");
+    expect(workerApplications).not.toContain("demoApplications");
+  });
+
+  it("does not render dead chat actions or unprotected demo admin data", () => {
+    const jobCard = readFileSync(join(process.cwd(), "src/components/job-card.tsx"), "utf8");
+    const adminPage = readFileSync(join(process.cwd(), "src/app/admin/page.tsx"), "utf8");
+
+    expect(jobCard).not.toContain("<button");
+    expect(jobCard).not.toContain("Chat");
+    expect(adminPage).toContain("profile.role !== \"admin\"");
+    expect(adminPage).toContain("getCurrentProfile");
+    expect(adminPage).not.toContain("getAdminOverview");
+    expect(adminPage).not.toContain("demoProfiles");
   });
 
   it("validates core marketplace forms with Zod schemas", () => {

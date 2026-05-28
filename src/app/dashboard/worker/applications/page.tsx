@@ -1,7 +1,6 @@
-import { BriefcaseBusiness, ClipboardList } from "lucide-react";
+import { ClipboardList } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
-import { EmptyState } from "@/components/empty-state";
-import { PrimaryButton } from "@/components/primary-button";
+import { WorkerApplicationsClient } from "@/components/worker-applications-client";
 
 export default function WorkerApplicationsPage() {
   return (
@@ -11,7 +10,9 @@ export default function WorkerApplicationsPage() {
           <ClipboardList aria-hidden="true" className="text-[var(--brand)]" />
           <div>
             <h1 className="text-3xl font-black">Mis postulaciones</h1>
-            <p className="mt-2 text-[var(--muted)]">Estados esperados: enviada, vista, preseleccionada, aceptada, rechazada o retirada.</p>
+            <p className="mt-2 text-[var(--muted)]">
+              Estados reales de tus postulaciones: enviada, vista, preseleccionada, aceptada, rechazada o retirada.
+            </p>
           </div>
         </div>
         <section className="ej-glass mt-6 p-4">
@@ -21,10 +22,7 @@ export default function WorkerApplicationsPage() {
           </p>
         </section>
         <div className="mt-6">
-          <EmptyState title="Sin postulaciones cargadas en esta vista" text="Busca un trabajo abierto y postulate desde el detalle. Esta vista mantiene los datos protegidos hasta que el flujo completo este habilitado." />
-        </div>
-        <div className="mt-5">
-          <PrimaryButton href="/worker/jobs" icon={BriefcaseBusiness}>Buscar trabajos abiertos</PrimaryButton>
+          <WorkerApplicationsClient />
         </div>
       </main>
     </AppShell>
