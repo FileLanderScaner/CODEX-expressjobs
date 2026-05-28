@@ -2,84 +2,33 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
-ExpressJobs / Trabajos Rapidos is `PAYPAL_SANDBOX_CREDENTIALS_BLOCKED_EXTERNAL_CREDENTIALS`.
+Updated: 2026-05-28
+Branch: `codex/expressjobs-global-soft-premium-redesign-manual`
+Final cycle state: `EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS`
 
-- Supabase staging RLS smoke: PASS
-- Vercel Preview deploy: READY (`https://codex-expressjobs-egq4jtl0u-akuma424-projects.vercel.app`)
-- Preview browser smoke: PASS with protected access bypass header
-- First 10 tester package: READY
-- First 10 execution dry-run: PASS
-- First 10 contact package: READY
-- First 10 manual approval gate: READY_FOR_HUMAN_APPROVAL
-- First 10 testers: GO_CONTROLLED_INTERNAL_ONLY, manual/internal only
-- Real tester contact: READY_FOR_MANUAL_APPROVAL
-- Search path fix: APPLIED
-- Security Advisor recheck: PENDING_OR_NOT_RECHECKED
-- Social auth phase 1: CODE_READY_PROVIDER_CONFIG_PENDING
-- Google login: PREVIEW_SMOKE_PASS
-- Google auth smoke: PASS
-- Google redirect URI mismatch resolved: yes
-- Google OAuth redirect_to fix: APPLIED
-- Google OAuth redirect_to host: current Preview
-- Google staging/test account: confirmed by operator, not recorded in git
-- Google callback reached: yes
-- Google session created: yes
-- Google profile created or present: yes
-- Google final redirect: /role
-- Release gate: PASS_FOR_FIRST_10_CONTROLLED_INTERNAL
-- PayPal audit: PARTIAL_READY_SANDBOX_IMPLEMENTED
-- PayPal live: OFF
-- PayPal webhook endpoint: READY
-- PayPal webhook signature verification: READY
-- PayPal create subscription route: READY
-- PayPal subscription state machine: READY
-- PayPal sandbox smoke: BLOCKED_EXTERNAL_CREDENTIALS
-- PayPal sandbox credential closeout: BLOCKED_EXTERNAL_CREDENTIALS
-- Monetization prep: READY_BLOCKED_EXTERNAL_CREDENTIALS
-- Paid pilot human gate: BLOCKED_EXTERNAL_CREDENTIALS
-- Security audit: PASS_WITH_PAID_PILOT_BLOCKERS
-- Security audit revalidation: PASS_WITH_PAID_PILOT_BLOCKERS
-- Supabase security verification: BLOCKED_RLS_ROLE_ESCALATION_RISK
-- First 10 testers: NO-GO_UNTIL_RLS_ROLE_HARDENING_APPLIED_AND_SMOKE_PASS
-- RLS role hardening plan: READY_LOCAL_NOT_APPLIED
-- RLS role hardening apply gate: BLOCKED_SUPABASE_WRITE_CAPABILITY
-- RLS role hardening migration applied: no
-- Staging check current: PASS_AFTER_LOCAL_IGNORED_ENV_NORMALIZATION
-- Revenue command center: READY_MANUAL_SALES_ONLY
-- Revenue execution system: READY_MANUAL_SALES_ONLY
-- Online revenue operator: READY_MANUAL_EXECUTION
-- Revenue daily tracker: NO_REAL_ACTIVITY_REPORTED
-- Real sales activity reported: false
-- Manual revenue collected: 0 UYU
-- Closed sales count: 0
-- Delivery pending count: 0
-- Sponsor page: READY_PREVIEW_MANUAL_CTA
-- Offers page: READY
-- Landing business page: READY
-- Manual revenue offers: READY
-- In-app payments: OFF
-- Issue #15: OPEN_UNTIL_FIRST_REAL_MANUAL_SALE
-- First 25 testers: NO-GO_UNTIL_FIRST_10_RESULTS_AND_RETEST
-- First 50 testers: NO-GO_UNTIL_FIRST_25_PASS
-- First 100 testers: NO-GO_UNTIL_FIRST_50_PASS
-- First 100 users prep: READY_PLAN_ONLY
-- Vercel Preview safety audit: PASS_WITH_PROTECTED_BROWSER_SMOKE_BLOCKED
-- Current Preview browser smoke: BLOCKED_PREVIEW_AUTH_401
-- Current Preview URL: https://codex-expressjobs-q2apmubra-akuma424-projects.vercel.app
-- PayPal canonical missing envs: NEXT_PUBLIC_PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAYPAL_WEBHOOK_ID, PAYPAL_PLAN_ID, PAYPAL_API_BASE, EXPRESSJOBS_PAYPAL_SANDBOX_SMOKE_CREATE
-- Paid pilot readiness: BLOCKED_EXTERNAL_CREDENTIALS
-- GitHub task router: ACTIVE
-- GitHub CLI: FOUND
-- GitHub auth: PASS
-- GitHub repo: FileLanderScaner/CODEX-expressjobs
-- GitHub default branch: main
-- GitHub labels: CREATED
-- GitHub issue templates: READY
-- GitHub Actions gates: READY
-- GitHub seed issues: CREATED (#6-#9)
-- Supabase CLI: AVAILABLE
-- Supabase MCP: MISSING_AUTH_IN_CURRENT_SESSION
-- Facebook login: CONFIG_PENDING
-- Instagram login: RESEARCH_PENDING
-- Production: NO-GO_PRODUCTION
-- Next mode: EXPRESSJOBS_REVENUE_OUTREACH_EXECUTION_ASSISTANT
+## Current Evidence
+
+- MVP public routes: present for `/`, `/jobs`, `/jobs/[id]`, `/pricing`, `/auth`, `/register`, `/admin`, `/admin/jobs`, `/admin/users`, `/production-paused`.
+- Dashboard compatibility routes: added for `/dashboard`, `/dashboard/profile`, and `/dashboard/jobs`.
+- Worker dashboard: merge artifact text removed and covered by regression test.
+- Supabase staging: `staging:check` PASS, `rls:smoke` PASS (`EXPRESSJOBS_RLS_STAGING_PASS`).
+- Payments: live payments OFF; PayPal smoke exits safe as `PAYPAL_SANDBOX_SMOKE_READY_NOT_RUN` because `ENABLE_PAYMENTS` is not true.
+- Monetization: manual WhatsApp sales path remains active; no in-app payment is enabled.
+- Local QA: secret scan, production guard, RLS static, lint, typecheck, tests, build, git diff check, local HTTP smoke, and Playwright browser smoke PASS.
+- PR: existing PR #50 remains open on this branch; GitHub Actions, Supabase Preview, and Vercel Preview passed for commit `4da9a86`.
+- Vercel Preview: Ready at `https://codex-expressjobs-mhne2gt0k-akuma424-projects.vercel.app` (`dpl_BkjbV7QdyYhf7x6JBwJDZKJVmVgC`); protected-preview smoke passed with expected 401 route responses.
+
+## Production
+
+Production remains blocked until human approval is explicit.
+
+Forbidden actions preserved: no `vercel --prod`, no `vercel promote`, no Vercel Production env mutation, no Supabase production mutation, no PayPal live, no real payments, no secrets printed, no RLS relaxation.
+
+## Blockers
+
+- `BLOCKED_PRODUCTION_RISK`: public production requires human approval after current Preview/Git checks.
+- `BLOCKED_PAYMENT_PROVIDER`: PayPal live remains off; manual sales is the safe revenue path.
+
+## Next
+
+Code is locally and Preview-ready for controlled review. Production remains blocked pending human approval.

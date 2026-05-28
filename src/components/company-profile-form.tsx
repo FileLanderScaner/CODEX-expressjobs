@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Building2, Save } from "lucide-react";
 import Link from "next/link";
@@ -95,6 +95,7 @@ export function CompanyProfileForm() {
 
   return (
     <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
+
       <ProfileProcessSteps currentStep={3} />
       <div className="flex items-center gap-2">
         <Building2 aria-hidden="true" className="text-[var(--ej-accent)]" />

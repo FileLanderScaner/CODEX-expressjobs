@@ -1,7 +1,7 @@
-import { MapPin, MessageCircle, Send, Star } from "lucide-react";
-import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
-import type { JobStatus } from "@/lib/expressjobs-data";
+﻿import { MapPin, MessageCircle, Send, Star } from "lucide-react";
 import { JobStatusBadge } from "@/components/job-status-badge";
+import type { JobStatus } from "@/lib/expressjobs-data";
+import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
 
 function isTechnicalStagingTitle(value: string) {
   return /(^|[_\s-])(RLS_SMOKE|SMOKE_TEST|TEST_JOB)([_\s-]|$)/i.test(value);

@@ -4,6 +4,16 @@
 
 ## Current Status - 2026-05-26
 
+codex/expressjobs-global-soft-premium-redesign-manual
+
+## Current Status - 2026-05-28
+
+Mode `EXPRESSJOBS_FINAL_AUTONOMOUS_COMPLETION` completed on branch `codex/expressjobs-global-soft-premium-redesign-manual`.
+
+Safe fixes applied: `/dashboard`, `/dashboard/profile`, and `/dashboard/jobs` now resolve through role-aware redirects; `/dashboard/worker` no longer renders merge artifact text; tests cover the route aliases and app-source merge artifact markers. Local HTTP smoke and Playwright browser smoke passed on the affected dashboard flow. Supabase staging remains PASS through `npm run staging:check` and `npm run rls:smoke`; PR #50 GitHub Actions, Supabase Preview, and Vercel Preview passed for commit `4da9a86`. PayPal live remains OFF and the sandbox smoke exits safely because `ENABLE_PAYMENTS=false`.
+
+Vercel Preview is Ready at `https://codex-expressjobs-mhne2gt0k-akuma424-projects.vercel.app` (`dpl_BkjbV7QdyYhf7x6JBwJDZKJVmVgC`), with protected-preview smoke passing as expected 401 responses. Production remains `NO-GO_PRODUCTION`. No `vercel --prod`, no `vercel promote`, no Vercel Production env mutation, no Supabase production mutation, no PayPal live, no real payments, no secrets printed, and no RLS relaxation occurred. Final state is `EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS` with human production approval and live payment provider activation still blocked.
+
 Mode `EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK` completed on 2026-05-27 from branch `codex/expressjobs-post-pr51-product-completion`.
 
 Commit `3d98ebc Continue product completion after PR51` was protected with a local ignored patch and a stat backup. PR #51 was rechecked as `OPEN`, `MERGEABLE`, checks green, and blocked by `REVIEW_REQUIRED`; no merge, bypass, admin override, close, or comment action was performed. Supabase Preview Branch capacity was verified through MCP as `main` plus PR #51's non-main branch, leaving capacity for the stacked branch under the `main + 2 non-main` rule.

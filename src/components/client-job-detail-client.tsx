@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { CheckCircle2, XCircle } from "lucide-react";
 import Link from "next/link";
@@ -135,6 +135,7 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
       </div>
       <div className="mt-6">
         <h2 className="text-2xl font-black">Postulaciones</h2>
+
         <p className="ej-muted mt-2 text-sm leading-6">
           Compara mensaje, monto y reputacion. Aceptar o rechazar actualiza el estado protegido por RLS.
         </p>

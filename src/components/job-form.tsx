@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { AlertCircle, CheckCircle2, MapPin } from "lucide-react";
 import Link from "next/link";
@@ -107,6 +107,7 @@ export function JobForm() {
         <CheckCircle2 aria-hidden="true" className="mr-2 inline" size={16} />
         Publica una tarea real con tu cuenta. Los pagos dentro de la app siguen desactivados.
       </div>
+
       <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
         <p className="font-black text-[var(--ej-text)]">Antes de publicar</p>
         <ol className="mt-3 grid gap-2 font-semibold leading-6">
@@ -115,6 +116,7 @@ export function JobForm() {
           <li>3. Revisa postulaciones antes de coordinar por fuera.</li>
         </ol>
       </div>
+
       <label className="grid gap-2 text-sm font-bold">
         Titulo
         <span className="ej-soft text-xs font-semibold">Escribi la tarea en una frase concreta. Evita datos personales.</span>
@@ -125,6 +127,7 @@ export function JobForm() {
           value={title}
         />
       </label>
+
       <label className="grid gap-2 text-sm font-bold">
         Categoria
         <span className="ej-soft text-xs font-semibold">Elegila por el tipo de ayuda que esperas recibir.</span>
@@ -138,6 +141,7 @@ export function JobForm() {
           ))}
         </select>
       </label>
+
       <label className="grid gap-2 text-sm font-bold">
         Descripcion
         <span className="ej-soft text-xs font-semibold">Inclui que hay que hacer, cuando lo necesitas y cualquier condicion importante.</span>
@@ -148,6 +152,7 @@ export function JobForm() {
           value={description}
         />
       </label>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold">
           Ubicacion
@@ -162,6 +167,7 @@ export function JobForm() {
             />
           </div>
         </label>
+
         <label className="grid gap-2 text-sm font-bold">
           Presupuesto aproximado
           <span className="ej-soft text-xs font-semibold">Puede ser estimado. Sirve para comparar propuestas, no es pago dentro de la app.</span>
@@ -174,15 +180,18 @@ export function JobForm() {
           />
         </label>
       </div>
+
       <p className="ej-soft flex items-start gap-2 text-xs leading-5">
         <AlertCircle aria-hidden="true" className="mt-0.5 shrink-0" size={14} />
         No publiques tareas peligrosas, ilegales o con datos sensibles.
       </p>
+
       {message ? (
         <div className={state === "error" ? "rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2]" : "rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]"}>
           {message} {state === "error" && message.includes("sesion") ? <Link className="underline" href={authHref("/client/jobs/new")}>Ir a ingresar</Link> : null}
         </div>
       ) : null}
+
       <button
         className="focus-ring ej-btn-primary text-sm disabled:cursor-not-allowed disabled:opacity-60"
         disabled={state === "loading"}

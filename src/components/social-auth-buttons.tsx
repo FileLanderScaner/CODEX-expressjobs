@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Globe2, Users } from "lucide-react";
 import { useState } from "react";
@@ -23,10 +23,14 @@ const providerIcons = {
 export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
   const flags = getSocialAuthFlags();
   const enabledProviders = getEnabledSocialAuthProviders(flags);
-  const supabaseConfigured = isSupabaseConfigured();
-  const visibleProviders = supabaseConfigured ? enabledProviders : [];
+  const visibleProviders = [
+    "google",
+    ...enabledProviders.filter((provider) => provider !== "google"),
+  ] as SocialAuthProvider[];
+
   const [pendingProvider, setPendingProvider] = useState<SocialAuthProvider | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const supabaseConfigured = isSupabaseConfigured();
 
   async function handleOAuth(provider: SocialAuthProvider) {
     setErrorMessage(null);
@@ -63,13 +67,16 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
           Google Login no esta activo en este ambiente. Usa email o espera la configuracion OAuth oficial.
         </p>
       ) : null}
+
       {visibleProviders.map((provider) => {
         const Icon = providerIcons[provider];
         const isPending = pendingProvider === provider;
+        const isExternallyBlocked = !flags[provider] || !supabaseConfigured;
 
         return (
           <GoogleLoginButton
-            disabled={isPending}
+            ariaDisabled={isExternallyBlocked}
+            disabled={isPending || isExternallyBlocked}
             icon={Icon}
             key={provider}
             onClick={() => void handleOAuth(provider)}
@@ -80,6 +87,7 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
           </GoogleLoginButton>
         );
       })}
+
       {errorMessage ? <p className="rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2]">{errorMessage}</p> : null}
     </section>
   );
@@ -88,6 +96,7 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
 export function GoogleLoginButton({
   children,
   disabled,
+  ariaDisabled,
   icon: Icon,
   onClick,
   providerLabel,
@@ -95,6 +104,7 @@ export function GoogleLoginButton({
 }: {
   children: React.ReactNode;
   disabled?: boolean;
+  ariaDisabled?: boolean;
   icon: typeof Globe2;
   onClick: () => void;
   providerLabel: string;
@@ -102,6 +112,7 @@ export function GoogleLoginButton({
 }) {
   return (
     <button
+      aria-disabled={ariaDisabled}
       aria-label={pending ? `Conectando ${providerLabel}` : providerLabel}
       className="focus-ring ej-btn-secondary w-full px-4 py-3 text-sm disabled:cursor-not-allowed disabled:opacity-70"
       disabled={disabled}

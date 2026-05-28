@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { BriefcaseBusiness, ChevronRight, UserRoundCheck } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -77,6 +77,7 @@ export function RoleSelector() {
             <Icon aria-hidden="true" className="text-[var(--ej-accent)]" />
             <h2 className="mt-4 text-xl font-black">{choice.title}</h2>
             <p className="ej-muted mt-2 text-sm leading-6">{choice.text}</p>
+
             <p className="ej-soft mt-3 rounded-xl border border-white/10 bg-white/5 p-3 text-xs font-semibold leading-5">{choice.fit}</p>
             <button
               className="focus-ring ej-btn-primary mt-4 text-sm disabled:cursor-not-allowed disabled:opacity-60"

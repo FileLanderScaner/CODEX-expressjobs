@@ -1,4 +1,4 @@
-import { CheckCircle2, Star } from "lucide-react";
+﻿import { CheckCircle2, Star } from "lucide-react";
 import type { ApplicationStatus } from "@/lib/expressjobs-data";
 
 const statusLabels: Record<ApplicationStatus, string> = {
@@ -34,6 +34,8 @@ export function ApplicationCard({
             <Star aria-hidden="true" size={15} /> {reputationScore.toFixed(1)} reputacion
           </p>
         </div>
+        <span className="ej-chip text-xs">{status}</span>
+
         <span className="ej-chip text-xs">{statusLabels[status]}</span>
       </div>
       <p className="mt-3 text-sm leading-6">{message}</p>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState } from "react";
 import { EmptyState } from "@/components/empty-state";
@@ -146,6 +146,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
         <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-end">
           <label className="block">
             <span className="text-sm font-black text-[var(--ej-text)]">Buscar trabajos</span>
+
             <span className="ej-soft mt-1 block text-xs font-semibold">Busca por tarea, barrio, descripcion o presupuesto aproximado.</span>
             <input
               className="focus-ring ej-input mt-2 text-sm"

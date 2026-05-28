@@ -2,99 +2,59 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "mode": "EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK",
-  "updated_at": "2026-05-27T00:22:00-03:00",
+  "branch": "codex/expressjobs-global-soft-premium-redesign-manual",
+  "mode": "EXPRESSJOBS_FINAL_AUTONOMOUS_COMPLETION",
+  "updated_at": "2026-05-28T13:31:00-03:00",
+  "final_state": "EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS",
   "production_status": "NO-GO_PRODUCTION",
-  "base_pr": 51,
-  "base_pr_status": {
-    "state": "OPEN",
-    "mergeable": "MERGEABLE",
-    "review_decision": "REVIEW_REQUIRED",
-    "checks": "SUCCESS",
-    "merged": false,
-    "bypass_used": false,
-    "admin_override_used": false
-  },
-  "stacked_branch": "codex/expressjobs-post-pr51-product-completion",
-  "stacked_base": "codex/expressjobs-product-ux-review-after-redesign",
-  "stacked_commit": "3d98ebc",
-  "stacked_commit_protection": {
-    "patch_backup": "docs/local-patches/0001-Continue-product-completion-after-PR51.patch",
-    "patch_committed": false,
-    "patch_ignored": true,
-    "stat_backup": "docs/local-patches/EXPRESSJOBS_3d98ebc_COMMIT_STAT.txt",
-    "secret_pattern_scan": "PASS_NO_SECRET_VALUES"
-  },
-  "stacked_pr": {
-    "number": 52,
-    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/52",
-    "base": "codex/expressjobs-product-ux-review-after-redesign",
-    "head": "codex/expressjobs-post-pr51-product-completion",
-    "state": "OPEN",
-    "mergeable": "MERGEABLE",
-    "status": "OPEN",
-    "initial_checks": {
-      "production_no_go": "PASS",
-      "supabase_preview": "PASS",
-      "vercel": "PASS",
-      "docs_check": "PASS",
-      "pr_check": "PASS",
-      "security_gate": "PASS"
-    }
-  },
-  "stacked_pr_status": "OPEN",
-  "authenticated_e2e": "DEFERRED_BY_HUMAN_DECISION",
-  "supabase_preview_capacity": "VERIFIED",
-  "supabase_preview_capacity_detail": {
-    "method": "SUPABASE_MCP_READ_ONLY_LIST_BRANCHES",
-    "capacity_rule": "main_plus_two_non_main",
-    "branches_before_push": [
-      "main",
-      "codex/expressjobs-product-ux-review-after-redesign"
-    ],
-    "branches_after_push": [
-      "main",
-      "codex/expressjobs-product-ux-review-after-redesign",
-      "codex/expressjobs-post-pr51-product-completion"
-    ],
-    "pr51_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
-    "pr52_branch_status": "FUNCTIONS_DEPLOYED_ACTIVE_HEALTHY",
-    "capacity_result": "ONE_NON_MAIN_SLOT_AVAILABLE_BEFORE_PUSH",
-    "capacity_after_push": "AT_LIMIT_MAIN_PLUS_TWO_NON_MAIN",
-    "manual_branch_created": false,
-    "manual_branch_deleted": false
-  },
+  "changes": [
+    "Removed visible merge artifact text from worker dashboard.",
+    "Added dashboard route aliases for /dashboard, /dashboard/profile, and /dashboard/jobs.",
+    "Added regression coverage for MVP route aliases and merge artifact markers.",
+    "Added final production, revenue, Vercel/Supabase, and autonomous cycle closeout docs."
+  ],
   "checks": {
     "secret_scan": "PASS",
-    "production_check": "PASS",
+    "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
+    "test_rls_static": "PASS",
+    "staging_check": "PASS",
+    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
+    "paypal_sandbox_smoke": "PASS_READY_NOT_RUN_PAYMENTS_DISABLED",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "test": "PASS",
+    "build": "PASS",
     "git_diff_check": "PASS",
-    "json_parse": "PASS",
-    "lint": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
-    "typecheck": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
-    "test": "PASS_PREVIOUS_SAME_BRANCH_10_FILES_60_TESTS_NO_CODE_CHANGES_AFTER_3d98ebc",
-    "build": "PASS_PREVIOUS_SAME_BRANCH_NO_CODE_CHANGES_AFTER_3d98ebc",
-    "test_rls_static": "NOT_RUN_NO_RLS_CHANGE",
-    "staging_check": "NOT_RUN_NO_RLS_CHANGE",
-    "rls_smoke": "NOT_RUN_NO_RLS_CHANGE"
+    "local_http_smoke": "PASS",
+    "browser_smoke": "PASS"
   },
-  "payments_live": false,
-  "users_contacted_automatically": false,
-  "secrets_exposed": false,
-  "production_touched": false,
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
     "vercel_promote": "NOT_RUN",
-    "vercel_production_env_mutation": "NO",
-    "supabase_production_mutation": "NO",
-    "paypal_live": false,
-    "mercadopago_live": false,
-    "payments_live": false,
-    "users_contacted_automatically": false,
-    "env_committed": "NO",
-    "rls_relaxed": "NO"
+    "vercel_production_env_mutation": false,
+    "supabase_production_mutation": false,
+    "paypal_live": "OFF",
+    "real_payments": "OFF",
+    "secrets_printed": false,
+    "rls_relaxed": false
   },
-  "blockers": [],
-  "next_mode": "EXPRESSJOBS_PR52_REVIEW_AND_BRANCH_CAPACITY_CLOSEOUT",
-  "next_mode_reason": "Stacked PR is open and green; Supabase branch capacity is now at main plus two non-main branches, so the next safe cycle should avoid creating another preview branch."
+  "pull_request": {
+    "number": 50,
+    "status": "OPEN",
+    "base": "main",
+    "head": "codex/expressjobs-global-soft-premium-redesign-manual",
+    "merge_strategy": "NO_BYPASS_REVIEW_REQUIRED",
+    "github_actions": "PASS",
+    "supabase_preview": "PASS",
+    "vercel_preview": "PASS_READY",
+    "preview_url": "https://codex-expressjobs-mhne2gt0k-akuma424-projects.vercel.app",
+    "deployment_id": "dpl_BkjbV7QdyYhf7x6JBwJDZKJVmVgC",
+    "protected_preview_smoke": "PASS_EXPECTED_401"
+  },
+  "blockers": [
+    "BLOCKED_PRODUCTION_RISK",
+    "BLOCKED_PAYMENT_PROVIDER"
+  ],
+  "next_mode": "HUMAN_PRODUCTION_APPROVAL_AFTER_REVIEW"
 }
