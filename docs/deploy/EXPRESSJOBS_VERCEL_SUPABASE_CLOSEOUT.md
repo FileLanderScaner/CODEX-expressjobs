@@ -15,17 +15,16 @@ Updated: 2026-05-28
 ## Vercel
 
 - Existing PR #50 is open for `codex/expressjobs-global-soft-premium-redesign-manual`.
-- GitHub Actions checks passed for commit `f5c00f5`.
+- GitHub Actions checks passed for commit `4da9a86`.
 - Supabase Preview passed.
-- Vercel Git Preview failed for `dpl_735FnGLRoh8vfK7Zoch4CXHuQSZf`; `vercel inspect --logs` returned no actionable logs and showed a 0 ms build.
-- Manual `vercel deploy --target preview --yes` remained `UNKNOWN` at `dpl_EQqeRwz6bpjzcgwLJ5WikXjLT4MZ`; the local CLI process hung until stopped.
+- Vercel Preview passed and is Ready at `https://codex-expressjobs-mhne2gt0k-akuma424-projects.vercel.app` (`dpl_BkjbV7QdyYhf7x6JBwJDZKJVmVgC`).
 - No `vercel --prod`, no `vercel promote`, and no Production env mutation occurred.
 
 ## Preview Smoke
 
 Local smoke passed on core public routes and dashboard aliases. Playwright smoke loaded `/dashboard/worker`, verified the merge artifact was gone, resized to mobile, and navigated through `/dashboard/jobs` to the client jobs page without browser console errors.
 
-Remote Preview smoke is `BLOCKED_VERCEL_ACCESS` until the Vercel dashboard or Git integration exposes the failed deployment cause.
+Remote Preview smoke is `PASS_EXPECTED_401` because the Preview is protected by Vercel authentication; no 5xx or production host was observed by `npm run smoke:preview`.
 
 ## NO-IP
 

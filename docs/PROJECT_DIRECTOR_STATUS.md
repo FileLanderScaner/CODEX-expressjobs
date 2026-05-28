@@ -15,12 +15,12 @@ Final cycle state: `EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS`
 - Payments: live payments OFF; PayPal smoke exits safe as `PAYPAL_SANDBOX_SMOKE_READY_NOT_RUN` because `ENABLE_PAYMENTS` is not true.
 - Monetization: manual WhatsApp sales path remains active; no in-app payment is enabled.
 - Local QA: secret scan, production guard, RLS static, lint, typecheck, tests, build, git diff check, local HTTP smoke, and Playwright browser smoke PASS.
-- PR: existing PR #50 remains open on this branch; GitHub Actions and Supabase Preview passed for commit `f5c00f5`.
-- Vercel Preview: Git integration failed without actionable logs (`dpl_735FnGLRoh8vfK7Zoch4CXHuQSZf`); manual Preview attempt remained `UNKNOWN` and the CLI hung until stopped (`dpl_EQqeRwz6bpjzcgwLJ5WikXjLT4MZ`).
+- PR: existing PR #50 remains open on this branch; GitHub Actions, Supabase Preview, and Vercel Preview passed for commit `4da9a86`.
+- Vercel Preview: Ready at `https://codex-expressjobs-mhne2gt0k-akuma424-projects.vercel.app` (`dpl_BkjbV7QdyYhf7x6JBwJDZKJVmVgC`); protected-preview smoke passed with expected 401 route responses.
 
 ## Production
 
-Production remains blocked until Vercel Preview is healthy and human approval is explicit.
+Production remains blocked until human approval is explicit.
 
 Forbidden actions preserved: no `vercel --prod`, no `vercel promote`, no Vercel Production env mutation, no Supabase production mutation, no PayPal live, no real payments, no secrets printed, no RLS relaxation.
 
@@ -28,8 +28,7 @@ Forbidden actions preserved: no `vercel --prod`, no `vercel promote`, no Vercel 
 
 - `BLOCKED_PRODUCTION_RISK`: public production requires human approval after current Preview/Git checks.
 - `BLOCKED_PAYMENT_PROVIDER`: PayPal live remains off; manual sales is the safe revenue path.
-- `BLOCKED_VERCEL_ACCESS`: Vercel Preview failed externally while local build and checks pass.
 
 ## Next
 
-Resolve Vercel Preview from the Vercel dashboard or Git integration logs. Code is locally ready; production remains blocked.
+Code is locally and Preview-ready for controlled review. Production remains blocked pending human approval.
