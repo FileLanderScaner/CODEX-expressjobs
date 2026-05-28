@@ -28,6 +28,8 @@ export const trackingEvents = [
   "review_created",
   "message_sent",
   "whatsapp_share_clicked",
+  "whatsapp_lead_clicked",
+  "offer_selected",
   "premium_cta_clicked",
   "commission_info_viewed",
   "pricing_viewed",

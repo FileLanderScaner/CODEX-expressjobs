@@ -20,6 +20,8 @@ describe("ExpressJobs MVP constants", () => {
   it("includes required tracking events", () => {
     expect(trackingEvents).toContain("job_application_accepted");
     expect(trackingEvents).toContain("whatsapp_share_clicked");
+    expect(trackingEvents).toContain("whatsapp_lead_clicked");
+    expect(trackingEvents).toContain("offer_selected");
     expect(trackingEvents).toContain("premium_cta_clicked");
     expect(trackingEvents).toContain("commission_info_viewed");
     expect(trackingEvents).toContain("pricing_viewed");
