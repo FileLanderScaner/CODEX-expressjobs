@@ -8,7 +8,7 @@
 
 Branch: `codex/controlled-staging-user-commercial-pilot`
 
-Updated: `2026-05-28T20:04:47-03:00`
+Updated: `2026-05-28T20:11:03-03:00`
 
 ## Scope
 
@@ -52,6 +52,15 @@ The operator package now defines:
 - GO/NO-GO criteria.
 - Sanitized feedback capture.
 - Sanitized lead validity and redaction rules.
+
+## Preview
+
+PR #57 Preview:
+
+- URL: `https://codex-expressjobs-git-codex-controlled-8024ae-akuma424-projects.vercel.app`.
+- `npm run smoke:preview -- --url https://codex-expressjobs-git-codex-controlled-8024ae-akuma424-projects.vercel.app`: PASS.
+- Preview route smoke on `/`, `/jobs`, `/worker/jobs`, `/client/jobs/new`, `/pricing`, `/ofertas`, `/dashboard/client`, `/dashboard/worker`, `/dashboard/worker/applications`, and `/admin`: PASS, all returned `200`, no 5xx.
+- Supabase Preview: SKIPPED because this branch has no `supabase/` changes.
 
 ## Checks
 

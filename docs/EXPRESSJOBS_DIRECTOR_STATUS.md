@@ -14,6 +14,8 @@ Commercial safety remains manual-only: `/pricing` and `/ofertas` use WhatsApp/em
 
 Local route smoke passed across desktop `1360x900` and mobile `390x844` for `/`, `/jobs`, `/worker/jobs`, `/client/jobs/new`, `/pricing`, `/ofertas`, `/dashboard/client`, `/dashboard/worker`, `/dashboard/worker/applications`, and `/admin`: no HTTP 5xx, no horizontal overflow, no app error boundary, no browser console errors, and no live payment hrefs on commercial pages.
 
+PR #57 Preview is Ready at `https://codex-expressjobs-git-codex-controlled-8024ae-akuma424-projects.vercel.app`. Remote smoke passed: `npm run smoke:preview` returned PASS and the 10 critical routes returned `200` with no 5xx. Supabase Preview is SKIPPED for this branch because no `supabase/` files changed.
+
 Final checks passed: `npm run commercial:pilot:check`, `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`, `npm run staging:check`, `npm run rls:smoke`, and `git diff --check`.
 
 Current state: `CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_OPERATOR_HANDOFF_READY`.

@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "branch": "codex/controlled-staging-user-commercial-pilot",
   "mode": "EXPRESSJOBS_CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_EXECUTION",
-  "updated_at": "2026-05-28T20:04:47-03:00",
+  "updated_at": "2026-05-28T20:11:03-03:00",
   "final_state": "CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_OPERATOR_HANDOFF_READY",
   "production_status": "NO-GO_PRODUCTION",
   "upstream_prs": {
@@ -64,6 +64,14 @@
     "feedback_capture": "SANITIZED_ONLY",
     "real_user_contact_by_codex": "OFF"
   },
+  "preview": {
+    "pr": 57,
+    "url": "https://codex-expressjobs-git-codex-controlled-8024ae-akuma424-projects.vercel.app",
+    "vercel": "PASS_READY",
+    "smoke_preview": "PASS",
+    "critical_route_smoke": "PASS_ALL_10_ROUTES_200_NO_5XX",
+    "supabase_preview": "SKIPPED_NO_SUPABASE_CHANGES"
+  },
   "checks": {
     "commercial_pilot_check": "PASS_MANUAL_ONLY_NO_LIVE_PAYMENT_SURFACE",
     "secret_scan": "PASS",
@@ -77,7 +85,8 @@
     "staging_check": "PASS",
     "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
     "git_diff_check": "PASS",
-    "local_route_smoke": "PASS_20_DESKTOP_MOBILE_NO_OVERFLOW_NO_CONSOLE_ERRORS_NO_LIVE_PAYMENT_HREFS"
+    "local_route_smoke": "PASS_20_DESKTOP_MOBILE_NO_OVERFLOW_NO_CONSOLE_ERRORS_NO_LIVE_PAYMENT_HREFS",
+    "preview_smoke": "PASS"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
