@@ -3,6 +3,7 @@
 import { MessageCircle } from "lucide-react";
 import { useMemo, useState } from "react";
 import { publicSalesContact } from "@/lib/monetization/monetization-config";
+import { trackEvent } from "@/lib/tracking";
 
 export function OfferContactForm() {
   const [name, setName] = useState("");
@@ -44,7 +45,21 @@ export function OfferContactForm() {
           <input className="focus-ring ej-input font-normal" onChange={(event) => setService(event.target.value)} value={service} />
         </label>
       </div>
-      <a className="focus-ring ej-btn-primary text-sm" href={href}>
+      <a
+        className="focus-ring ej-btn-primary text-sm"
+        href={href}
+        onClick={() => {
+          trackEvent("offer_selected", {
+            surface: "ofertas",
+            serviceProvided: Boolean(service.trim()),
+          });
+          trackEvent("whatsapp_lead_clicked", {
+            surface: "ofertas",
+            hasBusinessType: Boolean(businessType.trim()),
+            hasService: Boolean(service.trim()),
+          });
+        }}
+      >
         Consultar por WhatsApp
         <MessageCircle aria-hidden="true" size={18} />
       </a>

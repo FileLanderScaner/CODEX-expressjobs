@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import { MessageCircle } from "lucide-react";
 import type { PilotOffer } from "@/lib/expressjobs-data";
+import { publicSalesContact } from "@/lib/monetization/monetization-config";
 import { trackEvent } from "@/lib/tracking";
-import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
 
 export function PricingViewTracker() {
   useEffect(() => {
@@ -21,15 +21,25 @@ export function PilotOfferWhatsAppCta({ offer }: { offer: PilotOffer }) {
   return (
     <a
       className="focus-ring ej-btn-primary w-full text-sm"
-      href={buildWhatsAppShareUrl(message)}
-      onClick={() =>
+      href={`https://wa.me/${publicSalesContact.whatsappNumber}?text=${encodeURIComponent(message)}`}
+      onClick={() => {
+        trackEvent("offer_selected", {
+          surface: "pricing",
+          offer: offer.id,
+          uyPrice: offer.uyPrice,
+          usdPrice: offer.usdPrice,
+        });
+        trackEvent("whatsapp_lead_clicked", {
+          surface: "pricing",
+          offer: offer.id,
+        });
         trackEvent("premium_cta_clicked", {
           surface: "pricing",
           offer: offer.id,
           uyPrice: offer.uyPrice,
           usdPrice: offer.usdPrice,
-        })
-      }
+        });
+      }}
       rel="noreferrer"
       target="_blank"
     >

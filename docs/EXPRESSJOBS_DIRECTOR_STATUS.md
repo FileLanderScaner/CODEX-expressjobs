@@ -2,6 +2,22 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-28 PR55 Preview Gate Commercial Closeout
+
+Mode `EXPRESSJOBS_PR55_PREVIEW_GATE_COMMERCIAL_READY_CLOSEOUT` completed on branch `codex/pr55-preview-gate-commercial-closeout`.
+
+Final state: `READY_FOR_CONTROLLED_STAGING_USERS_VISUAL_POLISH_REMOTE_VERIFIED` with Preview access caveat `PROTECTED_PREVIEW_EXPECTED`.
+
+PR #54 (`Document ExpressJobs UX UI colorimetry review`) is `CLOSED`, `mergedAt=null`, and was not reopened or used as implementation evidence. PR #55 (`Polish ExpressJobs LatAm premium UX/UI`) is `MERGED` into `main` at merge commit `0431063c3730832917dead246dc9e43310727a0e` on 2026-05-28 21:37:50 UTC. `origin/main` contains PR #55 head `3e45fe75b6843abae3de416a54bf65108d41e9b3`.
+
+Remote PR #55 checks are PASS: `docs-check`, `pr-check`, `production-no-go`, `security-gate`, `Vercel`, `Vercel Preview Comments`, and `Supabase Preview`. Vercel inspected deployment `dpl_H94qLQYu7b3gKJ8FE1R6pYvwJbvh` as `target=preview`, `status=Ready`, alias `https://codex-expressjobs-git-codex-latam-prem-d1136d-akuma424-projects.vercel.app`. Remote browser smoke reached Vercel login/Deployment Protection for all requested routes on desktop 1360 and mobile 390, so visual Preview smoke is documented as `PROTECTED_PREVIEW_EXPECTED`, not full remote visual PASS. Local equivalent browser smoke passed for `/`, `/jobs`, `/worker/jobs`, `/client/jobs/new`, `/pricing`, `/ofertas`, `/dashboard/client`, `/dashboard/worker`, `/dashboard/worker/applications`, and `/admin` on desktop and mobile with no overflow, no console errors, no app error boundary, CTAs visible, admin protected, and `NO-GO_PRODUCTION` visible.
+
+Commercial readiness: `/pricing` and `/ofertas` remain manual-pilot only, no checkout live and no PayPal live. CTAs point to WhatsApp/email contact, pricing CTAs now target the public sales WhatsApp number, and local-safe tracking includes `pricing_viewed`, `premium_cta_clicked`, `whatsapp_lead_clicked`, and `offer_selected`. Manual sales checklist added at `docs/sales/EXPRESSJOBS_PR55_MANUAL_SALES_CHECKLIST.md`.
+
+Final closeout QA rerun passed after commercial tracking and documentation edits: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`, `npm run staging:check`, `npm run rls:smoke`, and `git diff --check`.
+
+Production remains `NO-GO_PRODUCTION`. A Git-integrated Vercel Production deployment exists after merge, but production is still neutralized: `https://codex-expressjobs.vercel.app/` returns 307 to `/production-paused`, and `/production-paused` returns 200 with `NO-GO_PRODUCTION`. No `vercel --prod`, `vercel promote`, Production env mutation, PayPal live, real payment, secret exposure, service-role client exposure, Supabase production mutation, or RLS relaxation was performed.
+
 ## Current Status - 2026-05-28 LatAm Premium Visual Redesign
 
 Mode `EXPRESSJOBS_LATAM_PREMIUM_VISUAL_REDESIGN_AND_UX_COMPLETION` completed on branch `codex/latam-premium-ux-ui`.
