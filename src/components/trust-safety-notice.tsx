@@ -4,7 +4,7 @@ import { publicBrand } from "@/lib/expressjobs-data";
 
 export function TrustSafetyNotice() {
   return (
-    <aside className="rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-4 text-sm leading-6 text-[#d9f7bd]">
+    <aside className="rounded-lg border border-[rgba(96,165,250,0.28)] bg-[var(--ej-accent-soft)] p-4 text-sm leading-6 text-blue-100">
       <div className="flex items-start gap-3">
         <ShieldCheck aria-hidden="true" className="mt-0.5 text-[var(--ej-accent)]" size={20} />
         <p>

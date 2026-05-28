@@ -156,14 +156,17 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
     <section className="ej-card p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="ej-chip text-sm font-bold">{job.category}</p>
+          <div className="flex flex-wrap gap-2">
+            <p className="ej-chip text-sm font-bold">{job.category}</p>
+            {job.urgency === "urgent" ? <span className="ej-warning-badge text-sm font-bold">Urgente</span> : null}
+          </div>
           <h1 className="mt-1 text-3xl font-black">{job.title}</h1>
           <p className="ej-muted mt-2 text-sm font-bold">{job.location} - {job.budget}</p>
         </div>
         <JobStatusBadge status={job.status} />
       </div>
       <p className="ej-muted mt-4 leading-7">{job.description}</p>
-      <form className="mt-5 grid gap-3 rounded-2xl border border-white/10 bg-white/10 p-4" onSubmit={handleApply}>
+      <form className="mt-5 grid gap-3 rounded-lg border border-[var(--ej-border)] bg-white/[0.06] p-4" onSubmit={handleApply}>
         <label className="grid gap-2 text-sm font-bold">
           Mensaje para el cliente
           <span className="ej-soft text-xs font-semibold">Explica disponibilidad, experiencia y cualquier duda importante.</span>
@@ -186,7 +189,7 @@ export function WorkerJobDetailClient({ jobId }: { jobId: string }) {
           />
         </label>
         {statusMessage ? (
-          <p className={state === "error" ? "text-sm font-bold text-[#ffb4c2]" : "text-sm font-bold text-[#d9f7bd]"}>
+          <p className={state === "error" ? "text-sm font-bold text-red-200" : "text-sm font-bold text-emerald-200"}>
             {statusMessage} {statusMessage.includes("iniciar sesion") ? <Link className="underline" href={authHref(`/worker/jobs/${jobId}`)}>Ir a ingresar</Link> : null}
           </p>
         ) : null}

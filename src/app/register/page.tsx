@@ -20,7 +20,7 @@ export default function RegisterPage() {
             <PrimaryButton href="/auth" icon={LogIn}>
               Ingresar / Crear cuenta
             </PrimaryButton>
-            <PrimaryButton href="/como-funciona" icon={HelpCircle}>
+            <PrimaryButton href="/#como-funciona" icon={HelpCircle}>
               Ver guia
             </PrimaryButton>
             <PrimaryButton href="/role" icon={UserRoundCheck}>

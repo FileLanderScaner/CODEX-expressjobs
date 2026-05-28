@@ -11,34 +11,40 @@ const panels = [
   {
     href: "/client/jobs/new",
     label: "Para clientes",
-    title: "Publicar un trabajo",
-    text: "Conta que necesitas, zona y presupuesto. Recibi interesados y coordina rapido.",
-    cta: "Publicar ahora",
+    title: "Publica una tarea y recibi postulaciones",
+    text: "Indica que necesitas, zona aproximada y presupuesto. Compara mensajes antes de coordinar.",
+    cta: "Publicar tarea",
     icon: BriefcaseBusiness,
   },
   {
     href: "/worker/jobs",
     label: "Para trabajadores",
-    title: "Buscar trabajos",
-    text: "Mira tareas disponibles, postulate y construi tu historial desde tu perfil.",
+    title: "Encontra trabajos cerca de tu zona",
+    text: "Filtra tareas abiertas, postulate con un mensaje claro y revisa el estado de tus postulaciones.",
     cta: "Ver trabajos",
     icon: Search,
   },
   {
     href: "/auth",
     label: "Tu cuenta",
-    title: "Crear mi perfil",
-    text: "Guarda tu sesion, datos y rol para volver sin empezar de cero.",
+    title: "Crea tu cuenta para avanzar",
+    text: "Guarda tu rol, perfil y actividad para volver sin empezar de cero.",
     cta: "Crear perfil",
     icon: UserRoundCheck,
   },
 ] as const;
 
 const flow = [
-  { icon: LogIn, title: "1. Crea cuenta", text: "Entra con email o Google cuando el ambiente este configurado." },
+  { icon: LogIn, title: "1. Crea cuenta", text: "Ingresa con email o Google cuando el ambiente este disponible." },
   { icon: UserRoundCheck, title: "2. Elegi rol", text: "Cliente para publicar o trabajador para postularte." },
-  { icon: ClipboardList, title: "3. Publica o busca", text: "Describe una tarea o revisa trabajos abiertos." },
-  { icon: MessageCircle, title: "4. Coordina", text: "Acepta postulaciones y coordina el trabajo." },
+  { icon: ClipboardList, title: "3. Publica o busca", text: "Describe una tarea concreta o revisa trabajos abiertos." },
+  { icon: MessageCircle, title: "4. Coordina", text: "Acepta postulaciones y coordina sin compartir datos sensibles." },
+];
+
+const heroMetrics = [
+  { label: "Cliente", value: "Publica tareas reales" },
+  { label: "Trabajador", value: "Postula con perfil" },
+  { label: "Seguridad", value: "RLS y piloto cerrado" },
 ];
 
 export default function Home() {
@@ -47,19 +53,19 @@ export default function Home() {
       <TrackingClient />
       <main className="ej-page">
         <section className="relative isolate overflow-hidden">
-          <div className="hero-grid-pattern absolute inset-0 -z-10 opacity-50" />
+          <div className="hero-grid-pattern absolute inset-0 -z-10 opacity-35" />
           <div className="ej-container grid min-h-[620px] items-center gap-10 py-14 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
             <div>
               <p className="ej-badge">{publicBrand.statusLabel}</p>
               <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[0.97] tracking-tight sm:text-6xl lg:text-7xl">
-                Publica trabajos. Encuentra oportunidades.
+                Trabajo local claro, rapido y protegido.
               </h1>
               <p className="ej-muted mt-6 max-w-2xl text-lg leading-8 sm:text-xl">
-                ExpressJobs conecta clientes y trabajadores para tareas reales, rapidas y concretas. Crea tu cuenta, guarda tu perfil y coordina desde una plataforma preparada para crecer.
+                Trabajos Rapidos conecta clientes y trabajadores para tareas reales en Uruguay y LatAm. Publica una tarea, encontra oportunidades cerca y avanza con estados visibles dentro de un piloto controlado.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link className="focus-ring ej-btn-primary text-sm uppercase tracking-[0.12em]" href="/client/jobs/new">
-                  Publicar un trabajo <ArrowRight aria-hidden="true" size={18} />
+                  Publicar tarea <ArrowRight aria-hidden="true" size={18} />
                 </Link>
                 <Link className="focus-ring ej-btn-secondary text-sm uppercase tracking-[0.12em]" href="/worker/jobs">
                   Buscar trabajos <Search aria-hidden="true" size={18} />
@@ -69,18 +75,23 @@ export default function Home() {
                 </Link>
               </div>
               <div className="ej-glass mt-6 max-w-2xl p-4 text-sm leading-6">
-                <strong className="text-white">Piloto controlado:</strong> experiencia moderna, cuenta persistente y perfiles claros antes de abrir uso publico masivo. <span className="font-black text-[#ffb4c2]">NO-GO_PRODUCTION.</span>
+                <strong className="text-white">Piloto controlado:</strong> estamos validando la experiencia antes de abrir produccion publica. No hay pagos reales activos ni promesas de empleo garantizado. <span className="font-black text-red-200">NO-GO_PRODUCTION.</span>
               </div>
             </div>
             <div className="ej-glass p-5">
-              <div className="grid min-h-[390px] content-end rounded-[1.5rem] border border-white/10 bg-[radial-gradient(circle_at_20%_25%,rgba(123,193,67,0.35),transparent_24%),radial-gradient(circle_at_80%_25%,rgba(59,130,246,0.28),transparent_26%),linear-gradient(135deg,#1b2a3a,#071018)] p-6">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-[#b9ef88]">Marketplace local</p>
-                <h2 className="mt-3 text-4xl font-black tracking-tight">Tareas, perfiles y oportunidades en un solo lugar.</h2>
-                <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  {["Cliente", "Trabajador", "Perfil"].map((item) => (
-                    <div className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur" key={item}>
-                      <p className="text-xl font-black">{item}</p>
-                      <p className="ej-muted mt-2 text-xs leading-5">Flujo claro para usuarios reales.</p>
+              <div className="grid min-h-[390px] content-between rounded-lg border border-[var(--ej-border)] bg-[linear-gradient(135deg,#132238,#07111f)] p-6">
+                <div>
+                  <p className="text-xs font-black uppercase tracking-[0.18em] text-blue-200">Marketplace local</p>
+                  <h2 className="mt-3 text-4xl font-black tracking-tight">Una ruta simple para publicar, postular y decidir.</h2>
+                  <p className="ej-muted mt-4 text-sm leading-6">
+                    La interfaz separa roles, estados y proximas acciones para que un usuario nuevo entienda que hacer sin leer documentacion.
+                  </p>
+                </div>
+                <div className="mt-6 grid gap-3">
+                  {heroMetrics.map((item) => (
+                    <div className="grid gap-1 rounded-lg border border-[var(--ej-border)] bg-white/[0.06] p-4 sm:grid-cols-[9rem_1fr] sm:items-center" key={item.label}>
+                      <p className="text-sm font-black uppercase tracking-[0.14em] text-blue-200">{item.label}</p>
+                      <p className="ej-muted text-sm font-semibold leading-6">{item.value}</p>
                     </div>
                   ))}
                 </div>
@@ -101,16 +112,16 @@ export default function Home() {
             <div className="mt-8 grid gap-5 lg:grid-cols-3">
               {panels.map((panel) => (
                 <Link className="group focus-ring ej-card relative min-h-[300px] overflow-hidden p-7 transition hover:-translate-y-2" href={panel.href} key={panel.title}>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_18%,rgba(123,193,67,0.18),transparent_26%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(0,0,0,0.18))]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(96,165,250,0.08),rgba(0,0,0,0.18))]" />
                   <div className="relative flex h-full min-h-[260px] flex-col justify-between">
                     <div className="flex items-center justify-between gap-4">
                       <p className="ej-chip text-[11px] uppercase tracking-[0.16em]">{panel.label}</p>
-                      <span className="grid h-11 w-11 place-items-center rounded-2xl bg-white/10"><panel.icon aria-hidden="true" size={22} /></span>
+                      <span className="grid h-11 w-11 place-items-center rounded-lg bg-white/10 text-blue-200"><panel.icon aria-hidden="true" size={22} /></span>
                     </div>
                     <div>
                       <h3 className="max-w-xs text-3xl font-black tracking-tight">{panel.title}</h3>
                       <p className="ej-muted mt-3 max-w-sm text-sm leading-6">{panel.text}</p>
-                      <span className="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-[#b9ef88]">{panel.cta}<ArrowRight aria-hidden="true" className="transition group-hover:translate-x-1" size={18} /></span>
+                      <span className="mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-emerald-200">{panel.cta}<ArrowRight aria-hidden="true" className="transition group-hover:translate-x-1" size={18} /></span>
                     </div>
                   </div>
                 </Link>
@@ -139,8 +150,8 @@ export default function Home() {
           <div className="grid gap-5 md:grid-cols-3">
             {[
               { icon: UsersRound, title: "Roles claros", text: "Cliente, trabajador y admin con limites separados." },
-              { icon: ShieldCheck, title: "RLS primero", text: "Datos protegidos por politicas desde el schema." },
-              { icon: CheckCircle2, title: "Sin pagos live", text: "Monetizacion documentada y desactivada hasta aprobacion." },
+              { icon: ShieldCheck, title: "RLS primero", text: "Permisos separados para clientes, trabajadores y admin." },
+              { icon: CheckCircle2, title: "Piloto seguro", text: "Pagos live desactivados hasta aprobacion humana." },
             ].map((item) => (
               <article className="ej-card p-6" key={item.title}>
                 <item.icon aria-hidden="true" className="text-[var(--ej-accent)]" size={26} />
@@ -167,14 +178,26 @@ export default function Home() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               {categories.map((category) => (
-                <Link
-                  className="focus-ring group flex items-center justify-between border-b border-white/10 py-3 text-sm font-bold text-[var(--ej-text-muted)] transition hover:border-[var(--ej-accent)] hover:text-white"
-                  href="/worker/jobs"
+                <div
+                  className="grid gap-3 rounded-lg border border-[var(--ej-border)] bg-white/[0.04] p-4 sm:grid-cols-[1fr_auto] sm:items-center"
                   key={category}
                 >
-                  <span>{category}</span>
-                  <ArrowRight aria-hidden="true" className="text-[var(--ej-accent)] opacity-70 transition group-hover:translate-x-1 group-hover:opacity-100" size={16} />
-                </Link>
+                  <span className="font-black text-white">{category}</span>
+                  <div className="flex flex-wrap gap-2">
+                    <Link
+                      className="focus-ring inline-flex items-center gap-2 rounded-md border border-[var(--ej-border)] px-3 py-2 text-xs font-black uppercase tracking-[0.1em] text-[var(--ej-text-muted)] transition hover:bg-white/10 hover:text-white"
+                      href="/worker/jobs"
+                    >
+                      Buscar <ArrowRight aria-hidden="true" size={14} />
+                    </Link>
+                    <Link
+                      className="focus-ring inline-flex items-center gap-2 rounded-md bg-[var(--ej-success)] px-3 py-2 text-xs font-black uppercase tracking-[0.1em] text-[#04130e] transition hover:bg-[var(--ej-success-hover)]"
+                      href="/client/jobs/new"
+                    >
+                      Publicar <ArrowRight aria-hidden="true" size={14} />
+                    </Link>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { categories } from "@/lib/expressjobs-data";
-import { authHref, ensureMarketplaceRole, fullNameFromUser } from "@/lib/marketplace";
+import { authHref, ensureMarketplaceRole, fullNameFromUser, serializeJobDescription } from "@/lib/marketplace";
 import { jobPostSchema } from "@/lib/marketplace-schemas";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 
@@ -24,6 +24,7 @@ export function JobForm() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState<(typeof categories)[number]>(categories[0]);
+  const [urgency, setUrgency] = useState<"normal" | "urgent">("normal");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [budget, setBudget] = useState("");
@@ -60,7 +61,7 @@ export function JobForm() {
       description,
       location,
       budgetUyu: parseBudget(budget),
-      urgency: "normal",
+      urgency,
     });
 
     if (!parsed.success) {
@@ -82,7 +83,11 @@ export function JobForm() {
       .insert({
         client_id: user.id,
         title: parsed.data.title,
-        description: parsed.data.description,
+        description: serializeJobDescription({
+          category: parsed.data.category,
+          urgency: parsed.data.urgency,
+          description: parsed.data.description,
+        }),
         location_text: parsed.data.location,
         budget_uyu: parsed.data.budgetUyu,
         status: "open",
@@ -103,17 +108,18 @@ export function JobForm() {
 
   return (
     <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
-      <div className="rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-semibold text-[#d9f7bd]">
+      <div className="rounded-lg border border-[rgba(16,185,129,0.32)] bg-[var(--ej-success-soft)] p-3 text-sm font-semibold text-emerald-200">
         <CheckCircle2 aria-hidden="true" className="mr-2 inline" size={16} />
         Publica una tarea real con tu cuenta. Los pagos dentro de la app siguen desactivados.
       </div>
 
-      <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
+      <div className="rounded-lg border border-[var(--ej-border)] bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
         <p className="font-black text-[var(--ej-text)]">Antes de publicar</p>
         <ol className="mt-3 grid gap-2 font-semibold leading-6">
-          <li>1. Describe el resultado esperado, no solo el rubro.</li>
-          <li>2. Usa una zona aproximada y evita datos personales.</li>
-          <li>3. Revisa postulaciones antes de coordinar por fuera.</li>
+          <li>1. Que necesitas: resultado concreto, no solo el rubro.</li>
+          <li>2. Donde: zona aproximada, sin direccion exacta.</li>
+          <li>3. Presupuesto y urgencia: ayuda a recibir propuestas comparables.</li>
+          <li>4. Publicar: revisa postulaciones antes de coordinar.</li>
         </ol>
       </div>
 
@@ -153,7 +159,7 @@ export function JobForm() {
         />
       </label>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-3">
         <label className="grid gap-2 text-sm font-bold">
           Ubicacion
           <span className="ej-soft text-xs font-semibold">Zona aproximada; no publiques direccion exacta.</span>
@@ -166,6 +172,19 @@ export function JobForm() {
               value={location}
             />
           </div>
+        </label>
+
+        <label className="grid gap-2 text-sm font-bold">
+          Urgencia
+          <span className="ej-soft text-xs font-semibold">Usa urgente solo si necesitas coordinar pronto.</span>
+          <select
+            className="focus-ring ej-select font-normal"
+            onChange={(event) => setUrgency(event.target.value as "normal" | "urgent")}
+            value={urgency}
+          >
+            <option value="normal">Normal</option>
+            <option value="urgent">Urgente</option>
+          </select>
         </label>
 
         <label className="grid gap-2 text-sm font-bold">
@@ -187,7 +206,7 @@ export function JobForm() {
       </p>
 
       {message ? (
-        <div className={state === "error" ? "rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2]" : "rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]"}>
+        <div className={state === "error" ? "rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-red-200" : "rounded-lg border border-[rgba(16,185,129,0.32)] bg-[var(--ej-success-soft)] p-3 text-sm font-bold text-emerald-200"}>
           {message} {state === "error" && message.includes("sesion") ? <Link className="underline" href={authHref("/client/jobs/new")}>Ir a ingresar</Link> : null}
         </div>
       ) : null}

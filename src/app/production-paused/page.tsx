@@ -9,7 +9,7 @@ export default function ProductionPausedPage() {
         <p className="ej-muted mt-4 leading-7">
           ExpressJobs esta en modo MVP controlado. La version publica de produccion permanece bloqueada hasta completar la aprobacion humana de seguridad, soporte y operacion.
         </p>
-        <div className="mt-5 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-4 text-sm leading-6 text-[#ffb4c2]">
+        <div className="mt-5 rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-4 text-sm leading-6 text-red-200">
           <strong>PRODUCTION_STATUS=NO-GO_PRODUCTION.</strong> No hay pagos online activos, no se debe usar como produccion publica y el acceso se mantiene neutralizado de forma reversible.
         </div>
         <div className="mt-6 flex flex-wrap gap-3 text-sm font-bold">

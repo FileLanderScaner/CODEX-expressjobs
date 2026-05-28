@@ -46,10 +46,10 @@ describe("real public product surface", () => {
   it("keeps the home page focused on real marketplace actions", () => {
     const home = readFileSync(join(process.cwd(), "src/app/page.tsx"), "utf8");
 
-    expect(home).toContain("Publicar un trabajo");
+    expect(home).toContain("Publicar tarea");
     expect(home).toContain("Buscar trabajos");
     expect(home).toContain("Crear cuenta");
-    expect(home).toContain("Crear mi perfil");
+    expect(home).toContain("Crear perfil");
     expect(home).not.toContain("Ver demos comerciales");
   });
 

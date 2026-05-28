@@ -67,12 +67,12 @@ export default function SeguridadPage() {
             </ul>
           </article>
 
-          <article className="rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-5">
+          <article className="rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-5">
             <div className="flex items-center gap-2">
-              <AlertTriangle aria-hidden="true" className="text-[#ffb4c2]" size={24} />
+              <AlertTriangle aria-hidden="true" className="text-red-200" size={24} />
               <h2 className="text-2xl font-black">No presentar como activo</h2>
             </div>
-            <p className="mt-4 text-sm leading-6 text-[#ffb4c2]">
+            <p className="mt-4 text-sm leading-6 text-red-200">
               No presentes pagos online, verificacion de identidad, garantias comerciales, soporte 24/7,
               empleo garantizado o ingresos garantizados como funciones activas del piloto.
             </p>

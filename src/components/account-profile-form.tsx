@@ -113,7 +113,7 @@ export function AccountProfileForm({ profile }: { profile: AccountProfile }) {
           </div>
         </div>
         {message ? (
-          <p className={state === "error" ? "text-sm font-bold text-[#ffb4c2]" : "text-sm font-bold text-[#d9f7bd]"}>
+          <p className={state === "error" ? "text-sm font-bold text-red-200" : "text-sm font-bold text-emerald-200"}>
             {message}
           </p>
         ) : null}
@@ -131,7 +131,7 @@ export function AccountProfileForm({ profile }: { profile: AccountProfile }) {
         <h2 className="text-xl font-black">Sesion</h2>
         <p className="ej-muted mt-2 text-sm">Cerrar sesion borra la sesion local del navegador y vuelve a la pantalla de ingreso.</p>
         <button
-          className="focus-ring ej-btn-secondary mt-4 text-sm hover:border-[rgba(255,90,120,0.35)] hover:text-[#ffb4c2] disabled:opacity-60"
+          className="focus-ring ej-btn-secondary mt-4 text-sm hover:border-[rgba(239,68,68,0.35)] hover:text-red-200 disabled:opacity-60"
           disabled={state === "saving"}
           onClick={() => void handleLogout()}
           type="button"

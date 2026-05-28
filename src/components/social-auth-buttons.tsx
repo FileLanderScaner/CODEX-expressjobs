@@ -88,7 +88,7 @@ export function SocialAuthButtons({ nextPath }: { nextPath?: string }) {
         );
       })}
 
-      {errorMessage ? <p className="rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2]">{errorMessage}</p> : null}
+      {errorMessage ? <p className="rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-red-200">{errorMessage}</p> : null}
     </section>
   );
 }

@@ -12,9 +12,14 @@ const labels: Record<JobStatus, string> = {
 };
 
 export function JobStatusBadge({ status }: { status: JobStatus }) {
-  return (
-    <span className="ej-badge">
-      {labels[status]}
-    </span>
-  );
+  const className =
+    status === "cancelled" || status === "disputed"
+      ? "ej-danger-badge"
+      : status === "applied" || status === "in_progress"
+        ? "ej-warning-badge"
+        : status === "accepted" || status === "completed"
+          ? "ej-badge border-[rgba(16,185,129,0.32)] bg-[var(--ej-success-soft)] text-emerald-200"
+          : "ej-badge";
+
+  return <span className={className}>{labels[status]}</span>;
 }

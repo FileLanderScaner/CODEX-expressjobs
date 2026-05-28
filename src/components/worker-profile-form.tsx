@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { authHref, ensureMarketplaceRole, fullNameFromUser } from "@/lib/marketplace";
 import { workerProfileSchema } from "@/lib/marketplace-schemas";
-import { ProfileProcessSteps } from "@/components/profile-process-steps";
+import { ProfileProcessSteps, workerProfileProcessSteps } from "@/components/profile-process-steps";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 
 type SaveState = "idle" | "saving" | "saved" | "error";
@@ -95,23 +95,26 @@ export function WorkerProfileForm() {
 
   return (
     <form className="ej-card grid gap-4 p-5" onSubmit={handleSubmit}>
-
-      <ProfileProcessSteps currentStep={3} />
-      <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Nombre completo" name="fullName" placeholder="Nombre y apellido" />
-        <Field label="Telefono" name="phone" placeholder="WhatsApp o celular" />
-        <Field label="Ciudad" name="city" placeholder="Montevideo, Canelones..." />
-        <Field label="Titulo de perfil" name="headline" placeholder="Ej: Ayudante para limpieza y eventos" />
-        <Field label="Radio de trabajo en km" name="serviceRadiusKm" placeholder="10" type="number" />
-        <Field label="Pretension por hora UYU" name="hourlyRateUyu" placeholder="450" type="number" />
+      <ProfileProcessSteps currentStep={3} steps={workerProfileProcessSteps} />
+      <div className="rounded-lg border border-[rgba(96,165,250,0.28)] bg-[var(--ej-accent-soft)] p-4 text-sm font-semibold leading-6 text-blue-100">
+        Completa habilidades, zona, experiencia, disponibilidad y tarifa de referencia. Un perfil claro ayuda al cliente a comparar postulaciones sin pedir datos sensibles.
       </div>
-      <Field label="Habilidades" name="skills" placeholder="Limpieza, delivery, reparaciones" />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field hint="Nombre visible para clientes." label="Nombre completo" name="fullName" placeholder="Nombre y apellido" />
+        <Field hint="Contacto de referencia; no se publica como dato sensible en listados publicos." label="Telefono" name="phone" placeholder="WhatsApp o celular" />
+        <Field hint="Zona base para recomendar trabajos cercanos." label="Ciudad" name="city" placeholder="Montevideo, Canelones..." />
+        <Field hint="Una frase que explique que haces mejor." label="Titulo de perfil" name="headline" placeholder="Ej: Limpieza, fletes y reparaciones chicas" />
+        <Field hint="Cuantos kilometros podes cubrir." label="Radio de trabajo en km" name="serviceRadiusKm" placeholder="10" type="number" />
+        <Field hint="Referencia para comparar propuestas; no activa pagos dentro de la app." label="Tarifa por hora UYU" name="hourlyRateUyu" placeholder="450" type="number" />
+      </div>
+      <Field hint="Separalas con coma para que sean faciles de leer." label="Habilidades" name="skills" placeholder="Limpieza, fletes, reparaciones, cuidado" />
       <label className="grid gap-2 text-sm font-bold">
         Experiencia y disponibilidad
-        <textarea className="focus-ring ej-textarea font-normal" name="bio" />
+        <span className="ej-soft text-xs font-semibold">Conta experiencia real, dias/horarios y tipo de tareas que aceptas.</span>
+        <textarea className="focus-ring ej-textarea font-normal" name="bio" placeholder="Ej: Disponible de lunes a sabado en Montevideo. Experiencia en limpieza y fletes chicos." />
       </label>
       {message ? (
-        <p className={state === "error" ? "text-sm font-bold text-[#ffb4c2]" : "text-sm font-bold text-[#d9f7bd]"}>
+        <p className={state === "error" ? "rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-red-200" : "rounded-lg border border-[rgba(16,185,129,0.32)] bg-[var(--ej-success-soft)] p-3 text-sm font-bold text-emerald-200"}>
           {message} {message.includes("iniciar sesion") ? <Link className="underline" href={authHref("/dashboard/worker/profile")}>Ingresar</Link> : null}
         </p>
       ) : null}
@@ -122,10 +125,11 @@ export function WorkerProfileForm() {
   );
 }
 
-function Field({ label, name, placeholder, type = "text" }: { label: string; name: string; placeholder: string; type?: string }) {
+function Field({ hint, label, name, placeholder, type = "text" }: { hint?: string; label: string; name: string; placeholder: string; type?: string }) {
   return (
     <label className="grid gap-2 text-sm font-bold">
       {label}
+      {hint ? <span className="ej-soft text-xs font-semibold">{hint}</span> : null}
       <input className="focus-ring ej-input font-normal" name={name} placeholder={placeholder} type={type} />
     </label>
   );

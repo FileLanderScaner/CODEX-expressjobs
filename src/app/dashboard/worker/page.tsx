@@ -10,16 +10,16 @@ export default function WorkerDashboardPage() {
           <h1 className="text-3xl font-black">Dashboard trabajador</h1>
           <section className="ej-glass mt-5 p-4">
             <p className="ej-badge">Proximo paso recomendado</p>
-            <h2 className="mt-3 text-xl font-black">Busca un trabajo abierto y manda una postulacion clara</h2>
+            <h2 className="mt-3 text-xl font-black">Completa tu perfil y postulate a un trabajo abierto</h2>
             <p className="ej-muted mt-2 text-sm leading-6">
-              Contale al cliente disponibilidad, experiencia y monto aproximado. No compartas documentos, claves ni datos sensibles.
+              Primero deja claras tus habilidades, zona, experiencia, disponibilidad y tarifa. Despues contale al cliente por que podes resolver la tarea.
             </p>
           </section>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {[
               { icon: BriefcaseBusiness, title: "Trabajos abiertos", value: "Postularme" },
               { icon: BadgeCheck, title: "Aceptados", value: "Coordinar inicio" },
-              { icon: Star, title: "Reputacion", value: "Resenas visibles" },
+              { icon: Star, title: "Confianza", value: "Perfil completo" },
             ].map((item) => (
               <article className="ej-card p-5" key={item.title}>
                 <item.icon aria-hidden="true" className="text-[var(--ej-accent)]" />
