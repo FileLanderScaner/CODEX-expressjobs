@@ -70,7 +70,7 @@
     "vercel": "PASS_READY",
     "smoke_preview": "PASS",
     "critical_route_smoke": "PASS_ALL_10_ROUTES_200_NO_5XX",
-    "supabase_preview": "SKIPPED_NO_SUPABASE_CHANGES"
+    "supabase_preview": "PASS_PROJECT_xijimnsuxnxbrgugqufj"
   },
   "checks": {
     "commercial_pilot_check": "PASS_MANUAL_ONLY_NO_LIVE_PAYMENT_SURFACE",

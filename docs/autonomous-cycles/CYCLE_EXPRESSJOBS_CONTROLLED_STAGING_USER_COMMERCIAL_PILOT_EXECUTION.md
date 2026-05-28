@@ -60,7 +60,7 @@ PR #57 Preview:
 - URL: `https://codex-expressjobs-git-codex-controlled-8024ae-akuma424-projects.vercel.app`.
 - `npm run smoke:preview -- --url https://codex-expressjobs-git-codex-controlled-8024ae-akuma424-projects.vercel.app`: PASS.
 - Preview route smoke on `/`, `/jobs`, `/worker/jobs`, `/client/jobs/new`, `/pricing`, `/ofertas`, `/dashboard/client`, `/dashboard/worker`, `/dashboard/worker/applications`, and `/admin`: PASS, all returned `200`, no 5xx.
-- Supabase Preview: SKIPPED because this branch has no `supabase/` changes.
+- Supabase Preview: PASS, project `xijimnsuxnxbrgugqufj`.
 
 ## Checks
 
