@@ -3,82 +3,41 @@
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "branch": "codex/expressjobs-global-soft-premium-redesign-manual",
-  "mode": "EXPRESSJOBS_GLOBAL_SOFT_PREMIUM_REDESIGN_COMPLETE",
-  "updated_at": "2026-05-27T01:35:00-03:00",
+  "mode": "EXPRESSJOBS_FINAL_AUTONOMOUS_COMPLETION",
+  "updated_at": "2026-05-28T12:55:00-03:00",
+  "final_state": "EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS",
   "production_status": "NO-GO_PRODUCTION",
-  "summary": {
-    "global_visual_system": "APPLIED",
-    "auth_google_button": "VISIBLE_AND_PREPARED",
-    "auth_email_login": "DARK_INTEGRATED",
-    "como_funciona": "DARK_PREMIUM_COMPLETE",
-    "worker_jobs": "DARK_MARKETPLACE_LIST",
-    "client_job_new": "DARK_TWO_COLUMN_FORM",
-    "dashboards": "DARK_SHARED_COMPONENTS",
-    "loading_error_not_found": "DARK_GLOBAL_STATES",
-    "design_docs": [
-      "docs/design/EXPRESSJOBS_DESIGN_SYSTEM.md",
-      "docs/design/EXPRESSJOBS_GLOBAL_VISUAL_AUDIT.md"
-    ]
-  },
-  "routes_smoked_local": [
-    "/",
-    "/auth",
-    "/como-funciona",
-    "/worker/jobs",
-    "/client/jobs/new",
-    "/jobs",
-    "/pricing",
-    "/ofertas",
-    "/register",
-    "/dashboard/client",
-    "/dashboard/worker",
-    "/dashboard/client/profile",
-    "/dashboard/worker/profile",
-    "/admin",
-    "/production-paused",
-    "/missing-visual-smoke"
+  "changes": [
+    "Removed visible merge artifact text from worker dashboard.",
+    "Added dashboard route aliases for /dashboard, /dashboard/profile, and /dashboard/jobs.",
+    "Added regression coverage for MVP route aliases and merge artifact markers.",
+    "Added final production, revenue, Vercel/Supabase, and autonomous cycle closeout docs."
   ],
-  "visual_smoke": {
-    "local_url": "http://localhost:3000",
-    "desktop_1360": "PASS",
-    "tablet_768": "PASS_AFTER_HEADER_BREAKPOINT_FIX",
-    "mobile_390": "PASS",
-    "white_generic_blocks": "NONE_DETECTED",
-    "console_errors": "NONE_RELEVANT",
-    "auth_google_visible": true,
-    "auth_email_visible": true,
-    "no_go_visible": true
-  },
   "checks": {
     "secret_scan": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
-    "rls_static": "PASS_1_FILE_12_TESTS",
+    "test_rls_static": "PASS",
     "staging_check": "PASS",
     "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
+    "paypal_sandbox_smoke": "PASS_READY_NOT_RUN_PAYMENTS_DISABLED",
     "lint": "PASS",
     "typecheck": "PASS",
-    "test": "PASS_10_FILES_59_TESTS",
+    "test": "PASS",
     "build": "PASS",
     "git_diff_check": "PASS",
-    "json_parse": "PASS_AFTER_REPAIR"
-  },
-  "json_repair": {
-    "status": "APPLIED",
-    "reason": "Removed stray branch-name lines and malformed merged JSON fragments that broke docs-check JSON parsing.",
-    "fixed_file": "docs/expressjobs-director-status.json"
+    "local_http_smoke": "PASS",
+    "browser_smoke": "PASS"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
     "vercel_promote": "NOT_RUN",
-    "vercel_production_env_mutation": "NO",
-    "supabase_production_mutation": "NO",
+    "vercel_production_env_mutation": false,
+    "supabase_production_mutation": false,
     "paypal_live": "OFF",
-    "mercadopago_live": "OFF",
     "real_payments": "OFF",
-    "secrets_printed": "NO",
-    "rls_disabled": "NO",
-    "env_committed": "NO"
+    "secrets_printed": false,
+    "rls_relaxed": false
   },
   "pull_request": {
     "number": 50,
@@ -87,7 +46,9 @@
     "head": "codex/expressjobs-global-soft-premium-redesign-manual",
     "merge_strategy": "NO_BYPASS_REVIEW_REQUIRED"
   },
-  "blockers": [],
-  "next_mode": "EXPRESSJOBS_PRODUCT_UX_REVIEW",
-  "next_mode_reason": "After the global redesign, the next safe high-impact step is validating real MVP flows and copy clarity across client and worker journeys."
+  "blockers": [
+    "BLOCKED_PRODUCTION_RISK",
+    "BLOCKED_PAYMENT_PROVIDER"
+  ],
+  "next_mode": "HUMAN_PRODUCTION_APPROVAL_AFTER_GREEN_PREVIEW"
 }

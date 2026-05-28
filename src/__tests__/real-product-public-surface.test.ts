@@ -83,4 +83,12 @@ describe("real public product surface", () => {
     expect(clientDashboard).not.toContain("listClientJobs");
     expect(workerDetail).not.toContain("getJobById");
   });
+
+  it("does not render merge artifact markers in app source", () => {
+    for (const [file, content] of readPublicSourceFiles()) {
+      expect(content, file).not.toMatch(/^<<<<<<<|^=======|^>>>>>>>/m);
+      expect(content, file).not.toContain("codex/expressjobs-");
+      expect(content, file).not.toMatch(/^\s+main\s*$/m);
+    }
+  });
 });

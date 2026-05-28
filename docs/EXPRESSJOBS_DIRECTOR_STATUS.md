@@ -6,6 +6,14 @@
 
 codex/expressjobs-global-soft-premium-redesign-manual
 
+## Current Status - 2026-05-28
+
+Mode `EXPRESSJOBS_FINAL_AUTONOMOUS_COMPLETION` completed on branch `codex/expressjobs-global-soft-premium-redesign-manual`.
+
+Safe fixes applied: `/dashboard`, `/dashboard/profile`, and `/dashboard/jobs` now resolve through role-aware redirects; `/dashboard/worker` no longer renders merge artifact text; tests cover the route aliases and app-source merge artifact markers. Local HTTP smoke and Playwright browser smoke passed on the affected dashboard flow. Supabase staging remains PASS through `npm run staging:check` and `npm run rls:smoke`; PayPal live remains OFF and the sandbox smoke exits safely because `ENABLE_PAYMENTS=false`.
+
+Production remains `NO-GO_PRODUCTION`. No `vercel --prod`, no `vercel promote`, no Vercel Production env mutation, no Supabase production mutation, no PayPal live, no real payments, no secrets printed, and no RLS relaxation occurred. Final state is `EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS` pending green current PR/Preview checks after push and explicit human production approval.
+
 Mode `EXPRESSJOBS_POST_PR51_STACKED_PR_PRECHECK` completed on 2026-05-27 from branch `codex/expressjobs-post-pr51-product-completion`.
 
 Commit `3d98ebc Continue product completion after PR51` was protected with a local ignored patch and a stat backup. PR #51 was rechecked as `OPEN`, `MERGEABLE`, checks green, and blocked by `REVIEW_REQUIRED`; no merge, bypass, admin override, close, or comment action was performed. Supabase Preview Branch capacity was verified through MCP as `main` plus PR #51's non-main branch, leaving capacity for the stacked branch under the `main + 2 non-main` rule.
@@ -45,7 +53,7 @@ Mode `EXPRESSJOBS_PRODUCT_UX_REVIEW_AFTER_GLOBAL_REDESIGN` completed on branch `
 Post-redesign UX review applied small product clarity improvements without architecture, database, payment, production, Supabase production, or RLS changes. Role selection now explains who each path is for; job publication has safer helper copy and clearer next-step/error messages; worker search and empty states explain how to continue; client and worker dashboards show recommended next steps; application status chips now use Spanish labels; client accept/reject and worker application messages are clearer.
 
 Current production state remains `NO-GO_PRODUCTION`. Final checks and local smoke passed and are recorded in `docs/expressjobs-director-status.json`.
- main
+
 Mode `EXPRESSJOBS_GLOBAL_SOFT_PREMIUM_REDESIGN_COMPLETE` completed on branch `codex/expressjobs-global-soft-premium-redesign-manual`.
 
 Global dark premium soft redesign is applied across the current public, auth, marketplace, dashboard, monetization, loading, error, and not-found surfaces. The reusable system now lives in `src/app/globals.css` and `src/components/design-system.tsx`; usage rules are documented in `docs/design/EXPRESSJOBS_DESIGN_SYSTEM.md`, with audit evidence in `docs/design/EXPRESSJOBS_GLOBAL_VISUAL_AUDIT.md`.
