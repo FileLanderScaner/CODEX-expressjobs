@@ -70,7 +70,7 @@ export function AuthEmailForm({ nextPath }: { nextPath?: string }) {
         {status === "loading" ? "Enviando..." : "Crear cuenta / Ingresar"}
       </button>
       {message ? (
-        <p className={status === "error" ? "rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2]" : "rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]"}>{message}</p>
+        <p className={status === "error" ? "rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-red-200" : "rounded-lg border border-[rgba(16,185,129,0.32)] bg-[var(--ej-success-soft)] p-3 text-sm font-bold text-emerald-200"}>{message}</p>
       ) : null}
     </form>
   );

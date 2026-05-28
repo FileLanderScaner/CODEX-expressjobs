@@ -11,11 +11,11 @@ export default function PricingPage() {
         <div className="ej-container">
           <div className="max-w-3xl">
             <p className="ej-badge"><CircleDollarSign aria-hidden="true" size={15} /> Ofertas piloto</p>
-            <h1 className="mt-4 text-4xl font-black tracking-tight">Ofertas piloto ExpressJobs</h1>
+            <h1 className="mt-4 text-4xl font-black tracking-tight">Ofertas piloto con coordinacion manual</h1>
             <p className="ej-muted mt-3 text-lg leading-8">
-              Paginas simples, banners para comercios y publicaciones de trabajos rapidos con precio piloto. Todo se coordina manualmente por WhatsApp; no hay pagos online activos.
+              Paginas simples, banners para comercios y publicaciones de trabajos rapidos con precio piloto. Todo se confirma por WhatsApp o email; pagos reales dentro de la app estan desactivados.
             </p>
-            <div className="mt-5 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-4 text-sm font-semibold text-[#ffb4c2]">
+            <div className="mt-5 rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-4 text-sm font-semibold text-red-200">
               <div className="flex gap-2">
                 <ShieldAlert aria-hidden="true" className="mt-0.5 shrink-0" size={18} />
                 <p>{pilotOfferDisclaimer}</p>
@@ -33,11 +33,11 @@ export default function PricingPage() {
                   <span className="ej-chip text-xs">{offer.priority}</span>
                 </div>
                 <div className="mt-5 grid grid-cols-2 gap-3">
-                  <div className="rounded-2xl border border-white/10 bg-white/10 p-3">
+                  <div className="rounded-lg border border-[var(--ej-border)] bg-white/[0.06] p-3">
                     <p className="ej-soft text-xs font-bold uppercase">Uruguay</p>
                     <p className="mt-1 text-xl font-black">{offer.uyPrice}</p>
                   </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/10 p-3">
+                  <div className="rounded-lg border border-[var(--ej-border)] bg-white/[0.06] p-3">
                     <p className="ej-soft text-xs font-bold uppercase">LatAm</p>
                     <p className="mt-1 text-xl font-black">{offer.usdPrice}</p>
                   </div>

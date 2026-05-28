@@ -7,7 +7,7 @@ export default function Error({ reset }: { error: Error & { digest?: string }; r
   return (
     <main className="ej-page grid min-h-screen place-items-center px-4 py-10">
       <section className="ej-card w-full max-w-lg p-6 text-center">
-        <AlertTriangle aria-hidden="true" className="mx-auto text-[#ffb4c2]" size={34} />
+        <AlertTriangle aria-hidden="true" className="mx-auto text-red-200" size={34} />
         <p className="ej-danger-badge mx-auto mt-4">NO-GO_PRODUCTION</p>
         <h1 className="mt-4 text-3xl font-black">Algo no cargo bien</h1>
         <p className="ej-muted mt-3 text-sm leading-6">El piloto sigue protegido. Podes reintentar o volver al inicio sin ejecutar acciones de produccion.</p>

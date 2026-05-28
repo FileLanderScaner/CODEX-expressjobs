@@ -36,14 +36,15 @@ export const trackingEvents = [
 export type TrackingEventName = (typeof trackingEvents)[number];
 
 export const categories = [
-  "Mudanzas",
+  "Fletes",
   "Limpieza",
   "Reparaciones",
   "Jardineria",
-  "Delivery local",
-  "Tecnologia",
+  "Cuidado",
   "Eventos",
-  "Cuidado de mascotas",
+  "Tecnologia",
+  "Oficios",
+  "Servicios generales",
 ] as const;
 
 export const publicBrand = {
@@ -69,10 +70,10 @@ export const featuredJobs: FeaturedJob[] = [
   {
     id: "ej-demo-001",
     title: "Ayuda para mudanza chica",
-    location: "Cordón, Montevideo",
+    location: "Cordon, Montevideo",
     budget: "UYU 1.800",
     status: "open",
-    category: "Mudanzas",
+    category: "Fletes",
     clientName: "Lucia Pereira",
     description: "Subir cajas y muebles chicos desde un apartamento a una camioneta.",
   },
@@ -92,7 +93,7 @@ export const featuredJobs: FeaturedJob[] = [
     location: "Centro, Montevideo",
     budget: "UYU 2.500",
     status: "accepted",
-    category: "Eventos",
+    category: "Servicios generales",
     clientName: "Cafe Rio",
     acceptedWorkerId: "worker-demo-001",
     description: "Sacar fotos simples de productos para catalogo y redes.",
@@ -129,8 +130,8 @@ export const demoProfiles = [
 export const demoWorkerProfile = {
   userId: "worker-demo-001",
   headline: "Ayudante confiable para mudanzas y reparaciones chicas",
-  bio: "Disponible en Montevideo para tareas de pocas horas, coordinacion por chat y cierre con reseña.",
-  skills: ["Mudanzas", "Reparaciones", "Delivery local"],
+  bio: "Disponible en Montevideo para tareas de pocas horas, coordinacion por chat y cierre con resena.",
+  skills: ["Fletes", "Reparaciones", "Servicios generales"],
   serviceRadiusKm: 12,
   hourlyRateUyu: 450,
 };

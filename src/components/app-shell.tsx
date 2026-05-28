@@ -7,7 +7,7 @@ import { defaultWhatsAppSalesHref, publicSalesContact } from "@/lib/monetization
 
 const nav = [
   { href: "/", label: "Inicio", icon: Home },
-  { href: "/como-funciona", label: "Como funciona", icon: HelpCircle },
+  { href: "/#como-funciona", label: "Como funciona", icon: HelpCircle },
   { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
   { href: "/client/jobs/new", label: "Publicar", icon: ClipboardPlus },
   { href: "/ofertas", label: "Ofertas", icon: BadgeDollarSign },
@@ -18,10 +18,10 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="ej-page">
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-[rgba(7,16,24,0.88)] text-white shadow-2xl shadow-black/25 backdrop-blur-xl">
+      <header className="sticky top-0 z-30 border-b border-[var(--ej-border)] bg-[rgba(7,17,31,0.9)] text-white shadow-xl shadow-black/20 backdrop-blur-xl">
         <div className="ej-container flex items-center justify-between gap-4 py-3">
           <Link href="/" className="focus-ring flex items-center gap-3 rounded-md">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-[var(--ej-accent)] text-sm font-black text-[#071018] shadow-lg shadow-green-900/30">
+            <span className="grid h-10 w-10 place-items-center rounded-lg bg-[var(--ej-success)] text-sm font-black text-[#04130e] shadow-lg shadow-emerald-950/30">
               TR
             </span>
             <span className="leading-tight">
@@ -35,7 +35,7 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
           <nav className="hidden items-center gap-1 lg:flex">
             {nav.map((item) => (
               <Link
-                className="focus-ring nav-underline inline-flex items-center gap-2 rounded-md px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[var(--ej-text-muted)] transition hover:text-white"
+              className="focus-ring nav-underline inline-flex items-center gap-2 rounded-md px-3 py-2 text-xs font-black uppercase tracking-[0.12em] text-[var(--ej-text-muted)] transition hover:text-white"
                 href={item.href}
                 key={item.href}
               >
@@ -71,7 +71,7 @@ export async function AppShell({ children }: { children: React.ReactNode }) {
         <nav className="ej-container flex gap-2 overflow-x-auto pb-3 lg:hidden" aria-label="Navegacion movil">
           {nav.map((item) => (
             <Link
-              className="focus-ring inline-flex shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-2 text-[11px] font-black uppercase tracking-[0.1em] text-[var(--ej-text-muted)]"
+              className="focus-ring inline-flex shrink-0 items-center gap-2 rounded-lg border border-[var(--ej-border)] bg-white/[0.06] px-3 py-2 text-[11px] font-black uppercase tracking-[0.1em] text-[var(--ej-text-muted)]"
               href={item.href}
               key={item.href}
             >

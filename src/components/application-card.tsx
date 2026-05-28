@@ -31,11 +31,9 @@ export function ApplicationCard({
         <div>
           <h3 className="font-black">{workerName}</h3>
           <p className="ej-muted mt-1 flex items-center gap-1 text-sm">
-            <Star aria-hidden="true" size={15} /> {reputationScore.toFixed(1)} reputacion
+            <Star aria-hidden="true" size={15} /> {reputationScore > 0 ? `${reputationScore.toFixed(1)} reputacion` : "Reputacion pendiente"}
           </p>
         </div>
-        <span className="ej-chip text-xs">{status}</span>
-
         <span className="ej-chip text-xs">{statusLabels[status]}</span>
       </div>
       <p className="mt-3 text-sm leading-6">{message}</p>

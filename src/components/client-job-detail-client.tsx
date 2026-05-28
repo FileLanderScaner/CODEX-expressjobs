@@ -122,7 +122,10 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
       <div className="ej-card p-5">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <p className="ej-chip text-sm font-bold">{job.category}</p>
+            <div className="flex flex-wrap gap-2">
+              <p className="ej-chip text-sm font-bold">{job.category}</p>
+              {job.urgency === "urgent" ? <span className="ej-warning-badge text-sm font-bold">Urgente</span> : null}
+            </div>
             <h1 className="mt-1 text-3xl font-black">{job.title}</h1>
             <p className="ej-muted mt-2 text-sm font-bold">{job.location} - {job.budget}</p>
           </div>
@@ -139,7 +142,7 @@ export function ClientJobDetailClient({ jobId }: { jobId: string }) {
         <p className="ej-muted mt-2 text-sm leading-6">
           Compara mensaje, monto y reputacion. Aceptar o rechazar actualiza el estado protegido por RLS.
         </p>
-        {actionMessage ? <p className="mt-3 rounded-2xl border border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] p-3 text-sm font-bold text-[#d9f7bd]">{actionMessage}</p> : null}
+        {actionMessage ? <p className="mt-3 rounded-lg border border-[rgba(16,185,129,0.32)] bg-[var(--ej-success-soft)] p-3 text-sm font-bold text-emerald-200">{actionMessage}</p> : null}
         <div className="mt-4 grid gap-3">
           {applications.length ? (
             applications.map((application) => (

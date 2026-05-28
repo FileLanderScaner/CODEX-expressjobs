@@ -32,7 +32,7 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
             Entra para publicar trabajos, postularte o elegir tu rol dentro de Trabajos Rapidos.
           </p>
 
-          <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
+          <div className="mt-4 rounded-lg border border-[var(--ej-border)] bg-white/[0.04] p-4 text-sm text-[var(--ej-text-muted)]">
             <p className="font-black text-[var(--ej-text)]">Flujo recomendado</p>
             <ol className="mt-3 grid gap-2 font-semibold leading-6">
               <li>1. Ingresa con el enlace seguro enviado por email.</li>
@@ -43,7 +43,7 @@ export default async function AuthPage({ searchParams }: AuthPageProps) {
 
           {oauthErrorMessage ? (
             <div
-              className="mt-5 flex items-start gap-3 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-4 text-sm font-semibold text-[#ffb4c2]"
+              className="mt-5 flex items-start gap-3 rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-4 text-sm font-semibold text-red-200"
               role="alert"
             >
               <AlertTriangle aria-hidden="true" className="mt-0.5 shrink-0" size={18} />

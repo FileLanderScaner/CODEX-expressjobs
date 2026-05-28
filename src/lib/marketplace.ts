@@ -9,6 +9,7 @@ export type MarketplaceJob = {
   budget: string;
   status: JobStatus;
   category: string;
+  urgency?: "normal" | "urgent";
   clientId?: string;
   acceptedWorkerId?: string | null;
 };
@@ -53,15 +54,54 @@ export function parseAmountUyu(value: string) {
   return normalized ? Number.parseInt(normalized, 10) : null;
 }
 
+export function serializeJobDescription({
+  category,
+  urgency,
+  description,
+}: {
+  category: string;
+  urgency: "normal" | "urgent";
+  description: string;
+}) {
+  const urgencyLabel = urgency === "urgent" ? "urgente" : "normal";
+
+  return `Categoria: ${category}\nUrgencia: ${urgencyLabel}\n\n${description.trim()}`;
+}
+
+function parseJobDescription(value: string) {
+  const lines = value.split(/\r?\n/);
+  const categoryLine = lines[0]?.match(/^Categoria:\s*(.+)$/i);
+  const urgencyLine = lines[1]?.match(/^Urgencia:\s*(normal|urgente)$/i);
+
+  if (!categoryLine && !urgencyLine) {
+    return {
+      category: "Trabajo",
+      urgency: undefined,
+      description: value,
+    };
+  }
+
+  const description = lines.slice(2).join("\n").trim();
+
+  return {
+    category: categoryLine?.[1]?.trim() || "Trabajo",
+    urgency: urgencyLine?.[1]?.toLowerCase() === "urgente" ? "urgent" as const : "normal" as const,
+    description: description || value,
+  };
+}
+
 export function mapJobRow(row: JobRow): MarketplaceJob {
+  const parsedDescription = parseJobDescription(row.description);
+
   return {
     id: row.id,
     title: row.title,
-    description: row.description,
+    description: parsedDescription.description,
     location: row.location_text,
     budget: formatBudgetUyu(row.budget_uyu),
     status: row.status,
-    category: "Trabajo",
+    category: parsedDescription.category,
+    urgency: parsedDescription.urgency,
     clientId: row.client_id,
     acceptedWorkerId: row.accepted_worker_id,
   };

@@ -23,7 +23,7 @@ export default function JobsPage() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-3">
-                <PrimaryButton href="/como-funciona" icon={HelpCircle}>Como funciona</PrimaryButton>
+                <PrimaryButton href="/#como-funciona" icon={HelpCircle}>Como funciona</PrimaryButton>
                 <PrimaryButton href="/role" icon={UserRoundCheck}>Elegir rol</PrimaryButton>
                 <PrimaryButton href="/client/jobs/new" icon={BriefcaseBusiness}>Publicar trabajo</PrimaryButton>
               </div>

@@ -84,7 +84,7 @@ export function ClientDashboard() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-3xl font-black">Cliente</h1>
-          <p className="ej-muted mt-2">Administra trabajos, postulaciones, estados y resenas.</p>
+          <p className="ej-muted mt-2">Publica trabajos, revisa postulaciones y toma la siguiente decision con claridad.</p>
         </div>
         <PrimaryButton href="/client/jobs/new" icon={ClipboardPlus}>Publicar un trabajo</PrimaryButton>
       </div>
@@ -94,7 +94,7 @@ export function ClientDashboard() {
         <p className="ej-muted mt-2 text-sm leading-6">
           {jobs.length
             ? "Abri una publicacion para comparar mensajes, aceptar o rechazar postulantes y coordinar sin compartir datos sensibles."
-            : "Crea una publicacion con titulo claro, zona aproximada y presupuesto estimado para recibir postulaciones relevantes."}
+            : "Crea una publicacion con titulo claro, zona aproximada, presupuesto estimado y urgencia real."}
         </p>
       </section>
       {state === "not-configured" ? (
@@ -103,7 +103,7 @@ export function ClientDashboard() {
         </p>
       ) : null}
       {state === "error" ? (
-        <p className="mt-4 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-semibold text-[#ffb4c2]">
+        <p className="mt-4 rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-3 text-sm font-semibold text-red-200">
           No pudimos cargar tus trabajos reales. Revisa tu sesion o intenta mas tarde.
         </p>
       ) : null}
@@ -111,7 +111,7 @@ export function ClientDashboard() {
         {[
           { icon: ClipboardPlus, label: "Trabajos", value: jobs.length },
           { icon: MessageSquareText, label: "Postulaciones", value: "Ver detalle" },
-          { icon: Star, label: "Resenas", value: "Pendiente" },
+          { icon: Star, label: "Confianza", value: "En piloto" },
         ].map((item) => (
           <article className="ej-card p-5" key={item.label}>
             <item.icon aria-hidden="true" className="text-[var(--ej-accent)]" />

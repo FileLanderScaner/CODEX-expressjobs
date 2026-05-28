@@ -2,6 +2,22 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-28 LatAm Premium Visual Redesign
+
+Mode `EXPRESSJOBS_LATAM_PREMIUM_VISUAL_REDESIGN_AND_UX_COMPLETION` completed on branch `codex/latam-premium-ux-ui`.
+
+Final state: `READY_FOR_CONTROLLED_STAGING_USERS_VISUAL_POLISH_PASS`.
+
+This cycle applied a real premium LatAm marketplace polish without DB migrations, production actions, live payments, secrets, or RLS relaxation. The visual system now uses navy surfaces, blue trust accents, emerald primary actions, amber urgency, and red only for blocked/error states. Header navigation points "Como funciona" to `/#como-funciona`, the home now explains client/worker/account paths within 10 seconds, categories were aligned to Fletes, Limpieza, Reparaciones, Jardineria, Cuidado, Eventos, Tecnologia, Oficios, and Servicios generales, and job cards now show title, category, zone, budget, state, optional urgency, short description, and one clear detail CTA.
+
+UX improvements covered home, header/footer, jobs listing/detail, job publication form, worker profile form, client/worker dashboards, worker applications, admin blocked states, pricing/ofertas, empty/loading/error states, and status badges. Category and urgency are preserved safely as readable metadata in `ej_jobs.description` and parsed back into cards/details, avoiding a Supabase schema change in this visual cycle.
+
+Evidence: local Browser smoke passed on desktop 1360px and mobile 390px for `/`, `/jobs`, `/client/jobs/new`, `/worker/jobs`, `/pricing`, `/ofertas`, `/dashboard/client`, `/dashboard/worker`, and `/admin`; no horizontal overflow, no console errors, no app error boundary. Screenshots were generated at `output/playwright/latam-premium-home-desktop.png` and `output/playwright/latam-premium-home-mobile.png`.
+
+Checks passed: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`, `npm run staging:check`, `npm run rls:smoke`, and `git diff --check`.
+
+Production remains `NO-GO_PRODUCTION`: no `vercel --prod`, no `vercel promote`, no Vercel Production env mutation, no Supabase production mutation, no PayPal live, no real payments, no secrets printed, no service-role client exposure, and no RLS relaxation occurred.
+
 ## Current Status - 2026-05-28 Full Platform Review
 
 Mode `EXPRESSJOBS_FULL_PLATFORM_REAL_USER_REVIEW_AND_COMPLETION` completed on branch `codex/full-platform-real-user-review`.

@@ -137,7 +137,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
       ) : null}
 
       {state === "error" ? (
-        <p className="mt-4 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-semibold text-[#ffb4c2]">
+        <p className="mt-4 rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-3 text-sm font-semibold text-red-200">
           No pudimos cargar trabajos reales. Revisa la configuracion de Supabase o intenta mas tarde.
         </p>
       ) : null}
@@ -161,7 +161,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
             <button
               className={`focus-ring rounded-full border px-3 py-2 text-sm font-black transition ${
                 budgetOnly
-                  ? "border-[rgba(123,193,67,0.42)] bg-[var(--ej-accent-soft)] text-[#b9ef88]"
+                  ? "border-[rgba(16,185,129,0.42)] bg-[var(--ej-success-soft)] text-emerald-200"
                   : "border-white/10 bg-white/10 text-[var(--ej-text-muted)] hover:bg-white/20"
               }`}
               onClick={() => setBudgetOnly((current) => !current)}
@@ -204,7 +204,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
             text={
               hasActiveFilters
                 ? "Proba limpiar filtros o buscar por una zona, tarea o palabra mas general."
-                : "Cuando un cliente publique un trabajo abierto, aparecera aca. Tambien podes volver luego o crear una cuenta para guardar tu rol trabajador."
+                : "Cuando un cliente publique un trabajo abierto, aparecera aca. Tambien podes crear una cuenta para guardar tu rol trabajador."
             }
           />
         )}

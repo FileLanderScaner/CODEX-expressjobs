@@ -35,9 +35,9 @@ export default function OffersPage() {
       <main className="ej-page">
         <section className="ej-container py-12">
           <p className="ej-badge"><BadgeDollarSign aria-hidden="true" size={15} /> Ofertas manuales</p>
-          <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-5xl">Servicios para vender hoy sin esperar produccion.</h1>
+          <h1 className="mt-4 max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-5xl">Servicios piloto para validar demanda con contacto humano.</h1>
           <p className="ej-muted mt-5 max-w-2xl text-lg leading-8">
-            ExpressJobs mantiene funciones internas avanzadas bloqueadas. Estas ofertas se coordinan por contacto directo.
+            ExpressJobs mantiene produccion publica y pagos online bloqueados. Estas ofertas se coordinan por contacto directo y confirmacion manual.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <WhatsAppCta label="Consultar oferta" />

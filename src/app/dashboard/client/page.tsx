@@ -8,6 +8,9 @@ export default function ClientDashboardPage() {
       <main className="ej-page px-4 py-10">
         <div className="ej-container">
           <h1 className="text-3xl font-black">Dashboard cliente</h1>
+          <p className="ej-muted mt-2 max-w-2xl text-sm leading-6">
+            Tu proxima accion debe ser visible: publicar, revisar postulaciones o aceptar/rechazar con seguridad.
+          </p>
           <div className="mt-6 grid gap-4 md:grid-cols-3">
             {[
               { icon: ClipboardPlus, title: "Publicar", value: "Nuevo trabajo" },

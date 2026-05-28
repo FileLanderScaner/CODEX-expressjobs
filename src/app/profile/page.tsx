@@ -85,9 +85,9 @@ export default async function ProfilePage() {
             <AccountProfileForm profile={profile} />
           </div>
         ) : (
-          <section className="mt-6 rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-5">
-            <h2 className="text-xl font-black text-[#ffb4c2]">Sesion activa sin perfil</h2>
-            <p className="mt-2 text-sm font-semibold text-[#ffb4c2]">
+          <section className="mt-6 rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-5">
+            <h2 className="text-xl font-black text-red-200">Sesion activa sin perfil</h2>
+            <p className="mt-2 text-sm font-semibold text-red-200">
               Tu sesion existe, pero no encontramos `ej_profiles`. Vuelve a seleccionar rol para intentar reparar el perfil con el flujo seguro.
             </p>
             <Link className="focus-ring ej-btn-primary mt-4 text-sm" href="/role">

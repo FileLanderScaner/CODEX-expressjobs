@@ -12,7 +12,7 @@ function StatusRow({ label, value, detail }: { label: string; value: boolean; de
     <div className="ej-card p-4">
       <div className="flex items-center justify-between gap-3">
         <p className="text-sm font-black">{label}</p>
-        <span className={value ? "text-sm font-black text-[var(--ej-accent)]" : "text-sm font-black text-[#ffb4c2]"}>{statusLabel(value)}</span>
+        <span className={value ? "text-sm font-black text-emerald-200" : "text-sm font-black text-red-200"}>{statusLabel(value)}</span>
       </div>
       {detail ? <p className="ej-muted mt-2 break-words text-sm">{detail}</p> : null}
     </div>

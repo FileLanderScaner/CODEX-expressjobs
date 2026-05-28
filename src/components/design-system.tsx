@@ -116,10 +116,15 @@ export function SecondaryButton({
 
 export function SafetyBanner({ children, variant = "safe" }: { children: React.ReactNode; variant?: "safe" | "warning" | "danger" }) {
   const Icon = variant === "safe" ? CheckCircle2 : AlertTriangle;
-  const tone = variant === "safe" ? "border-[rgba(123,193,67,0.28)] bg-[var(--ej-accent-soft)] text-[#d9f7bd]" : variant === "warning" ? "border-[rgba(255,180,0,0.28)] bg-[var(--ej-warning-soft)] text-[#ffe08a]" : "border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] text-[#ffb4c2]";
+  const tone =
+    variant === "safe"
+      ? "border-[rgba(16,185,129,0.32)] bg-[var(--ej-success-soft)] text-emerald-200"
+      : variant === "warning"
+        ? "border-[rgba(245,158,11,0.32)] bg-[var(--ej-warning-soft)] text-amber-200"
+        : "border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] text-red-200";
 
   return (
-    <div className={cx("flex items-start gap-3 rounded-2xl border p-4 text-sm font-semibold leading-6", tone)}>
+    <div className={cx("flex items-start gap-3 rounded-lg border p-4 text-sm font-semibold leading-6", tone)}>
       <Icon aria-hidden="true" className="mt-0.5 shrink-0" size={18} />
       <div>{children}</div>
     </div>
@@ -135,7 +140,7 @@ export function StatusChecklist({ items }: { items: string[] }) {
     <ul className="grid gap-3">
       {items.map((item) => (
         <li className="ej-muted flex gap-2 text-sm leading-6" key={item}>
-          <CheckCircle2 aria-hidden="true" className="mt-1 shrink-0 text-[var(--ej-accent)]" size={16} />
+          <CheckCircle2 aria-hidden="true" className="mt-1 shrink-0 text-[var(--ej-success)]" size={16} />
           <span>{item}</span>
         </li>
       ))}

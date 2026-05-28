@@ -121,7 +121,7 @@ export function CompanyProfileForm() {
         <textarea className="focus-ring ej-textarea min-h-28 font-normal" name="description" />
       </label>
       {message ? (
-        <p className={state === "error" ? "text-sm font-bold text-[#ffb4c2]" : "text-sm font-bold text-[#d9f7bd]"}>
+        <p className={state === "error" ? "text-sm font-bold text-red-200" : "text-sm font-bold text-emerald-200"}>
           {message} {message.includes("iniciar sesion") ? <Link className="underline" href={authHref("/dashboard/client/profile")}>Ingresar</Link> : null}
         </p>
       ) : null}

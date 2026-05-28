@@ -54,7 +54,9 @@ describe("account session and profile UX", () => {
     expect(profileSteps).toContain("Ubicacion y disponibilidad");
     expect(profileSteps).toContain("Confianza y contacto");
     expect(profileSteps).toContain("Confirmacion / publicacion");
-    expect(profileSteps).toContain("Paso {normalizedStep}/6");
+    expect(profileSteps).toContain("Habilidades");
+    expect(profileSteps).toContain("Completar perfil");
+    expect(profileSteps).toContain("Paso {normalizedStep}/{steps.length}");
     expect(profileSteps).not.toContain("8 pasos");
     expect(profileForm).toContain("Cerrar sesion");
     expect(profileForm).toContain("supabase.auth.signOut()");

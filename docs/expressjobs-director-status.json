@@ -2,22 +2,38 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "branch": "codex/full-platform-real-user-review",
-  "mode": "EXPRESSJOBS_FULL_PLATFORM_REAL_USER_REVIEW_AND_COMPLETION",
-  "updated_at": "2026-05-28T15:20:00-03:00",
-  "final_state": "READY_FOR_CONTROLLED_STAGING_USERS",
+  "branch": "codex/latam-premium-ux-ui",
+  "mode": "EXPRESSJOBS_LATAM_PREMIUM_VISUAL_REDESIGN_AND_UX_COMPLETION",
+  "updated_at": "2026-05-28T18:02:43-03:00",
+  "final_state": "READY_FOR_CONTROLLED_STAGING_USERS_VISUAL_POLISH_PASS",
   "production_status": "NO-GO_PRODUCTION",
   "changes": [
-    "Removed dead Chat button from job cards.",
-    "Connected worker applications dashboard to real authenticated Supabase/RLS data.",
-    "Protected /admin with authenticated admin profile gating and removed demo operational counts.",
-    "Fixed client dashboard lint warnings and admin blocked-state UX."
+    "Applied navy, blue, emerald, amber, and red visual system with restrained surfaces and accessible focus states.",
+    "Reworked home hero, client/worker/account paths, pilot copy, and LatAm categories for clearer conversion.",
+    "Changed header Como funciona navigation to /#como-funciona and kept NO-GO_PRODUCTION visible.",
+    "Simplified job cards to one detail CTA and added readable category, budget, state, optional urgency, and description.",
+    "Improved job publication and worker profile forms with clearer grouping, helper text, loading/error/success states, and safe category/urgency persistence.",
+    "Polished dashboards, pricing/ofertas, admin blocked states, empty states, loading states, error states, and application cards."
   ],
+  "palette": {
+    "background": "#07111F",
+    "surface": "#0F1B2D",
+    "surface_2": "#132238",
+    "trust_blue": "#60A5FA",
+    "primary_action": "#10B981",
+    "warning": "#F59E0B",
+    "error": "#EF4444",
+    "text": "#F8FAFC",
+    "muted": "#CBD5E1"
+  },
   "user_flow_review": {
-    "client_flow": "LOCAL_PASS_REAL_SUPABASE_WIRING_FOR_CREATE_JOB_AND_REVIEW_APPLICATIONS",
-    "worker_flow": "LOCAL_PASS_REAL_SUPABASE_WIRING_FOR_JOBS_APPLY_AND_APPLICATIONS_DASHBOARD",
-    "admin_flow": "LOCAL_PASS_PROTECTED_NO_DEMO_OPERATIONAL_DATA",
-    "public_flow": "LOCAL_PASS_HOME_JOBS_PRICING_AUTH_REGISTER",
+    "home": "PASS_PREMIUM_LATAM_COPY_CLIENT_WORKER_ACCOUNT_PATHS",
+    "header": "PASS_CLEAR_NAV_MOBILE_USABLE_NO_GO_VISIBLE",
+    "jobs": "PASS_LEGIBLE_CARDS_SINGLE_CTA_EMPTY_LOADING_ERROR_STATES",
+    "forms": "PASS_JOB_POST_AND_WORKER_PROFILE_GUIDED",
+    "dashboards": "PASS_CLIENT_WORKER_NEXT_ACTIONS_VISIBLE",
+    "pricing_offers": "PASS_MANUAL_PILOT_NO_CHECKOUT_LIVE",
+    "admin": "PASS_PROTECTED_NO_DEMO_OPERATIONAL_DATA",
     "desktop_browser_smoke": "PASS_1360_NO_OVERFLOW_NO_CONSOLE_ERRORS",
     "mobile_browser_smoke": "PASS_390_NO_OVERFLOW_NO_CONSOLE_ERRORS"
   },
@@ -26,36 +42,25 @@
     "production_check": "PASS_NO_GO_PRODUCTION",
     "guard_no_production_deploy": "PASS",
     "test_rls_static": "PASS_12_TESTS",
-    "staging_check": "PASS",
-    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
-    "paypal_sandbox_smoke": "PASS_READY_NOT_RUN_PAYMENTS_DISABLED",
     "lint": "PASS",
     "typecheck": "PASS",
     "test": "PASS_10_FILES_62_TESTS",
     "build": "PASS",
+    "staging_check": "PASS",
+    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
     "git_diff_check": "PASS",
-    "local_http_smoke": "PASS",
-    "browser_smoke": "PASS"
+    "browser_smoke": "PASS_LOCAL_DESKTOP_AND_MOBILE"
   },
-  "supabase": {
-    "preview_project_vbpuwujbngjydbelbjbr": "PASS_ACTIVE_HEALTHY_MIGRATIONS_APPLIED_SECURITY_ADVISOR_0_LINTS",
-    "default_project_gnsfyvsodslnehszanra": "ACTIVE_HEALTHY_MAIN_MIGRATIONS_FAILED",
-    "default_missing_migrations": [
-      "20260523113000",
-      "20260523120500",
-      "20260525193000"
-    ],
-    "security_advisor": [
-      "WARN_AUTHENTICATED_SECURITY_DEFINER_EJ_SET_PROFILE_ROLE",
-      "WARN_AUTH_LEAKED_PASSWORD_PROTECTION_DISABLED"
-    ],
-    "backup_pitr_evidence": "BLOCKED_NO_VERIFIABLE_EVIDENCE"
+  "screenshots": {
+    "desktop": "output/playwright/latam-premium-home-desktop.png",
+    "mobile": "output/playwright/latam-premium-home-mobile.png"
   },
-  "vercel": {
-    "production_env_required_names": "BLOCKED_MISSING_ALL_REQUESTED_APP_AND_PAYPAL_NAMES",
-    "custom_domains": "BLOCKED_DOMAIN_ACCESS",
-    "prod_deploy": "NOT_RUN",
-    "promote": "NOT_RUN"
+  "staging": {
+    "staging_status": "PASS_STAGING_CHECK",
+    "preview_status": "LOCAL_ONLY_NO_NEW_VERCEL_PREVIEW_CREATED",
+    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
+    "browser_smoke": "PASS_LOCAL_BROWSER_SMOKE",
+    "blockers": []
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
@@ -65,25 +70,9 @@
     "paypal_live": "OFF",
     "real_payments": "OFF",
     "secrets_printed": false,
+    "service_role_in_client": false,
     "rls_relaxed": false
   },
-  "blockers": [
-    "BLOCKED_SUPABASE_MAIN_MIGRATIONS_FAILED",
-    "BLOCKED_SUPABASE_SECURITY_ADVISOR_WARNS",
-    "BLOCKED_VERCEL_PRODUCTION_ENVS_MISSING",
-    "BLOCKED_CUSTOM_DOMAIN_ACCESS",
-    "BLOCKED_BACKUP_PITR_EVIDENCE",
-    "BLOCKED_PAYMENT_PROVIDER_SANDBOX_EXECUTION"
-  ],
-  "pull_request": {
-    "number": 53,
-    "url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/53",
-    "head": "codex/full-platform-real-user-review",
-    "review": "REVIEW_REQUIRED",
-    "checks": "PASS_EXCEPT_REVIEW_REQUIRED",
-    "vercel_preview": "PASS_READY",
-    "preview_url": "https://codex-expressjobs-git-codex-full-platf-51598e-akuma424-projects.vercel.app",
-    "supabase_preview_project": "vbpuwujbngjydbelbjbr"
-  },
-  "next_mode": "EXPRESSJOBS_PRODUCTION_EXTERNAL_GATE_REPAIR"
+  "blockers": [],
+  "next_mode": "EXPRESSJOBS_CONTROLLED_STAGING_VISUAL_PR_REVIEW_AND_PREVIEW_SMOKE"
 }

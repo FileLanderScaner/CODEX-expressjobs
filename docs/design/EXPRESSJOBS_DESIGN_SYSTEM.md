@@ -4,21 +4,26 @@
 
 ## Paleta
 
-- `--ej-bg: #071018`
-- `--ej-bg-soft: #0c1722`
-- `--ej-bg-section: #101b28`
-- `--ej-surface: #162231`
-- `--ej-surface-2: #1b2a3a`
-- `--ej-surface-3: #223447`
-- `--ej-border: rgba(255, 255, 255, 0.1)`
-- `--ej-text: #f7fafc`
-- `--ej-text-muted: #c7d2da`
-- `--ej-text-soft: #94a5b3`
-- `--ej-accent: #7bc143`
-- `--ej-accent-hover: #8fd255`
-- `--ej-accent-soft: rgba(123, 193, 67, 0.14)`
-- `--ej-danger-soft: rgba(255, 90, 120, 0.14)`
-- `--ej-warning-soft: rgba(255, 180, 0, 0.12)`
+- `--ej-bg: #07111f`
+- `--ej-bg-soft: #0f1b2d`
+- `--ej-bg-section: #132238`
+- `--ej-surface: #0f1b2d`
+- `--ej-surface-2: #132238`
+- `--ej-surface-3: #1b2e46`
+- `--ej-border: rgba(147, 197, 253, 0.18)`
+- `--ej-text: #f8fafc`
+- `--ej-text-muted: #cbd5e1`
+- `--ej-text-soft: #94a3b8`
+- `--ej-accent: #60a5fa`
+- `--ej-accent-hover: #93c5fd`
+- `--ej-accent-soft: rgba(96, 165, 250, 0.14)`
+- `--ej-success: #10b981`
+- `--ej-success-hover: #34d399`
+- `--ej-success-soft: rgba(16, 185, 129, 0.14)`
+- `--ej-danger: #ef4444`
+- `--ej-danger-soft: rgba(239, 68, 68, 0.14)`
+- `--ej-warning: #f59e0b`
+- `--ej-warning-soft: rgba(245, 158, 11, 0.14)`
 
 ## Clases Globales
 

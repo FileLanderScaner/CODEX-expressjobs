@@ -91,7 +91,7 @@ export function RoleSelector() {
           </article>
         );
       })}
-      {message ? <p className="rounded-2xl border border-[rgba(255,90,120,0.28)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-[#ffb4c2] md:col-span-2">{message}</p> : null}
+      {message ? <p className="rounded-lg border border-[rgba(239,68,68,0.32)] bg-[var(--ej-danger-soft)] p-3 text-sm font-bold text-red-200 md:col-span-2">{message}</p> : null}
     </div>
   );
 }
