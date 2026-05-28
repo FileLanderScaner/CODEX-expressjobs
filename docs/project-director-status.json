@@ -1,7 +1,7 @@
 {
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
-  "updated_at": "2026-05-28T12:55:00-03:00",
+  "updated_at": "2026-05-28T13:23:00-03:00",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "branch": "codex/expressjobs-global-soft-premium-redesign-manual",
   "final_cycle_state": "EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS",
@@ -48,7 +48,9 @@
     "production_deploy": "NOT_RUN",
     "promote": "NOT_RUN",
     "production_env_mutation": false,
-    "preview_status": "PR50_EXISTING_PREVIOUSLY_GREEN_CURRENT_COMMIT_PENDING_AFTER_PUSH"
+    "preview_status": "BLOCKED_VERCEL_GIT_PREVIEW_FAILED_NO_ACTIONABLE_LOGS",
+    "failed_git_deployment": "dpl_735FnGLRoh8vfK7Zoch4CXHuQSZf",
+    "manual_preview_attempt": "UNKNOWN_DPL_EQqeRwz6bpjzcgwLJ5WikXjLT4MZ"
   },
   "monetization": {
     "manual_sales": "READY",
@@ -58,7 +60,8 @@
   },
   "blockers": [
     "BLOCKED_PRODUCTION_RISK",
-    "BLOCKED_PAYMENT_PROVIDER"
+    "BLOCKED_PAYMENT_PROVIDER",
+    "BLOCKED_VERCEL_ACCESS"
   ],
-  "next_mode": "HUMAN_PRODUCTION_APPROVAL_AFTER_GREEN_PREVIEW"
+  "next_mode": "EXPRESSJOBS_VERCEL_PREVIEW_FAILURE_TRIAGE"
 }

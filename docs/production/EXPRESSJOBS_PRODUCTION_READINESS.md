@@ -8,7 +8,7 @@ Updated: 2026-05-28
 
 `EXPRESSJOBS_CODE_READY_EXTERNAL_BLOCKERS`
 
-The app is locally code-ready for controlled Preview/Staging review: build, tests, static RLS, real staging RLS smoke, production guard, local HTTP smoke, and Playwright browser smoke pass. Production public release is still blocked until a human observes the current pushed PR/Preview checks green and explicitly approves production.
+The app is locally code-ready for controlled Staging review: build, tests, static RLS, real staging RLS smoke, production guard, local HTTP smoke, and Playwright browser smoke pass. Production public release is blocked because Vercel Preview failed externally and human approval is still required.
 
 ## Passed Locally
 
@@ -29,7 +29,8 @@ The app is locally code-ready for controlled Preview/Staging review: build, test
 ## Still No-Go
 
 - Human production approval is missing.
-- Current pushed commit must be observed green in PR #50 and Vercel Preview.
+- Vercel Git Preview failed for `dpl_735FnGLRoh8vfK7Zoch4CXHuQSZf` with no actionable logs from `vercel inspect --logs`.
+- Manual Preview attempt stayed `UNKNOWN` for `dpl_EQqeRwz6bpjzcgwLJ5WikXjLT4MZ` and the CLI hung until stopped.
 - PayPal live and real payments remain off.
 - Production env values were not changed or printed.
 
