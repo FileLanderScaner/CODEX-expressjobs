@@ -109,6 +109,32 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="ej-container -mt-4 pb-12">
+          <a
+            className="focus-ring group block overflow-hidden rounded-lg border border-[var(--ej-border)] bg-[linear-gradient(135deg,rgba(244,114,182,0.18),rgba(96,165,250,0.08),rgba(15,23,42,0.94))] p-1 shadow-2xl shadow-black/20 transition hover:-translate-y-1"
+            href="https://victoriosa-store.myshopify.com"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <div className="grid gap-5 rounded-[0.55rem] bg-[#07111f]/80 p-5 md:grid-cols-[1fr_auto] md:items-center md:p-6">
+              <div className="min-w-0">
+                <p className="ej-badge w-fit border-pink-200/30 bg-pink-300/10 text-pink-100">Primer banner aliado</p>
+                <h2 className="mt-4 text-3xl font-black tracking-tight text-white sm:text-4xl">Victoriosa Store</h2>
+                <p className="ej-muted mt-3 max-w-3xl text-sm leading-6">
+                  Tienda de productos de estetica, belleza y cuidado personal conectada como primera vitrina comercial externa de ExpressJobs.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 rounded-lg border border-white/10 bg-white/[0.06] p-4 text-sm md:min-w-[17rem]">
+                <span className="font-black uppercase tracking-[0.16em] text-pink-100">victoriosa-store</span>
+                <span className="ej-muted leading-6">Banner visible, compacto y coherente con el esquema oscuro de la app.</span>
+                <span className="inline-flex items-center gap-2 font-black uppercase tracking-[0.12em] text-emerald-200">
+                  Visitar tienda <ArrowRight aria-hidden="true" className="transition group-hover:translate-x-1" size={16} />
+                </span>
+              </div>
+            </div>
+          </a>
+        </section>
+
         <section className="ej-dark-section py-12">
           <div className="ej-container">
             <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
