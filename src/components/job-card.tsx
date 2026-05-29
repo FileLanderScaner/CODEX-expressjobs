@@ -14,6 +14,7 @@ export function JobCard({
   category,
   description,
   urgency,
+  distanceLabel,
   href = "/jobs/open",
 }: {
   title: string;
@@ -23,6 +24,7 @@ export function JobCard({
   category: string;
   description?: string;
   urgency?: "normal" | "urgent";
+  distanceLabel?: string | null;
   href?: string;
 }) {
   const isStaging = isTechnicalStagingTitle(title);
@@ -35,6 +37,7 @@ export function JobCard({
           <div className="flex flex-wrap items-center gap-2">
             <p className="ej-chip text-[11px] uppercase tracking-wide">{category}</p>
             {urgency === "urgent" ? <span className="ej-warning-badge text-[11px]">Urgente</span> : null}
+            {distanceLabel ? <span className="ej-badge text-[11px]">{distanceLabel}</span> : null}
             {isStaging ? <span className="ej-warning-badge text-[11px]">Staging</span> : null}
           </div>
           <h3 className="mt-3 text-xl font-black leading-tight">{displayTitle}</h3>
