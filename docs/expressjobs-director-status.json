@@ -2,29 +2,45 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "branch": "codex/public-calls-radar-caso-claro",
-  "mode": "EXPRESSJOBS_PUBLIC_CALLS_RADAR_SAFE",
-  "updated_at": "2026-05-28T23:23:30-03:00",
-  "final_state": "PUBLIC_CALLS_RADAR_READY_FOR_PREVIEW",
+  "branch": "codex/public-calls-authorized-import-research",
+  "mode": "EXPRESSJOBS_PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH",
+  "updated_at": "2026-05-28T23:39:30-03:00",
+  "final_state": "PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH_READY_NO_SCRAPING",
   "production_status": "NO-GO_PRODUCTION",
-  "public_calls_radar": {
-    "route": "/llamados-publicos",
-    "navigation_label": "Llamados públicos",
-    "data_source": "src/lib/public-calls-data.ts",
-    "source_policy": "MANUAL_SEED_REFERENCES_ONLY",
+  "previous_cycle": {
+    "pr": 60,
+    "title": "Add public calls radar and Caso Claro application prep",
+    "state": "MERGED",
+    "merge_commit": "6a9c4263a8b42012b62d057e20bbde873e4e0ce8",
+    "preview_smoke": "PASS_REMOTE_ROUTES_200",
+    "supabase_preview": "SKIPPED_NO_SUPABASE_CHANGES"
+  },
+  "authorized_import_research": {
+    "uruguay_concursa_api_confirmed": false,
+    "global_rss_confirmed": false,
+    "rss_candidate": "OFFICIAL_ORGANISM_FEEDS_ONLY_WHEN_URL_AND_TERMS_ARE_VERIFIED",
+    "open_data_candidate": "CATALOGO_DATOS_ABIERTOS_ORGANISM_DATASETS_WITH_LICENSE_REVIEW",
     "scraping": "OFF",
     "crawler": "OFF",
-    "cron": "OFF",
+    "cron_import": "OFF",
     "external_import_api_route": "OFF",
-    "public_body_affiliation_claim": "OFF",
-    "caso_claro_connection": "READY"
+    "manual_v1_remains": true,
+    "human_review_required_before_publication": true
   },
-  "sources": [
-    "https://uruguayconcursa.gub.uy/",
+  "sources_reviewed": [
+    "https://www.gub.uy/tramites/uruguay-concursa",
     "https://www.gub.uy/llamados-concursos-publicos",
-    "https://www.gub.uy/oficina-nacional-servicio-civil/tramites-y-servicios/servicios/uruguay-concursa",
-    "https://udelar.edu.uy/portal/llamados/"
+    "https://www.gub.uy/portal-ejemplo/institucional/concursos-0/concursos-se-cargan-rss",
+    "https://catalogodatos.gub.uy/dataset/?tags=Concursos",
+    "https://catalogodatos.gub.uy/dataset/dna-llamados_y_concursos",
+    "https://catalogodatos.gub.uy/terminos-catalogodatos.pdf",
+    "https://www.gub.uy/terminos-condiciones-uso"
   ],
+  "robots_review": {
+    "gub_uy": "REVIEWED",
+    "uruguay_concursa": "NO_CLEAR_ROBOTS_DIRECTIVES_HTML_RETURNED",
+    "catalogodatos_gub_uy": "DISALLOW_API_FOR_CRAWLERS_CRAWL_DELAY_10"
+  },
   "checks": {
     "secret_scan": "PASS",
     "production_check": "PASS_NO_GO_PRODUCTION",
@@ -34,8 +50,10 @@
     "typecheck": "PASS",
     "test": "PASS",
     "build": "PASS",
+    "staging_check": "PASS",
+    "rls_smoke": "PASS",
     "git_diff_check": "PASS",
-    "browser_smoke": "PASS_LOCAL_DESKTOP_MOBILE_NAV_WHATSAPP"
+    "json_parse": "PASS"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
@@ -49,5 +67,5 @@
     "service_role_in_client": false,
     "rls_relaxed": false
   },
-  "next_mode": "EXPRESSJOBS_PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH"
+  "next_mode": "EXPRESSJOBS_PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGN"
 }
