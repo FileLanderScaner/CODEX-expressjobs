@@ -2,6 +2,20 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-28 Public Calls Authorized Import Research
+
+Mode `EXPRESSJOBS_PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH` running on branch `codex/public-calls-authorized-import-research`.
+
+PR #60 (`Add public calls radar and Caso Claro application prep`) was merged into `main` at merge commit `6a9c4263a8b42012b62d057e20bbde873e4e0ce8`. Remote checks passed: `docs-check`, `pr-check`, `production-no-go`, `security-gate`, `Vercel`, `Vercel Agent Review`, and `Vercel Preview Comments`; `Supabase Preview` was skipped because the PR had no Supabase changes. Preview route smoke returned 200 for `/`, `/llamados-publicos`, and `/servicios`.
+
+Research outcome: keep `/llamados-publicos` manual/curated for now. No official public Uruguay Concursa API was confirmed. gub.uy documentation indicates RSS can be used by organism sites for concours data from ONSC when configured, and Catalogo Nacional de Datos Abiertos contains organism-level "Llamados y concursos" datasets. Those are candidates for a future authorized import, but only after source URL, terms/license, robots, rate limits, and human-review workflow are documented.
+
+Safety outcome: no scraping, no crawler, no cron/import API, no AI Gateway, no PayPal live, no production deploy/promote, no Production env mutation, no secrets, no service-role client exposure, and no RLS relaxation.
+
+Final checks passed: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`, `npm run staging:check`, `npm run rls:smoke`, JSON parse, and `git diff --check`.
+
+Current state: `PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH_READY_NO_SCRAPING`.
+
 ## Current Status - 2026-05-28 Public Calls Radar
 
 Mode `EXPRESSJOBS_PUBLIC_CALLS_RADAR_SAFE` running on branch `codex/public-calls-radar-caso-claro`.
