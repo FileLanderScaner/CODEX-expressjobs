@@ -88,12 +88,33 @@ describe("real public product surface", () => {
     expect(adminPage).toContain("/admin/llamados-publicos");
     expect(queuePage).toContain("Cola admin de llamados publicos");
     expect(queuePage).toContain("no importa datos");
-    expect(queuePage).toContain("Acciones bloqueadas en V1");
+    expect(queuePage).toContain("Crear fuente");
+    expect(queuePage).toContain("Enviar a revision");
     expect(queueLib).toContain("Revision humana pendiente");
     expect(combined).not.toContain("cheerio");
     expect(combined).not.toContain("puppeteer");
     expect(combined).not.toContain("axios");
     expect(combined).not.toContain("crawler");
+  });
+
+  it("keeps public-call admin actions server-side and non-automated", () => {
+    const actions = readFileSync(join(process.cwd(), "src/app/admin/llamados-publicos/actions.ts"), "utf8");
+    const policy = readFileSync(join(process.cwd(), "src/lib/public-calls-admin-actions-policy.ts"), "utf8");
+    const combined = [actions, policy].join("\n").toLowerCase();
+
+    expect(actions).toContain('"use server"');
+    expect(actions).toContain("assertPublicCallAdmin");
+    expect(actions).toContain("insertAuditEvent");
+    expect(actions).toContain("publishPublicCallDraftAction");
+    expect(policy).toContain("APPROVAL_REQUIRED");
+    expect(policy).toContain("REASON_REQUIRED");
+    expect(combined).not.toContain("supabase_service_role_key");
+    expect(combined).not.toContain("service_role");
+    expect(combined).not.toContain("cheerio");
+    expect(combined).not.toContain("puppeteer");
+    expect(combined).not.toContain("axios");
+    expect(combined).not.toContain("cron");
+    expect(combined).not.toContain("scrape");
   });
 
   it("keeps real contact channels visible", () => {

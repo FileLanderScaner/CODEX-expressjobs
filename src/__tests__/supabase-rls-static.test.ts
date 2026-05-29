@@ -18,6 +18,10 @@ const publicCallsAdminMigration = readFileSync(
   join(migrationsDir, "20260529024000_public_calls_admin_review_queue.sql"),
   "utf8",
 );
+const publicCallsAdminActionEventsMigration = readFileSync(
+  join(migrationsDir, "20260529040500_public_calls_admin_action_events.sql"),
+  "utf8",
+);
 const marketplaceLib = readFileSync(join(process.cwd(), "src/lib/marketplace.ts"), "utf8");
 const roleApiRoute = readFileSync(join(process.cwd(), "src/app/api/profile/set-role/route.ts"), "utf8");
 
@@ -215,7 +219,7 @@ describe("ExpressJobs Supabase RLS migration", () => {
   });
 
   it("keeps public-call queue as review preparation, not scraping automation", () => {
-    const lower = publicCallsAdminMigration.toLowerCase();
+    const lower = [publicCallsAdminMigration, publicCallsAdminActionEventsMigration].join("\n").toLowerCase();
 
     expect(lower).toContain("no scraping");
     expect(lower).toContain("no crawler");
@@ -226,5 +230,16 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(lower).not.toContain("service_role");
     expect(lower).not.toContain("using (true)");
     expect(lower).not.toContain("with check (true)");
+  });
+
+  it("allows explicit public-call admin action audit events without opening RLS", () => {
+    expect(publicCallsAdminActionEventsMigration).toContain("drop constraint if exists public_call_review_events_event_type_allowed");
+    expect(publicCallsAdminActionEventsMigration).toContain("'draft_submitted'");
+    expect(publicCallsAdminActionEventsMigration).toContain("'draft_approved'");
+    expect(publicCallsAdminActionEventsMigration).toContain("'draft_rejected'");
+    expect(publicCallsAdminActionEventsMigration).toContain("'draft_published'");
+    expect(publicCallsAdminActionEventsMigration).toContain("'draft_archived'");
+    expect(publicCallsAdminActionEventsMigration.toLowerCase()).not.toContain("disable row level security");
+    expect(publicCallsAdminActionEventsMigration.toLowerCase()).not.toContain("grant delete");
   });
 });

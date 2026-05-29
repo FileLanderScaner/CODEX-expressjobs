@@ -16,6 +16,7 @@
     "guard:no-production-deploy": "node scripts/assert-no-production-deploy.mjs",
     "smoke:preview": "node scripts/smoke-preview.mjs",
     "rls:smoke": "node scripts/expressjobs-rls-smoke.mjs",
+    "rls:smoke:public-calls": "node scripts/expressjobs-public-calls-rls-smoke.mjs",
     "rls:create-staging-users": "node scripts/expressjobs-create-staging-users.mjs",
     "rls:bootstrap-anon-users": "node scripts/expressjobs-bootstrap-staging-users-with-anon.mjs",
     "paypal:sandbox:smoke": "node scripts/paypal-sandbox-smoke.mjs",

@@ -20,12 +20,15 @@ export type PublicCallPublicationStatus = "not_published" | "published" | "archi
 
 export type PublicCallDraftRecord = {
   id: string;
+  source_id: string;
   title: string;
   organization: string;
+  description: string;
   category: string;
   location: string;
   deadline: string | null;
   source_url: string;
+  load_method: "manual" | "authorized_api" | "authorized_rss" | "authorized_open_data" | "partner_submission";
   review_status: PublicCallReviewStatus;
   publication_status: PublicCallPublicationStatus;
   license_name: string | null;
@@ -55,6 +58,27 @@ export type PublicCallSourceRecord = {
   notes: string | null;
   created_at: string;
   updated_at: string;
+};
+
+export type PublicCallReviewEventRecord = {
+  id: string;
+  source_id: string | null;
+  draft_id: string | null;
+  event_type: string;
+  from_status: string | null;
+  to_status: string | null;
+  actor_id: string | null;
+  notes: string | null;
+  created_at: string;
+};
+
+export const publicCallSourceTypeLabels: Record<PublicCallSourceType, string> = {
+  manual: "Manual",
+  official_api: "API oficial",
+  official_rss: "RSS oficial",
+  official_open_data: "Datos abiertos",
+  partner_authorized: "Convenio/autorizado",
+  unknown: "Sin confirmar",
 };
 
 export const publicCallReviewStatusLabels: Record<PublicCallReviewStatus, string> = {
