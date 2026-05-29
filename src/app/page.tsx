@@ -76,6 +76,9 @@ export default function Home() {
                 <Link className="focus-ring ej-btn-secondary text-sm uppercase tracking-[0.12em]" href="/worker/jobs">
                   Buscar trabajos <Search aria-hidden="true" size={18} />
                 </Link>
+                <Link className="focus-ring ej-btn-secondary text-sm uppercase tracking-[0.12em]" href="/auth">
+                  Crear cuenta <LogIn aria-hidden="true" size={18} />
+                </Link>
                 <Link className="focus-ring ej-btn-secondary text-sm uppercase tracking-[0.12em]" href="/servicios">
                   Servicios ofrecidos <FileText aria-hidden="true" size={18} />
                 </Link>
