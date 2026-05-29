@@ -6,8 +6,10 @@ import { JobCard } from "@/components/job-card";
 import { LoadingState } from "@/components/loading-state";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 import { mapJobRow, type MarketplaceJob } from "@/lib/marketplace";
+import { formatDistanceKm, requestBrowserCoordinates } from "@/lib/location";
 
 type LoadState = "loading" | "ready" | "not-configured" | "error";
+type LocationState = "idle" | "loading" | "ready" | "error";
 
 function normalizeText(value: string | number | null | undefined) {
   return String(value ?? "")
@@ -47,6 +49,9 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
   const [acceptedJobs, setAcceptedJobs] = useState<MarketplaceJob[]>([]);
   const [query, setQuery] = useState("");
   const [budgetOnly, setBudgetOnly] = useState(false);
+  const [nearbyOnly, setNearbyOnly] = useState(false);
+  const [locationState, setLocationState] = useState<LocationState>("idle");
+  const [locationMessage, setLocationMessage] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -104,8 +109,23 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
     };
   }, []);
 
+  async function handleUseLocation() {
+    setLocationState("loading");
+    setLocationMessage(null);
+
+    try {
+      await requestBrowserCoordinates();
+      setNearbyOnly(true);
+      setLocationState("ready");
+      setLocationMessage("Ubicacion detectada. En esta version usamos ciudad o barrio para ordenar la busqueda sin mostrar tu direccion exacta.");
+    } catch (error) {
+      setLocationState("error");
+      setLocationMessage(error instanceof Error ? error.message : "No pudimos detectar tu ubicacion.");
+    }
+  }
+
   const filteredOpenJobs = useMemo(() => {
-    return openJobs.filter((job) => {
+    const filtered = openJobs.filter((job) => {
       if (!jobMatchesQuery(job, query)) {
         return false;
       }
@@ -114,9 +134,24 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
         return false;
       }
 
+      if (nearbyOnly && query.trim().length === 0) {
+        return true;
+      }
+
       return true;
     });
-  }, [budgetOnly, openJobs, query]);
+
+    if (!nearbyOnly || !query.trim()) {
+      return filtered;
+    }
+
+    const normalizedQuery = normalizeText(query);
+    return [...filtered].sort((left, right) => {
+      const leftLocationMatch = normalizeText(left.location).includes(normalizedQuery) ? 0 : 1;
+      const rightLocationMatch = normalizeText(right.location).includes(normalizedQuery) ? 0 : 1;
+      return leftLocationMatch - rightLocationMatch;
+    });
+  }, [budgetOnly, nearbyOnly, openJobs, query]);
 
   const filteredAcceptedJobs = useMemo(() => {
     return acceptedJobs.filter((job) => jobMatchesQuery(job, query));
@@ -126,7 +161,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
     return <LoadingState label="Cargando trabajos" />;
   }
 
-  const hasActiveFilters = query.trim().length > 0 || budgetOnly;
+  const hasActiveFilters = query.trim().length > 0 || budgetOnly || nearbyOnly;
 
   return (
     <>
@@ -170,12 +205,28 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
               Solo con presupuesto
             </button>
 
+            <button
+              className={`focus-ring rounded-full border px-3 py-2 text-sm font-black transition ${
+                nearbyOnly
+                  ? "border-[rgba(96,165,250,0.42)] bg-[var(--ej-accent-soft)] text-blue-100"
+                  : "border-white/10 bg-white/10 text-[var(--ej-text-muted)] hover:bg-white/20"
+              }`}
+              disabled={locationState === "loading"}
+              onClick={nearbyOnly ? () => setNearbyOnly(false) : handleUseLocation}
+              type="button"
+            >
+              {locationState === "loading" ? "Detectando..." : nearbyOnly ? "Cerca activado" : "Ver cerca de mi"}
+            </button>
+
             {hasActiveFilters ? (
               <button
                 className="focus-ring rounded-full border border-white/10 bg-white/10 px-3 py-2 text-sm font-black text-[var(--ej-text-muted)] hover:bg-white/20"
                 onClick={() => {
                   setQuery("");
                   setBudgetOnly(false);
+                  setNearbyOnly(false);
+                  setLocationMessage(null);
+                  setLocationState("idle");
                 }}
                 type="button"
               >
@@ -184,6 +235,10 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
             ) : null}
           </div>
         </div>
+
+        {locationMessage ? (
+          <p className={locationState === "error" ? "mt-3 text-sm font-semibold text-red-200" : "ej-soft mt-3 text-sm"}>{locationMessage}</p>
+        ) : null}
 
         <p className="ej-soft mt-3 text-sm">
           Mostrando {filteredOpenJobs.length} de {openJobs.length} trabajos abiertos
@@ -196,7 +251,12 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
       <div className="mt-4 grid gap-4 lg:grid-cols-2">
         {filteredOpenJobs.length ? (
           filteredOpenJobs.map((job) => (
-            <JobCard key={job.id} {...job} href={publicMode ? `/jobs/${job.id}` : `/worker/jobs/${job.id}`} />
+            <JobCard
+              key={job.id}
+              {...job}
+              distanceLabel={nearbyOnly ? formatDistanceKm(job.distanceKm) ?? "Cerca de tu zona" : null}
+              href={publicMode ? `/jobs/${job.id}` : `/worker/jobs/${job.id}`}
+            />
           ))
         ) : (
           <EmptyState
