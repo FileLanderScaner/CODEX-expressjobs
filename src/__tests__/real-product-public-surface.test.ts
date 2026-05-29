@@ -78,6 +78,24 @@ describe("real public product surface", () => {
     expect(combined).not.toContain("representa a Uruguay Concursa");
   });
 
+  it("exposes the admin public-call review queue without import automation", () => {
+    const adminPage = readFileSync(join(process.cwd(), "src/app/admin/page.tsx"), "utf8");
+    const queuePage = readFileSync(join(process.cwd(), "src/app/admin/llamados-publicos/page.tsx"), "utf8");
+    const queueLib = readFileSync(join(process.cwd(), "src/lib/public-calls-admin-queue.ts"), "utf8");
+    const combined = [adminPage, queuePage, queueLib].join("\n").toLowerCase();
+
+    expect(existsSync(join(process.cwd(), "src/app/admin/llamados-publicos/page.tsx"))).toBe(true);
+    expect(adminPage).toContain("/admin/llamados-publicos");
+    expect(queuePage).toContain("Cola admin de llamados publicos");
+    expect(queuePage).toContain("no importa datos");
+    expect(queuePage).toContain("Acciones bloqueadas en V1");
+    expect(queueLib).toContain("Revision humana pendiente");
+    expect(combined).not.toContain("cheerio");
+    expect(combined).not.toContain("puppeteer");
+    expect(combined).not.toContain("axios");
+    expect(combined).not.toContain("crawler");
+  });
+
   it("keeps real contact channels visible", () => {
     const appShell = readFileSync(join(process.cwd(), "src/components/app-shell.tsx"), "utf8");
     const offers = readFileSync(join(process.cwd(), "src/app/ofertas/page.tsx"), "utf8");
