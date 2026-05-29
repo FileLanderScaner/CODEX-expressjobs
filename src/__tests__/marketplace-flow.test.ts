@@ -13,8 +13,8 @@ describe("real marketplace flow wiring", () => {
 
   it("keeps auth next redirects relative", () => {
     expect(safeNextPath("/dashboard/worker")).toBe("/dashboard/worker");
-    expect(safeNextPath("https://evil.example", "/role")).toBe("/role");
-    expect(safeNextPath("//evil.example", "/role")).toBe("/role");
+    expect(safeNextPath("https://external.example", "/role")).toBe("/role");
+    expect(safeNextPath("//external.example", "/role")).toBe("/role");
     expect(authHref("/client/jobs/new")).toBe("/auth?next=%2Fclient%2Fjobs%2Fnew");
   });
 
@@ -26,7 +26,7 @@ describe("real marketplace flow wiring", () => {
   it("connects public role selection through the safe role RPC", () => {
     expect(existsSync("src/app/api/profile/set-role/route.ts")).toBe(true);
     expect(existsSync("src/app/role/page.tsx")).toBe(true);
-    expect(existsSync("src/components/role-selection.tsx")).toBe(true);
+    expect(existsSync("src/components/role-selector.tsx")).toBe(true);
   });
 
   it("connects worker apply and client accept/reject through Supabase tables and RPC", () => {
