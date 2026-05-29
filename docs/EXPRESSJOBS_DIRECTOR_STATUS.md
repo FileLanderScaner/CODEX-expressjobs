@@ -2,6 +2,18 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-28 Public Calls Radar
+
+Mode `EXPRESSJOBS_PUBLIC_CALLS_RADAR_SAFE` running on branch `codex/public-calls-radar-caso-claro`.
+
+This cycle adds `/llamados-publicos` as a safe manual radar for public/official call references in Uruguay, with source attribution and Caso Claro application preparation CTAs. It uses manual seed references only: no scraping, no crawler, no cron, no import API route, no third-party content copy, and no affiliation claim with Uruguay Concursa or any public body.
+
+Production remains `NO-GO_PRODUCTION`. AI Gateway remains off. PayPal live and real payments remain off.
+
+Final checks passed: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`, and `git diff --check`. Browser smoke passed for `/`, `/llamados-publicos`, `/servicios`, mobile navigation, and WhatsApp CTA.
+
+Current state: `PUBLIC_CALLS_RADAR_READY_FOR_PREVIEW`.
+
 ## Current Status - 2026-05-28 PR55 Preview Gate Commercial Closeout
 
 Mode `EXPRESSJOBS_PR55_PREVIEW_GATE_COMMERCIAL_READY_CLOSEOUT` completed on branch `codex/pr55-preview-gate-commercial-closeout`.

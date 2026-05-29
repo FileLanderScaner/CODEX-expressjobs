@@ -163,6 +163,26 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="ej-container py-12">
+          <div className="grid gap-6 rounded-lg border border-[var(--ej-border)] bg-white/[0.05] p-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <p className="ej-badge">Radar público</p>
+              <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Llamados públicos</h2>
+              <p className="ej-muted mt-4 max-w-2xl text-sm leading-6">
+                Encontrá oportunidades oficiales y prepará tu postulación con apoyo documental de Caso Claro. Datos de muestra para piloto controlado y fuente oficial siempre visible.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3 lg:justify-end">
+              <Link className="focus-ring ej-btn-primary text-sm uppercase tracking-[0.12em]" href="/llamados-publicos">
+                Ver llamados públicos <FileSearch aria-hidden="true" size={18} />
+              </Link>
+              <Link className="focus-ring ej-btn-secondary text-sm uppercase tracking-[0.12em]" href="/servicios">
+                Preparar carpeta <FolderCheck aria-hidden="true" size={18} />
+              </Link>
+            </div>
+          </div>
+        </section>
+
         <section className="ej-container py-12" id="como-funciona">
           <h2 className="text-3xl font-black tracking-tight">Como funciona</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-4">
