@@ -40,3 +40,28 @@ export function formatDistanceKm(value: number | null | undefined) {
 
   return `${value.toFixed(value < 10 ? 1 : 0)} km`;
 }
+
+export function requestBrowserCoordinates(): Promise<BrowserCoordinates> {
+  if (typeof window === "undefined" || !("geolocation" in navigator)) {
+    return Promise.reject(new Error("Tu navegador no permite detectar ubicacion."));
+  }
+
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      () => {
+        reject(new Error("No pudimos usar tu ubicacion. Podes buscar por ciudad o barrio manualmente."));
+      },
+      {
+        enableHighAccuracy: false,
+        maximumAge: 600000,
+        timeout: 10000,
+      },
+    );
+  });
+}
