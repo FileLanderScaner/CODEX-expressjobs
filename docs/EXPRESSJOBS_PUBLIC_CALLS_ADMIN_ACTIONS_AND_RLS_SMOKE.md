@@ -8,6 +8,8 @@ Mode: `EXPRESSJOBS_PUBLIC_CALLS_ADMIN_ACTIONS_AND_RLS_SMOKE`
 
 This cycle enables audited admin server actions for the public-calls review queue. It keeps the workflow manual and does not enable scraping, crawlers, cron imports, automatic imports, AI Gateway, live payments, or production.
 
+PR #63: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/63`
+
 ## Implemented Actions
 
 Server action file:
@@ -170,9 +172,40 @@ No result is invented as PASS. The specific RLS smoke must be rerun after the sa
 - Browser smoke local: PASS
 - JSON parse: PASS
 - `git diff --check`: PASS
+- Remote PR checks: PASS
+- Remote Preview browser smoke: PASS with `VERCEL_LIVE_FEEDBACK_CSP_CAVEAT`
+
+## Remote Validation
+
+PR #63 checks passed:
+
+- `docs-check`
+- `pr-check`
+- `production-no-go`
+- `security-gate`
+- `Supabase Preview`
+- `Vercel`
+- `Vercel Agent Review`
+- `Vercel Preview Comments`
+
+Preview:
+
+- `https://codex-expressjobs-git-codex-public-cal-019d55-akuma424-projects.vercel.app`
+
+Supabase Preview project:
+
+- `eqgmsgpaxfdjuclhhwep`
+
+Remote browser smoke passed on desktop 1360 and mobile 390 for `/`, `/llamados-publicos`, `/servicios`, `/admin`, and `/admin/llamados-publicos`.
+
+Caveat:
+
+- Vercel Live Feedback injects a Preview-only script from `vercel.live`.
+- The app CSP blocks that script.
+- This is documented as `VERCEL_LIVE_FEEDBACK_CSP_CAVEAT`, not an ExpressJobs app error.
 
 ## Current State
 
-`PUBLIC_CALLS_ADMIN_ACTIONS_READY_STATIC_RLS_PASS_REAL_PUBLIC_CALLS_RLS_BLOCKED_SCHEMA_NOT_APPLIED`
+`PUBLIC_CALLS_ADMIN_ACTIONS_PREVIEW_CHECKS_PASS_REAL_ACTION_RLS_SMOKE_BLOCKED_LOCAL_SCHEMA_NOT_APPLIED`
 
 Production remains `NO-GO_PRODUCTION`.

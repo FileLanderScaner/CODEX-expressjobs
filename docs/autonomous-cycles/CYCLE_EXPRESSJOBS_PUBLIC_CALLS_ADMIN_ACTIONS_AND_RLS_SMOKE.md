@@ -10,6 +10,12 @@
 
 `codex/public-calls-admin-actions-rls-smoke`
 
+## Pull Request
+
+PR #63: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/63`
+
+State: `OPEN`, blocked only by required review.
+
 ## Objective
 
 Implement audited admin actions for the public-calls review queue while keeping the workflow manual, safe, RLS-protected, and non-production.
@@ -55,6 +61,8 @@ Implement audited admin actions for the public-calls review queue while keeping 
 - JSON parse: PASS
 - `git diff --check`: PASS
 - Browser smoke: PASS local desktop 1360 and mobile 390
+- Remote PR checks: PASS
+- Remote Preview browser smoke: PASS with `VERCEL_LIVE_FEEDBACK_CSP_CAVEAT`
 
 ## Browser Smoke
 
@@ -79,6 +87,37 @@ Result:
 - Signed-out admin pages: protected expected state
 - `NO-GO_PRODUCTION`: visible
 
+## Remote Preview
+
+PR #63 remote checks passed:
+
+- `docs-check`
+- `pr-check`
+- `production-no-go`
+- `security-gate`
+- `Supabase Preview`
+- `Vercel`
+- `Vercel Agent Review`
+- `Vercel Preview Comments`
+
+Preview URL:
+
+- `https://codex-expressjobs-git-codex-public-cal-019d55-akuma424-projects.vercel.app`
+
+Supabase Preview:
+
+- Project `eqgmsgpaxfdjuclhhwep`
+- Database, services, APIs, configurations, migrations, seeding, and edge functions: PASS
+
+Remote browser smoke:
+
+- Desktop 1360: PASS
+- Mobile 390: PASS
+- Routes: `/`, `/llamados-publicos`, `/servicios`, `/admin`, `/admin/llamados-publicos`
+- Horizontal overflow: none
+- App console errors: none
+- Caveat: Vercel Live Feedback injects `https://vercel.live/_next-live/feedback/feedback.js`, which the app CSP blocks in Preview. This is documented as `VERCEL_LIVE_FEEDBACK_CSP_CAVEAT` and was not treated as an app error.
+
 ## RLS Smoke Evidence
 
 `npm run rls:smoke:public-calls` did not pass and was not reported as PASS.
@@ -96,7 +135,7 @@ Conclusion:
 
 ## Current State
 
-`PUBLIC_CALLS_ADMIN_ACTIONS_READY_STATIC_RLS_PASS_REAL_PUBLIC_CALLS_RLS_BLOCKED_SCHEMA_NOT_APPLIED`
+`PUBLIC_CALLS_ADMIN_ACTIONS_PREVIEW_CHECKS_PASS_REAL_ACTION_RLS_SMOKE_BLOCKED_LOCAL_SCHEMA_NOT_APPLIED`
 
 ## NEXT_CODEX_PROMPT
 

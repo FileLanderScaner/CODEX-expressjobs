@@ -6,6 +6,8 @@
 
 Mode `EXPRESSJOBS_PUBLIC_CALLS_ADMIN_ACTIONS_AND_RLS_SMOKE` running on branch `codex/public-calls-admin-actions-rls-smoke`.
 
+PR #63 is open against `main`: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/63`.
+
 This cycle adds audited server actions for the public-calls admin queue: create/update source, create/update draft, send to review, approve, reject with required reason, publish approved drafts, and archive published drafts. The admin UI at `/admin/llamados-publicos` now exposes the workflow and audit history while keeping manual operation only.
 
 Security state: no scraping, no crawler, no cron import, no automatic import, no service-role in public-calls client/actions, no AI Gateway, no PayPal live, no real payments, no production deploy/promote, no Production env mutation, and no RLS relaxation.
@@ -14,7 +16,9 @@ RLS/static checks added for admin-only policy logic, publication requiring appro
 
 Final local checks passed: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`, `npm run staging:check`, and `npm run rls:smoke`. Browser smoke passed locally on `http://localhost:3020` for `/`, `/llamados-publicos`, `/servicios`, `/admin`, and `/admin/llamados-publicos` on desktop 1360 and mobile 390: no horizontal overflow, no browser console errors, admin signed-out state protected, and `NO-GO_PRODUCTION` visible. A small `/favicon.ico` route was added to remove the local favicon 404 console error.
 
-Current state: `PUBLIC_CALLS_ADMIN_ACTIONS_READY_STATIC_RLS_PASS_REAL_PUBLIC_CALLS_RLS_BLOCKED_SCHEMA_NOT_APPLIED`.
+Remote PR #63 checks passed: `docs-check`, `pr-check`, `production-no-go`, `security-gate`, `Supabase Preview`, `Vercel`, `Vercel Agent Review`, and `Vercel Preview Comments`. Supabase Preview project `eqgmsgpaxfdjuclhhwep` reports database, services, APIs, configurations, migrations, seeding, and edge functions as passed. Vercel Preview is Ready at `https://codex-expressjobs-git-codex-public-cal-019d55-akuma424-projects.vercel.app`. Remote browser smoke passed for the same routes and viewports with no app console errors and no overflow; one Preview-only Vercel Live Feedback script is blocked by CSP and documented as `VERCEL_LIVE_FEEDBACK_CSP_CAVEAT`.
+
+Current state: `PUBLIC_CALLS_ADMIN_ACTIONS_PREVIEW_CHECKS_PASS_REAL_ACTION_RLS_SMOKE_BLOCKED_LOCAL_SCHEMA_NOT_APPLIED`.
 
 ## Current Status - 2026-05-29 Public Calls Admin Review Queue
 
