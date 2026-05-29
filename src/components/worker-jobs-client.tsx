@@ -6,10 +6,18 @@ import { JobCard } from "@/components/job-card";
 import { LoadingState } from "@/components/loading-state";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 import { mapJobRow, type MarketplaceJob } from "@/lib/marketplace";
-import { formatDistanceKm, requestBrowserCoordinates } from "@/lib/location";
+import { distanceBetweenKm, formatDistanceKm, requestBrowserCoordinates, type BrowserCoordinates } from "@/lib/location";
 
 type LoadState = "loading" | "ready" | "not-configured" | "error";
 type LocationState = "idle" | "loading" | "ready" | "error";
+type LocationAwareJob = MarketplaceJob & {
+  latitude?: number | null;
+  longitude?: number | null;
+};
+type LocationAwareJobRow = Parameters<typeof mapJobRow>[0] & {
+  latitude?: number | null;
+  longitude?: number | null;
+};
 
 function normalizeText(value: string | number | null | undefined) {
   return String(value ?? "")
@@ -43,13 +51,45 @@ function jobHasBudget(job: MarketplaceJob) {
   return Number.isFinite(numericBudget) && numericBudget > 0;
 }
 
+function mapLocationAwareJob(row: LocationAwareJobRow): LocationAwareJob {
+  return {
+    ...mapJobRow(row),
+    latitude: row.latitude ?? null,
+    longitude: row.longitude ?? null,
+  };
+}
+
+function withDistance(job: LocationAwareJob, userCoordinates: BrowserCoordinates | null): LocationAwareJob {
+  if (
+    !userCoordinates ||
+    typeof job.latitude !== "number" ||
+    typeof job.longitude !== "number" ||
+    !Number.isFinite(job.latitude) ||
+    !Number.isFinite(job.longitude)
+  ) {
+    return {
+      ...job,
+      distanceKm: null,
+    };
+  }
+
+  return {
+    ...job,
+    distanceKm: distanceBetweenKm(userCoordinates, {
+      latitude: job.latitude,
+      longitude: job.longitude,
+    }),
+  };
+}
+
 export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean }) {
   const [state, setState] = useState<LoadState>("loading");
-  const [openJobs, setOpenJobs] = useState<MarketplaceJob[]>([]);
-  const [acceptedJobs, setAcceptedJobs] = useState<MarketplaceJob[]>([]);
+  const [openJobs, setOpenJobs] = useState<LocationAwareJob[]>([]);
+  const [acceptedJobs, setAcceptedJobs] = useState<LocationAwareJob[]>([]);
   const [query, setQuery] = useState("");
   const [budgetOnly, setBudgetOnly] = useState(false);
   const [nearbyOnly, setNearbyOnly] = useState(false);
+  const [userCoordinates, setUserCoordinates] = useState<BrowserCoordinates | null>(null);
   const [locationState, setLocationState] = useState<LocationState>("idle");
   const [locationMessage, setLocationMessage] = useState<string | null>(null);
 
@@ -72,7 +112,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
 
       const openResult = await supabase
         .from("ej_jobs")
-        .select("id,title,description,location_text,budget_uyu,status,client_id,accepted_worker_id")
+        .select("id,title,description,location_text,budget_uyu,status,client_id,accepted_worker_id,latitude,longitude")
         .eq("status", "open")
         .order("created_at", { ascending: false })
         .limit(20);
@@ -80,7 +120,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
       const acceptedResult = user
         ? await supabase
             .from("ej_jobs")
-            .select("id,title,description,location_text,budget_uyu,status,client_id,accepted_worker_id")
+            .select("id,title,description,location_text,budget_uyu,status,client_id,accepted_worker_id,latitude,longitude")
             .eq("accepted_worker_id", user.id)
             .in("status", ["accepted", "in_progress"])
             .order("created_at", { ascending: false })
@@ -97,8 +137,8 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
         return;
       }
 
-      setOpenJobs((openResult.data ?? []).map(mapJobRow));
-      setAcceptedJobs((acceptedResult.data ?? []).map(mapJobRow));
+      setOpenJobs(((openResult.data ?? []) as LocationAwareJobRow[]).map(mapLocationAwareJob));
+      setAcceptedJobs(((acceptedResult.data ?? []) as LocationAwareJobRow[]).map(mapLocationAwareJob));
       setState("ready");
     }
 
@@ -114,10 +154,11 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
     setLocationMessage(null);
 
     try {
-      await requestBrowserCoordinates();
+      const coordinates = await requestBrowserCoordinates();
+      setUserCoordinates(coordinates);
       setNearbyOnly(true);
       setLocationState("ready");
-      setLocationMessage("Ubicacion detectada. En esta version usamos ciudad o barrio para ordenar la busqueda sin mostrar tu direccion exacta.");
+      setLocationMessage("Ubicacion detectada. Priorizamos trabajos con coordenadas cercanas y seguimos evitando mostrar tu direccion exacta.");
     } catch (error) {
       setLocationState("error");
       setLocationMessage(error instanceof Error ? error.message : "No pudimos detectar tu ubicacion.");
@@ -125,37 +166,47 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
   }
 
   const filteredOpenJobs = useMemo(() => {
-    const filtered = openJobs.filter((job) => {
-      if (!jobMatchesQuery(job, query)) {
-        return false;
-      }
+    const filtered = openJobs
+      .map((job) => withDistance(job, userCoordinates))
+      .filter((job) => {
+        if (!jobMatchesQuery(job, query)) {
+          return false;
+        }
 
-      if (budgetOnly && !jobHasBudget(job)) {
-        return false;
-      }
+        if (budgetOnly && !jobHasBudget(job)) {
+          return false;
+        }
 
-      if (nearbyOnly && query.trim().length === 0) {
         return true;
-      }
+      });
 
-      return true;
-    });
-
-    if (!nearbyOnly || !query.trim()) {
+    if (!nearbyOnly) {
       return filtered;
     }
 
     const normalizedQuery = normalizeText(query);
+
     return [...filtered].sort((left, right) => {
+      const leftDistance = typeof left.distanceKm === "number" ? left.distanceKm : Number.POSITIVE_INFINITY;
+      const rightDistance = typeof right.distanceKm === "number" ? right.distanceKm : Number.POSITIVE_INFINITY;
+
+      if (leftDistance !== rightDistance) {
+        return leftDistance - rightDistance;
+      }
+
+      if (!normalizedQuery) {
+        return 0;
+      }
+
       const leftLocationMatch = normalizeText(left.location).includes(normalizedQuery) ? 0 : 1;
       const rightLocationMatch = normalizeText(right.location).includes(normalizedQuery) ? 0 : 1;
       return leftLocationMatch - rightLocationMatch;
     });
-  }, [budgetOnly, nearbyOnly, openJobs, query]);
+  }, [budgetOnly, nearbyOnly, openJobs, query, userCoordinates]);
 
   const filteredAcceptedJobs = useMemo(() => {
-    return acceptedJobs.filter((job) => jobMatchesQuery(job, query));
-  }, [acceptedJobs, query]);
+    return acceptedJobs.map((job) => withDistance(job, userCoordinates)).filter((job) => jobMatchesQuery(job, query));
+  }, [acceptedJobs, query, userCoordinates]);
 
   if (state === "loading") {
     return <LoadingState label="Cargando trabajos" />;
@@ -226,6 +277,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
                   setBudgetOnly(false);
                   setNearbyOnly(false);
                   setLocationMessage(null);
+                  setUserCoordinates(null);
                   setLocationState("idle");
                 }}
                 type="button"
@@ -254,7 +306,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
             <JobCard
               key={job.id}
               {...job}
-              distanceLabel={nearbyOnly ? formatDistanceKm(job.distanceKm) ?? "Cerca de tu zona" : null}
+              distanceLabel={nearbyOnly ? formatDistanceKm(job.distanceKm) ?? "Zona sin distancia" : null}
               href={publicMode ? `/jobs/${job.id}` : `/worker/jobs/${job.id}`}
             />
           ))
@@ -275,7 +327,7 @@ export function WorkerJobsClient({ publicMode = false }: { publicMode?: boolean 
           <h2 className="mt-8 text-2xl font-black">Aceptados</h2>
           <div className="mt-4 grid gap-4 lg:grid-cols-2">
             {filteredAcceptedJobs.length ? (
-              filteredAcceptedJobs.map((job) => <JobCard key={job.id} {...job} href={`/worker/jobs/${job.id}`} />)
+              filteredAcceptedJobs.map((job) => <JobCard key={job.id} {...job} distanceLabel={nearbyOnly ? formatDistanceKm(job.distanceKm) : null} href={`/worker/jobs/${job.id}`} />)
             ) : (
               <EmptyState
                 title={hasActiveFilters ? "Sin trabajos aceptados con esos filtros" : "Sin trabajos aceptados"}
