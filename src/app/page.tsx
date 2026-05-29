@@ -1,4 +1,4 @@
-﻿import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, LogIn, MessageCircle, Search, ShieldCheck, UserRoundCheck, UsersRound } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, CheckCircle2, ClipboardList, FileSearch, FileText, FolderCheck, LogIn, MessageCircle, Search, ShieldCheck, UserRoundCheck, UsersRound } from "lucide-react";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { RoleSelector } from "@/components/role-selector";
@@ -47,6 +47,12 @@ const heroMetrics = [
   { label: "Seguridad", value: "RLS y piloto cerrado" },
 ];
 
+const casoClaroHighlights = [
+  { icon: FolderCheck, title: "Orden de pruebas", text: "Recibos, mensajes, pagos, contratos, capturas y constancias organizadas por fecha y relevancia." },
+  { icon: FileText, title: "Informe claro", text: "Resumen ejecutivo, cronologia, documentos clave y preguntas para abogado, contador o asesor." },
+  { icon: FileSearch, title: "Investigacion publica", text: "Fuentes abiertas, empresas, vinculos visibles y antecedentes documentales verificables." },
+] as const;
+
 export default function Home() {
   return (
     <AppShell>
@@ -70,8 +76,8 @@ export default function Home() {
                 <Link className="focus-ring ej-btn-secondary text-sm uppercase tracking-[0.12em]" href="/worker/jobs">
                   Buscar trabajos <Search aria-hidden="true" size={18} />
                 </Link>
-                <Link className="focus-ring ej-btn-secondary text-sm uppercase tracking-[0.12em]" href="/auth">
-                  Crear cuenta <LogIn aria-hidden="true" size={18} />
+                <Link className="focus-ring ej-btn-secondary text-sm uppercase tracking-[0.12em]" href="/servicios">
+                  Servicios ofrecidos <FileText aria-hidden="true" size={18} />
                 </Link>
               </div>
               <div className="ej-glass mt-6 max-w-2xl p-4 text-sm leading-6">
@@ -125,6 +131,30 @@ export default function Home() {
                     </div>
                   </div>
                 </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="ej-container py-12" id="servicios-ofrecidos">
+          <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div>
+              <p className="ej-badge">Servicios ofrecidos</p>
+              <h2 className="mt-4 text-3xl font-black tracking-tight sm:text-4xl">Caso Claro: preparacion documental de casos</h2>
+              <p className="ej-muted mt-4 text-sm leading-6">
+                Servicio para personas que tienen documentos, mensajes, recibos o pruebas desordenadas y necesitan preparar un informe claro para consultar con un abogado, contador o asesor.
+              </p>
+              <Link className="focus-ring mt-6 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.12em] text-emerald-200" href="/servicios">
+                Ver servicio completo <ArrowRight aria-hidden="true" size={16} />
+              </Link>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {casoClaroHighlights.map((item) => (
+                <article className="ej-card p-5" key={item.title}>
+                  <item.icon aria-hidden="true" className="text-[var(--ej-accent)]" size={26} />
+                  <h3 className="mt-4 text-lg font-black tracking-tight">{item.title}</h3>
+                  <p className="ej-muted mt-2 text-sm leading-6">{item.text}</p>
+                </article>
               ))}
             </div>
           </div>
