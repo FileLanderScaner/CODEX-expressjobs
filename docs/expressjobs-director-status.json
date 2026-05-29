@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "branch": "codex/public-calls-admin-actions-rls-smoke",
   "mode": "EXPRESSJOBS_PUBLIC_CALLS_ADMIN_ACTIONS_AND_RLS_SMOKE",
-  "updated_at": "2026-05-29T01:52:00-03:00",
+  "updated_at": "2026-05-29T01:56:00-03:00",
   "final_state": "PUBLIC_CALLS_ADMIN_ACTIONS_PREVIEW_CHECKS_PASS_REAL_ACTION_RLS_SMOKE_BLOCKED_LOCAL_SCHEMA_NOT_APPLIED",
   "production_status": "NO-GO_PRODUCTION",
   "previous_cycles": [
@@ -33,7 +33,7 @@
     "state": "OPEN",
     "review_decision": "REVIEW_REQUIRED",
     "merge_state": "BLOCKED_BY_REVIEW",
-    "commit": "cfdd21b",
+    "commit": "4b2da42",
     "remote_checks": {
       "docs_check": "PASS",
       "pr_check": "PASS",
