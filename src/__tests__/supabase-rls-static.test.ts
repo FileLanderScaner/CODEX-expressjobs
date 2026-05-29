@@ -14,6 +14,10 @@ const finalRoleRpcMigration = readFileSync(
   join(migrationsDir, "20260525193000_revoke_profile_role_rpc_from_authenticated.sql"),
   "utf8",
 );
+const publicCallsAdminMigration = readFileSync(
+  join(migrationsDir, "20260529024000_public_calls_admin_review_queue.sql"),
+  "utf8",
+);
 const marketplaceLib = readFileSync(join(process.cwd(), "src/lib/marketplace.ts"), "utf8");
 const roleApiRoute = readFileSync(join(process.cwd(), "src/app/api/profile/set-role/route.ts"), "utf8");
 
@@ -188,5 +192,39 @@ describe("ExpressJobs Supabase RLS migration", () => {
     expect(allMigrations).toContain("or (select private.ej_is_admin())");
     expect(allMigrations).toContain('drop policy if exists "admin_audit_admin_only" on public.ej_admin_audit_logs');
     expect(allMigrations).toContain('drop policy if exists "categories_select_active" on public.ej_categories');
+  });
+
+  it("adds public-call review queue tables behind admin RLS", () => {
+    expect(publicCallsAdminMigration).toContain("create table if not exists public.public_call_sources");
+    expect(publicCallsAdminMigration).toContain("create table if not exists public.public_call_drafts");
+    expect(publicCallsAdminMigration).toContain("create table if not exists public.public_call_review_events");
+    expect(publicCallsAdminMigration).toContain("alter table public.public_call_sources enable row level security");
+    expect(publicCallsAdminMigration).toContain("alter table public.public_call_drafts enable row level security");
+    expect(publicCallsAdminMigration).toContain("alter table public.public_call_review_events enable row level security");
+    expect(publicCallsAdminMigration).toContain('create policy "public_call_sources_admin_insert"');
+    expect(publicCallsAdminMigration).toContain('create policy "public_call_sources_admin_update"');
+    expect(publicCallsAdminMigration).toContain('create policy "public_call_drafts_admin_insert"');
+    expect(publicCallsAdminMigration).toContain('create policy "public_call_drafts_admin_update"');
+    expect(publicCallsAdminMigration).toContain('create policy "public_call_review_events_admin_insert"');
+    expect(publicCallsAdminMigration).toContain("(select private.ej_is_admin())");
+    expect(publicCallsAdminMigration).toContain("review_status = 'approved'");
+    expect(publicCallsAdminMigration).toContain("publication_status = 'published'");
+    expect(publicCallsAdminMigration).toContain("publication_status <> 'published' or review_status = 'approved'");
+    expect(publicCallsAdminMigration).not.toContain("for delete");
+    expect(publicCallsAdminMigration).not.toContain("grant delete");
+  });
+
+  it("keeps public-call queue as review preparation, not scraping automation", () => {
+    const lower = publicCallsAdminMigration.toLowerCase();
+
+    expect(lower).toContain("no scraping");
+    expect(lower).toContain("no crawler");
+    expect(lower).toContain("no cron");
+    expect(lower).not.toContain("http_get");
+    expect(lower).not.toContain("pg_cron");
+    expect(lower).not.toContain("cron.schedule");
+    expect(lower).not.toContain("service_role");
+    expect(lower).not.toContain("using (true)");
+    expect(lower).not.toContain("with check (true)");
   });
 });

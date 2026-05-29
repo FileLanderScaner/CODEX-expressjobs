@@ -2,6 +2,20 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-29 Public Calls Admin Review Queue
+
+Mode `EXPRESSJOBS_PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGN` running on branch `codex/public-calls-admin-review-queue-design`.
+
+PR #62 is open against `main`: `https://github.com/FileLanderScaner/CODEX-expressjobs/pull/62`.
+
+This cycle adds a safe admin review-queue design for future public-call references. It introduces a non-destructive local Supabase migration for `public_call_sources`, `public_call_drafts`, and `public_call_review_events`, plus an admin-only `/admin/llamados-publicos` route that displays queue state, source/license details and risk indicators. It does not enable scraping, crawling, cron import, automatic import, AI Gateway, live payments, production deploys, or public-body affiliation claims.
+
+RLS design: common users cannot create, edit, approve or publish public-call records. Public reads are limited to rows that are both `approved` and `published`. Admin access uses the existing private admin helper `(select private.ej_is_admin())`. Delete is not granted through client policies. Audit triggers record source/draft changes and review/publication status transitions.
+
+Final checks passed: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`, `npm run staging:check`, `npm run rls:smoke`, JSON parse, and `git diff --check`. Local Playwright smoke passed on desktop 1360 and mobile 390 for `/`, `/llamados-publicos`, `/admin`, and `/admin/llamados-publicos`. Remote PR #62 checks passed: `docs-check`, `pr-check`, `production-no-go`, `security-gate`, `Supabase Preview`, `Vercel`, `Vercel Agent Review`, and `Vercel Preview Comments`. Remote Preview smoke passed for `/`, `/llamados-publicos`, `/admin`, and `/admin/llamados-publicos`.
+
+Current state: `PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGNED_SAFE`.
+
 ## Current Status - 2026-05-28 Public Calls Authorized Import Research
 
 Mode `EXPRESSJOBS_PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH` running on branch `codex/public-calls-authorized-import-research`.

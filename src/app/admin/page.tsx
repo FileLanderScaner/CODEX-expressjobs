@@ -2,6 +2,7 @@ import { AppShell } from "@/components/app-shell";
 import { EmptyState } from "@/components/empty-state";
 import { ErrorState } from "@/components/error-state";
 import { getCurrentProfile, getServerSupabaseClient } from "@/lib/account";
+import Link from "next/link";
 
 type AdminMetric = {
   label: string;
@@ -88,6 +89,19 @@ export default async function AdminPage() {
                 text="Los reportes y disputas apareceran aca para auditoria cuando existan y RLS permita verlos."
               />
             )}
+          </div>
+        </section>
+        <section className="ej-card mt-6 p-5">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 className="text-xl font-black">Llamados publicos</h2>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Cola de revision para fuentes oficiales, licencias, borradores y publicacion manual con auditoria.
+              </p>
+            </div>
+            <Link className="ej-btn-secondary" href="/admin/llamados-publicos">
+              Revisar cola
+            </Link>
           </div>
         </section>
       </main>
