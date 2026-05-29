@@ -1,4 +1,4 @@
-import { ArrowRight, BriefcaseBusiness, ClipboardCheck, FileSearch, FileText, FolderCheck, MessageSquareText, ShieldCheck, Timeline } from "lucide-react";
+import { ArrowRight, BriefcaseBusiness, ClipboardCheck, FileSearch, FileText, FolderCheck, ListOrdered, MessageSquareText, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { AppShell } from "@/components/app-shell";
 import { productionStatus } from "@/lib/env";
@@ -17,7 +17,7 @@ const services = [
     text: "Ordeno recibos, comprobantes, capturas, mensajes, correos, contratos, transferencias y constancias para que el caso sea entendible.",
   },
   {
-    icon: Timeline,
+    icon: ListOrdered,
     title: "Cronologia de hechos",
     text: "Armo una linea de tiempo con fechas, personas, empresas, documentos asociados, contradicciones y puntos que faltan respaldar.",
   },
