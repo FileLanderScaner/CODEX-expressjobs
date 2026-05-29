@@ -1,5 +1,5 @@
-﻿import Link from "next/link";
-import { BadgeDollarSign, BriefcaseBusiness, ClipboardPlus, HelpCircle, Home, LogIn, UserCircle } from "lucide-react";
+import Link from "next/link";
+import { BadgeDollarSign, BriefcaseBusiness, ClipboardPlus, FileText, HelpCircle, Home, LogIn, UserCircle } from "lucide-react";
 import { getAccountNavState } from "@/lib/account";
 import { productionStatus } from "@/lib/env";
 import { publicBrand } from "@/lib/expressjobs-data";
@@ -10,6 +10,7 @@ const nav = [
   { href: "/#como-funciona", label: "Como funciona", icon: HelpCircle },
   { href: "/worker/jobs", label: "Trabajos", icon: BriefcaseBusiness },
   { href: "/client/jobs/new", label: "Publicar", icon: ClipboardPlus },
+  { href: "/servicios", label: "Servicios", icon: FileText },
   { href: "/ofertas", label: "Ofertas", icon: BadgeDollarSign },
 ];
 
