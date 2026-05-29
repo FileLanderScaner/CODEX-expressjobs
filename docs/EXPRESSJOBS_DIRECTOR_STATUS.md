@@ -2,6 +2,20 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+## Current Status - 2026-05-29 Public Calls Admin Actions And RLS Smoke
+
+Mode `EXPRESSJOBS_PUBLIC_CALLS_ADMIN_ACTIONS_AND_RLS_SMOKE` running on branch `codex/public-calls-admin-actions-rls-smoke`.
+
+This cycle adds audited server actions for the public-calls admin queue: create/update source, create/update draft, send to review, approve, reject with required reason, publish approved drafts, and archive published drafts. The admin UI at `/admin/llamados-publicos` now exposes the workflow and audit history while keeping manual operation only.
+
+Security state: no scraping, no crawler, no cron import, no automatic import, no service-role in public-calls client/actions, no AI Gateway, no PayPal live, no real payments, no production deploy/promote, no Production env mutation, and no RLS relaxation.
+
+RLS/static checks added for admin-only policy logic, publication requiring approval, required reasons, and explicit audit events. New smoke script `npm run rls:smoke:public-calls` is available, but the real specific smoke is currently blocked: the configured local staging/preview target returns `PGRST205` for `public.public_call_sources`, so the public-calls migrations are not applied to that target. This is documented as `BLOCKED_SUPABASE_SCHEMA_NOT_APPLIED`, not PASS.
+
+Final local checks passed: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`, `npm run staging:check`, and `npm run rls:smoke`. Browser smoke passed locally on `http://localhost:3020` for `/`, `/llamados-publicos`, `/servicios`, `/admin`, and `/admin/llamados-publicos` on desktop 1360 and mobile 390: no horizontal overflow, no browser console errors, admin signed-out state protected, and `NO-GO_PRODUCTION` visible. A small `/favicon.ico` route was added to remove the local favicon 404 console error.
+
+Current state: `PUBLIC_CALLS_ADMIN_ACTIONS_READY_STATIC_RLS_PASS_REAL_PUBLIC_CALLS_RLS_BLOCKED_SCHEMA_NOT_APPLIED`.
+
 ## Current Status - 2026-05-29 Public Calls Admin Review Queue
 
 Mode `EXPRESSJOBS_PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGN` running on branch `codex/public-calls-admin-review-queue-design`.

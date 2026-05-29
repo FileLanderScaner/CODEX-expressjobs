@@ -2,10 +2,10 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
-  "branch": "codex/public-calls-admin-review-queue-design",
-  "mode": "EXPRESSJOBS_PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGN",
-  "updated_at": "2026-05-29T00:48:30-03:00",
-  "final_state": "PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGNED_SAFE",
+  "branch": "codex/public-calls-admin-actions-rls-smoke",
+  "mode": "EXPRESSJOBS_PUBLIC_CALLS_ADMIN_ACTIONS_AND_RLS_SMOKE",
+  "updated_at": "2026-05-29T01:36:31-03:00",
+  "final_state": "PUBLIC_CALLS_ADMIN_ACTIONS_READY_STATIC_RLS_PASS_REAL_PUBLIC_CALLS_RLS_BLOCKED_SCHEMA_NOT_APPLIED",
   "production_status": "NO-GO_PRODUCTION",
   "previous_cycles": [
     {
@@ -19,26 +19,32 @@
       "pr": 61,
       "state": "MERGED",
       "merge_commit": "6bd7383"
+    },
+    {
+      "mode": "EXPRESSJOBS_PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGN",
+      "pr": 62,
+      "state": "MERGED",
+      "merge_commit": "23f5acb"
     }
   ],
-  "admin_review_queue": {
-    "pr": 62,
-    "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/62",
-    "migration": "supabase/migrations/20260529024000_public_calls_admin_review_queue.sql",
-    "admin_route": "/admin/llamados-publicos",
-    "tables": [
-      "public_call_sources",
-      "public_call_drafts",
-      "public_call_review_events"
+  "admin_actions": {
+    "route": "/admin/llamados-publicos",
+    "server_actions": [
+      "createPublicCallSourceAction",
+      "updatePublicCallSourceAction",
+      "createPublicCallDraftAction",
+      "updatePublicCallDraftAction",
+      "submitPublicCallDraftForReviewAction",
+      "approvePublicCallDraftAction",
+      "rejectPublicCallDraftAction",
+      "publishPublicCallDraftAction",
+      "archivePublicCallDraftAction"
     ],
-    "rls": "ENABLED",
-    "common_user_writes": "BLOCKED_BY_RLS",
-    "public_read_scope": "APPROVED_AND_PUBLISHED_ONLY",
-    "admin_helper": "private.ej_is_admin",
-    "delete_grants": "OFF",
-    "human_review_required": true,
-    "actions_enabled": false,
-    "actions_status": "DESIGNED_DISABLED_UNTIL_SERVER_ACTION_AUDIT_AND_STAGING_MIGRATION",
+    "permission_model": "AUTHENTICATED_ADMIN_PROFILE_REQUIRED",
+    "publication_rule": "REQUIRES_APPROVED_REVIEW_AND_SAFE_SOURCE",
+    "reason_required_for_sensitive_actions": true,
+    "audit_event_types_migration": "supabase/migrations/20260529040500_public_calls_admin_action_events.sql",
+    "service_role_in_public_call_actions": false,
     "scraping": "OFF",
     "crawler": "OFF",
     "cron_import": "OFF",
@@ -47,7 +53,7 @@
   },
   "checks": {
     "secret_scan": "PASS",
-    "production_check": "PASS_NO_GO_PRODUCTION",
+    "production_check": "PASS",
     "guard_no_production_deploy": "PASS",
     "test_rls_static": "PASS",
     "lint": "PASS",
@@ -56,20 +62,36 @@
     "build": "PASS",
     "staging_check": "PASS",
     "rls_smoke": "PASS",
-    "browser_smoke": "PASS_LOCAL_AND_REMOTE_ADMIN_PUBLIC_CALLS",
-    "remote_preview_smoke": "PASS",
+    "rls_smoke_public_calls": "BLOCKED_SUPABASE_SCHEMA_NOT_APPLIED",
+    "browser_smoke": "PASS_LOCAL_DESKTOP_1360_MOBILE_390",
     "git_diff_check": "PASS",
     "json_parse": "PASS"
   },
-  "remote_checks": {
-    "docs_check": "PASS",
-    "pr_check": "PASS",
-    "production_no_go": "PASS",
-    "security_gate": "PASS",
-    "supabase_preview": "PASS",
-    "vercel": "PASS",
-    "vercel_agent_review": "PASS",
-    "vercel_preview_comments": "PASS"
+  "browser_smoke": {
+    "status": "PASS",
+    "target": "http://localhost:3020",
+    "routes": [
+      "/",
+      "/llamados-publicos",
+      "/servicios",
+      "/admin",
+      "/admin/llamados-publicos"
+    ],
+    "viewports": [
+      "desktop-1360",
+      "mobile-390"
+    ],
+    "horizontal_overflow": "NONE",
+    "console_errors": "NONE",
+    "admin_signed_out_state": "PROTECTED_EXPECTED",
+    "no_go_visible": true
+  },
+  "rls_real_smoke_public_calls": {
+    "status": "BLOCKED_SUPABASE_SCHEMA_NOT_APPLIED",
+    "admin_sign_in": "PASS",
+    "admin_profile_role": "admin",
+    "blocker": "PGRST205 public.public_call_sources not found in configured local target schema cache",
+    "pass_claimed": false
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
@@ -87,11 +109,14 @@
     "production": [
       "BLOCKED_PRODUCTION_RISK"
     ],
-    "automatic_import": [
-      "BLOCKED_EXTERNAL_PERMISSION",
-      "BLOCKED_SOURCE_LICENSE_REVIEW"
+    "public_calls_real_rls_smoke": [
+      "BLOCKED_SUPABASE_ACCESS",
+      "BLOCKED_SUPABASE_SCHEMA_NOT_APPLIED"
     ],
-    "safe_next_cycle": []
+    "automatic_import": [
+      "BLOCKED_MISSING_ACCESS",
+      "BLOCKED_SOURCE_LICENSE_REVIEW"
+    ]
   },
-  "next_mode": "EXPRESSJOBS_PUBLIC_CALLS_ADMIN_ACTIONS_AND_RLS_SMOKE"
+  "next_mode": "EXPRESSJOBS_PUBLIC_CALLS_PREVIEW_RLS_APPLY_AND_ACTION_SMOKE"
 }
