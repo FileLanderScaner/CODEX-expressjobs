@@ -4,7 +4,7 @@
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
   "branch": "codex/public-calls-admin-review-queue-design",
   "mode": "EXPRESSJOBS_PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGN",
-  "updated_at": "2026-05-29T00:35:30-03:00",
+  "updated_at": "2026-05-29T00:48:30-03:00",
   "final_state": "PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGNED_SAFE",
   "production_status": "NO-GO_PRODUCTION",
   "previous_cycles": [
@@ -22,6 +22,8 @@
     }
   ],
   "admin_review_queue": {
+    "pr": 62,
+    "pr_url": "https://github.com/FileLanderScaner/CODEX-expressjobs/pull/62",
     "migration": "supabase/migrations/20260529024000_public_calls_admin_review_queue.sql",
     "admin_route": "/admin/llamados-publicos",
     "tables": [
@@ -54,9 +56,20 @@
     "build": "PASS",
     "staging_check": "PASS",
     "rls_smoke": "PASS",
-    "browser_smoke": "PASS_LOCAL_DESKTOP_MOBILE_ADMIN_PUBLIC_CALLS",
+    "browser_smoke": "PASS_LOCAL_AND_REMOTE_ADMIN_PUBLIC_CALLS",
+    "remote_preview_smoke": "PASS",
     "git_diff_check": "PASS",
     "json_parse": "PASS"
+  },
+  "remote_checks": {
+    "docs_check": "PASS",
+    "pr_check": "PASS",
+    "production_no_go": "PASS",
+    "security_gate": "PASS",
+    "supabase_preview": "PASS",
+    "vercel": "PASS",
+    "vercel_agent_review": "PASS",
+    "vercel_preview_comments": "PASS"
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",

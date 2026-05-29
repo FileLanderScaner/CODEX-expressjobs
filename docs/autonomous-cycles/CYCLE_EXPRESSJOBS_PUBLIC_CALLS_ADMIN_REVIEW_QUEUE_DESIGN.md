@@ -10,6 +10,10 @@
 
 `codex/public-calls-admin-review-queue-design`
 
+## PR
+
+`https://github.com/FileLanderScaner/CODEX-expressjobs/pull/62`
+
 ## Objective
 
 Prepare a secure admin review queue for future public-call references loaded manually or from explicitly authorized sources. This cycle does not enable automatic imports.
@@ -78,6 +82,18 @@ The route:
 - JSON parse: PASS
 - `git diff --check`: PASS
 - Browser smoke: PASS local desktop 1360 and mobile 390 for `/`, `/llamados-publicos`, `/admin`, and `/admin/llamados-publicos`
+- Remote Preview smoke: PASS for `/`, `/llamados-publicos`, `/admin`, and `/admin/llamados-publicos`
+
+## Remote Checks
+
+- `docs-check`: PASS
+- `pr-check`: PASS
+- `production-no-go`: PASS
+- `security-gate`: PASS
+- `Supabase Preview`: PASS
+- `Vercel`: PASS
+- `Vercel Agent Review`: PASS
+- `Vercel Preview Comments`: PASS
 
 ## Current State
 
