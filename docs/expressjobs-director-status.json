@@ -2,6 +2,7 @@
   "project": "ExpressJobs",
   "public_brand": "Trabajos Rapidos",
   "workingDirectory": "C:\\CODEX-expressjobs-repo",
+codex/controlled-staging-user-commercial-pilot
   "branch": "codex/controlled-staging-user-commercial-pilot",
   "mode": "EXPRESSJOBS_CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_EXECUTION",
   "updated_at": "2026-05-28T20:11:03-03:00",
@@ -71,6 +72,46 @@
     "smoke_preview": "PASS",
     "critical_route_smoke": "PASS_ALL_10_ROUTES_200_NO_5XX",
     "supabase_preview": "PASS_PROJECT_xijimnsuxnxbrgugqufj"
+
+  "branch": "codex/public-calls-authorized-import-research",
+  "mode": "EXPRESSJOBS_PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH",
+  "updated_at": "2026-05-28T23:39:30-03:00",
+  "final_state": "PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH_READY_NO_SCRAPING",
+  "production_status": "NO-GO_PRODUCTION",
+  "previous_cycle": {
+    "pr": 60,
+    "title": "Add public calls radar and Caso Claro application prep",
+    "state": "MERGED",
+    "merge_commit": "6a9c4263a8b42012b62d057e20bbde873e4e0ce8",
+    "preview_smoke": "PASS_REMOTE_ROUTES_200",
+    "supabase_preview": "SKIPPED_NO_SUPABASE_CHANGES"
+  },
+  "authorized_import_research": {
+    "uruguay_concursa_api_confirmed": false,
+    "global_rss_confirmed": false,
+    "rss_candidate": "OFFICIAL_ORGANISM_FEEDS_ONLY_WHEN_URL_AND_TERMS_ARE_VERIFIED",
+    "open_data_candidate": "CATALOGO_DATOS_ABIERTOS_ORGANISM_DATASETS_WITH_LICENSE_REVIEW",
+    "scraping": "OFF",
+    "crawler": "OFF",
+    "cron_import": "OFF",
+    "external_import_api_route": "OFF",
+    "manual_v1_remains": true,
+    "human_review_required_before_publication": true
+  },
+  "sources_reviewed": [
+    "https://www.gub.uy/tramites/uruguay-concursa",
+    "https://www.gub.uy/llamados-concursos-publicos",
+    "https://www.gub.uy/portal-ejemplo/institucional/concursos-0/concursos-se-cargan-rss",
+    "https://catalogodatos.gub.uy/dataset/?tags=Concursos",
+    "https://catalogodatos.gub.uy/dataset/dna-llamados_y_concursos",
+    "https://catalogodatos.gub.uy/terminos-catalogodatos.pdf",
+    "https://www.gub.uy/terminos-condiciones-uso"
+  ],
+  "robots_review": {
+    "gub_uy": "REVIEWED",
+    "uruguay_concursa": "NO_CLEAR_ROBOTS_DIRECTIVES_HTML_RETURNED",
+    "catalogodatos_gub_uy": "DISALLOW_API_FOR_CRAWLERS_CRAWL_DELAY_10"
+ main
   },
   "checks": {
     "commercial_pilot_check": "PASS_MANUAL_ONLY_NO_LIVE_PAYMENT_SURFACE",
@@ -83,10 +124,14 @@
     "test": "PASS",
     "build": "PASS",
     "staging_check": "PASS",
-    "rls_smoke": "PASS_EXPRESSJOBS_RLS_STAGING_PASS",
+    "rls_smoke": "PASS",
     "git_diff_check": "PASS",
+ codex/controlled-staging-user-commercial-pilot
     "local_route_smoke": "PASS_20_DESKTOP_MOBILE_NO_OVERFLOW_NO_CONSOLE_ERRORS_NO_LIVE_PAYMENT_HREFS",
     "preview_smoke": "PASS"
+
+    "json_parse": "PASS"
+ main
   },
   "production_guards": {
     "vercel_prod_deploy": "NOT_RUN",
@@ -95,10 +140,15 @@
     "supabase_production_mutation": false,
     "paypal_live": "OFF",
     "real_payments": "OFF",
+ codex/controlled-staging-user-commercial-pilot
+
+    "ai_gateway": "OFF",
+ main
     "secrets_printed": false,
     "service_role_in_client": false,
     "rls_relaxed": false
   },
+ codex/controlled-staging-user-commercial-pilot
   "production_blockers": [
     "BLOCKED_PRODUCTION_RISK",
     "BLOCKED_VERCEL_PRODUCTION_ENVS_MISSING",
@@ -108,4 +158,7 @@
     "BLOCKED_SUPABASE_MAIN_GATE_EVIDENCE"
   ],
   "next_mode": "EXPRESSJOBS_CONTROLLED_STAGING_PILOT_FEEDBACK_LOOP"
+
+  "next_mode": "EXPRESSJOBS_PUBLIC_CALLS_ADMIN_REVIEW_QUEUE_DESIGN"
+ main
 }

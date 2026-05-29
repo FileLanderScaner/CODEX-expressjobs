@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { jobStatuses, pilotOfferDisclaimer, pilotOffers, trackingEvents } from "@/lib/expressjobs-data";
+import { publicCalls } from "@/lib/public-calls-data";
 import { isTrackingEventName } from "@/lib/tracking";
 import { buildWhatsAppShareUrl } from "@/lib/whatsapp";
 
@@ -46,5 +47,17 @@ describe("ExpressJobs MVP constants", () => {
 
   it("builds a safe WhatsApp share URL", () => {
     expect(buildWhatsAppShareUrl("Trabajo ExpressJobs")).toBe("https://wa.me/?text=Trabajo%20ExpressJobs");
+  });
+
+  it("keeps public call references attributed and non-empty", () => {
+    expect(publicCalls.length).toBeGreaterThan(0);
+    for (const call of publicCalls) {
+      expect(call.status).toBe("referencia");
+      expect(call.sourceUrl).toMatch(/^https:\/\//);
+      expect(call.sourceUrl).not.toContain("#");
+      expect(call.sourceName).toBeTruthy();
+      expect(call.summary.length).toBeLessThan(260);
+      expect(call.requirements.length).toBeGreaterThan(0);
+    }
   });
 });

@@ -12,6 +12,7 @@ export type MarketplaceJob = {
   urgency?: "normal" | "urgent";
   clientId?: string;
   acceptedWorkerId?: string | null;
+  distanceKm?: number | null;
 };
 
 export type MarketplaceApplication = {

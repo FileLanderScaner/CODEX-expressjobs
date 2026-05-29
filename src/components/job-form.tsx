@@ -7,6 +7,7 @@ import { useState } from "react";
 import { categories } from "@/lib/expressjobs-data";
 import { authHref, ensureMarketplaceRole, fullNameFromUser, serializeJobDescription } from "@/lib/marketplace";
 import { jobPostSchema } from "@/lib/marketplace-schemas";
+import { buildLocationText } from "@/lib/location";
 import { getBrowserSupabaseClient } from "@/lib/supabase";
 
 type JobFormState = "idle" | "loading" | "success" | "error";
@@ -26,7 +27,9 @@ export function JobForm() {
   const [category, setCategory] = useState<(typeof categories)[number]>(categories[0]);
   const [urgency, setUrgency] = useState<"normal" | "urgent">("normal");
   const [description, setDescription] = useState("");
-  const [location, setLocation] = useState("");
+  const [city, setCity] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
+  const [addressPrivate, setAddressPrivate] = useState("");
   const [budget, setBudget] = useState("");
   const [state, setState] = useState<JobFormState>("idle");
   const [message, setMessage] = useState<string | null>(null);
@@ -55,11 +58,15 @@ export function JobForm() {
       return;
     }
 
+    const location = buildLocationText({ city, neighborhood });
     const parsed = jobPostSchema.safeParse({
       title,
       category,
       description,
       location,
+      city,
+      neighborhood,
+      addressPrivate,
       budgetUyu: parseBudget(budget),
       urgency,
     });
@@ -89,6 +96,10 @@ export function JobForm() {
           description: parsed.data.description,
         }),
         location_text: parsed.data.location,
+        city: parsed.data.city,
+        neighborhood: parsed.data.neighborhood || null,
+        address_private: parsed.data.addressPrivate || null,
+        location_precision: parsed.data.neighborhood ? "manual_neighborhood" : "manual_city",
         budget_uyu: parsed.data.budgetUyu,
         status: "open",
       })
@@ -117,9 +128,9 @@ export function JobForm() {
         <p className="font-black text-[var(--ej-text)]">Antes de publicar</p>
         <ol className="mt-3 grid gap-2 font-semibold leading-6">
           <li>1. Que necesitas: resultado concreto, no solo el rubro.</li>
-          <li>2. Donde: zona aproximada, sin direccion exacta.</li>
-          <li>3. Presupuesto y urgencia: ayuda a recibir propuestas comparables.</li>
-          <li>4. Publicar: revisa postulaciones antes de coordinar.</li>
+          <li>2. Donde: ciudad y barrio aproximado para que aparezca en trabajos cercanos.</li>
+          <li>3. Direccion exacta: opcional y privada, no se muestra en listados publicos.</li>
+          <li>4. Presupuesto y urgencia: ayuda a recibir propuestas comparables.</li>
         </ol>
       </div>
 
@@ -159,21 +170,45 @@ export function JobForm() {
         />
       </label>
 
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold">
-          Ubicacion
-          <span className="ej-soft text-xs font-semibold">Zona aproximada; no publiques direccion exacta.</span>
+          Ciudad
+          <span className="ej-soft text-xs font-semibold">Obligatoria para mostrar trabajos cerca.</span>
           <div className="relative">
             <MapPin aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--ej-text-soft)]" size={16} />
             <input
               className="focus-ring ej-input py-2 pl-9 pr-3 font-normal"
-              onChange={(event) => setLocation(event.target.value)}
-              placeholder="Ej: Montevideo, Cordon"
-              value={location}
+              onChange={(event) => setCity(event.target.value)}
+              placeholder="Ej: Montevideo"
+              value={city}
             />
           </div>
         </label>
 
+        <label className="grid gap-2 text-sm font-bold">
+          Barrio o zona
+          <span className="ej-soft text-xs font-semibold">Aproximado; ayuda a ordenar por cercania.</span>
+          <input
+            className="focus-ring ej-input font-normal"
+            onChange={(event) => setNeighborhood(event.target.value)}
+            placeholder="Ej: Cordon, Pocitos, Centro"
+            value={neighborhood}
+          />
+        </label>
+      </div>
+
+      <label className="grid gap-2 text-sm font-bold">
+        Direccion privada opcional
+        <span className="ej-soft text-xs font-semibold">No se muestra en listados publicos. Usala solo para coordinar con trabajador aceptado.</span>
+        <input
+          className="focus-ring ej-input font-normal"
+          onChange={(event) => setAddressPrivate(event.target.value)}
+          placeholder="Ej: calle y numero, apartamento o referencia"
+          value={addressPrivate}
+        />
+      </label>
+
+      <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-bold">
           Urgencia
           <span className="ej-soft text-xs font-semibold">Usa urgente solo si necesitas coordinar pronto.</span>
@@ -202,7 +237,7 @@ export function JobForm() {
 
       <p className="ej-soft flex items-start gap-2 text-xs leading-5">
         <AlertCircle aria-hidden="true" className="mt-0.5 shrink-0" size={14} />
-        No publiques tareas peligrosas, ilegales o con datos sensibles.
+        No publiques tareas peligrosas, ilegales o con datos sensibles. La direccion exacta no se muestra en listados.
       </p>
 
       {message ? (

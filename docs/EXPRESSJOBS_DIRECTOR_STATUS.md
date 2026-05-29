@@ -2,6 +2,7 @@
 
 `PRODUCTION_STATUS=NO-GO_PRODUCTION`
 
+codex/controlled-staging-user-commercial-pilot
 ## Current Status - 2026-05-28 Controlled Staging User Commercial Pilot
 
 Mode `EXPRESSJOBS_CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_EXECUTION` running on branch `codex/controlled-staging-user-commercial-pilot`.
@@ -19,6 +20,33 @@ PR #57 Preview is Ready at `https://codex-expressjobs-git-codex-controlled-8024a
 Final checks passed: `npm run commercial:pilot:check`, `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm test`, `npm run build`, `npm run staging:check`, `npm run rls:smoke`, and `git diff --check`.
 
 Current state: `CONTROLLED_STAGING_USER_COMMERCIAL_PILOT_OPERATOR_HANDOFF_READY`.
+=======
+## Current Status - 2026-05-28 Public Calls Authorized Import Research
+
+Mode `EXPRESSJOBS_PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH` running on branch `codex/public-calls-authorized-import-research`.
+
+PR #60 (`Add public calls radar and Caso Claro application prep`) was merged into `main` at merge commit `6a9c4263a8b42012b62d057e20bbde873e4e0ce8`. Remote checks passed: `docs-check`, `pr-check`, `production-no-go`, `security-gate`, `Vercel`, `Vercel Agent Review`, and `Vercel Preview Comments`; `Supabase Preview` was skipped because the PR had no Supabase changes. Preview route smoke returned 200 for `/`, `/llamados-publicos`, and `/servicios`.
+
+Research outcome: keep `/llamados-publicos` manual/curated for now. No official public Uruguay Concursa API was confirmed. gub.uy documentation indicates RSS can be used by organism sites for concours data from ONSC when configured, and Catalogo Nacional de Datos Abiertos contains organism-level "Llamados y concursos" datasets. Those are candidates for a future authorized import, but only after source URL, terms/license, robots, rate limits, and human-review workflow are documented.
+
+Safety outcome: no scraping, no crawler, no cron/import API, no AI Gateway, no PayPal live, no production deploy/promote, no Production env mutation, no secrets, no service-role client exposure, and no RLS relaxation.
+
+Final checks passed: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`, `npm run staging:check`, `npm run rls:smoke`, JSON parse, and `git diff --check`.
+
+Current state: `PUBLIC_CALLS_AUTHORIZED_IMPORT_RESEARCH_READY_NO_SCRAPING`.
+
+## Current Status - 2026-05-28 Public Calls Radar
+
+Mode `EXPRESSJOBS_PUBLIC_CALLS_RADAR_SAFE` running on branch `codex/public-calls-radar-caso-claro`.
+
+This cycle adds `/llamados-publicos` as a safe manual radar for public/official call references in Uruguay, with source attribution and Caso Claro application preparation CTAs. It uses manual seed references only: no scraping, no crawler, no cron, no import API route, no third-party content copy, and no affiliation claim with Uruguay Concursa or any public body.
+
+Production remains `NO-GO_PRODUCTION`. AI Gateway remains off. PayPal live and real payments remain off.
+
+Final checks passed: `npm run secret:scan`, `npm run production:check`, `npm run guard:no-production-deploy`, `npm run test:rls:static`, `npm run lint`, `npm run typecheck`, `npm run test`, `npm run build`, and `git diff --check`. Browser smoke passed for `/`, `/llamados-publicos`, `/servicios`, mobile navigation, and WhatsApp CTA.
+
+Current state: `PUBLIC_CALLS_RADAR_READY_FOR_PREVIEW`.
+ main
 
 ## Current Status - 2026-05-28 PR55 Preview Gate Commercial Closeout
 

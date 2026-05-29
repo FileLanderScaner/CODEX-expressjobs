@@ -50,7 +50,32 @@ describe("real public product surface", () => {
     expect(home).toContain("Buscar trabajos");
     expect(home).toContain("Crear cuenta");
     expect(home).toContain("Crear perfil");
+    expect(home).toContain("Llamados públicos");
+    expect(home).toContain("Ver llamados públicos");
     expect(home).not.toContain("Ver demos comerciales");
+  });
+
+  it("exposes the public calls radar safely", () => {
+    const appShell = readFileSync(join(process.cwd(), "src/components/app-shell.tsx"), "utf8");
+    const page = readFileSync(join(process.cwd(), "src/app/llamados-publicos/page.tsx"), "utf8");
+    const client = readFileSync(join(process.cwd(), "src/components/public-calls-client.tsx"), "utf8");
+    const data = readFileSync(join(process.cwd(), "src/lib/public-calls-data.ts"), "utf8");
+    const packageJson = readFileSync(join(process.cwd(), "package.json"), "utf8");
+    const combined = [page, client, data, packageJson].join("\n");
+
+    expect(existsSync(join(process.cwd(), "src/app/llamados-publicos/page.tsx"))).toBe(true);
+    expect(appShell).toContain("/llamados-publicos");
+    expect(appShell).toContain("Llamados públicos");
+    expect(page).toContain("ExpressJobs no administra ni representa llamados publicos externos");
+    expect(page).toContain("Prepará tu postulación con Caso Claro");
+    expect(data).toContain("sourceUrl");
+    expect(data).toContain("https://uruguayconcursa.gub.uy/");
+    expect(combined).not.toContain("cheerio");
+    expect(combined).not.toContain("puppeteer");
+    expect(combined).not.toContain("axios");
+    expect(combined).not.toContain("crawler");
+    expect(combined).not.toContain("afiliado a Uruguay Concursa");
+    expect(combined).not.toContain("representa a Uruguay Concursa");
   });
 
   it("keeps real contact channels visible", () => {
